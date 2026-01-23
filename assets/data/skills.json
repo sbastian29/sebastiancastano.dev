@@ -1,0 +1,166 @@
+{
+  "skills": [
+    {
+      "id": 1,
+      "name": "Python",
+      "icon": "python",
+      "description": "Desarrollo backend, automatización y análisis de datos",
+      "categories": ["automatizacion", "data", "software"],
+      "tags": ["python", "backend", "automatizacion", "data-science"],
+      "level": 95
+    },
+    {
+      "id": 2,
+      "name": "Java",
+      "icon": "java",
+      "description": "Desarrollo de aplicaciones empresariales y backend",
+      "categories": ["software"],
+      "tags": ["java", "backend", "enterprise"],
+      "level": 85
+    },
+    {
+      "id": 3,
+      "name": "Kotlin",
+      "icon": "kotlin",
+      "description": "Desarrollo móvil Android moderno",
+      "categories": ["software"],
+      "tags": ["kotlin", "mobile", "android"],
+      "level": 80
+    },
+    {
+      "id": 4,
+      "name": "SQL",
+      "icon": "database",
+      "description": "Bases de datos relacionales y consultas avanzadas",
+      "categories": ["data", "software"],
+      "tags": ["sql", "database", "postgresql", "mysql"],
+      "level": 90
+    },
+    {
+      "id": 5,
+      "name": "Apache Spark",
+      "icon": "spark",
+      "description": "Procesamiento distribuido de datos a gran escala",
+      "categories": ["data"],
+      "tags": ["spark", "bigdata", "pyspark", "distributed"],
+      "level": 80
+    },
+    {
+      "id": 6,
+      "name": "Apache Airflow",
+      "icon": "airflow",
+      "description": "Orquestación de pipelines ETL y workflows",
+      "categories": ["data", "automatizacion"],
+      "tags": ["airflow", "etl", "orchestration", "pipelines"],
+      "level": 85
+    },
+    {
+      "id": 7,
+      "name": "AWS",
+      "icon": "aws",
+      "description": "Servicios cloud: S3, Lambda, EC2, Glue, Athena",
+      "categories": ["data", "software", "automatizacion"],
+      "tags": ["aws", "cloud", "s3", "lambda", "glue"],
+      "level": 80
+    },
+    {
+      "id": 8,
+      "name": "Docker",
+      "icon": "docker",
+      "description": "Contenedorización y despliegue de aplicaciones",
+      "categories": ["software", "data"],
+      "tags": ["docker", "containers", "devops"],
+      "level": 85
+    },
+    {
+      "id": 9,
+      "name": "Kafka",
+      "icon": "kafka",
+      "description": "Streaming de datos en tiempo real",
+      "categories": ["data"],
+      "tags": ["kafka", "streaming", "realtime", "events"],
+      "level": 75
+    },
+    {
+      "id": 10,
+      "name": "FastAPI",
+      "icon": "fastapi",
+      "description": "Desarrollo de APIs REST modernas y rápidas",
+      "categories": ["software", "data"],
+      "tags": ["fastapi", "api", "rest", "python"],
+      "level": 85
+    },
+    {
+      "id": 11,
+      "name": "MongoDB",
+      "icon": "mongodb",
+      "description": "Bases de datos NoSQL orientadas a documentos",
+      "categories": ["data", "software"],
+      "tags": ["mongodb", "nosql", "database"],
+      "level": 80
+    },
+    {
+      "id": 12,
+      "name": "Power BI",
+      "icon": "powerbi",
+      "description": "Visualización de datos y dashboards interactivos",
+      "categories": ["data"],
+      "tags": ["powerbi", "visualization", "dashboards", "bi"],
+      "level": 85
+    },
+    {
+      "id": 13,
+      "name": "Snowflake",
+      "icon": "snowflake",
+      "description": "Data warehouse cloud para analytics",
+      "categories": ["data"],
+      "tags": ["snowflake", "datawarehouse", "cloud", "analytics"],
+      "level": 75
+    },
+    {
+      "id": 14,
+      "name": "DBT",
+      "icon": "dbt",
+      "description": "Transformación de datos con SQL moderno",
+      "categories": ["data"],
+      "tags": ["dbt", "transformation", "analytics", "sql"],
+      "level": 75
+    },
+    {
+      "id": 15,
+      "name": "UiPath",
+      "icon": "uipath",
+      "description": "Automatización robótica de procesos (RPA)",
+      "categories": ["automatizacion"],
+      "tags": ["uipath", "rpa", "automation", "bots"],
+      "level": 70
+    },
+    {
+      "id": 16,
+      "name": "Git",
+      "icon": "git",
+      "description": "Control de versiones y colaboración",
+      "categories": ["software"],
+      "tags": ["git", "github", "version-control"],
+      "level": 90
+    },
+    {
+      "id": 17,
+      "name": "Pytest",
+      "icon": "pytest",
+      "description": "Testing automatizado en Python",
+      "categories": ["software", "automatizacion"],
+      "tags": ["pytest", "testing", "python", "qa"],
+      "level": 80
+    },
+    {
+      "id": 18,
+      "name": "Jetpack Compose",
+      "icon": "compose",
+      "description": "UI moderna declarativa para Android",
+      "categories": ["software"],
+      "tags": ["compose", "android", "ui", "kotlin"],
+      "level": 75
+    }
+  ]
+}

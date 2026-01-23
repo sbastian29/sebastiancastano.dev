@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Proyectos de Sebastián Castaño Suárez - Data Engineering, Automatización y Desarrollo de Software">
+  <title>Portfolio | Sebastián Castaño Suárez</title>
+
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/filters.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+
+  <style>
+    /* Project-specific styles */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(380px, 1fr));
+      gap: 32px;
+    }
+
+    @media (max-width: 480px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .project-card {
+      position: relative;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-normal);
+    }
+
+    .project-card:hover {
+      transform: translateY(-8px);
+      border-color: var(--border-color-hover);
+      box-shadow: var(--shadow-lg);
+    }
+
+    .project-card.featured {
+      grid-column: span 1;
+    }
+
+    @media (min-width: 900px) {
+      .project-card.featured:first-child {
+        grid-column: span 2;
+      }
+
+      .project-card.featured:first-child .project-image {
+        height: 320px;
+      }
+    }
+
+    .project-image {
+      position: relative;
+      width: 100%;
+      height: 220px;
+      background: linear-gradient(135deg, var(--bg-tertiary) 0%, var(--bg-secondary) 100%);
+      overflow: hidden;
+    }
+
+    .project-image-inner {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: linear-gradient(135deg,
+        rgba(59, 130, 246, 0.1) 0%,
+        rgba(139, 92, 246, 0.1) 50%,
+        rgba(16, 185, 129, 0.1) 100%);
+    }
+
+    .project-icon {
+      font-size: 4rem;
+      color: var(--text-muted);
+      opacity: 0.5;
+    }
+
+    .project-featured-badge {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      padding: 6px 12px;
+      background: var(--accent-primary);
+      color: var(--bg-primary);
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-full);
+      z-index: 2;
+    }
+
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+
+    .project-actions {
+      position: absolute;
+      bottom: 16px;
+      left: 16px;
+      right: 16px;
+      display: flex;
+      gap: 8px;
+      opacity: 0;
+      transform: translateY(10px);
+      transition: all var(--transition-fast);
+      z-index: 3;
+    }
+
+    .project-card:hover .project-actions {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .project-action-btn {
+      flex: 1;
+      padding: 10px;
+      background: var(--bg-glass);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: var(--radius-md);
+      color: white;
+      font-size: 0.8125rem;
+      font-weight: 500;
+      text-align: center;
+      cursor: pointer;
+      transition: all var(--transition-fast);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    }
+
+    .project-action-btn:hover {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .project-action-btn.disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+
+    .project-content {
+      padding: 24px;
+    }
+
+    .project-category-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 4px 10px;
+      margin-bottom: 12px;
+      font-size: 0.7rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      border-radius: var(--radius-full);
+      background: var(--bg-tertiary);
+      color: var(--text-tertiary);
+    }
+
+    .project-category-badge.data {
+      background: rgba(59, 130, 246, 0.1);
+      color: var(--accent-data);
+    }
+
+    .project-category-badge.automatizacion {
+      background: rgba(16, 185, 129, 0.1);
+      color: var(--accent-automation);
+    }
+
+    .project-category-badge.software {
+      background: rgba(139, 92, 246, 0.1);
+      color: var(--accent-software);
+    }
+
+    .project-title {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 8px;
+      line-height: 1.3;
+    }
+
+    .project-description {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      margin-bottom: 16px;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .project-tech-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 16px;
+    }
+
+    .project-tech {
+      padding: 6px 12px;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-full);
+      font-size: 0.75rem;
+      font-weight: 500;
+      color: var(--text-secondary);
+    }
+
+    .project-date {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Page header */
+    .page-header {
+      padding: 140px 0 60px;
+      text-align: center;
+    }
+
+    .page-header h1 {
+      margin-bottom: 16px;
+    }
+
+    .page-header p {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    /* Stats section */
+    .portfolio-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 32px;
+      flex-wrap: wrap;
+    }
+
+    .stat-item {
+      text-align: center;
+    }
+
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-dot"></span>
+        SCS
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link">CV</a>
+        <a href="certificados.html" class="nav-link">Certificados</a>
+        <a href="portfolio.html" class="nav-link active">Portfolio</a>
+
+        <div class="theme-toggle">
+          <button class="theme-btn" data-theme="dark">Dark</button>
+          <button class="theme-btn active" data-theme="light">Light</button>
+        </div>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <main>
+    <!-- Page Header -->
+    <section class="page-header">
+      <div class="container">
+        <h1 class="animate-fade-in">Portfolio</h1>
+        <p class="animate-fade-in">Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.</p>
+
+        <div class="portfolio-stats animate-fade-in">
+          <div class="stat-item">
+            <div class="stat-number">8</div>
+            <div class="stat-label">Proyectos</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">15+</div>
+            <div class="stat-label">Tecnologías</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-number">3</div>
+            <div class="stat-label">Áreas</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section class="section" style="padding-top: 0;">
+      <div class="container">
+        <!-- Filter Search -->
+        <div class="search-filter-container">
+          <div class="search-wrapper">
+            <div class="search-box">
+              <i class="fas fa-search search-icon"></i>
+              <input type="text" class="search-input" id="projectSearch" placeholder="Buscar proyectos...">
+              <button class="search-clear">Limpiar</button>
+            </div>
+          </div>
+
+          <div class="filter-categories">
+            <div class="filter-group">
+              <span class="filter-label">Por rol / área</span>
+              <div class="filter-chips" id="projectRoleChips">
+                <button class="filter-chip" data-filter="automatizacion" data-filter-type="categories" data-category="automatizacion">
+                  <span class="filter-chip-dot"></span>
+                  <span>Automatización</span>
+                </button>
+                <button class="filter-chip" data-filter="data" data-filter-type="categories" data-category="data">
+                  <span class="filter-chip-dot"></span>
+                  <span>Data Engineering</span>
+                </button>
+                <button class="filter-chip" data-filter="software" data-filter-type="categories" data-category="software">
+                  <span class="filter-chip-dot"></span>
+                  <span>Desarrollo Software</span>
+                </button>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <span class="filter-label">Por tecnología</span>
+              <div class="filter-chips" id="projectTechChips">
+                <button class="filter-chip" data-filter="python" data-filter-type="technologies">
+                  <span class="filter-chip-dot"></span>
+                  <span>Python</span>
+                </button>
+                <button class="filter-chip" data-filter="java" data-filter-type="technologies">
+                  <span class="filter-chip-dot"></span>
+                  <span>Java</span>
+                </button>
+                <button class="filter-chip" data-filter="kotlin" data-filter-type="technologies">
+                  <span class="filter-chip-dot"></span>
+                  <span>Kotlin</span>
+                </button>
+                <button class="filter-chip" data-filter="aws" data-filter-type="technologies">
+                  <span class="filter-chip-dot"></span>
+                  <span>AWS</span>
+                </button>
+                <button class="filter-chip" data-filter="docker" data-filter-type="technologies">
+                  <span class="filter-chip-dot"></span>
+                  <span>Docker</span>
+                </button>
+                <button class="filter-chip" data-filter="mongodb" data-filter-type="technologies">
+                  <span class="filter-chip-dot"></span>
+                  <span>MongoDB</span>
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div class="filter-actions">
+            <span class="results-counter" id="projectCounter">Mostrando <strong>8</strong> de <strong>8</strong> proyectos</span>
+            <button class="reset-filters" id="resetProjectFilters" disabled>
+              <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="1 4 1 10 7 10"></polyline>
+                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+              </svg>
+              Mezclar / Reset
+            </button>
+          </div>
+
+          <div class="active-filters" id="activeProjectFilters"></div>
+        </div>
+
+        <!-- Projects Grid -->
+        <div class="projects-grid" id="projectsGrid">
+          <!-- Projects will be dynamically generated -->
+        </div>
+
+        <!-- No Results -->
+        <div class="no-results" id="noProjectResults" style="display: none;">
+          <div class="no-results-icon"><i class="fas fa-folder-open"></i></div>
+          <h3>No se encontraron proyectos</h3>
+          <p>Intenta ajustar los filtros o términos de búsqueda</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">CV</a>
+          <a href="certificados.html" class="footer-link">Certificados</a>
+          <a href="portfolio.html" class="footer-link">Portfolio</a>
+        </div>
+        <p class="footer-copyright">
+          © 2024 Sebastián Castaño Suárez. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/filterEngine.js"></script>
+  <script>
+    // Projects Data
+    const projectsData = [
+      {
+        id: 1,
+        title: "Sistema de Gestión Hospitalaria",
+        description: "Aplicación completa para la administración de hospitales con gestión de pacientes, citas, personal médico e historial clínico. Arquitectura MVC con persistencia en MongoDB.",
+        categories: ["software"],
+        tags: ["java", "mongodb", "mvc", "swing"],
+        technologies: ["Java", "MongoDB", "Swing", "Maven"],
+        github: "https://github.com/sebastiancastano/hospital-management",
+        demo: null,
+        featured: true,
+        date: "2023",
+        icon: "fa-hospital"
+      },
+      {
+        id: 2,
+        title: "App de Desarrollo Móvil Inmersivo",
+        description: "Aplicación Android moderna desarrollada con Kotlin y Jetpack Compose, implementando arquitectura MVVM y diseño Material 3.",
+        categories: ["software"],
+        tags: ["kotlin", "android", "compose", "mvvm"],
+        technologies: ["Kotlin", "Jetpack Compose", "Room", "Coroutines"],
+        github: "https://github.com/sebastiancastano/mobile-app",
+        demo: null,
+        featured: true,
+        date: "2023",
+        icon: "fa-mobile-alt"
+      },
+      {
+        id: 3,
+        title: "Pipeline ETL con Airflow y AWS",
+        description: "Pipeline de extracción, transformación y carga de datos orquestado con Apache Airflow y desplegado en AWS con S3, Glue y Athena.",
+        categories: ["data", "automatizacion"],
+        tags: ["python", "airflow", "aws", "spark", "etl", "docker"],
+        technologies: ["Python", "Airflow", "AWS", "Spark", "Docker"],
+        github: "https://github.com/sebastiancastano/etl-pipeline",
+        demo: null,
+        featured: true,
+        date: "2024",
+        icon: "fa-code-branch"
+      },
+      {
+        id: 4,
+        title: "API REST con FastAPI",
+        description: "Backend moderno y de alto rendimiento desarrollado con FastAPI, incluyendo autenticación JWT, documentación automática y tests con Pytest.",
+        categories: ["software", "data"],
+        tags: ["python", "fastapi", "rest", "jwt", "pytest", "docker"],
+        technologies: ["Python", "FastAPI", "PostgreSQL", "Docker", "Pytest"],
+        github: "https://github.com/sebastiancastano/fastapi-backend",
+        demo: null,
+        featured: false,
+        date: "2024",
+        icon: "fa-server"
+      },
+      {
+        id: 5,
+        title: "Dashboard de Análisis con Power BI",
+        description: "Dashboard interactivo para visualización de KPIs empresariales, conectado a fuentes de datos en tiempo real.",
+        categories: ["data"],
+        tags: ["powerbi", "visualization", "sql", "analytics"],
+        technologies: ["Power BI", "SQL", "DAX", "Python"],
+        github: null,
+        demo: null,
+        featured: false,
+        date: "2024",
+        icon: "fa-chart-pie"
+      },
+      {
+        id: 6,
+        title: "Sistema de Streaming con Kafka",
+        description: "Plataforma de procesamiento de eventos en tiempo real utilizando Apache Kafka para ingesta y procesamiento de streams de datos.",
+        categories: ["data"],
+        tags: ["kafka", "streaming", "python", "realtime", "docker"],
+        technologies: ["Apache Kafka", "Python", "Docker", "InfluxDB"],
+        github: "https://github.com/sebastiancastano/kafka-streaming",
+        demo: null,
+        featured: false,
+        date: "2024",
+        icon: "fa-stream"
+      },
+      {
+        id: 7,
+        title: "Bot de Automatización RPA",
+        description: "Robot de automatización de procesos repetitivos utilizando UiPath para tareas de scraping, entrada de datos y reportes automatizados.",
+        categories: ["automatizacion"],
+        tags: ["uipath", "rpa", "automation", "scraping"],
+        technologies: ["UiPath", "Python", "Excel", "Selenium"],
+        github: null,
+        demo: null,
+        featured: false,
+        date: "2023",
+        icon: "fa-robot"
+      },
+      {
+        id: 8,
+        title: "Data Warehouse con Snowflake y DBT",
+        description: "Arquitectura de data warehouse moderna usando Snowflake como almacén y DBT para transformaciones reproducibles.",
+        categories: ["data"],
+        tags: ["snowflake", "dbt", "sql", "datawarehouse", "python"],
+        technologies: ["Snowflake", "DBT", "SQL", "Python", "Airflow"],
+        github: "https://github.com/sebastiancastano/snowflake-dbt",
+        demo: null,
+        featured: false,
+        date: "2024",
+        icon: "fa-snowflake"
+      }
+    ];
+
+    // Generate project cards
+    function generateProjectCards() {
+      const grid = document.getElementById('projectsGrid');
+      if (!grid) return;
+
+      grid.innerHTML = projectsData.map(project => `
+        <div class="project-card filterable-item stagger-item ${project.featured ? 'featured' : ''}"
+             data-categories='${JSON.stringify(project.categories)}'
+             data-tags='${JSON.stringify(project.tags)}'
+             data-title="${project.title}"
+             data-description="${project.description}">
+          <div class="project-image">
+            ${project.featured ? '<span class="project-featured-badge">Destacado</span>' : ''}
+            <div class="project-image-inner">
+              <i class="fas ${project.icon} project-icon"></i>
+            </div>
+            <div class="project-overlay"></div>
+            <div class="project-actions">
+              ${project.github ?
+                `<a href="${project.github}" target="_blank" class="project-action-btn">
+                  <i class="fab fa-github"></i>
+                  GitHub
+                </a>` :
+                `<span class="project-action-btn disabled">
+                  <i class="fab fa-github"></i>
+                  Privado
+                </span>`
+              }
+              ${project.demo ?
+                `<a href="${project.demo}" target="_blank" class="project-action-btn">
+                  <i class="fas fa-external-link-alt"></i>
+                  Demo
+                </a>` : ''
+              }
+            </div>
+          </div>
+          <div class="project-content">
+            <span class="project-category-badge ${project.categories[0]}">
+              <i class="fas fa-${project.categories[0] === 'data' ? 'database' : project.categories[0] === 'automatizacion' ? 'robot' : 'code'}"></i>
+              ${project.categories[0] === 'data' ? 'Data Engineering' : project.categories[0] === 'automatizacion' ? 'Automatización' : 'Software'}
+            </span>
+            <h3 class="project-title">${project.title}</h3>
+            <p class="project-description">${project.description}</p>
+            <div class="project-tech-stack">
+              ${project.technologies.map(tech => `<span class="project-tech">${tech}</span>`).join('')}
+            </div>
+            <span class="project-date">
+              <i class="fas fa-calendar-alt"></i>
+              ${project.date}
+            </span>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize projects filter
+    function initProjectFilter() {
+      const items = Array.from(document.querySelectorAll('#projectsGrid .filterable-item')).map(el => {
+        return {
+          element: el,
+          title: el.dataset.title || '',
+          description: el.dataset.description || '',
+          categories: JSON.parse(el.dataset.categories || '[]'),
+          tags: JSON.parse(el.dataset.tags || '[]')
+        };
+      });
+
+      const allChips = [
+        ...Array.from(document.querySelectorAll('#projectRoleChips .filter-chip')),
+        ...Array.from(document.querySelectorAll('#projectTechChips .filter-chip'))
+      ];
+
+      new FilterEngine({
+        items: items,
+        container: document.getElementById('projectsGrid'),
+        searchInput: document.getElementById('projectSearch'),
+        filterChips: allChips,
+        resultsCounter: document.getElementById('projectCounter'),
+        resetButton: document.getElementById('resetProjectFilters'),
+        activeFiltersContainer: document.getElementById('activeProjectFilters'),
+        noResultsElement: document.getElementById('noProjectResults')
+      });
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      generateProjectCards();
+      setTimeout(() => {
+        initProjectFilter();
+        // Trigger animations
+        document.querySelectorAll('#projectsGrid .stagger-item').forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 60);
+        });
+        // Refresh cursor listeners for dynamic content
+        if (window.refreshCursor) window.refreshCursor();
+      }, 100);
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Portfolio de Sebastián Castaño Suárez - Desarrollador e Ingeniero de Datos especializado en Python, AWS, Airflow y Data Engineering">
+  <meta name="keywords" content="desarrollador, ingeniero de datos, python, data engineering, aws, portfolio">
+  <meta name="author" content="Sebastián Castaño Suárez">
+
+  <title>Sebastián Castaño Suárez | Desarrollador & Ingeniero de Datos</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/filters.css">
+
+  <!-- Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <!-- Header -->
+  <header class="header">
+    <div class="header-content">
+      <a href="index.html" class="logo">
+        <span class="logo-dot"></span>
+        SCS
+      </a>
+
+      <nav class="nav">
+        <a href="index.html" class="nav-link active">CV</a>
+        <a href="certificados.html" class="nav-link">Certificados</a>
+        <a href="portfolio.html" class="nav-link">Portfolio</a>
+
+        <div class="theme-toggle">
+          <button class="theme-btn" data-theme="dark">Dark</button>
+          <button class="theme-btn active" data-theme="light">Light</button>
+        </div>
+      </nav>
+
+      <button class="mobile-menu-btn" aria-label="Menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </header>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-content">
+        <div class="hero-text">
+          <h1 class="animate-fade-in">Sebastián Castaño Suárez</h1>
+
+          <div class="hero-titles">
+            <span class="title-badge" data-category="data">
+              <i class="fas fa-database"></i>
+              Ingeniero de Datos
+            </span>
+            <span class="title-badge automation" data-category="automatizacion">
+              <i class="fas fa-robot"></i>
+              Automatización
+            </span>
+            <span class="title-badge software" data-category="software">
+              <i class="fas fa-code"></i>
+              Desarrollador
+            </span>
+          </div>
+
+          <p class="hero-description">
+            Apasionado por transformar datos en valor. Especializado en construir pipelines de datos robustos,
+            automatizar procesos empresariales y desarrollar aplicaciones escalables.
+          </p>
+
+          <div class="hero-cta">
+            <a href="portfolio.html" class="btn btn-primary">
+              <i class="fas fa-folder-open"></i>
+              Ver Proyectos
+            </a>
+            <a href="#contacto" class="btn btn-secondary">
+              <i class="fas fa-envelope"></i>
+              Contactar
+            </a>
+            <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" class="btn btn-icon btn-secondary">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/sebastiancastano" target="_blank" class="btn btn-icon btn-secondary">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-image">
+          <div class="profile-container">
+            <div class="profile-decorations">
+              <div class="decoration-ring"></div>
+              <div class="decoration-ring"></div>
+            </div>
+            <div class="profile-image" style="background: linear-gradient(135deg, var(--accent-data) 0%, var(--accent-automation) 50%, var(--accent-software) 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white; font-weight: 700;">
+              <img src="assets/images/Sebastian.jpg" alt="Sebastian" style="width: 100%; height: 100%; object-fit: cover;">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="habilidades" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Habilidades Técnicas</h2>
+        <p>Tecnologías y herramientas que domino para crear soluciones de datos e ingeniería de software.</p>
+      </div>
+
+      <!-- Filter Search -->
+      <div class="search-filter-container">
+        <div class="search-wrapper">
+          <div class="search-box">
+            <i class="fas fa-search search-icon"></i>
+            <input type="text" class="search-input" id="skillsSearch" placeholder="Buscar habilidades...">
+            <button class="search-clear">Limpiar</button>
+          </div>
+        </div>
+
+        <div class="filter-categories">
+          <div class="filter-group">
+            <span class="filter-label">Filtrar por área</span>
+            <div class="filter-chips" id="skillFilterChips">
+              <button class="filter-chip" data-filter="automatizacion" data-filter-type="categories" data-category="automatizacion">
+                <span class="filter-chip-dot"></span>
+                <span>Automatización / IA</span>
+              </button>
+              <button class="filter-chip" data-filter="data" data-filter-type="categories" data-category="data">
+                <span class="filter-chip-dot"></span>
+                <span>Data Engineering</span>
+              </button>
+              <button class="filter-chip" data-filter="software" data-filter-type="categories" data-category="software">
+                <span class="filter-chip-dot"></span>
+                <span>Desarrollo de Software</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="filter-actions">
+          <span class="results-counter" id="skillsCounter">Mostrando <strong>18</strong> de <strong>18</strong> habilidades</span>
+          <button class="reset-filters" id="resetSkillFilters" disabled>
+            <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="1 4 1 10 7 10"></polyline>
+              <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
+            </svg>
+            Resetear filtros
+          </button>
+        </div>
+
+        <div class="active-filters" id="activeSkillFilters"></div>
+      </div>
+
+      <!-- Skills Grid -->
+      <div class="cards-grid" id="skillsGrid">
+        <!-- Skills will be dynamically generated -->
+      </div>
+
+      <!-- No Results -->
+      <div class="no-results" id="noSkillResults" style="display: none;">
+        <div class="no-results-icon"><i class="fas fa-search"></i></div>
+        <h3>No se encontraron habilidades</h3>
+        <p>Intenta ajustar los filtros o términos de búsqueda</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  <section id="experiencia" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Experiencia Profesional</h2>
+        <p>Mi trayectoria en el mundo del desarrollo y la ingeniería de datos.</p>
+      </div>
+
+      <div class="cards-grid cards-grid-3">
+        <div class="experience-card stagger-item">
+          <div class="experience-header">
+            <span class="experience-company">Next Digital Hub</span>
+            <span class="experience-date">Mar 2024 - Ago 2024</span>
+          </div>
+          <div class="experience-role">Ingeniero de Datos</div>
+          <p class="experience-description">
+            Desarrollo y mantenimiento de pipelines ETL con Python y Apache Airflow.
+            Implementación de soluciones de data engineering en AWS (S3, Glue, Athena).
+            Procesamiento de datos con Apache Spark y Kafka. Desarrollo de APIs con FastAPI.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Airflow</span>
+            <span class="skill-tag">AWS</span>
+            <span class="skill-tag">Kafka</span>
+            <span class="skill-tag">Spark</span>
+            <span class="skill-tag">FastAPI</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Snowflake</span>
+          </div>
+        </div>
+      </div>
+            <div class="cards-grid cards-grid-3">
+        <div class="experience-card stagger-item">
+          <div class="experience-header">
+            <span class="experience-company">Sermicro</span>
+            <span class="experience-date">Mar 2025 - Actualidad</span>
+          </div>
+          <div class="experience-role">Desarrollador en IA e Hiperautomatización</div>
+          <p class="experience-description">
+            Gestión y orquestación de agentes inteligentes para la creación automática de tickets de soporte.
+            Desarrollo de automatizaciones para el envío de informes diarios y tareas operativas.
+            Implementación de flujos de creación y gestión de tickets en distintas arquitecturas y sistemas.
+            Optimización de procesos mediante IA e hiperautomatización orientada a usuario.
+          </p>
+          <div class="skill-tags">
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">IA</span>
+            <span class="skill-tag">DRUID AI</span>
+            <span class="skill-tag">JavaScrpit</span>
+            <span class="skill-tag">UiPath</span>
+            <span class="skill-tag">APIs</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+<section id="educacion" class="section">
+  <div class="container">
+    <div class="section-header">
+      <h2>Formación Académica</h2>
+      <p>Mi base académica en el desarrollo de software.</p>
+    </div>
+
+    <div class="cards-grid cards-grid-3">
+      <div class="experience-card stagger-item visible">
+        <div class="experience-header">
+          <span class="experience-company">IES Clara del Rey</span>
+          <span class="experience-date">2021 - 2023</span>
+        </div>
+        <div class="experience-role">Técnico Superior en DAM</div>
+        <p class="experience-description">
+          Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. 
+          Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. 
+          Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Android</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+        <div class="cards-grid cards-grid-3">
+      <div class="experience-card stagger-item visible">
+        <div class="experience-header">
+          <span class="experience-company">IES Clara del Rey</span>
+          <span class="experience-date">2021 - 2023</span>
+        </div>
+        <div class="experience-role">Técnico Superior en DAM</div>
+        <p class="experience-description">
+          Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. 
+          Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. 
+          Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.
+        </p>
+        <div class="skill-tags">
+          <span class="skill-tag">Java</span>
+          <span class="skill-tag">Kotlin</span>
+          <span class="skill-tag">Android</span>
+          <span class="skill-tag">MongoDB</span>
+          <span class="skill-tag">SQL</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+  <!-- Soft Skills Section -->
+  <section id="soft-skills" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2>Habilidades Blandas</h2>
+        <p>Competencias personales que complementan mi perfil técnico.</p>
+      </div>
+
+      <div class="soft-skills-grid">
+        <div class="soft-skill-item stagger-item">Resolución de Problemas</div>
+        <div class="soft-skill-item stagger-item">Trabajo en Equipo</div>
+        <div class="soft-skill-item stagger-item">Comunicación Efectiva</div>
+        <div class="soft-skill-item stagger-item">Aprendizaje Continuo</div>
+        <div class="soft-skill-item stagger-item">Pensamiento Analítico</div>
+        <div class="soft-skill-item stagger-item">Gestión del Tiempo</div>
+        <div class="soft-skill-item stagger-item">Adaptabilidad</div>
+        <div class="soft-skill-item stagger-item">Proactividad</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contacto" class="section" style="background: var(--bg-secondary);">
+    <div class="container">
+      <div class="section-header">
+        <h2>Contacto</h2>
+        <p>¿Interesado en trabajar juntos? ¡Hablemos!</p>
+      </div>
+
+      <div class="contact-grid">
+        <a href="mailto:castanosuarezsebastian@gmail.com" class="contact-item stagger-item">
+          <div class="contact-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Email</span>
+            <span class="contact-value">castanosuarezsebastian@gmail.com</span>
+          </div>
+        </a>
+
+        <a href="tel:+34655784630" class="contact-item stagger-item">
+          <div class="contact-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Teléfono</span>
+            <span class="contact-value">+34 655 784 630</span>
+          </div>
+        </a>
+
+        <div class="contact-item stagger-item">
+          <div class="contact-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">Ubicación</span>
+            <span class="contact-value">Madrid, España</span>
+          </div>
+        </div>
+
+        <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" class="contact-item stagger-item">
+          <div class="contact-icon">
+            <i class="fab fa-linkedin-in"></i>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/sebastiancastano</span>
+          </div>
+        </a>
+
+        <a href="https://github.com/sebastiancastano" target="_blank" class="contact-item stagger-item">
+          <div class="contact-icon">
+            <i class="fab fa-github"></i>
+          </div>
+          <div class="contact-info">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/sebastiancastano</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-links">
+          <a href="index.html" class="footer-link">CV</a>
+          <a href="certificados.html" class="footer-link">Certificados</a>
+          <a href="portfolio.html" class="footer-link">Portfolio</a>
+        </div>
+        <p class="footer-copyright">
+          © 2024 Sebastián Castaño Suárez. Todos los derechos reservados.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/filterEngine.js"></script>
+  <script>
+    // Skills Data
+    const skillsData = [
+      { id: 1, name: "Python", icon: "fab fa-python", description: "Backend, automatización y análisis de datos", categories: ["automatizacion", "data", "software"], tags: ["python", "backend"] },
+      { id: 2, name: "Java", icon: "fab fa-java", description: "Aplicaciones empresariales y backend", categories: ["software"], tags: ["java", "backend"] },
+      { id: 3, name: "Kotlin", icon: "fas fa-mobile-alt", description: "Desarrollo móvil Android moderno", categories: ["software"], tags: ["kotlin", "mobile"] },
+      { id: 4, name: "SQL", icon: "fas fa-database", description: "Bases de datos y consultas avanzadas", categories: ["data", "software"], tags: ["sql", "database"] },
+      { id: 5, name: "Apache Spark", icon: "fas fa-bolt", description: "Procesamiento distribuido de datos", categories: ["data"], tags: ["spark", "bigdata"] },
+      { id: 6, name: "Apache Airflow", icon: "fas fa-wind", description: "Orquestación de pipelines ETL", categories: ["data", "automatizacion"], tags: ["airflow", "etl"] },
+      { id: 7, name: "AWS", icon: "fab fa-aws", description: "Cloud: S3, Lambda, EC2, Glue", categories: ["data", "software", "automatizacion"], tags: ["aws", "cloud"] },
+      { id: 8, name: "Docker", icon: "fab fa-docker", description: "Contenedorización de aplicaciones", categories: ["software", "data"], tags: ["docker", "devops"] },
+      { id: 9, name: "Kafka", icon: "fas fa-stream", description: "Streaming de datos en tiempo real", categories: ["data"], tags: ["kafka", "streaming"] },
+      { id: 10, name: "FastAPI", icon: "fas fa-rocket", description: "APIs REST modernas y rápidas", categories: ["software", "data"], tags: ["fastapi", "api"] },
+      { id: 11, name: "MongoDB", icon: "fas fa-leaf", description: "Bases de datos NoSQL", categories: ["data", "software"], tags: ["mongodb", "nosql"] },
+      { id: 12, name: "Power BI", icon: "fas fa-chart-bar", description: "Visualización y dashboards", categories: ["data"], tags: ["powerbi", "visualization"] },
+      { id: 13, name: "Snowflake", icon: "fas fa-snowflake", description: "Data warehouse cloud", categories: ["data"], tags: ["snowflake", "datawarehouse"] },
+      { id: 14, name: "DBT", icon: "fas fa-project-diagram", description: "Transformación de datos con SQL", categories: ["data"], tags: ["dbt", "analytics"] },
+      { id: 15, name: "UiPath", icon: "fas fa-robot", description: "Automatización RPA", categories: ["automatizacion"], tags: ["uipath", "rpa"] },
+      { id: 16, name: "Git", icon: "fab fa-git-alt", description: "Control de versiones", categories: ["software"], tags: ["git", "github"] },
+      { id: 17, name: "Pytest", icon: "fas fa-vial", description: "Testing automatizado en Python", categories: ["software", "automatizacion"], tags: ["pytest", "testing"] },
+      { id: 18, name: "Jetpack Compose", icon: "fas fa-layer-group", description: "UI declarativa para Android", categories: ["software"], tags: ["compose", "android"] }
+    ];
+
+    // Generate skill cards
+    function generateSkillCards() {
+      const grid = document.getElementById('skillsGrid');
+      if (!grid) return;
+
+      grid.innerHTML = skillsData.map(skill => `
+        <div class="skill-card filterable-item stagger-item"
+             data-categories='${JSON.stringify(skill.categories)}'
+             data-tags='${JSON.stringify(skill.tags)}'>
+          <div class="skill-card-content">
+            <div class="skill-icon">
+              <i class="${skill.icon}"></i>
+            </div>
+            <h4>${skill.name}</h4>
+            <p>${skill.description}</p>
+            <div class="skill-tags">
+              ${skill.categories.map(cat => `<span class="skill-tag">${cat}</span>`).join('')}
+            </div>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    // Initialize skills filter
+    function initSkillsFilter() {
+      const items = Array.from(document.querySelectorAll('#skillsGrid .filterable-item')).map(el => {
+        return {
+          element: el,
+          title: el.querySelector('h4')?.textContent || '',
+          description: el.querySelector('p')?.textContent || '',
+          categories: JSON.parse(el.dataset.categories || '[]'),
+          tags: JSON.parse(el.dataset.tags || '[]')
+        };
+      });
+
+      new FilterEngine({
+        items: items,
+        container: document.getElementById('skillsGrid'),
+        searchInput: document.getElementById('skillsSearch'),
+        filterChips: Array.from(document.querySelectorAll('#skillFilterChips .filter-chip')),
+        resultsCounter: document.getElementById('skillsCounter'),
+        resetButton: document.getElementById('resetSkillFilters'),
+        activeFiltersContainer: document.getElementById('activeSkillFilters'),
+        noResultsElement: document.getElementById('noSkillResults')
+      });
+    }
+
+    // Initialize on DOM ready
+    document.addEventListener('DOMContentLoaded', () => {
+      generateSkillCards();
+      setTimeout(() => {
+        initSkillsFilter();
+        // Trigger animations for skill cards
+        document.querySelectorAll('#skillsGrid .stagger-item').forEach((item, index) => {
+          setTimeout(() => {
+            item.classList.add('visible');
+          }, index * 60);
+        });
+        // Refresh cursor listeners for dynamic content
+        if (window.refreshCursor) window.refreshCursor();
+      }, 100);
+    });
+    function closeToast() {
+    const toast = document.getElementById('life-update-toast');
+    toast.style.transition = 'opacity 0.3s ease';
+    toast.style.opacity = '0';
+    setTimeout(() => {
+        toast.classList.add('hidden');
+    }, 300);
+}
+
+// Opcional: Mostrar la notificación con un pequeño retraso al cargar la página
+window.addEventListener('load', () => {
+    const toast = document.getElementById('life-update-toast');
+    toast.style.display = 'none'; // Empieza oculto
+    setTimeout(() => {
+        toast.style.display = 'block';
+    }, 2000); // Aparece a los 2 segundos
+});
+  </script>
+  <div id="life-update-toast" class="life-toast">
+  <div class="toast-header">
+    <span class="toast-dot"></span>
+    <strong>Nuevo mensaje</strong>
+    <button class="toast-close" onclick="closeToast()">&times;</button>
+  </div>
+  <div class="toast-body">
+    <p>🚀 Actualmente enfocado en profundizar en <strong>Data Engineering</strong> y preparando nuevas certificaciones de AWS.</p>
+  </div>
+</div>
+</body>
+</html>

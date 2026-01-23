@@ -1,0 +1,92 @@
+{
+  "certifications": [
+    {
+      "id": 1,
+      "title": "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",
+      "issuer": "IES Clara del Rey",
+      "date": "2023",
+      "types": ["universidad"],
+      "tags": ["java", "kotlin", "mobile", "software"],
+      "categories": ["software"],
+      "image": "assets/images/dam-certificate.jpg",
+      "description": "Formación profesional en desarrollo de aplicaciones para múltiples plataformas"
+    },
+    {
+      "id": 2,
+      "title": "Programación en R para Ciencia de Datos",
+      "issuer": "Plataforma Online",
+      "date": "2023",
+      "types": ["curso-online"],
+      "tags": ["r", "data-science", "estadistica"],
+      "categories": ["data"],
+      "image": "r-certificate.jpg",
+      "description": "Análisis estadístico y visualización de datos con R"
+    },
+    {
+      "id": 3,
+      "title": "Desarrollo Web con HTML y CSS",
+      "issuer": "Plataforma Online",
+      "date": "2022",
+      "types": ["curso-online"],
+      "tags": ["html", "css", "webdev", "frontend"],
+      "categories": ["software"],
+      "image": "web-certificate.jpg",
+      "description": "Fundamentos de desarrollo web frontend"
+    },
+    {
+      "id": 4,
+      "title": "Big Data y Procesamiento de Datos",
+      "issuer": "Formación Especializada",
+      "date": "2023",
+      "types": ["curso-online"],
+      "tags": ["bigdata", "spark", "hadoop", "processing"],
+      "categories": ["data"],
+      "image": "bigdata-certificate.jpg",
+      "description": "Tecnologías y herramientas para el procesamiento de grandes volúmenes de datos"
+    },
+    {
+      "id": 5,
+      "title": "LanguageCert B2 - Inglés",
+      "issuer": "LanguageCert",
+      "date": "2022",
+      "types": ["idioma"],
+      "tags": ["ingles", "b2", "comunicacion"],
+      "categories": [],
+      "image": "english-certificate.jpg",
+      "description": "Certificación oficial de nivel B2 en inglés"
+    },
+    {
+      "id": 6,
+      "title": "Python para Análisis de Datos",
+      "issuer": "Plataforma Online",
+      "date": "2023",
+      "types": ["curso-online"],
+      "tags": ["python", "pandas", "numpy", "data-analysis"],
+      "categories": ["data", "software"],
+      "image": "python-data-certificate.jpg",
+      "description": "Uso de Python y sus bibliotecas para análisis de datos"
+    },
+    {
+      "id": 7,
+      "title": "Apache Airflow para Orquestación",
+      "issuer": "Formación Profesional",
+      "date": "2024",
+      "types": ["curso-online"],
+      "tags": ["airflow", "etl", "orchestration", "python"],
+      "categories": ["data", "automatizacion"],
+      "image": "airflow-certificate.jpg",
+      "description": "Diseño y gestión de pipelines de datos con Apache Airflow"
+    },
+    {
+      "id": 8,
+      "title": "AWS Cloud Practitioner",
+      "issuer": "Amazon Web Services",
+      "date": "2024",
+      "types": ["curso-online", "reconocimiento"],
+      "tags": ["aws", "cloud", "devops"],
+      "categories": ["data", "software"],
+      "image": "aws-certificate.jpg",
+      "description": "Fundamentos de servicios cloud de Amazon Web Services"
+    }
+  ]
+}

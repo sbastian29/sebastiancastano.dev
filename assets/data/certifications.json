@@ -1,92 +1,101 @@
-{
-  "certifications": [
-    {
-      "id": 1,
-      "title": "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",
-      "issuer": "IES Clara del Rey",
-      "date": "2023",
-      "types": ["universidad"],
-      "tags": ["java", "kotlin", "mobile", "software"],
-      "categories": ["software"],
-      "image": "assets/images/dam-certificate.jpg",
-      "description": "Formación profesional en desarrollo de aplicaciones para múltiples plataformas"
-    },
-    {
-      "id": 2,
-      "title": "Programación en R para Ciencia de Datos",
-      "issuer": "Plataforma Online",
-      "date": "2023",
-      "types": ["curso-online"],
-      "tags": ["r", "data-science", "estadistica"],
-      "categories": ["data"],
-      "image": "r-certificate.jpg",
-      "description": "Análisis estadístico y visualización de datos con R"
-    },
-    {
-      "id": 3,
-      "title": "Desarrollo Web con HTML y CSS",
-      "issuer": "Plataforma Online",
-      "date": "2022",
-      "types": ["curso-online"],
-      "tags": ["html", "css", "webdev", "frontend"],
-      "categories": ["software"],
-      "image": "web-certificate.jpg",
-      "description": "Fundamentos de desarrollo web frontend"
-    },
-    {
-      "id": 4,
-      "title": "Big Data y Procesamiento de Datos",
-      "issuer": "Formación Especializada",
-      "date": "2023",
-      "types": ["curso-online"],
-      "tags": ["bigdata", "spark", "hadoop", "processing"],
-      "categories": ["data"],
-      "image": "bigdata-certificate.jpg",
-      "description": "Tecnologías y herramientas para el procesamiento de grandes volúmenes de datos"
-    },
-    {
-      "id": 5,
-      "title": "LanguageCert B2 - Inglés",
-      "issuer": "LanguageCert",
-      "date": "2022",
-      "types": ["idioma"],
-      "tags": ["ingles", "b2", "comunicacion"],
-      "categories": [],
-      "image": "english-certificate.jpg",
-      "description": "Certificación oficial de nivel B2 en inglés"
-    },
-    {
-      "id": 6,
-      "title": "Python para Análisis de Datos",
-      "issuer": "Plataforma Online",
-      "date": "2023",
-      "types": ["curso-online"],
-      "tags": ["python", "pandas", "numpy", "data-analysis"],
-      "categories": ["data", "software"],
-      "image": "python-data-certificate.jpg",
-      "description": "Uso de Python y sus bibliotecas para análisis de datos"
-    },
-    {
-      "id": 7,
-      "title": "Apache Airflow para Orquestación",
-      "issuer": "Formación Profesional",
-      "date": "2024",
-      "types": ["curso-online"],
-      "tags": ["airflow", "etl", "orchestration", "python"],
-      "categories": ["data", "automatizacion"],
-      "image": "airflow-certificate.jpg",
-      "description": "Diseño y gestión de pipelines de datos con Apache Airflow"
-    },
-    {
-      "id": 8,
-      "title": "AWS Cloud Practitioner",
-      "issuer": "Amazon Web Services",
-      "date": "2024",
-      "types": ["curso-online", "reconocimiento"],
-      "tags": ["aws", "cloud", "devops"],
-      "categories": ["data", "software"],
-      "image": "aws-certificate.jpg",
-      "description": "Fundamentos de servicios cloud de Amazon Web Services"
-    }
-  ]
-}
+[
+  {
+    "id": 1,
+    "title": "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",
+    "issuer": "IES Virgen de la Paloma",
+    "date": "2024",
+    "types": ["universidad"],
+    "tags": ["java", "kotlin", "mobile", "software"],
+    "description": "Certificación académica oficial DAM. Nota final: 8.00. Módulos destacados: Acceso a datos (10), Proyecto multiplataforma (10).",
+    "icon": "fa-graduation-cap",
+    "image": "assets/images/Certificates/dam-certificate.jpg"
+  },
+  {
+    "id": 2,
+    "title": "Título de Bachiller — Modalidad Ciencias",
+    "issuer": "IES Ntra. Sra. de la Almudena · Comunidad de Madrid",
+    "date": "2022",
+    "types": ["universidad"],
+    "tags": ["ciencias", "formacion", "bachillerato"],
+    "description": "Título oficial de Bachiller en Ciencias. Calificación final: 7.32. Expedido por la Comunidad de Madrid.",
+    "icon": "fa-scroll",
+    "image": "assets/images/Certificates/bachillerato.jpg"
+  },
+  {
+    "id": 3,
+    "title": "Data Science: R Programming Complete Diploma",
+    "issuer": "Udemy — SDE Arts by Ahmed EL Mohandes",
+    "date": "2025",
+    "types": ["curso-online"],
+    "tags": ["r", "data-science", "estadistica"],
+    "description": "Diploma completo de R para Data Science. 5 horas. Certificado Udemy UC-569ea487.",
+    "icon": "fa-chart-line",
+    "image": "assets/images/Certificates/R_Udemy.png"
+  },
+  {
+    "id": 4,
+    "title": "Complete Guide in HTML & CSS — Build Responsive Website",
+    "issuer": "Udemy — Sara Academy",
+    "date": "2024",
+    "types": ["curso-online"],
+    "tags": ["html", "css", "webdev", "frontend"],
+    "description": "Guía completa de HTML y CSS para sitios responsive. 6 horas. Certificado Udemy UC-bf39a8a7.",
+    "icon": "fa-code",
+    "image": "assets/images/Certificates/HTML_CSS_Udemy.png"
+  },
+  {
+    "id": 5,
+    "title": "BigData+: Módulo 0",
+    "issuer": "AHK — Cámara de Comercio Alemana para España",
+    "date": "2024",
+    "types": ["curso-online"],
+    "tags": ["bigdata", "python", "pandas", "processing"],
+    "description": "10 horas sobre análisis de datos con Python: Pandas, Matplotlib y estadística aplicada.",
+    "icon": "fa-database",
+    "image": "assets/images/Certificates/bigdata.png"
+  },
+  {
+    "id": 6,
+    "title": "LanguageCert B2 — Certificate in ESOL International",
+    "issuer": "LanguageCert · Ofqual Regulated",
+    "date": "2021",
+    "types": ["idioma"],
+    "tags": ["ingles", "b2", "comunicacion"],
+    "description": "Certificación oficial B2 en inglés (Listening, Reading, Writing y Speaking). High Pass. Nov 2021.",
+    "icon": "fa-language",
+    "image": "assets/images/Certificates/B2.jpeg"
+  },
+  {
+    "id": 7,
+    "title": "Carta de Recomendación — Junior Data Engineer",
+    "issuer": "Next Digital Hub · Alberto García León, HR",
+    "date": "2024",
+    "types": ["reconocimiento"],
+    "tags": ["data-engineering", "python", "sql", "aws"],
+    "description": "Carta de recomendación tras 6 meses como Junior Data Engineer. Destacado en SQL, Python y AWS.",
+    "icon": "fa-envelope-open-text",
+    "image": "assets/images/Certificates/cartaRecomendacion.jpg"
+  },
+  {
+    "id": 8,
+    "title": "Microsoft Certified: Azure AI Fundamentals (AI-900)",
+    "issuer": "Microsoft",
+    "date": "2026",
+    "types": ["reconocimiento", "cloud"],
+    "tags": ["azure", "ia", "cloud", "microsoft"],
+    "description": "Certificación oficial Microsoft Azure AI Fundamentals. Verif: PNDK-uScT. Emitido el 17 de marzo de 2026.",
+    "icon": "fa-brain",
+    "image": "assets/images/Certificates/AI900_page-0001.jpg"
+  },
+  {
+    "id": 9,
+    "title": "Voluntariado — Adopta Un Abuelo",
+    "issuer": "Fundación Mayores de Hoy · Fundación La Caixa",
+    "date": "2019",
+    "types": ["reconocimiento"],
+    "tags": ["voluntariado", "social", "comunidad"],
+    "description": "Reconocimiento por participación en jornadas intergeneracionales con Adopta Un Abuelo y la Comunidad de Madrid.",
+    "icon": "fa-heart",
+    "image": "assets/images/Certificates/Voluntariado.jpg"
+  }
+]

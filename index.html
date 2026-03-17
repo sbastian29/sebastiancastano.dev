@@ -151,7 +151,7 @@
         </div>
 
         <div class="filter-actions">
-          <span class="results-counter" id="skillsCounter">Mostrando <strong>18</strong> de <strong>18</strong> habilidades</span>
+          <span class="results-counter" id="skillsCounter">Mostrando <strong>0</strong> de <strong>0</strong> habilidades</span>
           <button class="reset-filters" id="resetSkillFilters" disabled>
             <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="1 4 1 10 7 10"></polyline>
@@ -317,13 +317,13 @@
       </div>
 
       <div class="contact-grid">
-        <a href="mailto:castanosuarezsebastian@gmail.com" class="contact-item stagger-item">
+        <a href="/cdn-cgi/l/email-protection#680b091b1c0906071b1d091a0d121b0d0a091b1c010906280f05090104460b0705" class="contact-item stagger-item">
           <div class="contact-icon">
             <i class="fas fa-envelope"></i>
           </div>
           <div class="contact-info">
             <span class="contact-label">Email</span>
-            <span class="contact-value">castanosuarezsebastian@gmail.com</span>
+            <span class="contact-value"><span class="__cf_email__" data-cfemail="86e5e7f5f2e7e8e9f5f3e7f4e3fcf5e3e4e7f5f2efe7e8c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></span>
           </div>
         </a>
 
@@ -380,50 +380,41 @@
           <a href="portfolio.html" class="footer-link">Portfolio</a>
         </div>
         <p class="footer-copyright">
-          © 2024 Sebastián Castaño Suárez. Todos los derechos reservados.
+          © 2026 Sebastián Castaño Suárez. Todos los derechos reservados.
         </p>
       </div>
     </div>
   </footer>
-
-  <!-- Scripts -->
-  <script src="assets/js/main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/main.js"></script>
   <script src="assets/js/filterEngine.js"></script>
+  
   <script>
-    // Skills Data
-    const skillsData = [
-      { id: 1, name: "Python", icon: "fab fa-python", description: "Backend, automatización y análisis de datos", categories: ["automatizacion", "data", "software"], tags: ["python", "backend"] },
-      { id: 2, name: "Java", icon: "fab fa-java", description: "Aplicaciones empresariales y backend", categories: ["software"], tags: ["java", "backend"] },
-      { id: 3, name: "Kotlin", icon: "fas fa-mobile-alt", description: "Desarrollo móvil Android moderno", categories: ["software"], tags: ["kotlin", "mobile"] },
-      { id: 4, name: "SQL", icon: "fas fa-database", description: "Bases de datos y consultas avanzadas", categories: ["data", "software"], tags: ["sql", "database"] },
-      { id: 5, name: "Apache Spark", icon: "fas fa-bolt", description: "Procesamiento distribuido de datos", categories: ["data"], tags: ["spark", "bigdata"] },
-      { id: 6, name: "Apache Airflow", icon: "fas fa-wind", description: "Orquestación de pipelines ETL", categories: ["data", "automatizacion"], tags: ["airflow", "etl"] },
-      { id: 7, name: "AWS", icon: "fab fa-aws", description: "Cloud: S3, Lambda, EC2, Glue", categories: ["data", "software", "automatizacion"], tags: ["aws", "cloud"] },
-      { id: 8, name: "Docker", icon: "fab fa-docker", description: "Contenedorización de aplicaciones", categories: ["software", "data"], tags: ["docker", "devops"] },
-      { id: 9, name: "Kafka", icon: "fas fa-stream", description: "Streaming de datos en tiempo real", categories: ["data"], tags: ["kafka", "streaming"] },
-      { id: 10, name: "FastAPI", icon: "fas fa-rocket", description: "APIs REST modernas y rápidas", categories: ["software", "data"], tags: ["fastapi", "api"] },
-      { id: 11, name: "MongoDB", icon: "fas fa-leaf", description: "Bases de datos NoSQL", categories: ["data", "software"], tags: ["mongodb", "nosql"] },
-      { id: 12, name: "Power BI", icon: "fas fa-chart-bar", description: "Visualización y dashboards", categories: ["data"], tags: ["powerbi", "visualization"] },
-      { id: 13, name: "Snowflake", icon: "fas fa-snowflake", description: "Data warehouse cloud", categories: ["data"], tags: ["snowflake", "datawarehouse"] },
-      { id: 14, name: "DBT", icon: "fas fa-project-diagram", description: "Transformación de datos con SQL", categories: ["data"], tags: ["dbt", "analytics"] },
-      { id: 15, name: "UiPath", icon: "fas fa-robot", description: "Automatización RPA", categories: ["automatizacion"], tags: ["uipath", "rpa"] },
-      { id: 16, name: "Git", icon: "fab fa-git-alt", description: "Control de versiones", categories: ["software"], tags: ["git", "github"] },
-      { id: 17, name: "Pytest", icon: "fas fa-vial", description: "Testing automatizado en Python", categories: ["software", "automatizacion"], tags: ["pytest", "testing"] },
-      { id: 18, name: "Jetpack Compose", icon: "fas fa-layer-group", description: "UI declarativa para Android", categories: ["software"], tags: ["compose", "android"] }
-    ];
+    // Variable global para almacenar los datos
+    let skillsData = [];
 
-    // Generate skill cards
+    // Función para generar las tarjetas (Ahora soporta Imágenes)
     function generateSkillCards() {
       const grid = document.getElementById('skillsGrid');
       if (!grid) return;
 
-      grid.innerHTML = skillsData.map(skill => `
-        <div class="skill-card filterable-item stagger-item"
-             data-categories='${JSON.stringify(skill.categories)}'
+      // Detectamos si el JSON es un array directo o un objeto con propiedad "skills"
+      const dataToRender = Array.isArray(skillsData) ? skillsData : (skillsData.skills || []);
+
+      if (dataToRender.length === 0) {
+        console.warn("No hay datos para mostrar en skillsData");
+        return;
+      }
+
+      grid.innerHTML = dataToRender.map(skill => `
+        <div class="skill-card filterable-item stagger-item" 
+             data-categories='${JSON.stringify(skill.categories)}' 
              data-tags='${JSON.stringify(skill.tags)}'>
           <div class="skill-card-content">
             <div class="skill-icon">
-              <i class="${skill.icon}"></i>
+              <img src="${skill.icon}" 
+                   alt="${skill.name}" 
+                   style="width: 40px; height: 40px; object-fit: contain;"
+                   onerror="this.onerror=null; this.src='data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2280%22>🔧</text></svg>'">
             </div>
             <h4>${skill.name}</h4>
             <p>${skill.description}</p>
@@ -435,7 +426,7 @@
       `).join('');
     }
 
-    // Initialize skills filter
+    // Inicializar el motor de filtros
     function initSkillsFilter() {
       const items = Array.from(document.querySelectorAll('#skillsGrid .filterable-item')).map(el => {
         return {
@@ -447,60 +438,89 @@
         };
       });
 
-      new FilterEngine({
-        items: items,
-        container: document.getElementById('skillsGrid'),
-        searchInput: document.getElementById('skillsSearch'),
-        filterChips: Array.from(document.querySelectorAll('#skillFilterChips .filter-chip')),
-        resultsCounter: document.getElementById('skillsCounter'),
-        resetButton: document.getElementById('resetSkillFilters'),
-        activeFiltersContainer: document.getElementById('activeSkillFilters'),
-        noResultsElement: document.getElementById('noSkillResults')
-      });
+      // Solo iniciamos si hay items y el script de filtros se cargó
+      if (typeof FilterEngine !== 'undefined' && items.length > 0) {
+        new FilterEngine({
+          items: items,
+          container: document.getElementById('skillsGrid'),
+          searchInput: document.getElementById('skillsSearch'),
+          filterChips: Array.from(document.querySelectorAll('#skillFilterChips .filter-chip')),
+          resultsCounter: document.getElementById('skillsCounter'),
+          resetButton: document.getElementById('resetSkillFilters'),
+          activeFiltersContainer: document.getElementById('activeSkillFilters'),
+          noResultsElement: document.getElementById('noSkillResults')
+        });
+      }
     }
 
-    // Initialize on DOM ready
+    // Lógica principal al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
-      generateSkillCards();
-      setTimeout(() => {
-        initSkillsFilter();
-        // Trigger animations for skill cards
-        document.querySelectorAll('#skillsGrid .stagger-item').forEach((item, index) => {
-          setTimeout(() => {
-            item.classList.add('visible');
-          }, index * 60);
-        });
-        // Refresh cursor listeners for dynamic content
-        if (window.refreshCursor) window.refreshCursor();
-      }, 100);
-    });
-    function closeToast() {
-    const toast = document.getElementById('life-update-toast');
-    toast.style.transition = 'opacity 0.3s ease';
-    toast.style.opacity = '0';
-    setTimeout(() => {
-        toast.classList.add('hidden');
-    }, 300);
-}
+      
+      // 1. Cargar el JSON externo
+      fetch('assets/data/skills.json')
+        .then(response => {
+          if (!response.ok) {
+            throw new Error(`Error HTTP: ${response.status}`);
+          }
+          return response.json();
+        })
+        .then(data => {
+          // 2. Guardar datos y generar HTML
+          skillsData = data; 
+          generateSkillCards();
 
-// Opcional: Mostrar la notificación con un pequeño retraso al cargar la página
-window.addEventListener('load', () => {
-    const toast = document.getElementById('life-update-toast');
-    toast.style.display = 'none'; // Empieza oculto
-    setTimeout(() => {
-        toast.style.display = 'block';
-    }, 2000); // Aparece a los 2 segundos
-});
+          // Actualizar contador con el total real del JSON
+          const totalSkills = Array.isArray(data) ? data.length : (data.skills || []).length;
+          const counter = document.getElementById('skillsCounter');
+          if (counter) counter.innerHTML = `Mostrando <strong>${totalSkills}</strong> de <strong>${totalSkills}</strong> habilidades`;
+
+          // 3. Inicializar filtros y animaciones (esperamos un poco para asegurar el renderizado)
+          setTimeout(() => {
+            initSkillsFilter();
+
+            // Animación de entrada
+            const items = document.querySelectorAll('#skillsGrid .stagger-item');
+            items.forEach((item, index) => {
+              setTimeout(() => {
+                item.classList.add('visible');
+              }, index * 60);
+            });
+
+            // Refrescar cursor si usas cursor personalizado
+            if (window.refreshCursor) window.refreshCursor();
+          }, 100);
+        })
+        .catch(error => {
+          console.error("Error cargando el archivo JSON:", error);
+          const grid = document.getElementById('skillsGrid');
+          if(grid) grid.innerHTML = `<p style="text-align:center; color:red;">No se pudieron cargar las habilidades (${error.message}). Verifica que 'assets/data/skills.json' existe y el servidor está activo.</p>`;
+        });
+    });
+
+    // Funciones del Toast (Notificación)
+    function closeToast() {
+      const toast = document.getElementById('life-update-toast');
+      if (toast) {
+        toast.style.transition = 'opacity 0.3s ease';
+        toast.style.opacity = '0';
+        setTimeout(() => {
+          toast.classList.add('hidden');
+        }, 300);
+      }
+    }
+
+    window.addEventListener('load', () => {
+      const toast = document.getElementById('life-update-toast');
+      if (toast) {
+        toast.style.display = 'none';
+        setTimeout(() => {
+          toast.style.display = 'block';
+        }, 2000);
+      }
+    });
   </script>
   <div id="life-update-toast" class="life-toast">
   <div class="toast-header">
     <span class="toast-dot"></span>
     <strong>Nuevo mensaje</strong>
-    <button class="toast-close" onclick="closeToast()">&times;</button>
-  </div>
-  <div class="toast-body">
-    <p>🚀 Actualmente enfocado en profundizar en <strong>Data Engineering</strong> y preparando nuevas certificaciones de AWS.</p>
-  </div>
-</div>
-</body>
-</html>
+    <button

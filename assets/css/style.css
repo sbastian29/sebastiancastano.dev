@@ -802,6 +802,20 @@ button {
   color: var(--text-tertiary);
 }
 
+.skill-icon img {
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+    filter: none !important; /* Elimina cualquier filtro de blanco y negro */
+    opacity: 1 !important;    /* Asegura que no estén semi-transparentes */
+    transition: transform 0.3s ease;
+}
+
+/* Si quieres que al pasar el ratón solo se muevan un poco pero mantengan el color */
+.skill-card:hover .skill-icon img {
+    transform: scale(1.1);
+    filter: none !important;
+}
 /* Experience Cards */
 
 #experiencia, #educacion {

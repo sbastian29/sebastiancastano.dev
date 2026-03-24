@@ -1,0 +1,10 @@
+# Credenciales — NUNCA subir a Git
+config/credentials.py
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.env
+venv/
+.venv/

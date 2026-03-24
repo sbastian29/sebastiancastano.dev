@@ -1,0 +1,13 @@
+# Credenciales — NUNCA subir
+api/config/credentials.py
+api/config/__pycache__/
+api/__pycache__/
+*.pyc
+
+# Entornos virtuales
+venv/
+.venv/
+
+# Sistema
+.DS_Store
+Thumbs.db

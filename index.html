@@ -23,33 +23,470 @@
 
   <!-- Icons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+    /* ============ Category color system ============ */
+    /* Verde Glauco  → Data Engineering  */
+    /* Marrón Madera → Automatización    */
+    /* Azul Salvia   → Software          */
+ 
+    .title-badge[data-category="data"] {
+      background: var(--cat-data-bg);
+      border-color: var(--cat-data-border);
+      color: var(--cat-data);
+    }
+    .title-badge[data-category="automatizacion"] {
+      background: var(--cat-auto-bg);
+      border-color: var(--cat-auto-border);
+      color: var(--cat-auto);
+    }
+    .title-badge[data-category="software"] {
+      background: var(--cat-soft-bg);
+      border-color: var(--cat-soft-border);
+      color: var(--cat-soft);
+    }
+ 
+    /* dot override */
+    .title-badge[data-category="data"]::before         { background: var(--cat-data); }
+    .title-badge[data-category="automatizacion"]::before { background: var(--cat-auto); }
+    .title-badge[data-category="software"]::before     { background: var(--cat-soft); }
+ 
+    /* experience-role colors */
+    .experience-role.data   { color: var(--cat-data); }
+    .experience-role.auto   { color: var(--cat-auto); }
+    .experience-role.soft   { color: var(--cat-soft); }
+ 
+    /* filter chips category colors */
+    .filter-chip[data-category="data"]:not(.active)         { border-left: 3px solid var(--cat-data); }
+    .filter-chip[data-category="automatizacion"]:not(.active) { border-left: 3px solid var(--cat-auto); }
+    .filter-chip[data-category="software"]:not(.active)     { border-left: 3px solid var(--cat-soft); }
+  </style>
+
+  <style id="logo-style">
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+    
+    /* light theme (default :root) shows negro, dark shows blanco */
+    :root[data-theme="light"] .logo-img--light,
+    html:not([data-theme="dark"]) .logo-img--light { display: block; }
+    :root[data-theme="dark"]  .logo-img--dark        { display: block; }
+    /* hide the dot since we no longer need it */
+    .logo-dot { display: none; }
+  </style>
+
+  <style id="contact-form-styles">
+    /* ── Layout ───────────────────────────────────────────────── */
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 56px;
+      align-items: start;
+    }
+
+    /* ── Left column ──────────────────────────────────────────── */
+    .contact-info-col {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      padding-top: 8px;
+    }
+
+    .contact-availability {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      background: rgba(74,124,111,0.08);
+      border: 1px solid rgba(74,124,111,0.2);
+      border-radius: var(--radius-full);
+      font-size: 0.8125rem;
+      font-weight: 500;
+      color: #4A7C6F;
+      margin-bottom: 8px;
+      width: fit-content;
+    }
+
+    .availability-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #4A7C6F;
+      box-shadow: 0 0 0 3px rgba(74,124,111,0.2);
+      animation: pulse-green 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-green {
+      0%, 100% { box-shadow: 0 0 0 3px rgba(74,124,111,0.2); }
+      50%       { box-shadow: 0 0 0 6px rgba(74,124,111,0.08); }
+    }
+
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 18px 20px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-lg);
+      text-decoration: none;
+      color: inherit;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-item::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(74,124,111,0.04), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-normal);
+    }
+
+    a.contact-item:hover {
+      border-color: rgba(74,124,111,0.3);
+      transform: translateX(6px);
+      box-shadow: var(--shadow-md);
+    }
+
+    a.contact-item:hover::before { opacity: 1; }
+
+    .contact-icon {
+      width: 42px;
+      height: 42px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-tertiary);
+      border-radius: var(--radius-md);
+      color: #4A7C6F;
+      font-size: 1rem;
+      flex-shrink: 0;
+      transition: background var(--transition-fast);
+    }
+
+    a.contact-item:hover .contact-icon {
+      background: rgba(74,124,111,0.12);
+    }
+
+    .contact-info { flex: 1; }
+    .contact-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--text-muted);
+      margin-bottom: 3px;
+    }
+    .contact-value {
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .contact-arrow {
+      color: var(--text-muted);
+      font-size: 0.75rem;
+      opacity: 0;
+      transform: translateX(-4px);
+      transition: all var(--transition-fast);
+    }
+    a.contact-item:hover .contact-arrow {
+      opacity: 1;
+      transform: translateX(0);
+    }
+
+    .contact-social {
+      display: flex;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .social-btn {
+      width: 44px;
+      height: 44px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-md);
+      color: var(--text-secondary);
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all var(--transition-normal);
+    }
+
+    .social-btn:hover {
+      background: rgba(74,124,111,0.1);
+      border-color: rgba(74,124,111,0.3);
+      color: #4A7C6F;
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* ── Form card ────────────────────────────────────────────── */
+    .contact-form-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: var(--radius-xl);
+      padding: 40px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contact-form-card::before {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(74,124,111,0.06) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .form-header { margin-bottom: 28px; }
+    .form-title {
+      font-size: 1.375rem;
+      font-weight: 700;
+      margin-bottom: 6px;
+      letter-spacing: -0.02em;
+    }
+    .form-subtitle {
+      font-size: 0.875rem;
+      color: var(--text-tertiary);
+    }
+
+    /* ── Alert ────────────────────────────────────────────────── */
+    .form-alert {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: var(--radius-md);
+      font-size: 0.875rem;
+      font-weight: 500;
+      margin-bottom: 24px;
+      animation: slideDown 0.25s ease;
+    }
+    @keyframes slideDown {
+      from { opacity: 0; transform: translateY(-8px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .form-alert.success {
+      background: rgba(74,124,111,0.08);
+      border: 1px solid rgba(74,124,111,0.25);
+      color: #4A7C6F;
+    }
+    .form-alert.error {
+      background: rgba(229,62,62,0.06);
+      border: 1px solid rgba(229,62,62,0.2);
+      color: #c53030;
+    }
+
+    /* ── Form grid ────────────────────────────────────────────── */
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+    .form-group { margin-bottom: 20px; }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.8125rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin-bottom: 8px;
+    }
+    .form-req { color: #4A7C6F; font-size: 0.85em; }
+    .form-opt { color: var(--text-muted); font-weight: 400; font-size: 0.85em; }
+
+    /* ── Input wrapper ────────────────────────────────────────── */
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      font-size: 0.875rem;
+      pointer-events: none;
+      transition: color var(--transition-fast);
+      z-index: 1;
+    }
+    .input-icon--top {
+      top: 14px;
+      align-self: flex-start;
+    }
+    .textarea-wrap { align-items: flex-start; }
+
+    .form-input {
+      width: 100%;
+      padding: 12px 14px 12px 40px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      color: var(--text-primary);
+      background: var(--bg-tertiary);
+      border: 1.5px solid var(--border-color);
+      border-radius: var(--radius-md);
+      outline: none;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+      -webkit-appearance: none;
+    }
+    .form-textarea {
+      resize: vertical;
+      min-height: 120px;
+      padding-top: 12px;
+      line-height: 1.6;
+    }
+    .form-input::placeholder { color: var(--text-muted); }
+
+    .form-input:focus {
+      border-color: #4A7C6F;
+      background: var(--bg-secondary);
+      box-shadow: 0 0 0 3px rgba(74,124,111,0.1);
+    }
+    .form-input:focus + .input-icon,
+    .input-wrap:focus-within .input-icon { color: #4A7C6F; }
+
+    .form-input.input-error {
+      border-color: #e53e3e;
+      box-shadow: 0 0 0 3px rgba(229,62,62,0.08);
+    }
+
+    .form-footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 6px;
+    }
+    .field-error { font-size: 0.75rem; color: #e53e3e; }
+    .char-count  { font-size: 0.72rem; color: var(--text-muted); }
+
+    /* ── Submit button ────────────────────────────────────────── */
+    .form-submit-btn {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      padding: 14px 28px;
+      font-family: inherit;
+      font-size: 0.9375rem;
+      font-weight: 600;
+      color: #fff;
+      background: linear-gradient(135deg, #4A7C6F, #3a6359);
+      border: none;
+      border-radius: var(--radius-full);
+      cursor: pointer;
+      transition: all var(--transition-normal);
+      position: relative;
+      overflow: hidden;
+      margin-top: 4px;
+    }
+    .form-submit-btn::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent);
+      opacity: 0;
+      transition: opacity var(--transition-fast);
+    }
+    .form-submit-btn:hover:not(:disabled) {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(74,124,111,0.35);
+    }
+    .form-submit-btn:hover:not(:disabled)::before { opacity: 1; }
+    .form-submit-btn:active:not(:disabled) { transform: translateY(0); }
+    .form-submit-btn:disabled {
+      opacity: 0.65;
+      cursor: not-allowed;
+      transform: none;
+    }
+
+    .submit-icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      font-size: 0.8rem;
+      transition: transform var(--transition-normal);
+    }
+    .form-submit-btn:hover:not(:disabled) .submit-icon {
+      transform: rotate(15deg) scale(1.1);
+    }
+
+    /* ── Responsive ───────────────────────────────────────────── */
+    @media (max-width: 968px) {
+      .contact-layout { grid-template-columns: 1fr; gap: 36px; }
+    }
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+      .contact-form-card { padding: 28px 20px; }
+    }
+  </style>
 </head>
 <body>
   <!-- Header -->
   <header class="header">
+
     <div class="header-content">
+
       <a href="index.html" class="logo">
-        <span class="logo-dot"></span>
-        SCS
+        <img src="assets/images/blancoSCS.png" alt="SCS" class="logo-img logo-img--light">
+        <img src="assets/images/negroSCS.png" alt="SCS" class="logo-img logo-img--dark">
       </a>
 
+
+
       <nav class="nav">
+
         <a href="index.html" class="nav-link active">CV</a>
-        <a href="certificados.html" class="nav-link">Certificados</a>
-        <a href="portfolio.html" class="nav-link">Portfolio</a>
+
+        <a href="certificados.html" class="nav-link" data-i18n="nav.certs">Certificados</a>
+
+        <a href="portfolio.html" class="nav-link" data-i18n="nav.portfolio">Portfolio</a>
+
+
 
         <div class="theme-toggle">
-          <button class="theme-btn" data-theme="dark">Dark</button>
-          <button class="theme-btn active" data-theme="light">Light</button>
+
+          <button class="theme-btn" data-theme="dark" data-i18n="nav.theme.dark">Dark</button>
+
+          <button class="theme-btn active" data-theme="light" data-i18n="nav.theme.light">Light</button>
+
         </div>
+
       </nav>
 
+
+
       <button class="mobile-menu-btn" aria-label="Menu">
+
         <span></span>
+
         <span></span>
+
         <span></span>
+
       </button>
+
     </div>
+
   </header>
 
   <!-- Hero Section -->
@@ -62,31 +499,28 @@
           <div class="hero-titles">
             <span class="title-badge" data-category="data">
               <i class="fas fa-database"></i>
-              Ingeniero de Datos
+              <span data-i18n="hero.badge.data">Ingeniero de Datos</span>
             </span>
             <span class="title-badge automation" data-category="automatizacion">
               <i class="fas fa-robot"></i>
-              Automatización
+              <span data-i18n="hero.badge.auto">Automatización</span>
             </span>
             <span class="title-badge software" data-category="software">
               <i class="fas fa-code"></i>
-              Desarrollador
+              <span data-i18n="hero.badge.soft">Desarrollador</span>
             </span>
           </div>
 
-          <p class="hero-description">
-            Apasionado por transformar datos en valor. Especializado en construir pipelines de datos robustos,
-            automatizar procesos empresariales y desarrollar aplicaciones escalables.
-          </p>
+          <p class="hero-description" data-i18n="hero.description">Apasionado por transformar datos en valor. Especializado en construir pipelines de datos robustos, automatizar procesos empresariales y desarrollar aplicaciones escalables.</p>
 
           <div class="hero-cta">
             <a href="portfolio.html" class="btn btn-primary">
               <i class="fas fa-folder-open"></i>
-              Ver Proyectos
+              <span data-i18n="hero.btn.projects">Ver Proyectos</span>
             </a>
             <a href="#contacto" class="btn btn-secondary">
               <i class="fas fa-envelope"></i>
-              Contactar
+              <span data-i18n="hero.btn.contact">Contactar</span>
             </a>
             <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" class="btn btn-icon btn-secondary">
               <i class="fab fa-linkedin-in"></i>
@@ -116,8 +550,8 @@
   <section id="habilidades" class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Habilidades Técnicas</h2>
-        <p>Tecnologías y herramientas que domino para crear soluciones de datos e ingeniería de software.</p>
+        <h2 data-i18n="skills.title">Habilidades Técnicas</h2>
+        <p data-i18n="skills.subtitle">Tecnologías y herramientas que domino para crear soluciones de datos e ingeniería de software.</p>
       </div>
 
       <!-- Filter Search -->
@@ -125,34 +559,34 @@
         <div class="search-wrapper">
           <div class="search-box">
             <i class="fas fa-search search-icon"></i>
-            <input type="text" class="search-input" id="skillsSearch" placeholder="Buscar habilidades...">
+            <input type="text" class="search-input" id="skillsSearch" placeholder="Buscar habilidades..." data-i18n="skills.search">
             <button class="search-clear">Limpiar</button>
           </div>
         </div>
 
         <div class="filter-categories">
           <div class="filter-group">
-            <span class="filter-label">Filtrar por área</span>
+            <span class="filter-label" data-i18n="skills.filter.label">Filtrar por área</span>
             <div class="filter-chips" id="skillFilterChips">
               <button class="filter-chip" data-filter="automatizacion" data-filter-type="categories" data-category="automatizacion">
                 <span class="filter-chip-dot"></span>
-                <span>Automatización / IA</span>
+                <span data-i18n="skills.filter.auto">Automatización / IA</span>
               </button>
               <button class="filter-chip" data-filter="data" data-filter-type="categories" data-category="data">
                 <span class="filter-chip-dot"></span>
-                <span>Data Engineering</span>
+                <span data-i18n="skills.filter.data">Data Engineering</span>
               </button>
               <button class="filter-chip" data-filter="software" data-filter-type="categories" data-category="software">
                 <span class="filter-chip-dot"></span>
-                <span>Desarrollo de Software</span>
+                <span data-i18n="skills.filter.soft">Desarrollo de Software</span>
               </button>
             </div>
           </div>
         </div>
 
         <div class="filter-actions">
-          <span class="results-counter" id="skillsCounter">Mostrando <strong>0</strong> de <strong>0</strong> habilidades</span>
-          <button class="reset-filters" id="resetSkillFilters" disabled>
+          <span class="results-counter" id="skillsCounter" data-n="0" data-t="0">Mostrando <strong>0</strong> de <strong>0</strong> habilidades</span>
+          <button class="reset-filters" id="resetSkillFilters" disabled data-i18n="skills.reset">
             <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="1 4 1 10 7 10"></polyline>
               <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
@@ -172,7 +606,7 @@
       <!-- No Results -->
       <div class="no-results" id="noSkillResults" style="display: none;">
         <div class="no-results-icon"><i class="fas fa-search"></i></div>
-        <h3>No se encontraron habilidades</h3>
+        <h3 data-i18n="skills.empty">No se encontraron habilidades</h3>
         <p>Intenta ajustar los filtros o términos de búsqueda</p>
       </div>
     </div>
@@ -182,22 +616,18 @@
   <section id="experiencia" class="section" style="background: var(--bg-secondary);">
     <div class="container">
       <div class="section-header">
-        <h2>Experiencia Profesional</h2>
-        <p>Mi trayectoria en el mundo del desarrollo y la ingeniería de datos.</p>
+        <h2 data-i18n="exp.title">Experiencia Profesional</h2>
+        <p data-i18n="exp.subtitle">Mi trayectoria en el mundo del desarrollo y la ingeniería de datos.</p>
       </div>
 
       <div class="cards-grid cards-grid-3">
         <div class="experience-card stagger-item">
           <div class="experience-header">
             <span class="experience-company">Next Digital Hub</span>
-            <span class="experience-date">Mar 2024 - Ago 2024</span>
+            <span class="experience-date" data-i18n="exp.ndh.date">Mar 2024 - Ago 2024</span>
           </div>
-          <div class="experience-role">Ingeniero de Datos</div>
-          <p class="experience-description">
-            Desarrollo y mantenimiento de pipelines ETL con Python y Apache Airflow.
-            Implementación de soluciones de data engineering en AWS (S3, Glue, Athena).
-            Procesamiento de datos con Apache Spark y Kafka. Desarrollo de APIs con FastAPI.
-          </p>
+          <div class="experience-role" data-i18n="exp.ndh.role">Ingeniero de Datos</div>
+          <p class="experience-description" data-i18n="exp.ndh.desc">Desarrollo y mantenimiento de pipelines ETL con Python y Apache Airflow. Implementación de soluciones de data engineering en AWS (S3, Glue, Athena). Procesamiento de datos con Apache Spark y Kafka. Desarrollo de APIs con FastAPI.</p>
           <div class="skill-tags">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">Airflow</span>
@@ -214,15 +644,10 @@
         <div class="experience-card stagger-item">
           <div class="experience-header">
             <span class="experience-company">Sermicro</span>
-            <span class="experience-date">Mar 2025 - Actualidad</span>
+            <span class="experience-date" data-i18n="exp.ser.date">Mar 2025 - Actualidad</span>
           </div>
-          <div class="experience-role">Desarrollador en IA e Hiperautomatización</div>
-          <p class="experience-description">
-            Gestión y orquestación de agentes inteligentes para la creación automática de tickets de soporte.
-            Desarrollo de automatizaciones para el envío de informes diarios y tareas operativas.
-            Implementación de flujos de creación y gestión de tickets en distintas arquitecturas y sistemas.
-            Optimización de procesos mediante IA e hiperautomatización orientada a usuario.
-          </p>
+          <div class="experience-role" data-i18n="exp.ser.role">Desarrollador en IA e Hiperautomatización</div>
+          <p class="experience-description" data-i18n="exp.ser.desc">Gestión y orquestación de agentes inteligentes para la creación automática de tickets de soporte. Desarrollo de automatizaciones para el envío de informes diarios y tareas operativas. Implementación de flujos de creación y gestión de tickets en distintas arquitecturas y sistemas. Optimización de procesos mediante IA e hiperautomatización orientada a usuario.</p>
           <div class="skill-tags">
             <span class="skill-tag">Python</span>
             <span class="skill-tag">IA</span>
@@ -239,8 +664,8 @@
 <section id="educacion" class="section">
   <div class="container">
     <div class="section-header">
-      <h2>Formación Académica</h2>
-      <p>Mi base académica en el desarrollo de software.</p>
+      <h2 data-i18n="edu.title">Formación Académica</h2>
+      <p data-i18n="edu.subtitle">Mi base académica en el desarrollo de software.</p>
     </div>
 
     <div class="cards-grid cards-grid-3">
@@ -249,11 +674,9 @@
           <span class="experience-company">IES Clara del Rey</span>
           <span class="experience-date">2021 - 2023</span>
         </div>
-        <div class="experience-role">Técnico Superior en DAM</div>
+        <div class="experience-role" data-i18n="edu.dam.role">Técnico Superior en DAM</div>
         <p class="experience-description">
-          Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. 
-          Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. 
-          Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.
+          <span data-i18n="edu.dam.desc">Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.</span>
         </p>
         <div class="skill-tags">
           <span class="skill-tag">Java</span>
@@ -270,11 +693,9 @@
           <span class="experience-company">IES Clara del Rey</span>
           <span class="experience-date">2021 - 2023</span>
         </div>
-        <div class="experience-role">Técnico Superior en DAM</div>
+        <div class="experience-role" data-i18n="edu.dam.role">Técnico Superior en DAM</div>
         <p class="experience-description">
-          Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. 
-          Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. 
-          Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.
+          <span data-i18n="edu.dam.desc">Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.</span>
         </p>
         <div class="skill-tags">
           <span class="skill-tag">Java</span>
@@ -291,19 +712,19 @@
   <section id="soft-skills" class="section">
     <div class="container">
       <div class="section-header">
-        <h2>Habilidades Blandas</h2>
-        <p>Competencias personales que complementan mi perfil técnico.</p>
+        <h2 data-i18n="soft.title">Habilidades Blandas</h2>
+        <p data-i18n="soft.subtitle">Competencias personales que complementan mi perfil técnico.</p>
       </div>
 
       <div class="soft-skills-grid">
-        <div class="soft-skill-item stagger-item">Resolución de Problemas</div>
-        <div class="soft-skill-item stagger-item">Trabajo en Equipo</div>
-        <div class="soft-skill-item stagger-item">Comunicación Efectiva</div>
-        <div class="soft-skill-item stagger-item">Aprendizaje Continuo</div>
-        <div class="soft-skill-item stagger-item">Pensamiento Analítico</div>
-        <div class="soft-skill-item stagger-item">Gestión del Tiempo</div>
-        <div class="soft-skill-item stagger-item">Adaptabilidad</div>
-        <div class="soft-skill-item stagger-item">Proactividad</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.1">Resolución de Problemas</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.2">Trabajo en Equipo</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.3">Comunicación Efectiva</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.4">Aprendizaje Continuo</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.5">Pensamiento Analítico</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.6">Gestión del Tiempo</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.7">Adaptabilidad</div>
+        <div class="soft-skill-item stagger-item" data-i18n="soft.8">Proactividad</div>
       </div>
     </div>
   </section>
@@ -312,60 +733,147 @@
   <section id="contacto" class="section" style="background: var(--bg-secondary);">
     <div class="container">
       <div class="section-header">
-        <h2>Contacto</h2>
-        <p>¿Interesado en trabajar juntos? ¡Hablemos!</p>
+        <h2 data-i18n="contact.title">Contacto</h2>
+        <p data-i18n="contact.subtitle">¿Interesado en trabajar juntos? ¡Hablemos!</p>
       </div>
 
-      <div class="contact-grid">
-        <a href="/cdn-cgi/l/email-protection#680b091b1c0906071b1d091a0d121b0d0a091b1c010906280f05090104460b0705" class="contact-item stagger-item">
-          <div class="contact-icon">
-            <i class="fas fa-envelope"></i>
-          </div>
-          <div class="contact-info">
-            <span class="contact-label">Email</span>
-            <span class="contact-value"><span class="__cf_email__" data-cfemail="86e5e7f5f2e7e8e9f5f3e7f4e3fcf5e3e4e7f5f2efe7e8c6e1ebe7efeaa8e5e9eb">[email&#160;protected]</span></span>
-          </div>
-        </a>
+      <div class="contact-layout">
 
-        <a href="tel:+34655784630" class="contact-item stagger-item">
-          <div class="contact-icon">
-            <i class="fas fa-phone"></i>
-          </div>
-          <div class="contact-info">
-            <span class="contact-label">Teléfono</span>
-            <span class="contact-value">+34 655 784 630</span>
-          </div>
-        </a>
+        <!-- ── Left: info cards ───────────────────────────────── -->
+        <div class="contact-info-col">
 
-        <div class="contact-item stagger-item">
-          <div class="contact-icon">
-            <i class="fas fa-map-marker-alt"></i>
+          <div class="contact-availability">
+            <span class="availability-dot"></span>
+            <span data-i18n="contact.available">Disponible para nuevos proyectos</span>
           </div>
-          <div class="contact-info">
-            <span class="contact-label">Ubicación</span>
-            <span class="contact-value">Madrid, España</span>
+
+          <a href="mailto:castanosuarezsebastian@gmail.com" class="contact-item stagger-item">
+            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+            <div class="contact-info">
+              <span class="contact-label" data-i18n="contact.email">Email</span>
+              <span class="contact-value">castanosuarezsebastian@gmail.com</span>
+            </div>
+            <i class="fas fa-arrow-right contact-arrow"></i>
+          </a>
+
+          <a href="tel:+34655784630" class="contact-item stagger-item">
+            <div class="contact-icon"><i class="fas fa-phone"></i></div>
+            <div class="contact-info">
+              <span class="contact-label" data-i18n="contact.phone">Teléfono</span>
+              <span class="contact-value">+34 655 784 630</span>
+            </div>
+            <i class="fas fa-arrow-right contact-arrow"></i>
+          </a>
+
+          <div class="contact-item stagger-item">
+            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+            <div class="contact-info">
+              <span class="contact-label" data-i18n="contact.location">Ubicación</span>
+              <span class="contact-value" data-i18n="contact.city">Madrid, España</span>
+            </div>
+          </div>
+
+          <div class="contact-social">
+            <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" class="social-btn" aria-label="LinkedIn">
+              <i class="fab fa-linkedin-in"></i>
+            </a>
+            <a href="https://github.com/sbastian29" target="_blank" class="social-btn" aria-label="GitHub">
+              <i class="fab fa-github"></i>
+            </a>
+          </div>
+
+        </div>
+
+        <!-- ── Right: form ────────────────────────────────────── -->
+        <div class="contact-form-col stagger-item">
+          <div class="contact-form-card">
+
+            <div class="form-header">
+              <h3 class="form-title" data-i18n="form.title">Envíame un mensaje</h3>
+              <p class="form-subtitle" data-i18n="form.subtitle">Te responderé en menos de 48 horas.</p>
+            </div>
+
+            <!-- Alert -->
+            <div id="formAlert" class="form-alert" style="display:none;" role="alert"></div>
+
+            <!-- Name + Email -->
+            <div class="form-row">
+              <div class="form-group">
+                <label class="form-label" for="contactNombre">
+                  <span data-i18n="form.name">Nombre</span>
+                  <span class="form-req">*</span>
+                </label>
+                <div class="input-wrap">
+                  <i class="fas fa-user input-icon"></i>
+                  <input type="text" id="contactNombre"
+                         data-i18n-placeholder="form.name.ph"
+                         placeholder="Tu nombre"
+                         autocomplete="name" class="form-input">
+                </div>
+                <span class="field-error" id="errNombre"></span>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="contactEmail">
+                  <span data-i18n="form.email">Email</span>
+                  <span class="form-req">*</span>
+                </label>
+                <div class="input-wrap">
+                  <i class="fas fa-envelope input-icon"></i>
+                  <input type="email" id="contactEmail"
+                         data-i18n-placeholder="form.email.ph"
+                         placeholder="tu@email.com"
+                         autocomplete="email" class="form-input">
+                </div>
+                <span class="field-error" id="errEmail"></span>
+              </div>
+            </div>
+
+            <!-- Company -->
+            <div class="form-group">
+              <label class="form-label" for="contactEmpresa">
+                <span data-i18n="form.company">Empresa</span>
+                <span class="form-opt" data-i18n="form.optional">(opcional)</span>
+              </label>
+              <div class="input-wrap">
+                <i class="fas fa-building input-icon"></i>
+                <input type="text" id="contactEmpresa"
+                       data-i18n-placeholder="form.company.ph"
+                       placeholder="Nombre de tu empresa"
+                       autocomplete="organization" class="form-input">
+              </div>
+            </div>
+
+            <!-- Message -->
+            <div class="form-group">
+              <label class="form-label" for="contactMensaje">
+                <span data-i18n="form.message">Mensaje</span>
+                <span class="form-req">*</span>
+              </label>
+              <div class="input-wrap textarea-wrap">
+                <i class="fas fa-comment-dots input-icon input-icon--top"></i>
+                <textarea id="contactMensaje" rows="5"
+                          data-i18n-placeholder="form.message.ph"
+                          placeholder="Cuéntame en qué puedo ayudarte..."
+                          class="form-input form-textarea"></textarea>
+              </div>
+              <div class="form-footer-row">
+                <span class="field-error" id="errMensaje"></span>
+                <span class="char-count" id="charCount">0 / 2000</span>
+              </div>
+            </div>
+
+            <!-- Submit -->
+            <button class="form-submit-btn" id="submitBtn" onclick="sendContactForm()">
+              <span id="submitText" data-i18n="form.send">Enviar mensaje</span>
+              <span class="submit-icon" id="submitIcon">
+                <i class="fas fa-paper-plane"></i>
+              </span>
+            </button>
+
           </div>
         </div>
 
-        <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" class="contact-item stagger-item">
-          <div class="contact-icon">
-            <i class="fab fa-linkedin-in"></i>
-          </div>
-          <div class="contact-info">
-            <span class="contact-label">LinkedIn</span>
-            <span class="contact-value">linkedin.com/in/sebastiancastano</span>
-          </div>
-        </a>
-
-        <a href="https://github.com/sebastiancastano" target="_blank" class="contact-item stagger-item">
-          <div class="contact-icon">
-            <i class="fab fa-github"></i>
-          </div>
-          <div class="contact-info">
-            <span class="contact-label">GitHub</span>
-            <span class="contact-value">github.com/sebastiancastano</span>
-          </div>
-        </a>
       </div>
     </div>
   </section>
@@ -376,16 +884,17 @@
       <div class="footer-content">
         <div class="footer-links">
           <a href="index.html" class="footer-link">CV</a>
-          <a href="certificados.html" class="footer-link">Certificados</a>
-          <a href="portfolio.html" class="footer-link">Portfolio</a>
+          <a href="certificados.html" class="footer-link" data-i18n="nav.certs">Certificados</a>
+          <a href="portfolio.html" class="footer-link" data-i18n="nav.portfolio">Portfolio</a>
         </div>
         <p class="footer-copyright">
-          © 2026 Sebastián Castaño Suárez. Todos los derechos reservados.
+          <span data-i18n="footer.rights">© 2026 Sebastián Castaño Suárez. Todos los derechos reservados.</span>
         </p>
       </div>
     </div>
   </footer>
-<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/main.js"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/i18n.js"></script>
+<script src="assets/js/main.js"></script>
   <script src="assets/js/filterEngine.js"></script>
   
   <script>
@@ -456,8 +965,11 @@
     // Lógica principal al cargar la página
     document.addEventListener('DOMContentLoaded', () => {
       
-      // 1. Cargar el JSON externo
-      fetch('assets/data/skills.json')
+      // 1. Esperar idioma y luego cargar skills
+      (window.i18nReady || Promise.resolve('es')).then(() => {
+      const skillsLang = (window.I18n && window.I18n.getLang() === 'en') ? 'en' : 'es';
+      const skillsFile = skillsLang === 'en' ? 'assets/data/skills.en.json' : 'assets/data/skills.json';
+      fetch(skillsFile)
         .then(response => {
           if (!response.ok) {
             throw new Error(`Error HTTP: ${response.status}`);
@@ -468,11 +980,6 @@
           // 2. Guardar datos y generar HTML
           skillsData = data; 
           generateSkillCards();
-
-          // Actualizar contador con el total real del JSON
-          const totalSkills = Array.isArray(data) ? data.length : (data.skills || []).length;
-          const counter = document.getElementById('skillsCounter');
-          if (counter) counter.innerHTML = `Mostrando <strong>${totalSkills}</strong> de <strong>${totalSkills}</strong> habilidades`;
 
           // 3. Inicializar filtros y animaciones (esperamos un poco para asegurar el renderizado)
           setTimeout(() => {
@@ -493,8 +1000,9 @@
         .catch(error => {
           console.error("Error cargando el archivo JSON:", error);
           const grid = document.getElementById('skillsGrid');
-          if(grid) grid.innerHTML = `<p style="text-align:center; color:red;">No se pudieron cargar las habilidades (${error.message}). Verifica que 'assets/data/skills.json' existe y el servidor está activo.</p>`;
+          if(grid) grid.innerHTML = `<p style="text-align:center; color:red;">No se pudieron cargar las habilidades. Verifica que 'data/skills.json' existe.</p>`;
         });
+      }); // end i18nReady.then
     });
 
     // Funciones del Toast (Notificación)
@@ -519,8 +1027,246 @@
       }
     });
   </script>
+
+<script>
+    // ── Contact form ──────────────────────────────────────────────
+    // En producción cambia por tu URL de Render:
+    // const API_URL = 'https://portfolio-api.onrender.com/api/contact';
+    const API_URL = 'http://localhost:5000/api/contact';
+
+    document.addEventListener('DOMContentLoaded', function() {
+      var ta = document.getElementById('contactMensaje');
+      if (ta) {
+        ta.addEventListener('input', function() {
+          var len = this.value.length;
+          document.getElementById('charCount').textContent = len + ' / 2000';
+          this.classList.toggle('input-error', len > 2000);
+        });
+      }
+    });
+
+    function clearContactErrors() {
+      ['Nombre','Email','Mensaje'].forEach(function(f) {
+        var e = document.getElementById('err'+f), i = document.getElementById('contact'+f);
+        if (e) e.textContent = '';
+        if (i) i.classList.remove('input-error');
+      });
+      var al = document.getElementById('formAlert');
+      if (al) { al.style.display='none'; al.className='form-alert'; }
+    }
+
+    function showFormAlert(msg, type) {
+      var el = document.getElementById('formAlert');
+      if (!el) return;
+      el.innerHTML = msg;
+      el.className = 'form-alert ' + type;
+      el.style.display = 'block';
+      el.scrollIntoView({ behavior:'smooth', block:'nearest' });
+    }
+
+    async function sendContactForm() {
+      clearContactErrors();
+      var nombre  = document.getElementById('contactNombre').value.trim();
+      var email   = document.getElementById('contactEmail').value.trim();
+      var empresa = document.getElementById('contactEmpresa').value.trim();
+      var mensaje = document.getElementById('contactMensaje').value.trim();
+      var btn = document.getElementById('submitBtn');
+      var txt = document.getElementById('submitText');
+      var lang = window.I18n ? window.I18n.getLang() : 'es';
+
+      btn.disabled = true;
+      txt.textContent = lang === 'en' ? 'Sending...' : 'Enviando...';
+
+      try {
+        var res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre, email, empresa, mensaje })
+        });
+        var data = await res.json();
+        if (data.ok) {
+          showFormAlert(lang === 'en'
+            ? '✓ Message sent! I\'ll get back to you soon.'
+            : '✓ Mensaje enviado correctamente. ¡Te responderé pronto!', 'success');
+          ['contactNombre','contactEmail','contactEmpresa','contactMensaje'].forEach(id => {
+            document.getElementById(id).value = '';
+          });
+          document.getElementById('charCount').textContent = '0 / 2000';
+        } else if (data.errors) {
+          Object.keys(data.errors).forEach(field => {
+            var cap = field.charAt(0).toUpperCase() + field.slice(1);
+            var e = document.getElementById('err'+cap), i = document.getElementById('contact'+cap);
+            if (e) e.textContent = data.errors[field];
+            if (i) i.classList.add('input-error');
+          });
+          showFormAlert(lang === 'en' ? 'Please check highlighted fields.' : 'Revisa los campos marcados.', 'error');
+        } else {
+          showFormAlert(data.error || (lang === 'en' ? 'Error sending.' : 'Error al enviar.'), 'error');
+        }
+      } catch(e) {
+        showFormAlert(lang === 'en'
+          ? 'Could not connect to the server.'
+          : 'No se pudo conectar con el servidor. Comprueba que la API está activa.', 'error');
+      } finally {
+        btn.disabled = false;
+        txt.textContent = lang === 'en' ? 'Send message' : 'Enviar mensaje';
+      }
+    }
+  </script>
+
   <div id="life-update-toast" class="life-toast">
-  <div class="toast-header">
-    <span class="toast-dot"></span>
-    <strong>Nuevo mensaje</strong>
-    <button
+    <div class="toast-header">
+      <span class="toast-dot"></span>
+      <strong data-i18n="toast.title">Nuevo mensaje</strong>
+      <button class="toast-close" onclick="closeToast()">&times;</button>
+    </div>
+    <div class="toast-body">
+      <p data-i18n="toast.body">🚀 Actualmente enfocado en profundizar en <strong>Data Engineering</strong> y preparando nuevas certificaciones de AWS.</p>
+    </div>
+  </div>
+  <script>
+    // ── Contact form — bilingual ────────────────────────────────
+    // En producción cambia por tu URL de Render:
+    // const API_URL = 'https://portfolio-api.onrender.com/api/contact';
+
+    // i18n keys for the form
+    const FORM_STRINGS = {
+      es: {
+        sending:   'Enviando...',
+        send:      'Enviar mensaje',
+        success:   '✓ Mensaje enviado correctamente. ¡Te responderé pronto!',
+        check:     'Revisa los campos marcados.',
+        error:     'Error al enviar. Inténtalo de nuevo.',
+        noconn:    'No se pudo conectar con el servidor. Comprueba que la API está activa.',
+        name_ph:   'Tu nombre',
+        email_ph:  'tu@email.com',
+        co_ph:     'Nombre de tu empresa',
+        msg_ph:    'Cuéntame en qué puedo ayudarte...'
+      },
+      en: {
+        sending:   'Sending...',
+        send:      'Send message',
+        success:   '✓ Message sent! I´ll get back to you soon.',
+        check:     'Please check the highlighted fields.',
+        error:     'Error sending. Please try again.',
+        noconn:    'Could not connect to the server. Make sure the API is running.',
+        name_ph:   'Your name',
+        email_ph:  'you@email.com',
+        co_ph:     'Your company name',
+        msg_ph:    'Tell me how I can help you...'
+      }
+    };
+
+    function _fs(key) {
+      var lang = (window.I18n && window.I18n.getLang() === 'en') ? 'en' : 'es';
+      return FORM_STRINGS[lang][key];
+    }
+
+    // Update placeholders when language changes
+    function updateFormPlaceholders() {
+      var map = {
+        contactNombre:  'name_ph',
+        contactEmail:   'email_ph',
+        contactEmpresa: 'co_ph',
+        contactMensaje: 'msg_ph'
+      };
+      Object.keys(map).forEach(function(id) {
+        var el = document.getElementById(id);
+        if (el) el.placeholder = _fs(map[id]);
+      });
+      var txt = document.getElementById('submitText');
+      if (txt) txt.textContent = _fs('send');
+
+      // Also update labels with data-i18n-placeholder
+      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
+        var key = el.dataset.i18nPlaceholder;
+        if (window.I18n) el.placeholder = window.I18n.t(key);
+      });
+    }
+
+    document.addEventListener('i18n:applied', updateFormPlaceholders);
+
+    document.addEventListener('DOMContentLoaded', function() {
+      // Char counter
+      var ta = document.getElementById('contactMensaje');
+      if (ta) {
+        ta.addEventListener('input', function() {
+          var len = this.value.length;
+          document.getElementById('charCount').textContent = len + ' / 2000';
+          this.classList.toggle('input-error', len > 2000);
+        });
+      }
+    });
+
+    function clearContactErrors() {
+      ['Nombre','Email','Mensaje'].forEach(function(f) {
+        var e = document.getElementById('err'+f);
+        var i = document.getElementById('contact'+f);
+        if (e) e.textContent = '';
+        if (i) i.classList.remove('input-error');
+      });
+      var al = document.getElementById('formAlert');
+      if (al) { al.style.display = 'none'; al.className = 'form-alert'; }
+    }
+
+    function showFormAlert(msg, type) {
+      var el = document.getElementById('formAlert');
+      if (!el) return;
+      el.innerHTML = (type === 'success' ? '<i class="fas fa-check-circle"></i> ' : '<i class="fas fa-exclamation-circle"></i> ') + msg;
+      el.className = 'form-alert ' + type;
+      el.style.display = 'flex';
+      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    }
+
+    async function sendContactForm() {
+      clearContactErrors();
+
+      var nombre  = document.getElementById('contactNombre').value.trim();
+      var email   = document.getElementById('contactEmail').value.trim();
+      var empresa = document.getElementById('contactEmpresa').value.trim();
+      var mensaje = document.getElementById('contactMensaje').value.trim();
+      var btn     = document.getElementById('submitBtn');
+      var txt     = document.getElementById('submitText');
+      var icon    = document.getElementById('submitIcon');
+
+      btn.disabled = true;
+      txt.textContent = _fs('sending');
+      if (icon) icon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+
+      try {
+        var res = await fetch(API_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ nombre: nombre, email: email, empresa: empresa, mensaje: mensaje })
+        });
+        var data = await res.json();
+
+        if (data.ok) {
+          showFormAlert(_fs('success'), 'success');
+          ['contactNombre','contactEmail','contactEmpresa','contactMensaje'].forEach(function(id) {
+            document.getElementById(id).value = '';
+          });
+          document.getElementById('charCount').textContent = '0 / 2000';
+        } else if (data.errors) {
+          Object.keys(data.errors).forEach(function(field) {
+            var cap = field.charAt(0).toUpperCase() + field.slice(1);
+            var e = document.getElementById('err'+cap);
+            var i = document.getElementById('contact'+cap);
+            if (e) e.textContent = data.errors[field];
+            if (i) i.classList.add('input-error');
+          });
+          showFormAlert(_fs('check'), 'error');
+        } else {
+          showFormAlert(data.error || _fs('error'), 'error');
+        }
+      } catch(e) {
+        showFormAlert(_fs('noconn'), 'error');
+      } finally {
+        btn.disabled = false;
+        txt.textContent = _fs('send');
+        if (icon) icon.innerHTML = '<i class="fas fa-paper-plane"></i>';
+      }
+    }
+  </script>
+</body>
+</html>

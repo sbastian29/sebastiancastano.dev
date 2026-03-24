@@ -256,6 +256,17 @@
       max-width: 600px;
       margin: 0 auto;
     }
+
+    /* ── Logo image theme switching ── */
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: none;
+    }
+    :root[data-theme="light"] .logo-img--light,
+    html:not([data-theme="dark"]) .logo-img--light { display: block; }
+    :root[data-theme="dark"] .logo-img--dark { display: block; }
+    .logo-dot { display: none; }
   </style>
 </head>
 <body>
@@ -263,8 +274,8 @@
   <header class="header">
     <div class="header-content">
       <a href="index.html" class="logo">
-        <span class="logo-dot"></span>
-        SCS
+        <img src="assets/images/blancoSCS.png" alt="SCS" class="logo-img logo-img--light">
+        <img src="assets/images/negroSCS.png" alt="SCS" class="logo-img logo-img--dark">
       </a>
 
       <nav class="nav">

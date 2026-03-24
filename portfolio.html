@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Proyectos de Sebastián Castaño Suárez - Data Engineering, Automatización y Desarrollo de Software">
   <title>Portfolio | Sebastián Castaño Suárez</title>
+  <meta name="i18n-title" content="port.page.title">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -177,18 +178,21 @@
     }
 
     .project-category-badge.data {
-      background: rgba(59, 130, 246, 0.1);
-      color: var(--accent-data);
+      background: var(--cat-data-bg);
+      color: var(--cat-data);
+      border: 1px solid var(--cat-data-border);
     }
 
     .project-category-badge.automatizacion {
-      background: rgba(16, 185, 129, 0.1);
-      color: var(--accent-automation);
+      background: var(--cat-auto-bg);
+      color: var(--cat-auto);
+      border: 1px solid var(--cat-auto-border);
     }
 
     .project-category-badge.software {
-      background: rgba(139, 92, 246, 0.1);
-      color: var(--accent-software);
+      background: var(--cat-soft-bg);
+      color: var(--cat-soft);
+      border: 1px solid var(--cat-soft-border);
     }
 
     .project-title {
@@ -273,55 +277,96 @@
       font-size: 0.875rem;
       color: var(--text-tertiary);
     }
+
+    /* ============ Category color system ============ */
+    .filter-chip[data-category="data"]:not(.active)         { border-left: 3px solid var(--cat-data); }
+    .filter-chip[data-category="automatizacion"]:not(.active) { border-left: 3px solid var(--cat-auto); }
+    .filter-chip[data-category="software"]:not(.active)     { border-left: 3px solid var(--cat-soft); }
+  </style>
+
+  <style id="logo-style">
+    .logo-img {
+      height: 44px;
+      width: auto;
+      display: none;
+      transition: opacity 0.3s ease;
+    }
+    /* light theme (default :root) shows negro, dark shows blanco */
+    :root[data-theme="light"] .logo-img--light,
+    html:not([data-theme="dark"]) .logo-img--light { display: block; }
+    :root[data-theme="dark"]  .logo-img--dark        { display: block; }
+    /* hide the dot since we no longer need it */
+    .logo-dot { display: none; }
   </style>
 </head>
 <body>
   <!-- Header -->
   <header class="header">
+
     <div class="header-content">
+
       <a href="index.html" class="logo">
-        <span class="logo-dot"></span>
-        SCS
+        <img src="assets/images/blancoSCS.png" alt="SCS" class="logo-img logo-img--light">
+        <img src="assets/images/negroSCS.png" alt="SCS" class="logo-img logo-img--dark">
       </a>
 
+
+
       <nav class="nav">
+
         <a href="index.html" class="nav-link">CV</a>
+
         <a href="certificados.html" class="nav-link">Certificados</a>
+
         <a href="portfolio.html" class="nav-link active">Portfolio</a>
 
+
+
         <div class="theme-toggle">
-          <button class="theme-btn" data-theme="dark">Dark</button>
-          <button class="theme-btn active" data-theme="light">Light</button>
+
+          <button class="theme-btn" data-theme="dark" data-i18n="nav.theme.dark">Dark</button>
+
+          <button class="theme-btn active" data-theme="light" data-i18n="nav.theme.light">Light</button>
+
         </div>
+
       </nav>
 
+
+
       <button class="mobile-menu-btn" aria-label="Menu">
+
         <span></span>
+
         <span></span>
+
         <span></span>
+
       </button>
+
     </div>
+
   </header>
 
   <main>
     <!-- Page Header -->
     <section class="page-header">
       <div class="container">
-        <h1 class="animate-fade-in">Portfolio</h1>
-        <p class="animate-fade-in">Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.</p>
+        <h1 class="animate-fade-in" data-i18n="port.page.h1">Portfolio</h1>
+        <p class="animate-fade-in" data-i18n="port.page.subtitle">Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.</p>
 
         <div class="portfolio-stats animate-fade-in">
           <div class="stat-item">
             <div class="stat-number">8</div>
-            <div class="stat-label">Proyectos</div>
+            <div class="stat-label" data-i18n="port.stat.projects">Proyectos</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">15+</div>
-            <div class="stat-label">Tecnologías</div>
+            <div class="stat-label" data-i18n="port.stat.techs">Tecnologías</div>
           </div>
           <div class="stat-item">
             <div class="stat-number">3</div>
-            <div class="stat-label">Áreas</div>
+            <div class="stat-label" data-i18n="port.stat.areas">Áreas</div>
           </div>
         </div>
       </div>
@@ -335,32 +380,32 @@
           <div class="search-wrapper">
             <div class="search-box">
               <i class="fas fa-search search-icon"></i>
-              <input type="text" class="search-input" id="projectSearch" placeholder="Buscar proyectos...">
-              <button class="search-clear">Limpiar</button>
+              <input type="text" class="search-input" id="projectSearch" placeholder="Buscar proyectos..." data-i18n="port.search">
+              <button class="search-clear" data-i18n="port.clear">Limpiar</button>
             </div>
           </div>
 
           <div class="filter-categories">
             <div class="filter-group">
-              <span class="filter-label">Por rol / área</span>
+              <span class="filter-label" data-i18n="port.filter.byrole">Por rol / área</span>
               <div class="filter-chips" id="projectRoleChips">
                 <button class="filter-chip" data-filter="automatizacion" data-filter-type="categories" data-category="automatizacion">
                   <span class="filter-chip-dot"></span>
-                  <span>Automatización</span>
+                  <span data-i18n="port.filter.auto">Automatización</span>
                 </button>
                 <button class="filter-chip" data-filter="data" data-filter-type="categories" data-category="data">
                   <span class="filter-chip-dot"></span>
-                  <span>Data Engineering</span>
+                  <span data-i18n="port.filter.data">Data Engineering</span>
                 </button>
                 <button class="filter-chip" data-filter="software" data-filter-type="categories" data-category="software">
                   <span class="filter-chip-dot"></span>
-                  <span>Desarrollo Software</span>
+                  <span data-i18n="port.filter.soft">Desarrollo Software</span>
                 </button>
               </div>
             </div>
 
             <div class="filter-group">
-              <span class="filter-label">Por tecnología</span>
+              <span class="filter-label" data-i18n="port.filter.bytech">Por tecnología</span>
               <div class="filter-chips" id="projectTechChips">
                 <button class="filter-chip" data-filter="python" data-filter-type="technologies">
                   <span class="filter-chip-dot"></span>
@@ -397,7 +442,7 @@
                 <polyline points="1 4 1 10 7 10"></polyline>
                 <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
               </svg>
-              Mezclar / Reset
+              <span data-i18n="port.reset">Mezclar / Reset</span>
             </button>
           </div>
 
@@ -412,8 +457,8 @@
         <!-- No Results -->
         <div class="no-results" id="noProjectResults" style="display: none;">
           <div class="no-results-icon"><i class="fas fa-folder-open"></i></div>
-          <h3>No se encontraron proyectos</h3>
-          <p>Intenta ajustar los filtros o términos de búsqueda</p>
+          <h3 data-i18n="port.empty">No se encontraron proyectos</h3>
+          <p data-i18n="port.empty.sub">Intenta ajustar los filtros o términos de búsqueda</p>
         </div>
       </div>
     </section>
@@ -425,17 +470,18 @@
       <div class="footer-content">
         <div class="footer-links">
           <a href="index.html" class="footer-link">CV</a>
-          <a href="certificados.html" class="footer-link">Certificados</a>
-          <a href="portfolio.html" class="footer-link">Portfolio</a>
+          <a href="certificados.html" class="footer-link" data-i18n="nav.certs">Certificados</a>
+          <a href="portfolio.html" class="footer-link" data-i18n="nav.portfolio">Portfolio</a>
         </div>
         <p class="footer-copyright">
-          © 2024 Sebastián Castaño Suárez. Todos los derechos reservados.
+          <span data-i18n="footer.rights">© 2024 Sebastián Castaño Suárez. Todos los derechos reservados.</span>
         </p>
       </div>
     </div>
   </footer>
 
   <!-- Scripts -->
+  <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
   <script src="assets/js/filterEngine.js"></script>
   <script>
@@ -457,9 +503,9 @@
       {
         id: 2,
         title: "App de Desarrollo Móvil Inmersivo",
-        description: "Aplicación Android moderna desarrollada con Kotlin y Jetpack Compose, implementando arquitectura MVVM y diseño Material 3.",
+        description: "Aplicación Android moderna desarrollada con Kotlin y Jetpack Compose, implementando arquitectura MVC.",
         categories: ["software"],
-        tags: ["kotlin", "android", "compose", "mvvm"],
+        tags: ["kotlin", "android", "compose"],
         technologies: ["Kotlin", "Jetpack Compose", "Room", "Coroutines"],
         github: "https://github.com/sebastiancastano/mobile-app",
         demo: null,
@@ -470,7 +516,7 @@
       {
         id: 3,
         title: "Pipeline ETL con Airflow y AWS",
-        description: "Pipeline de extracción, transformación y carga de datos orquestado con Apache Airflow y desplegado en AWS con S3, Glue y Athena.",
+        description: "Pipeline de extracción, transformación y carga de datos orquestado con Apache Airflow y desplegado en AWS con S3, Glue y Athena.(PROXIMAMENTE)",
         categories: ["data", "automatizacion"],
         tags: ["python", "airflow", "aws", "spark", "etl", "docker"],
         technologies: ["Python", "Airflow", "AWS", "Spark", "Docker"],
@@ -483,7 +529,7 @@
       {
         id: 4,
         title: "API REST con FastAPI",
-        description: "Backend moderno y de alto rendimiento desarrollado con FastAPI, incluyendo autenticación JWT, documentación automática y tests con Pytest.",
+        description: "Backend moderno y de alto rendimiento desarrollado con FastAPI, incluyendo autenticación JWT, documentación automática y tests con Pytest.(PROXIMAMENTE)",
         categories: ["software", "data"],
         tags: ["python", "fastapi", "rest", "jwt", "pytest", "docker"],
         technologies: ["Python", "FastAPI", "PostgreSQL", "Docker", "Pytest"],
@@ -496,7 +542,7 @@
       {
         id: 5,
         title: "Dashboard de Análisis con Power BI",
-        description: "Dashboard interactivo para visualización de KPIs empresariales, conectado a fuentes de datos en tiempo real.",
+        description: "Dashboard interactivo para visualización de KPIs empresariales, conectado a fuentes de datos en tiempo real.(PROXIMAMENTE)",
         categories: ["data"],
         tags: ["powerbi", "visualization", "sql", "analytics"],
         technologies: ["Power BI", "SQL", "DAX", "Python"],
@@ -509,7 +555,7 @@
       {
         id: 6,
         title: "Sistema de Streaming con Kafka",
-        description: "Plataforma de procesamiento de eventos en tiempo real utilizando Apache Kafka para ingesta y procesamiento de streams de datos.",
+        description: "Plataforma de procesamiento de eventos en tiempo real utilizando Apache Kafka para ingesta y procesamiento de streams de datos.(PROXIMAMENTE)",
         categories: ["data"],
         tags: ["kafka", "streaming", "python", "realtime", "docker"],
         technologies: ["Apache Kafka", "Python", "Docker", "InfluxDB"],
@@ -522,7 +568,7 @@
       {
         id: 7,
         title: "Bot de Automatización RPA",
-        description: "Robot de automatización de procesos repetitivos utilizando UiPath para tareas de scraping, entrada de datos y reportes automatizados.",
+        description: "Robot de automatización de procesos repetitivos utilizando UiPath para tareas de scraping, entrada de datos y reportes automatizados.(PROXIMAMENTE)",
         categories: ["automatizacion"],
         tags: ["uipath", "rpa", "automation", "scraping"],
         technologies: ["UiPath", "Python", "Excel", "Selenium"],
@@ -535,7 +581,7 @@
       {
         id: 8,
         title: "Data Warehouse con Snowflake y DBT",
-        description: "Arquitectura de data warehouse moderna usando Snowflake como almacén y DBT para transformaciones reproducibles.",
+        description: "Arquitectura de data warehouse moderna usando Snowflake como almacén y DBT para transformaciones reproducibles.(PROXIMAMENTE)",
         categories: ["data"],
         tags: ["snowflake", "dbt", "sql", "datawarehouse", "python"],
         technologies: ["Snowflake", "DBT", "SQL", "Python", "Airflow"],
@@ -559,7 +605,7 @@
              data-title="${project.title}"
              data-description="${project.description}">
           <div class="project-image">
-            ${project.featured ? '<span class="project-featured-badge">Destacado</span>' : ''}
+            ${project.featured ? '<span class="project-featured-badge">' + (window.I18n ? window.I18n.t('port.featured') : 'Destacado') + '</span>' : ''}
             <div class="project-image-inner">
               <i class="fas ${project.icon} project-icon"></i>
             </div>
@@ -586,7 +632,7 @@
           <div class="project-content">
             <span class="project-category-badge ${project.categories[0]}">
               <i class="fas fa-${project.categories[0] === 'data' ? 'database' : project.categories[0] === 'automatizacion' ? 'robot' : 'code'}"></i>
-              ${project.categories[0] === 'data' ? 'Data Engineering' : project.categories[0] === 'automatizacion' ? 'Automatización' : 'Software'}
+              ${project.categories[0] === 'data' ? (window.I18n ? window.I18n.t('port.cat.data') : 'Data Engineering') : project.categories[0] === 'automatizacion' ? (window.I18n ? window.I18n.t('port.cat.auto') : 'Automatización') : (window.I18n ? window.I18n.t('port.cat.soft') : 'Software')}
             </span>
             <h3 class="project-title">${project.title}</h3>
             <p class="project-description">${project.description}</p>
@@ -633,6 +679,7 @@
 
     // Initialize on DOM ready
     document.addEventListener('DOMContentLoaded', () => {
+      (window.i18nReady || Promise.resolve('es')).then(() => {
       generateProjectCards();
       setTimeout(() => {
         initProjectFilter();
@@ -645,6 +692,7 @@
         // Refresh cursor listeners for dynamic content
         if (window.refreshCursor) window.refreshCursor();
       }, 100);
+      }); // end i18nReady.then
     });
   </script>
 </body>

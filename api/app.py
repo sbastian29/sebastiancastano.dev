@@ -19,6 +19,8 @@ from datetime import datetime
 
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from flask_limiter import Limiter
+from flask_limiter.util import get_remote_address
 
 
 # ── Cargar credenciales ───────────────────────────────────────────────────────
@@ -61,12 +63,20 @@ app = Flask(__name__)
 CORS(app, origins=[
     "https://sebastiancastano.dev",
     "https://www.sebastiancastano.dev",
-    "https://sebastiancastanodev.vercel.app/",
     "https://sebastiancastano.vercel.app",
+    "https://sebastiancastanodev.vercel.app",
+    "https://sebastiancastano-bobi1br5z.vercel.app",  # URL de preview actual en Vercel
     "http://localhost:5500",
     "http://127.0.0.1:5500",
     "http://localhost:8080",
 ])
+
+limiter = Limiter(
+    key_func=get_remote_address,
+    app=app,
+    default_limits=[],        # Sin límite global; solo donde se decore
+    storage_uri="memory://",  # En producción puedes cambiar a Redis
+)
 
 
 # ── Helpers ───────────────────────────────────────────────────────────────────
@@ -225,6 +235,8 @@ def send_email(msg: MIMEMultipart) -> None:
 # ── Rutas ─────────────────────────────────────────────────────────────────────
 
 @app.route("/api/contact", methods=["POST"])
+@limiter.limit("5 per hour")        # Máximo 5 envíos por IP cada hora
+@limiter.limit("1 per 30 seconds")  # Y no más de 1 cada 30 segundos
 def contact():
     data    = request.get_json(silent=True) or {}
     nombre  = (data.get("nombre")  or "").strip()
@@ -266,6 +278,14 @@ def contact():
 @app.route("/api/health", methods=["GET"])
 def health():
     return jsonify({"status": "ok"}), 200
+
+
+@app.errorhandler(429)
+def ratelimit_handler(e):
+    return jsonify({
+        "ok": False,
+        "error": "Demasiadas solicitudes. Por favor, espera un momento antes de intentarlo de nuevo."
+    }), 429
 
 
 if __name__ == "__main__":

@@ -1033,6 +1033,9 @@
      const API_URL = 'https://portfolio-api-io25.onrender.com/api/contact';
     //const API_URL = 'http://localhost:5000/api/contact';
 
+    // Despierta la API de Render al cargar la página (el plan free se duerme tras 15min)
+    fetch('https://portfolio-api-io25.onrender.com/api/health').catch(() => {});
+
     document.addEventListener('DOMContentLoaded', function() {
       var ta = document.getElementById('contactMensaje');
       if (ta) {

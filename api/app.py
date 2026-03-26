@@ -65,8 +65,8 @@ CORS(app, origins=[
     "https://www.sebastiancastano.dev",
     "https://sebastiancastano.vercel.app",
     "https://sebastiancastanodev.vercel.app",
-    "https://sebastiancastano-dev.vercel.app",
-    "https://sebastiancastano-qg0oi0t7b.vercel.app",  # URL de preview actual en Vercel
+    "https://sebastiancastano-dev.vercel.app/",
+    "https://sebastiancastano-qg0oi0t7b.vercel.app/",  # URL de preview actual en Vercel
     "http://localhost:5500",
     "http://127.0.0.1:5500",
     "http://localhost:8080",
@@ -278,40 +278,69 @@ def contact():
 
 @app.route("/api/health", methods=["GET"])
 def health():
-    return jsonify({"status": "ok"}), 200
+    import traceback, smtplib as _smtp
+    result = {
+        "status": "ok",
+        "steps": {}
+    }
 
-
-@app.route("/api/test-email", methods=["GET"])
-def test_email():
-    """Diagnostico: envia un correo real para verificar credenciales. ELIMINAR tras confirmar."""
-    import traceback
+    # 1. Credenciales cargadas
     try:
         pw = EMAIL_PASSWORD or ""
-        diagnostics = {
-            "EMAIL_SENDER":   str(EMAIL_SENDER),
+        result["steps"]["1_credentials"] = {
+            "ok": True,
+            "EMAIL_SENDER": str(EMAIL_SENDER),
             "EMAIL_RECEIVER": str(EMAIL_RECEIVER),
-            "SMTP_HOST":      str(SMTP_HOST),
-            "SMTP_PORT":      int(SMTP_PORT),
+            "SMTP_HOST": str(SMTP_HOST),
+            "SMTP_PORT": int(SMTP_PORT),
             "EMAIL_PASSWORD": ("*" * max(0, len(pw) - 4)) + pw[-4:] if pw else "NOT SET",
         }
-        msg = MIMEMultipart("alternative")
-        msg["Subject"] = "Test email - API funcionando"
-        msg["From"]    = EMAIL_SENDER
-        msg["To"]      = EMAIL_RECEIVER
-        msg.attach(MIMEText("<h2>Test OK</h2><p>La API puede enviar emails.</p>", "html", "utf-8"))
-        send_email(msg)
-        return jsonify({"ok": True, "message": "Email enviado.", "diagnostics": diagnostics}), 200
     except Exception as e:
-        return jsonify({
-            "ok": False,
-            "error": str(e),
-            "traceback": traceback.format_exc(),
-            "EMAIL_SENDER":   str(EMAIL_SENDER),
-            "EMAIL_RECEIVER": str(EMAIL_RECEIVER),
-            "SMTP_HOST":      str(SMTP_HOST),
-            "SMTP_PORT":      str(SMTP_PORT),
-            "EMAIL_PASSWORD_SET": bool(EMAIL_PASSWORD),
-        }), 500
+        result["steps"]["1_credentials"] = {"ok": False, "error": str(e)}
+        result["status"] = "error"
+        return jsonify(result), 500
+
+    # 2. Conexion SMTP (sin enviar)
+    try:
+        with _smtp.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as s:
+            s.ehlo()
+            s.starttls()
+            result["steps"]["2_smtp_connect"] = {"ok": True}
+    except Exception as e:
+        result["steps"]["2_smtp_connect"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
+        result["status"] = "error"
+        return jsonify(result), 500
+
+    # 3. Login SMTP
+    try:
+        with _smtp.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as s:
+            s.ehlo()
+            s.starttls()
+            s.login(EMAIL_SENDER, EMAIL_PASSWORD)
+            result["steps"]["3_smtp_login"] = {"ok": True}
+    except Exception as e:
+        result["steps"]["3_smtp_login"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
+        result["status"] = "error"
+        return jsonify(result), 500
+
+    # 4. Envio real de email
+    try:
+        from email.mime.multipart import MIMEMultipart as MP
+        from email.mime.text import MIMEText as MT
+        msg = MP("alternative")
+        msg["Subject"] = "Diagnostico API - health check"
+        msg["From"] = EMAIL_SENDER
+        msg["To"] = EMAIL_RECEIVER
+        msg.attach(MT("<h2>Health check OK</h2><p>Todos los pasos superados.</p>", "html", "utf-8"))
+        send_email(msg)
+        result["steps"]["4_send_email"] = {"ok": True, "sent_to": EMAIL_RECEIVER}
+    except Exception as e:
+        result["steps"]["4_send_email"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
+        result["status"] = "error"
+        return jsonify(result), 500
+
+    return jsonify(result), 200
+
 
 @app.errorhandler(429)
 def ratelimit_handler(e):

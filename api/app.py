@@ -281,6 +281,42 @@ def health():
     return jsonify({"status": "ok"}), 200
 
 
+@app.route("/api/test-email", methods=["GET"])
+def test_email():
+    """
+    Endpoint de diagnóstico — envía un correo real para verificar las credenciales.
+    Visita: https://<tu-api>.onrender.com/api/test-email
+    ELIMINA este endpoint una vez confirmado que funciona.
+    """
+    import traceback
+    diagnostics = {
+        "EMAIL_SENDER":   EMAIL_SENDER,
+        "EMAIL_RECEIVER": EMAIL_RECEIVER,
+        "SMTP_HOST":      SMTP_HOST,
+        "SMTP_PORT":      SMTP_PORT,
+        "EMAIL_PASSWORD": f"{'*' * (len(EMAIL_PASSWORD) - 4)}{EMAIL_PASSWORD[-4:]}" if EMAIL_PASSWORD else "NOT SET",
+    }
+    try:
+        msg = MIMEMultipart("alternative")
+        msg["Subject"] = "✅ Test email — API funcionando correctamente"
+        msg["From"]    = EMAIL_SENDER
+        msg["To"]      = EMAIL_RECEIVER
+        msg.attach(MIMEText(
+            f"<h2>Test OK</h2><p>La API puede enviar emails correctamente.</p>"
+            f"<pre>{diagnostics}</pre>",
+            "html", "utf-8"
+        ))
+        send_email(msg)
+        return jsonify({"ok": True, "message": "Email enviado correctamente.", "diagnostics": diagnostics}), 200
+    except Exception as e:
+        return jsonify({
+            "ok": False,
+            "error": str(e),
+            "traceback": traceback.format_exc(),
+            "diagnostics": diagnostics
+        }), 500
+
+
 @app.errorhandler(429)
 def ratelimit_handler(e):
     return jsonify({

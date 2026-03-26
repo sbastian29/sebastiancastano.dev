@@ -283,11 +283,7 @@ def health():
 
 @app.route("/api/test-email", methods=["GET"])
 def test_email():
-    """
-    Endpoint de diagnóstico — envía un correo real para verificar las credenciales.
-    Visita: https://<tu-api>.onrender.com/api/test-email
-    ELIMINA este endpoint una vez confirmado que funciona.
-    """
+    """Diagnóstico: envía un correo real para verificar credenciales. ELIMINAR tras confirmar."""
     import traceback
     diagnostics = {
         "EMAIL_SENDER":   EMAIL_SENDER,
@@ -298,12 +294,11 @@ def test_email():
     }
     try:
         msg = MIMEMultipart("alternative")
-        msg["Subject"] = "✅ Test email — API funcionando correctamente"
+        msg["Subject"] = "✅ Test email — API funcionando"
         msg["From"]    = EMAIL_SENDER
         msg["To"]      = EMAIL_RECEIVER
         msg.attach(MIMEText(
-            f"<h2>Test OK</h2><p>La API puede enviar emails correctamente.</p>"
-            f"<pre>{diagnostics}</pre>",
+            f"<h2>Test OK</h2><p>La API puede enviar emails correctamente.</p><pre>{diagnostics}</pre>",
             "html", "utf-8"
         ))
         send_email(msg)

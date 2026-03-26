@@ -65,7 +65,8 @@ CORS(app, origins=[
     "https://www.sebastiancastano.dev",
     "https://sebastiancastano.vercel.app",
     "https://sebastiancastanodev.vercel.app",
-    "https://sebastiancastano-bobi1br5z.vercel.app",  # URL de preview actual en Vercel
+    "https://sebastiancastano-dev.vercel.app/",
+    "https://sebastiancastano-qg0oi0t7b.vercel.app/",  # URL de preview actual en Vercel
     "http://localhost:5500",
     "http://127.0.0.1:5500",
     "http://localhost:8080",

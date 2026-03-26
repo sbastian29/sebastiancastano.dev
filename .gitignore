@@ -1,13 +1,31 @@
-# Credenciales — NUNCA subir
-api/config/credentials.py
-api/config/__pycache__/
-api/__pycache__/
-*.pyc
+# --- Salesforce / SFDX ---
+# Estos son los archivos que generaron todo el "ruido" en tu git status
+.sfdx/
+.sf/
+.local.env
+# Metadatos generados localmente
+tools/soqlMetadata/
+tools/sobjects/
+typings/lwc/
 
-# Entornos virtuales
-venv/
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
 .venv/
+venv/
+ENV/
+env.bak/
+.env
 
-# Sistema
+# --- Web / Frontend ---
+node_modules/
 .DS_Store
 Thumbs.db
+dist/
+build/
+
+# --- Configuración de IDE (Opcional pero recomendado) ---
+.vscode/
+.idea/
+*.swp

@@ -283,34 +283,35 @@ def health():
 
 @app.route("/api/test-email", methods=["GET"])
 def test_email():
-    """Diagnóstico: envía un correo real para verificar credenciales. ELIMINAR tras confirmar."""
+    """Diagnostico: envia un correo real para verificar credenciales. ELIMINAR tras confirmar."""
     import traceback
-    diagnostics = {
-        "EMAIL_SENDER":   EMAIL_SENDER,
-        "EMAIL_RECEIVER": EMAIL_RECEIVER,
-        "SMTP_HOST":      SMTP_HOST,
-        "SMTP_PORT":      SMTP_PORT,
-        "EMAIL_PASSWORD": f"{'*' * (len(EMAIL_PASSWORD) - 4)}{EMAIL_PASSWORD[-4:]}" if EMAIL_PASSWORD else "NOT SET",
-    }
     try:
+        pw = EMAIL_PASSWORD or ""
+        diagnostics = {
+            "EMAIL_SENDER":   str(EMAIL_SENDER),
+            "EMAIL_RECEIVER": str(EMAIL_RECEIVER),
+            "SMTP_HOST":      str(SMTP_HOST),
+            "SMTP_PORT":      int(SMTP_PORT),
+            "EMAIL_PASSWORD": ("*" * max(0, len(pw) - 4)) + pw[-4:] if pw else "NOT SET",
+        }
         msg = MIMEMultipart("alternative")
-        msg["Subject"] = "✅ Test email — API funcionando"
+        msg["Subject"] = "Test email - API funcionando"
         msg["From"]    = EMAIL_SENDER
         msg["To"]      = EMAIL_RECEIVER
-        msg.attach(MIMEText(
-            f"<h2>Test OK</h2><p>La API puede enviar emails correctamente.</p><pre>{diagnostics}</pre>",
-            "html", "utf-8"
-        ))
+        msg.attach(MIMEText("<h2>Test OK</h2><p>La API puede enviar emails.</p>", "html", "utf-8"))
         send_email(msg)
-        return jsonify({"ok": True, "message": "Email enviado correctamente.", "diagnostics": diagnostics}), 200
+        return jsonify({"ok": True, "message": "Email enviado.", "diagnostics": diagnostics}), 200
     except Exception as e:
         return jsonify({
             "ok": False,
             "error": str(e),
             "traceback": traceback.format_exc(),
-            "diagnostics": diagnostics
+            "EMAIL_SENDER":   str(EMAIL_SENDER),
+            "EMAIL_RECEIVER": str(EMAIL_RECEIVER),
+            "SMTP_HOST":      str(SMTP_HOST),
+            "SMTP_PORT":      str(SMTP_PORT),
+            "EMAIL_PASSWORD_SET": bool(EMAIL_PASSWORD),
         }), 500
-
 
 @app.errorhandler(429)
 def ratelimit_handler(e):

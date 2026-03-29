@@ -11,10 +11,10 @@ Producción (Render):
 """
 
 import os
-import smtplib
 import re
-from email.mime.multipart import MIMEMultipart
-from email.mime.text import MIMEText
+import json
+import urllib.request
+import urllib.error
 from datetime import datetime
 
 from flask import Flask, request, jsonify
@@ -29,31 +29,27 @@ from flask_limiter.util import get_remote_address
 #   2. config/credentials.py (solo desarrollo local — NUNCA se sube a Git)
 
 def _load_credentials():
-    sender   = os.environ.get("EMAIL_SENDER")
-    password = os.environ.get("EMAIL_PASSWORD")
-    receiver = os.environ.get("EMAIL_RECEIVER")
-    host     = os.environ.get("SMTP_HOST", "smtp.gmail.com")
-    port     = int(os.environ.get("SMTP_PORT", "587"))
+    resend_key = os.environ.get("RESEND_API_KEY")
+    sender     = os.environ.get("EMAIL_SENDER")
+    receiver   = os.environ.get("EMAIL_RECEIVER")
 
-    if not all([sender, password, receiver]):
-        # Fallback local: intenta importar credentials.py
+    if not all([resend_key, sender, receiver]):
         try:
             from config.credentials import (
-                EMAIL_SENDER as s, EMAIL_PASSWORD as p,
-                EMAIL_RECEIVER as r, SMTP_HOST as h, SMTP_PORT as po,
+                RESEND_API_KEY as k, EMAIL_SENDER as s, EMAIL_RECEIVER as r,
             )
-            return s, p, r, h, int(po)
+            return k, s, r
         except ImportError:
             raise RuntimeError(
                 "No se encontraron credenciales.\n"
                 "  - En local: crea api/config/credentials.py\n"
-                "  - En Render: configura las variables de entorno en el dashboard"
+                "  - En Render: configura RESEND_API_KEY, EMAIL_SENDER, EMAIL_RECEIVER"
             )
 
-    return sender, password, receiver, host, port
+    return resend_key, sender, receiver
 
 
-EMAIL_SENDER, EMAIL_PASSWORD, EMAIL_RECEIVER, SMTP_HOST, SMTP_PORT = _load_credentials()
+RESEND_API_KEY, EMAIL_SENDER, EMAIL_RECEIVER = _load_credentials()
 
 
 # ── App ───────────────────────────────────────────────────────────────────────
@@ -86,54 +82,41 @@ def is_valid_email(email: str) -> bool:
     return bool(re.match(r"^[^@\s]+@[^@\s]+\.[^@\s]+$", email))
 
 
-def build_email_to_sebastian(data: dict) -> MIMEMultipart:
+def build_email_to_sebastian(data: dict):
     nombre  = data["nombre"]
     email   = data["email"]
     empresa = data.get("empresa") or "—"
     mensaje = data["mensaje"]
     fecha   = datetime.now().strftime("%d/%m/%Y %H:%M")
 
-    msg = MIMEMultipart("alternative")
-    msg["Subject"]  = f"📩 Nueva solicitud de contacto — {nombre}"
-    msg["From"]     = EMAIL_SENDER
-    msg["To"]       = EMAIL_RECEIVER
-    msg["Reply-To"] = email
-
+    subject = f"Nueva solicitud de contacto — {nombre}"
     html = f"""
     <html><body style="font-family:Inter,Arial,sans-serif;background:#f8fafb;padding:0;margin:0;">
       <div style="max-width:600px;margin:40px auto;background:#fff;border-radius:16px;
                   box-shadow:0 4px 24px rgba(26,30,46,.10);overflow:hidden;">
         <div style="background:#1a1e2e;padding:32px 40px;">
-          <h1 style="color:#fff;margin:0;font-size:1.4rem;font-weight:600;">
-            Nueva solicitud de contacto
-          </h1>
+          <h1 style="color:#fff;margin:0;font-size:1.4rem;font-weight:600;">Nueva solicitud de contacto</h1>
           <p style="color:#9aa0b8;margin:8px 0 0;font-size:.9rem;">{fecha}</p>
         </div>
         <div style="padding:40px;">
           <table style="width:100%;border-collapse:collapse;">
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#8a9ab0;
-                         font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;width:120px;">Nombre</td>
+              <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#8a9ab0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;width:120px;">Nombre</td>
               <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#1a1e2e;font-weight:500;">{nombre}</td>
             </tr>
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#8a9ab0;
-                         font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;">Email</td>
+              <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#8a9ab0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;">Email</td>
               <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;">
                 <a href="mailto:{email}" style="color:#5B7FA6;text-decoration:none;font-weight:500;">{email}</a>
               </td>
             </tr>
             <tr>
-              <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#8a9ab0;
-                         font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;">Empresa</td>
+              <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#8a9ab0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;">Empresa</td>
               <td style="padding:12px 0;border-bottom:1px solid #f0f4f7;color:#1a1e2e;">{empresa}</td>
             </tr>
             <tr>
-              <td style="padding:16px 0 0;color:#8a9ab0;font-size:.8rem;text-transform:uppercase;
-                         letter-spacing:.06em;vertical-align:top;">Mensaje</td>
-              <td style="padding:16px 0 0;color:#1a1e2e;line-height:1.7;">
-                {mensaje.replace(chr(10), "<br>")}
-              </td>
+              <td style="padding:16px 0 0;color:#8a9ab0;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;vertical-align:top;">Mensaje</td>
+              <td style="padding:16px 0 0;color:#1a1e2e;line-height:1.7;">{mensaje.replace(chr(10), "<br>")}</td>
             </tr>
           </table>
           <div style="margin-top:32px;">
@@ -145,27 +128,19 @@ def build_email_to_sebastian(data: dict) -> MIMEMultipart:
           </div>
         </div>
         <div style="padding:24px 40px;background:#f8fafb;border-top:1px solid #f0f4f7;">
-          <p style="margin:0;color:#c0ccd8;font-size:.8rem;">
-            Generado automáticamente desde sebastiancastano.dev
-          </p>
+          <p style="margin:0;color:#c0ccd8;font-size:.8rem;">Generado automáticamente desde sebastiancastano.dev</p>
         </div>
       </div>
     </body></html>
     """
-    msg.attach(MIMEText(html, "html", "utf-8"))
-    return msg
+    return subject, html
 
 
-def build_email_to_sender(data: dict) -> MIMEMultipart:
+def build_email_to_sender(data: dict):
     nombre       = data.get("nombre", "")
-    email        = data["email"]
     mensaje_html = data["mensaje"].replace("\n", "<br>")
 
-    msg = MIMEMultipart("alternative")
-    msg["Subject"] = "He recibido tu mensaje — Sebastián Castaño"
-    msg["From"]    = f"Sebastián Castaño <{EMAIL_SENDER}>"
-    msg["To"]      = email
-
+    subject = "He recibido tu mensaje — Sebastián Castaño"
     html = f"""
     <!DOCTYPE html><html lang="es"><head><meta charset="utf-8"></head>
     <body style="margin:0;padding:0;background:#fafafa;font-family:'Inter',-apple-system,sans-serif;">
@@ -173,64 +148,61 @@ def build_email_to_sender(data: dict) -> MIMEMultipart:
         <table align="center" border="0" cellpadding="0" cellspacing="0" width="100%"
                style="max-width:600px;background:#fff;border:1px solid rgba(0,0,0,0.06);
                       border-radius:24px;overflow:hidden;box-shadow:0 12px 40px rgba(0,0,0,0.04);">
-          <tr>
-            <td style="padding:40px 40px 20px 40px;">
-              <span style="font-weight:600;font-size:18px;letter-spacing:-0.02em;color:#1a1a1a;">
-                Sebastián Castaño
-              </span>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:20px 40px;">
-              <h1 style="color:#1a1a1a;font-size:32px;font-weight:700;letter-spacing:-0.04em;
-                         margin:0 0 20px 0;line-height:1.1;">¡Hola, {nombre}!</h1>
-              <p style="color:#4a4a4a;font-size:16px;line-height:1.75;margin:0 0 24px 0;">
-                Gracias por contactar conmigo. He recibido tu mensaje y me pondré
-                en contacto contigo en las próximas
-                <strong style="color:#1a1a1a;">24-48 horas</strong>.
-              </p>
-              <div style="background:#f8fafb;border:1px solid rgba(0,0,0,0.05);
-                          border-radius:16px;padding:24px;margin-bottom:40px;">
-                <p style="margin:0 0 12px 0;font-size:11px;font-weight:600;
-                           text-transform:uppercase;letter-spacing:0.08em;color:#b0b0b0;">Tu mensaje:</p>
-                <p style="margin:0;color:#4a4a4a;font-size:15px;line-height:1.6;font-style:italic;">
-                  &ldquo;{mensaje_html}&rdquo;
-                </p>
-              </div>
-              <a href="https://sebastiancastano.dev/portfolio.html"
-                 style="background:#1a1a1a;color:#fff;padding:14px 28px;text-decoration:none;
-                        border-radius:999px;font-weight:500;font-size:14px;display:inline-block;">
-                Ver mis proyectos recientes
-              </a>
-            </td>
-          </tr>
-          <tr>
-            <td style="padding:40px;background:#fafafa;border-top:1px solid rgba(0,0,0,0.06);">
-              <p style="margin:0;color:#1a1a1a;font-weight:600;font-size:14px;">Sebastián Castaño Suárez</p>
-              <p style="margin:4px 0 16px 0;color:#8a8a8a;font-size:13px;">Data Engineer &amp; AI Developer · Madrid</p>
-              <a href="https://www.linkedin.com/in/sebastiancastano"
-                 style="color:#3b82f6;text-decoration:none;font-size:13px;font-weight:500;margin-right:16px;">LinkedIn</a>
-              <a href="https://github.com/sbastian29"
-                 style="color:#8b5cf6;text-decoration:none;font-size:13px;font-weight:500;">GitHub</a>
-            </td>
-          </tr>
+          <tr><td style="padding:40px 40px 20px 40px;">
+            <span style="font-weight:600;font-size:18px;letter-spacing:-0.02em;color:#1a1a1a;">Sebastián Castaño</span>
+          </td></tr>
+          <tr><td style="padding:20px 40px;">
+            <h1 style="color:#1a1a1a;font-size:32px;font-weight:700;letter-spacing:-0.04em;margin:0 0 20px 0;line-height:1.1;">¡Hola, {nombre}!</h1>
+            <p style="color:#4a4a4a;font-size:16px;line-height:1.75;margin:0 0 24px 0;">
+              Gracias por contactar conmigo. He recibido tu mensaje y me pondré en contacto contigo en las próximas
+              <strong style="color:#1a1a1a;">24-48 horas</strong>.
+            </p>
+            <div style="background:#f8fafb;border:1px solid rgba(0,0,0,0.05);border-radius:16px;padding:24px;margin-bottom:40px;">
+              <p style="margin:0 0 12px 0;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.08em;color:#b0b0b0;">Tu mensaje:</p>
+              <p style="margin:0;color:#4a4a4a;font-size:15px;line-height:1.6;font-style:italic;">&ldquo;{mensaje_html}&rdquo;</p>
+            </div>
+            <a href="https://sebastiancastano.dev/portfolio.html"
+               style="background:#1a1a1a;color:#fff;padding:14px 28px;text-decoration:none;border-radius:999px;font-weight:500;font-size:14px;display:inline-block;">
+              Ver mis proyectos recientes
+            </a>
+          </td></tr>
+          <tr><td style="padding:40px;background:#fafafa;border-top:1px solid rgba(0,0,0,0.06);">
+            <p style="margin:0;color:#1a1a1a;font-weight:600;font-size:14px;">Sebastián Castaño Suárez</p>
+            <p style="margin:4px 0 16px 0;color:#8a8a8a;font-size:13px;">Data Engineer &amp; AI Developer · Madrid</p>
+            <a href="https://www.linkedin.com/in/sebastiancastano" style="color:#3b82f6;text-decoration:none;font-size:13px;font-weight:500;margin-right:16px;">LinkedIn</a>
+            <a href="https://github.com/sbastian29" style="color:#8b5cf6;text-decoration:none;font-size:13px;font-weight:500;">GitHub</a>
+          </td></tr>
         </table>
-        <p style="text-align:center;color:#b0b0b0;font-size:12px;margin-top:24px;">
-          Enviado desde sebastiancastano.dev
-        </p>
+        <p style="text-align:center;color:#b0b0b0;font-size:12px;margin-top:24px;">Enviado desde sebastiancastano.dev</p>
       </div>
     </body></html>
     """
-    msg.attach(MIMEText(html, "html", "utf-8"))
-    return msg
+    return subject, html
 
+def send_email_resend(to: str, subject: str, html: str, reply_to: str = None) -> None:
+    """Envía email via Resend API (HTTP) — funciona en Render free tier."""
+    payload = {
+        "from": f"Sebastian Castano <{EMAIL_SENDER}>",
+        "to": [to],
+        "subject": subject,
+        "html": html,
+    }
+    if reply_to:
+        payload["reply_to"] = reply_to
 
-def send_email(msg: MIMEMultipart) -> None:
-    with smtplib.SMTP(SMTP_HOST, SMTP_PORT) as server:
-        server.ehlo()
-        server.starttls()
-        server.login(EMAIL_SENDER, EMAIL_PASSWORD)
-        server.sendmail(msg["From"], msg["To"], msg.as_string())
+    data = json.dumps(payload).encode("utf-8")
+    req = urllib.request.Request(
+        "https://api.resend.com/emails",
+        data=data,
+        headers={
+            "Authorization": f"Bearer {RESEND_API_KEY}",
+            "Content-Type": "application/json",
+        },
+        method="POST",
+    )
+    with urllib.request.urlopen(req, timeout=15) as resp:
+        if resp.status not in (200, 201):
+            raise RuntimeError(f"Resend error {resp.status}: {resp.read().decode()}")
 
 
 # ── Rutas ─────────────────────────────────────────────────────────────────────
@@ -264,8 +236,11 @@ def contact():
                "empresa": empresa, "mensaje": mensaje}
 
     try:
-        send_email(build_email_to_sebastian(payload))
-        send_email(build_email_to_sender(payload))
+        subject_seb, html_seb = build_email_to_sebastian(payload)
+        send_email_resend(to=EMAIL_RECEIVER, subject=subject_seb, html=html_seb, reply_to=email)
+
+        subject_usr, html_usr = build_email_to_sender(payload)
+        send_email_resend(to=email, subject=subject_usr, html=html_usr)
     except Exception as e:
         app.logger.error(f"Error sending email: {e}")
         return jsonify({
@@ -278,64 +253,51 @@ def contact():
 
 @app.route("/api/health", methods=["GET"])
 def health():
-    import traceback, smtplib as _smtp
-    result = {
-        "status": "ok",
-        "steps": {}
-    }
+    import traceback, urllib.request as ur, urllib.error as ue
+    result = {"status": "ok", "steps": {}}
 
-    # 1. Credenciales cargadas
+    # 1. Credenciales
     try:
-        pw = EMAIL_PASSWORD or ""
         result["steps"]["1_credentials"] = {
             "ok": True,
-            "EMAIL_SENDER": str(EMAIL_SENDER),
+            "RESEND_API_KEY": ("*" * max(0, len(RESEND_API_KEY) - 6)) + RESEND_API_KEY[-6:] if RESEND_API_KEY else "NOT SET",
+            "EMAIL_SENDER":   str(EMAIL_SENDER),
             "EMAIL_RECEIVER": str(EMAIL_RECEIVER),
-            "SMTP_HOST": str(SMTP_HOST),
-            "SMTP_PORT": int(SMTP_PORT),
-            "EMAIL_PASSWORD": ("*" * max(0, len(pw) - 4)) + pw[-4:] if pw else "NOT SET",
         }
     except Exception as e:
         result["steps"]["1_credentials"] = {"ok": False, "error": str(e)}
         result["status"] = "error"
         return jsonify(result), 500
 
-    # 2. Conexion SMTP (sin enviar)
+    # 2. Resend API accesible
     try:
-        with _smtp.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as s:
-            s.ehlo()
-            s.starttls()
-            result["steps"]["2_smtp_connect"] = {"ok": True}
+        req = ur.Request("https://api.resend.com/emails",
+            data=b'{}',
+            headers={"Authorization": f"Bearer {RESEND_API_KEY}", "Content-Type": "application/json"},
+            method="POST")
+        try:
+            ur.urlopen(req, timeout=10)
+        except ue.HTTPError as he:
+            # 422 = Resend rechaza payload vacio pero la conexion funciona
+            if he.code in (400, 422):
+                result["steps"]["2_resend_reachable"] = {"ok": True, "http_status": he.code}
+            else:
+                raise
     except Exception as e:
-        result["steps"]["2_smtp_connect"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
+        result["steps"]["2_resend_reachable"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
         result["status"] = "error"
         return jsonify(result), 500
 
-    # 3. Login SMTP
+    # 3. Envio real
     try:
-        with _smtp.SMTP(SMTP_HOST, SMTP_PORT, timeout=10) as s:
-            s.ehlo()
-            s.starttls()
-            s.login(EMAIL_SENDER, EMAIL_PASSWORD)
-            result["steps"]["3_smtp_login"] = {"ok": True}
+        send_email_resend(
+            to=EMAIL_RECEIVER,
+            subject="Health check — API funcionando",
+            html="<h2>OK</h2><p>El health check ha enviado este email correctamente.</p>",
+        )
+        result["steps"]["3_send_email"] = {"ok": True, "sent_to": EMAIL_RECEIVER}
     except Exception as e:
-        result["steps"]["3_smtp_login"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
-        result["status"] = "error"
-        return jsonify(result), 500
-
-    # 4. Envio real de email
-    try:
-        from email.mime.multipart import MIMEMultipart as MP
-        from email.mime.text import MIMEText as MT
-        msg = MP("alternative")
-        msg["Subject"] = "Diagnostico API - health check"
-        msg["From"] = EMAIL_SENDER
-        msg["To"] = EMAIL_RECEIVER
-        msg.attach(MT("<h2>Health check OK</h2><p>Todos los pasos superados.</p>", "html", "utf-8"))
-        send_email(msg)
-        result["steps"]["4_send_email"] = {"ok": True, "sent_to": EMAIL_RECEIVER}
-    except Exception as e:
-        result["steps"]["4_send_email"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
+        result["steps"]["3_send_email"] = {"ok": False, "error": str(e), "traceback": traceback.format_exc()}
         result["status"] = "error"
         return jsonify(result), 500
 

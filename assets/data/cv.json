@@ -1,0 +1,298 @@
+{
+  "experience": [
+    {
+      "id": "sermicro",
+      "company": "Sermicro",
+      "role": "Ingeniero de IA Conversacional e Hiperautomatización",
+      "date": "Mar 2025 - Actualidad",
+      "description": "Participación en proyectos de automatización e IA conversacional liderando iniciativas end-to-end, desde la toma de requerimientos hasta la entrega final. Responsable de diseño funcional, coordinación técnica y validación con cliente.",
+      "tags": [
+        "Python",
+        "DRUID AI",
+        "GPT",
+        "UiPath",
+        "Power Automate",
+        "JavaScript",
+        "Docker",
+        "APIs REST"
+      ],
+      "projects": [
+        {
+          "name": "Agente ITSM basado en SharePoint",
+          "category": "IA Agéntica",
+          "description": "Desarrollo de agente conversacional con DRUID AI + LLMs (GPT) integrado con base de conocimiento en SharePoint. Diseño de flujos conversacionales para resolución automática de incidencias e integración con herramientas ITSM para escalado automático.",
+          "achievements": [
+            "🤖 Reducción del volumen de tickets mediante autoservicio inteligente",
+            "⚡ Resolución automática de incidencias sin intervención humana"
+          ],
+          "tags": [
+            "DRUID AI",
+            "GPT",
+            "SharePoint",
+            "ITSM"
+          ]
+        },
+        {
+          "name": "Agente ITSM basado en Confluence",
+          "category": "IA Agéntica",
+          "description": "Implementación de agente conversacional conectado a documentación en Confluence. Procesamiento de información no estructurada para respuesta automatizada a usuarios, mejorando los tiempos de resolución y el acceso al conocimiento interno.",
+          "achievements": [
+            "📚 Acceso inteligente a documentación no estructurada",
+            "⏱️ Mejora en tiempos de resolución de consultas internas"
+          ],
+          "tags": [
+            "DRUID AI",
+            "GPT",
+            "Confluence",
+            "ITSM"
+          ]
+        },
+        {
+          "name": "Automatización de creación de tickets (RPA)",
+          "category": "Hiperautomatización",
+          "description": "Desarrollo de automatizaciones con UiPath y Power Automate para la recogida inteligente de datos desde múltiples fuentes y generación automática de tickets en herramientas como Jira y EasyVista.",
+          "achievements": [
+            "📉 Reducción de hasta un 50% en carga manual operativa",
+            "🔀 Integración con Jira y EasyVista desde múltiples canales"
+          ],
+          "tags": [
+            "UiPath",
+            "Power Automate",
+            "Jira",
+            "EasyVista"
+          ]
+        },
+        {
+          "name": "Automatización documental e integración de sistemas",
+          "category": "Hiperautomatización",
+          "description": "Extracción y transferencia automatizada de documentos entre plataformas. Orquestación de procesos empresariales mediante RPA, reduciendo errores manuales y mejorando la eficiencia operativa.",
+          "achievements": [
+            "📄 Transferencia automática entre plataformas sin intervención manual",
+            "✅ Reducción de errores y mejora de eficiencia operativa"
+          ],
+          "tags": [
+            "UiPath",
+            "Power Automate",
+            "RPA",
+            "Python"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ndh",
+      "company": "Next Digital Hub",
+      "role": "Ingeniero de Datos",
+      "date": "Mar 2024 - Ago 2024",
+      "description": "Experiencia en proyectos de datos end-to-end dentro del sector aerolíneas, trabajando con grandes volúmenes de información y arquitecturas modernas de datos. Aplicando metodologías ágiles (Scrum).",
+      "tags": [
+        "Python",
+        "Airflow",
+        "AWS",
+        "Kafka",
+        "Spark",
+        "FastAPI",
+        "Docker",
+        "Snowflake",
+        "DBT"
+      ],
+      "projects": [
+        {
+          "name": "Pipeline ETL end-to-end (sector aerolíneas)",
+          "category": "Data Engineering",
+          "description": "Desarrollo de pipelines de datos desde ingesta hasta consumo para el sector aerolíneas. Procesamiento de datos de vuelos y compra de billetes con transformaciones en DBT, almacenamiento en Snowflake y orquestación con Airflow.",
+          "achievements": [
+            "✈️ Procesamiento de datos de vuelos y compra de billetes",
+            "🔁 Pipeline completo desde ingesta hasta consumo analítico"
+          ],
+          "tags": [
+            "Airflow",
+            "DBT",
+            "Snowflake",
+            "Python"
+          ]
+        },
+        {
+          "name": "Procesamiento batch y streaming de eventos",
+          "category": "Data Engineering",
+          "description": "Implementación de pipelines tanto en batch como en tiempo real. Uso de Kafka para streaming de eventos y procesamiento distribuido con Apache Spark.",
+          "achievements": [
+            "⚡ Procesamiento en tiempo real con Kafka y Spark",
+            "📦 Arquitectura híbrida batch + streaming"
+          ],
+          "tags": [
+            "Kafka",
+            "Spark",
+            "Python",
+            "Docker"
+          ]
+        },
+        {
+          "name": "Modelos ML y despliegue en AWS",
+          "category": "Machine Learning",
+          "description": "Desarrollo de modelos predictivos en AWS, expuestos mediante APIs REST con FastAPI. Testing con Pytest y despliegue contenerizado con Docker.",
+          "achievements": [
+            "🧠 Modelos predictivos desplegados en AWS",
+            "🐳 API REST con FastAPI + Docker en producción"
+          ],
+          "tags": [
+            "AWS",
+            "FastAPI",
+            "Pytest",
+            "Docker"
+          ]
+        },
+        {
+          "name": "Análisis y visualización de datos",
+          "category": "Analytics",
+          "description": "Análisis exploratorio con Pandas, creación de dashboards en Power BI y optimización de datasets para consumo analítico por el equipo de negocio.",
+          "achievements": [
+            "📊 Dashboards analíticos orientados a negocio en Power BI",
+            "🔍 Análisis exploratorio y preparación de datasets para ML"
+          ],
+          "tags": [
+            "Pandas",
+            "Power BI",
+            "Python",
+            "SQL"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "unir",
+      "institution": "UNIR — Universidad Internacional de La Rioja",
+      "degree": "Máster en Big Data y Ciencia de Datos",
+      "date": "2025 — Finalizado (título pendiente)",
+      "description": "Máster orientado al análisis avanzado de datos, machine learning e ingeniería de datos. Proyectos prácticos end-to-end con arquitecturas modernas y metodologías estadísticas.",
+      "tags": [
+        "Python",
+        "Machine Learning",
+        "Big Data",
+        "Spark",
+        "SQL",
+        "Estadística"
+      ],
+      "projects": [
+        {
+          "name": "TFM — Detección y Predicción de Churn en Telecomunicaciones",
+          "category": "Machine Learning",
+          "description": "Arquitectura end-to-end desde la extracción, limpieza y transformación de datasets masivos del sector Telco (Kaggle) hasta la generación de insights de negocio accionables. Modelado con Random Forest, XGBoost y Regresión Logística. Procesamiento distribuido con Spark y Hadoop, almacenamiento con Hive, dashboards en Power BI y visualizaciones con Seaborn.",
+          "achievements": [
+            "🤖 Modelos Random Forest, XGBoost y Regresión Logística optimizados para detección de churn",
+            "⚡ Ecosistema Big Data completo: Spark, Hadoop, Hive, PostgreSQL, MongoDB",
+            "📊 Dashboards interactivos en Power BI y visualizaciones estadísticas con Seaborn",
+            "🔁 Evolución en progreso hacia arquitectura Lambda para predicción en tiempo real"
+          ],
+          "tags": [
+            "Python",
+            "Scikit-Learn",
+            "XGBoost",
+            "Spark",
+            "Hadoop",
+            "Hive",
+            "PostgreSQL",
+            "MongoDB",
+            "Power BI",
+            "Seaborn"
+          ]
+        },
+        {
+          "name": "Agente Inteligente de Análisis de Sentimiento y Reseñas",
+          "category": "IA Generativa",
+          "description": "Desarrollo del backend de un agente autónomo que conecta con plataformas externas para extraer reseñas mediante web scraping avanzado. Orquestación de LLMs (GPT-4, Gemini, Groq) para analizar, sintetizar y clasificar sentimientos, transformando texto no estructurado en inteligencia de negocio y reportes ejecutivos. Arquitectura modular y escalable contenedorizada con Docker.",
+          "achievements": [
+            "🧠 Integración de GPT-4, Gemini y Groq para análisis NLP avanzado",
+            "🐳 Contenedorización con Docker para portabilidad y despliegue limpio",
+            "📈 Transformación de reseñas no estructuradas en reportes ejecutivos accionables",
+            "🔧 Arquitectura modular preparada para integración con interfaces gráficas"
+          ],
+          "tags": [
+            "Python",
+            "OpenAI API",
+            "Gemini API",
+            "Groq",
+            "Docker",
+            "Prompt Engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dam",
+      "institution": "IES Virgen de la Paloma",
+      "degree": "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
+      "date": "2022 - 2024",
+      "description": "Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose.",
+      "tags": [
+        "Java",
+        "Kotlin",
+        "Android",
+        "MongoDB",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "TFG — Suite de Gestión Hospitalaria",
+          "category": "Proyecto Final",
+          "description": "Diseño y desarrollo integral de un ecosistema de tres aplicaciones interconectadas (Administración, Personal Médico y Pacientes) orientadas a la optimización de flujos de trabajo clínicos. Lógica de negocio en Java orquestada con Maven, interfaces gráficas de escritorio con Swing y generación de reportes clínicos estructurados con Jaspersoft.",
+          "achievements": [
+            "🏥 Ecosistema de 3 aplicaciones interconectadas: Administración, Personal Médico y Pacientes",
+            "📋 Generación de reportes clínicos estructurados con Jaspersoft",
+            "⭐ Calificación: Matrícula de Honor"
+          ],
+          "tags": [
+            "Java",
+            "Maven",
+            "Swing",
+            "Jaspersoft",
+            "MongoDB"
+          ]
+        },
+        {
+          "name": "Desarrollo Móvil Android — Kotlin y Jetpack Compose",
+          "category": "Desarrollo Móvil",
+          "description": "Creación de aplicaciones nativas Android aplicando el patrón de arquitectura MVC con Kotlin y Jetpack Compose. Implementación de renderizado de listas dinámicas, manejo avanzado de eventos y diseño de interfaces reactivas y modernas.",
+          "achievements": [
+            "📱 Apps nativas Android con Kotlin y Jetpack Compose bajo patrón MVC",
+            "🎨 Interfaces reactivas con renderizado dinámico y manejo avanzado de eventos"
+          ],
+          "tags": [
+            "Kotlin",
+            "Jetpack Compose",
+            "Android",
+            "MVC"
+          ]
+        },
+        {
+          "name": "Gestión de Persistencia y Bases de Datos",
+          "category": "Bases de Datos",
+          "description": "Modelado e integración de bases de datos relacionales y no relacionales a lo largo del grado. Uso de MongoDB para persistencia flexible de datos en el TFG, complementado con Oracle y SQLite en proyectos de módulo, garantizando la integridad y eficiencia de las consultas.",
+          "achievements": [
+            "🗄️ Dominio de entornos SQL (Oracle, SQLite) y NoSQL (MongoDB)",
+            "✅ Integridad y eficiencia garantizadas en todos los modelos de datos"
+          ],
+          "tags": [
+            "MongoDB",
+            "SQL (Oracle)",
+            "SQLite",
+            "Modelado de datos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bach",
+      "institution": "IES Nuestra Señora de La Almudena",
+      "degree": "Bachillerato Científico",
+      "date": "2020 - 2022",
+      "description": "Bachillerato en modalidad de Ciencias.",
+      "tags": [
+        "Ciencias"
+      ],
+      "projects": []
+    }
+  ]
+}

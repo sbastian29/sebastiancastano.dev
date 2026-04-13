@@ -1,10 +1,277 @@
-{"projects":[
-  {"id":1,"title":"Hospital Management System","slug":"hospital-management","description":"Complete hospital administration application with patient management, appointments, medical staff and clinical history. MVC architecture with MongoDB persistence.","longDescription":"Final Degree Project implementing a comprehensive hospital management system. Includes modules for patient registration, appointment scheduling, medical staff management, electronic health records and report generation.","image":"hospital-project.jpg","video":null,"categories":["software"],"roles":["desarrollo-app","backend"],"tags":["java","mongodb","mvc","swing","hospital"],"technologies":["Java","MongoDB","Swing","Maven"],"github":"https://github.com/sebastiancastano/hospital-management","demo":null,"featured":true,"date":"2023","icon":"fa-hospital"},
-  {"id":2,"title":"Immersive Mobile App","slug":"mobile-immersive","description":"Modern Android application built with Kotlin and Jetpack Compose, implementing MVVM architecture and Material 3 design.","longDescription":"Mobile development project exploring the latest Android technologies. Uses Jetpack Compose for declarative UI, ViewModel for state management, and Room for local persistence.","image":"mobile-project.jpg","video":null,"categories":["software"],"roles":["desarrollo-app","mobile"],"tags":["kotlin","android","compose","mvvm","material3"],"technologies":["Kotlin","Jetpack Compose","Room","Coroutines"],"github":"https://github.com/sebastiancastano/mobile-app","demo":null,"featured":true,"date":"2023","icon":"fa-mobile-screen"},
-  {"id":3,"title":"ETL Pipeline with Airflow & AWS","slug":"etl-pipeline","description":"Data extraction, transformation and loading pipeline orchestrated with Apache Airflow and deployed on AWS with S3, Glue and Athena.","longDescription":"Data engineering solution for processing large volumes of information. Implements Airflow DAGs to orchestrate multi-source data ingestion, PySpark transformation, and data lake storage.","image":"etl-project.jpg","video":null,"categories":["data","automatizacion"],"roles":["data-engineering","automatizacion"],"tags":["python","airflow","aws","s3","glue","spark","etl"],"technologies":["Python","Airflow","AWS","Spark","Docker"],"github":"https://github.com/sebastiancastano/etl-pipeline","demo":null,"featured":true,"date":"2024","icon":"fa-diagram-project"},
-  {"id":4,"title":"REST API with FastAPI","slug":"fastapi-backend","description":"Modern high-performance backend built with FastAPI, including JWT authentication, automatic OpenAPI documentation and Pytest tests.","longDescription":"RESTful API following development best practices. Implements endpoints with Pydantic validation, token-based authentication, rate limiting, and automatically generated OpenAPI documentation.","image":"fastapi-project.jpg","video":null,"categories":["software","data"],"roles":["backend","desarrollo-app"],"tags":["python","fastapi","rest","jwt","pytest","docker"],"technologies":["Python","FastAPI","PostgreSQL","Docker","Pytest"],"github":"https://github.com/sebastiancastano/fastapi-backend","demo":null,"featured":false,"date":"2024","icon":"fa-bolt"},
-  {"id":5,"title":"Power BI Analytics Dashboard","slug":"powerbi-dashboard","description":"Interactive dashboard for visualizing business KPIs, connected to real-time data sources.","longDescription":"Business Intelligence solution presenting key business metrics. Includes interactive visualizations, dynamic filters, and automatic data refresh from multiple sources.","image":"powerbi-project.jpg","video":null,"categories":["data"],"roles":["data-engineering","analytics"],"tags":["powerbi","visualization","sql","analytics","bi"],"technologies":["Power BI","SQL","DAX","Python"],"github":null,"demo":null,"featured":false,"date":"2024","icon":"fa-chart-bar"},
-  {"id":6,"title":"Kafka Streaming System","slug":"kafka-streaming","description":"Real-time event processing platform using Apache Kafka for data stream ingestion and processing.","longDescription":"Data streaming architecture that processes events in real time. Implements Kafka producers and consumers, Kafka Streams processing, and time-series database storage.","image":"kafka-project.jpg","video":null,"categories":["data"],"roles":["data-engineering"],"tags":["kafka","streaming","python","realtime","events"],"technologies":["Apache Kafka","Python","Docker","InfluxDB"],"github":"https://github.com/sebastiancastano/kafka-streaming","demo":null,"featured":false,"date":"2024","icon":"fa-wave-square"},
-  {"id":7,"title":"RPA Automation Bot","slug":"rpa-bot","description":"Robotic process automation for repetitive tasks using UiPath: web scraping, data entry and automated reporting.","longDescription":"Robotic automation solution that reduces manual work in business processes. Includes web data extraction, document processing, and automatic report generation.","image":"rpa-project.jpg","video":null,"categories":["automatizacion"],"roles":["automatizacion"],"tags":["uipath","rpa","automation","scraping","bots"],"technologies":["UiPath","Python","Excel","Selenium"],"github":null,"demo":null,"featured":false,"date":"2023","icon":"fa-robot"},
-  {"id":8,"title":"Data Warehouse with Snowflake & DBT","slug":"snowflake-dbt","description":"Modern data warehouse architecture using Snowflake as storage and DBT for reproducible transformations.","longDescription":"Analytical data warehouse implementation following best practices. Uses DBT to create documented and tested data models, with staging, marts and metrics layers.","image":"snowflake-project.jpg","video":null,"categories":["data"],"roles":["data-engineering","analytics"],"tags":["snowflake","dbt","sql","datawarehouse","analytics"],"technologies":["Snowflake","DBT","SQL","Python","Airflow"],"github":"https://github.com/sebastiancastano/snowflake-dbt","demo":null,"featured":false,"date":"2024","icon":"fa-snowflake"}
-]}
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Intelligent Sentiment Analysis & Review Agent",
+      "slug": "review-agent",
+      "description": "Autonomous agent that connects to external platforms to extract reviews, analyse them with LLMs (GPT-4, Gemini, Groq) and transform them into business intelligence and executive reports.",
+      "longDescription": "Personal development project (2024-Present). LLM Integration & Automation: full backend development for an autonomous agent that connects to external platforms and extracts review data via advanced Python web scraping. Natural Language Processing (NLP): orchestration of state-of-the-art language models via APIs (GPT-4, Gemini, Groq) to analyse, synthesise and classify user sentiment, transforming unstructured text into business intelligence and executive reports. Modular & Scalable Architecture: robust, self-contained Python backend applying development best practices to ensure future integration with graphical interfaces. Containerisation: Docker used to encapsulate the development environment, ensuring code portability and preventing dependency conflicts in future deployments.",
+      "image": "review-agent.jpg",
+      "video": null,
+      "categories": [
+        "ia",
+        "automatizacion"
+      ],
+      "roles": [
+        "ia-generativa",
+        "backend"
+      ],
+      "tags": [
+        "python",
+        "llm",
+        "openai",
+        "gemini",
+        "groq",
+        "nlp",
+        "web-scraping",
+        "docker",
+        "prompt-engineering",
+        "agents"
+      ],
+      "technologies": [
+        "Python",
+        "OpenAI API",
+        "Gemini API",
+        "Groq",
+        "Docker",
+        "Prompt Engineering"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "coming-soon",
+      "date": "2025"
+    },
+    {
+      "id": 2,
+      "title": "ITSM Agent with SharePoint + DRUID AI",
+      "slug": "itsm-sharepoint-agent",
+      "description": "Conversational agent integrated with SharePoint as a knowledge base for automatic ITSM incident resolution.",
+      "longDescription": "Developed at Sermicro. Conversational agent built with DRUID AI and GPT using SharePoint as a knowledge base. Capable of automatically resolving incidents and escalating tickets to the corresponding ITSM system when needed.",
+      "image": "itsm-sharepoint.jpg",
+      "video": null,
+      "categories": [
+        "ia",
+        "automatizacion"
+      ],
+      "roles": [
+        "ia-generativa",
+        "automatizacion"
+      ],
+      "tags": [
+        "druid-ai",
+        "gpt",
+        "sharepoint",
+        "itsm",
+        "conversational"
+      ],
+      "technologies": [
+        "DRUID AI",
+        "GPT",
+        "SharePoint",
+        "REST APIs"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "completed",
+      "date": "2025"
+    },
+    {
+      "id": 3,
+      "title": "RPA Ticket Automation with UiPath",
+      "slug": "rpa-tickets-uipath",
+      "description": "UiPath and Power Automate automation for automatic ticket generation in Jira and EasyVista from multiple sources.",
+      "longDescription": "Developed at Sermicro. Robotic automation system collecting data from multiple channels and automatically generating tickets in ITSM tools like Jira and EasyVista. Reduced manual operational load by up to 50%.",
+      "image": "rpa-tickets.jpg",
+      "video": null,
+      "categories": [
+        "automatizacion"
+      ],
+      "roles": [
+        "automatizacion"
+      ],
+      "tags": [
+        "uipath",
+        "power-automate",
+        "rpa",
+        "jira",
+        "easyvista"
+      ],
+      "technologies": [
+        "UiPath",
+        "Power Automate",
+        "Jira API",
+        "EasyVista"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "completed",
+      "date": "2025"
+    },
+    {
+      "id": 4,
+      "title": "End-to-End ETL Pipeline — Airline Sector",
+      "slug": "etl-pipeline-airlines",
+      "description": "Complete data pipeline for the airline sector using DBT, Snowflake and Airflow, processing flight and ticket purchase data.",
+      "longDescription": "Developed at Next Digital Hub. End-to-end pipeline for processing flight and ticket purchase data. Transformations with DBT, storage in Snowflake and workflow orchestration with Apache Airflow. Modern data architecture in the airline sector.",
+      "image": "etl-airlines.jpg",
+      "video": null,
+      "categories": [
+        "data",
+        "automatizacion"
+      ],
+      "roles": [
+        "data-engineering"
+      ],
+      "tags": [
+        "python",
+        "airflow",
+        "dbt",
+        "snowflake",
+        "etl"
+      ],
+      "technologies": [
+        "Python",
+        "Airflow",
+        "DBT",
+        "Snowflake",
+        "Docker"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "completed",
+      "date": "2024"
+    },
+    {
+      "id": 5,
+      "title": "Streaming Pipeline with Kafka and Spark",
+      "slug": "kafka-spark-streaming",
+      "description": "Real-time event processing pipeline with Apache Kafka and Apache Spark for the airline sector.",
+      "longDescription": "Developed at Next Digital Hub. Hybrid batch + streaming architecture. Kafka for real-time event ingestion and Spark for distributed processing within the airline sector data context.",
+      "image": "kafka-streaming.jpg",
+      "video": null,
+      "categories": [
+        "data"
+      ],
+      "roles": [
+        "data-engineering"
+      ],
+      "tags": [
+        "kafka",
+        "spark",
+        "streaming",
+        "python",
+        "realtime"
+      ],
+      "technologies": [
+        "Apache Kafka",
+        "Apache Spark",
+        "Python",
+        "Docker"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "completed",
+      "date": "2024"
+    },
+    {
+      "id": 6,
+      "title": "Master Thesis — Telco Churn Detection & Prediction",
+      "slug": "churn-prediction-ml",
+      "description": "End-to-end ML pipeline to detect and predict customer churn in the Telco sector, with a full Big Data ecosystem and evolution towards a real-time Lambda architecture.",
+      "longDescription": "Master Thesis in Big Data and Data Science (UNIR, 2024-2025). End-to-End Architecture: design, development and deployment of a complete pipeline from extraction, cleaning and transformation of massive telecom datasets (Kaggle) to actionable business insights. Advanced Predictive Modelling: training, evaluation and optimisation of ML models using Random Forest, XGBoost and Logistic Regression to proactively identify the key variables driving churn. Big Data Ecosystem: distributed processing with Spark and Hadoop, mass storage and querying with Hive, complemented by PostgreSQL and MongoDB. Analytics & Strategic Visualisation: interactive business-oriented dashboards in Power BI and advanced statistical visualisations with Seaborn. Project Evolution (in progress): redesigning the pipeline towards a full Lambda architecture for real-time ingestion and prediction.",
+      "image": "churn-ml.jpg",
+      "video": null,
+      "categories": [
+        "data",
+        "ia"
+      ],
+      "roles": [
+        "data-engineering",
+        "analytics"
+      ],
+      "tags": [
+        "python",
+        "scikit-learn",
+        "xgboost",
+        "random-forest",
+        "spark",
+        "hadoop",
+        "hive",
+        "postgresql",
+        "mongodb",
+        "powerbi",
+        "seaborn",
+        "churn",
+        "telco",
+        "lambda-architecture"
+      ],
+      "technologies": [
+        "Python",
+        "Scikit-Learn",
+        "XGBoost",
+        "Spark",
+        "Hadoop",
+        "Hive",
+        "PostgreSQL",
+        "MongoDB",
+        "Power BI",
+        "Seaborn"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "in-progress",
+      "date": "2025"
+    },
+    {
+      "id": 7,
+      "title": "Final Project — Hospital Management Suite & Android Development",
+      "slug": "hospital-management",
+      "description": "Ecosystem of three interconnected applications (Administration, Medical Staff and Patients) to optimise clinical workflows. Java + Swing + Jaspersoft backend and Android app with Kotlin and Jetpack Compose.",
+      "longDescription": "Final project for the DAM degree at IES Virgen de la Paloma (2022-2024). Hospital Management Suite: design and full development of an ecosystem of three interconnected applications (Administration, Medical Staff, Patients) to optimise clinical workflows. Backend & Desktop UI: business logic in Java orchestrated with Maven, desktop interfaces with Swing and structured clinical report generation using Jaspersoft. Android Mobile Development: native applications using the MVC pattern with Kotlin and Jetpack Compose, featuring dynamic list rendering and reactive interface design. Data Persistence: MongoDB for flexible data persistence in the final project, complemented by Oracle and SQLite throughout the degree.",
+      "image": "hospital-project.jpg",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app",
+        "backend"
+      ],
+      "tags": [
+        "java",
+        "kotlin",
+        "android",
+        "jetpack-compose",
+        "maven",
+        "swing",
+        "jaspersoft",
+        "mongodb",
+        "oracle",
+        "sqlite",
+        "mvc"
+      ],
+      "technologies": [
+        "Java",
+        "Kotlin",
+        "Jetpack Compose",
+        "Maven",
+        "Swing",
+        "Jaspersoft",
+        "MongoDB",
+        "SQL (Oracle)",
+        "SQLite"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "coming-soon",
+      "date": "2024"
+    }
+  ]
+}

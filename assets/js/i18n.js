@@ -78,6 +78,7 @@ const I18n = (() => {
       'port.empty.sub':'Intenta ajustar los filtros o términos de búsqueda',
       'port.cat.data':'Data Engineering','port.cat.auto':'Automatización','port.cat.soft':'Software',
       'port.featured':'Destacado','port.github':'GitHub','port.demo':'Demo',
+      'port.page.title':'Portfolio | Sebastián Castaño Suárez',
       'port.page.h1':'Portfolio','port.page.subtitle':'Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.',
       'certs.page.h1':'Certificados','certs.page.subtitle':'Formación académica, cursos especializados y certificaciones que validan mis conocimientos.',
     },
@@ -145,6 +146,7 @@ const I18n = (() => {
       'port.cat.data':'Data Engineering','port.cat.auto':'Automation','port.cat.soft':'Software',
       'port.featured':'Featured','port.github':'GitHub','port.demo':'Demo',
       // Page titles (missing)
+      'port.page.title':'Portfolio | Sebastián Castaño Suárez',
       'port.page.h1':'Portfolio','port.page.subtitle':'Featured projects in data engineering, automation and software development.',
       'certs.page.h1':'Certificates','certs.page.subtitle':'Academic training, specialized courses and certifications that validate my knowledge.',
       // Cert tech filter chips (missing)

@@ -1,0 +1,298 @@
+{
+  "experience": [
+    {
+      "id": "sermicro",
+      "company": "Sermicro",
+      "role": "Conversational AI & Hyperautomation Engineer",
+      "date": "Mar 2025 - Present",
+      "description": "End-to-end project leadership in conversational AI and automation, from requirements gathering to final delivery. Responsible for functional design, technical coordination and client validation.",
+      "tags": [
+        "Python",
+        "DRUID AI",
+        "GPT",
+        "UiPath",
+        "Power Automate",
+        "JavaScript",
+        "Docker",
+        "REST APIs"
+      ],
+      "projects": [
+        {
+          "name": "SharePoint-based ITSM Agent",
+          "category": "Agentic AI",
+          "description": "Development of a conversational agent using DRUID AI + LLMs (GPT) integrated with a SharePoint knowledge base. Designed conversational flows for automatic incident resolution and ITSM integration for automatic ticket escalation.",
+          "achievements": [
+            "🤖 Reduced ticket volume through intelligent self-service",
+            "⚡ Automatic incident resolution without human intervention"
+          ],
+          "tags": [
+            "DRUID AI",
+            "GPT",
+            "SharePoint",
+            "ITSM"
+          ]
+        },
+        {
+          "name": "Confluence-based ITSM Agent",
+          "category": "Agentic AI",
+          "description": "Implementation of a conversational agent connected to Confluence documentation. Processing of unstructured information for automated user responses, improving resolution times and internal knowledge access.",
+          "achievements": [
+            "📚 Intelligent access to unstructured documentation",
+            "⏱️ Improved resolution times for internal queries"
+          ],
+          "tags": [
+            "DRUID AI",
+            "GPT",
+            "Confluence",
+            "ITSM"
+          ]
+        },
+        {
+          "name": "Ticket Creation Automation (RPA)",
+          "category": "Hyperautomation",
+          "description": "Development of UiPath and Power Automate automations for intelligent data collection from multiple sources and automatic ticket generation in tools like Jira and EasyVista.",
+          "achievements": [
+            "📉 Up to 50% reduction in manual operational load",
+            "🔀 Integration with Jira and EasyVista from multiple channels"
+          ],
+          "tags": [
+            "UiPath",
+            "Power Automate",
+            "Jira",
+            "EasyVista"
+          ]
+        },
+        {
+          "name": "Document Automation & System Integration",
+          "category": "Hyperautomation",
+          "description": "Automated extraction and transfer of documents between platforms. Orchestration of business processes via RPA, reducing manual errors and improving operational efficiency.",
+          "achievements": [
+            "📄 Automatic cross-platform document transfer",
+            "✅ Error reduction and improved operational efficiency"
+          ],
+          "tags": [
+            "UiPath",
+            "Power Automate",
+            "RPA",
+            "Python"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "ndh",
+      "company": "Next Digital Hub",
+      "role": "Data Engineer",
+      "date": "Mar 2024 - Aug 2024",
+      "description": "End-to-end data projects in the airline sector, working with large volumes of information and modern data architectures. Applied Agile methodologies (Scrum).",
+      "tags": [
+        "Python",
+        "Airflow",
+        "AWS",
+        "Kafka",
+        "Spark",
+        "FastAPI",
+        "Docker",
+        "Snowflake",
+        "DBT"
+      ],
+      "projects": [
+        {
+          "name": "End-to-End ETL Pipeline (Airline Sector)",
+          "category": "Data Engineering",
+          "description": "Development of data pipelines from ingestion to consumption for the airline sector. Processing of flight and ticket purchase data with DBT transformations, Snowflake storage and Airflow orchestration.",
+          "achievements": [
+            "✈️ Processing of flight and ticket purchase data",
+            "🔁 Full pipeline from ingestion to analytical consumption"
+          ],
+          "tags": [
+            "Airflow",
+            "DBT",
+            "Snowflake",
+            "Python"
+          ]
+        },
+        {
+          "name": "Batch & Streaming Event Processing",
+          "category": "Data Engineering",
+          "description": "Implementation of both batch and real-time pipelines. Use of Kafka for event streaming and distributed processing with Apache Spark.",
+          "achievements": [
+            "⚡ Real-time processing with Kafka and Spark",
+            "📦 Hybrid batch + streaming architecture"
+          ],
+          "tags": [
+            "Kafka",
+            "Spark",
+            "Python",
+            "Docker"
+          ]
+        },
+        {
+          "name": "ML Models & AWS Deployment",
+          "category": "Machine Learning",
+          "description": "Development of predictive models on AWS, exposed via REST APIs with FastAPI. Testing with Pytest and containerised deployment with Docker.",
+          "achievements": [
+            "🧠 Predictive models deployed on AWS",
+            "🐳 FastAPI REST API + Docker in production"
+          ],
+          "tags": [
+            "AWS",
+            "FastAPI",
+            "Pytest",
+            "Docker"
+          ]
+        },
+        {
+          "name": "Data Analysis & Visualisation",
+          "category": "Analytics",
+          "description": "Exploratory analysis with Pandas, creation of Power BI dashboards and dataset optimisation for analytical consumption by the business team.",
+          "achievements": [
+            "📊 Business-oriented analytical dashboards in Power BI",
+            "🔍 Exploratory analysis and dataset preparation for ML"
+          ],
+          "tags": [
+            "Pandas",
+            "Power BI",
+            "Python",
+            "SQL"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "unir",
+      "institution": "UNIR — Universidad Internacional de La Rioja",
+      "degree": "Master's in Big Data and Data Science",
+      "date": "2025 — Completed (degree pending)",
+      "description": "Master's focused on advanced data analysis, machine learning and data engineering. Practical end-to-end projects with modern architectures and statistical methodologies.",
+      "tags": [
+        "Python",
+        "Machine Learning",
+        "Big Data",
+        "Spark",
+        "SQL",
+        "Statistics"
+      ],
+      "projects": [
+        {
+          "name": "Master Thesis — Telco Churn Detection & Prediction",
+          "category": "Machine Learning",
+          "description": "End-to-end architecture from extraction, cleaning and transformation of massive Telco datasets (Kaggle) to actionable business insights. Modelling with Random Forest, XGBoost and Logistic Regression. Distributed processing with Spark and Hadoop, storage with Hive, dashboards in Power BI and visualisations with Seaborn.",
+          "achievements": [
+            "🤖 Random Forest, XGBoost and Logistic Regression models optimised for churn detection",
+            "⚡ Full Big Data ecosystem: Spark, Hadoop, Hive, PostgreSQL, MongoDB",
+            "📊 Interactive dashboards in Power BI and statistical visualisations with Seaborn",
+            "🔁 Ongoing evolution towards Lambda architecture for real-time prediction"
+          ],
+          "tags": [
+            "Python",
+            "Scikit-Learn",
+            "XGBoost",
+            "Spark",
+            "Hadoop",
+            "Hive",
+            "PostgreSQL",
+            "MongoDB",
+            "Power BI",
+            "Seaborn"
+          ]
+        },
+        {
+          "name": "Intelligent Sentiment Analysis & Review Agent",
+          "category": "Generative AI",
+          "description": "Backend development of an autonomous agent that connects to external platforms to extract reviews via advanced web scraping. Orchestration of LLMs (GPT-4, Gemini, Groq) to analyse, synthesise and classify user sentiment, transforming unstructured text into business intelligence and executive reports. Modular, scalable architecture containerised with Docker.",
+          "achievements": [
+            "🧠 GPT-4, Gemini and Groq integration for advanced NLP analysis",
+            "🐳 Docker containerisation for portability and clean deployment",
+            "📈 Unstructured reviews transformed into actionable executive reports",
+            "🔧 Modular architecture ready for GUI integration"
+          ],
+          "tags": [
+            "Python",
+            "OpenAI API",
+            "Gemini API",
+            "Groq",
+            "Docker",
+            "Prompt Engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dam",
+      "institution": "IES Virgen de la Paloma",
+      "degree": "Higher Technician in Multiplatform App Development (DAM)",
+      "date": "2022 - 2024",
+      "description": "Training in multiplatform application development with Java and Kotlin. SQL and NoSQL database projects. Mobile development with Android and Jetpack Compose.",
+      "tags": [
+        "Java",
+        "Kotlin",
+        "Android",
+        "MongoDB",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "Final Project — Hospital Management Suite",
+          "category": "Final Project",
+          "description": "Full design and development of an ecosystem of three interconnected applications (Administration, Medical Staff and Patients) to optimise clinical workflows. Business logic in Java orchestrated with Maven, desktop interfaces with Swing and structured clinical report generation using Jaspersoft.",
+          "achievements": [
+            "🏥 Ecosystem of 3 interconnected apps: Administration, Medical Staff and Patients",
+            "📋 Structured clinical report generation with Jaspersoft",
+            "⭐ Grade: Honours"
+          ],
+          "tags": [
+            "Java",
+            "Maven",
+            "Swing",
+            "Jaspersoft",
+            "MongoDB"
+          ]
+        },
+        {
+          "name": "Android Mobile Development — Kotlin & Jetpack Compose",
+          "category": "Mobile Development",
+          "description": "Creation of native Android applications using the MVC architecture pattern with Kotlin and Jetpack Compose. Dynamic list rendering, advanced event handling and reactive, modern interface design.",
+          "achievements": [
+            "📱 Native Android apps with Kotlin and Jetpack Compose under MVC pattern",
+            "🎨 Reactive interfaces with dynamic rendering and advanced event handling"
+          ],
+          "tags": [
+            "Kotlin",
+            "Jetpack Compose",
+            "Android",
+            "MVC"
+          ]
+        },
+        {
+          "name": "Data Persistence & Database Management",
+          "category": "Databases",
+          "description": "Modelling and integration of relational and non-relational databases throughout the degree. MongoDB for flexible data persistence in the final project, complemented by Oracle and SQLite in module projects, ensuring data integrity and query efficiency.",
+          "achievements": [
+            "🗄️ Proficiency in SQL (Oracle, SQLite) and NoSQL (MongoDB) environments",
+            "✅ Data integrity and query efficiency guaranteed across all data models"
+          ],
+          "tags": [
+            "MongoDB",
+            "SQL (Oracle)",
+            "SQLite",
+            "Data Modelling"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bach",
+      "institution": "IES Nuestra Señora de La Almudena",
+      "degree": "Scientific Baccalaureate",
+      "date": "2020 - 2022",
+      "description": "Scientific track secondary education.",
+      "tags": [
+        "Sciences"
+      ],
+      "projects": []
+    }
+  ]
+}

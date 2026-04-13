@@ -619,95 +619,20 @@
         <h2 data-i18n="exp.title">Experiencia Profesional</h2>
         <p data-i18n="exp.subtitle">Mi trayectoria en el mundo del desarrollo y la ingeniería de datos.</p>
       </div>
-
-      <div class="cards-grid cards-grid-3">
-        <div class="experience-card stagger-item">
-          <div class="experience-header">
-            <span class="experience-company">Next Digital Hub</span>
-            <span class="experience-date" data-i18n="exp.ndh.date">Mar 2024 - Ago 2024</span>
-          </div>
-          <div class="experience-role" data-i18n="exp.ndh.role">Ingeniero de Datos</div>
-          <p class="experience-description" data-i18n="exp.ndh.desc">Desarrollo y mantenimiento de pipelines ETL con Python y Apache Airflow. Implementación de soluciones de data engineering en AWS (S3, Glue, Athena). Procesamiento de datos con Apache Spark y Kafka. Desarrollo de APIs con FastAPI.</p>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">Airflow</span>
-            <span class="skill-tag">AWS</span>
-            <span class="skill-tag">Kafka</span>
-            <span class="skill-tag">Spark</span>
-            <span class="skill-tag">FastAPI</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Snowflake</span>
-          </div>
-        </div>
-      </div>
-            <div class="cards-grid cards-grid-3">
-        <div class="experience-card stagger-item">
-          <div class="experience-header">
-            <span class="experience-company">Sermicro</span>
-            <span class="experience-date" data-i18n="exp.ser.date">Mar 2025 - Actualidad</span>
-          </div>
-          <div class="experience-role" data-i18n="exp.ser.role">Desarrollador en IA e Hiperautomatización</div>
-          <p class="experience-description" data-i18n="exp.ser.desc">Gestión y orquestación de agentes inteligentes para la creación automática de tickets de soporte. Desarrollo de automatizaciones para el envío de informes diarios y tareas operativas. Implementación de flujos de creación y gestión de tickets en distintas arquitecturas y sistemas. Optimización de procesos mediante IA e hiperautomatización orientada a usuario.</p>
-          <div class="skill-tags">
-            <span class="skill-tag">Python</span>
-            <span class="skill-tag">IA</span>
-            <span class="skill-tag">DRUID AI</span>
-            <span class="skill-tag">JavaScrpit</span>
-            <span class="skill-tag">UiPath</span>
-            <span class="skill-tag">APIs</span>
-          </div>
-        </div>
-      </div>
-
+      <div id="experienceGrid"></div>
     </div>
   </section>
-<section id="educacion" class="section">
-  <div class="container">
-    <div class="section-header">
-      <h2 data-i18n="edu.title">Formación Académica</h2>
-      <p data-i18n="edu.subtitle">Mi base académica en el desarrollo de software.</p>
-    </div>
 
-    <div class="cards-grid cards-grid-3">
-      <div class="experience-card stagger-item visible">
-        <div class="experience-header">
-          <span class="experience-company">IES Clara del Rey</span>
-          <span class="experience-date">2021 - 2023</span>
-        </div>
-        <div class="experience-role" data-i18n="edu.dam.role">Técnico Superior en DAM</div>
-        <p class="experience-description">
-          <span data-i18n="edu.dam.desc">Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.</span>
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">Kotlin</span>
-          <span class="skill-tag">Android</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">SQL</span>
-        </div>
+  <section id="educacion" class="section">
+    <div class="container">
+      <div class="section-header">
+        <h2 data-i18n="edu.title">Formación Académica</h2>
+        <p data-i18n="edu.subtitle">Mi base académica en el desarrollo de software.</p>
       </div>
+      <div id="educationGrid"></div>
     </div>
-        <div class="cards-grid cards-grid-3">
-      <div class="experience-card stagger-item visible">
-        <div class="experience-header">
-          <span class="experience-company">IES Clara del Rey</span>
-          <span class="experience-date">2021 - 2023</span>
-        </div>
-        <div class="experience-role" data-i18n="edu.dam.role">Técnico Superior en DAM</div>
-        <p class="experience-description">
-          <span data-i18n="edu.dam.desc">Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose. Trabajo de Fin de Grado: Sistema de Gestión Hospitalaria.</span>
-        </p>
-        <div class="skill-tags">
-          <span class="skill-tag">Java</span>
-          <span class="skill-tag">Kotlin</span>
-          <span class="skill-tag">Android</span>
-          <span class="skill-tag">MongoDB</span>
-          <span class="skill-tag">SQL</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
+  </section>
+
   <!-- Soft Skills Section -->
   <section id="soft-skills" class="section">
     <div class="container">
@@ -784,6 +709,123 @@
       </div>
     </div>
   </footer>
+<style>
+  /* ── Expansión de tarjetas: sólo los proyectos se pliegan ── */
+
+  .experience-card .card-body {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .experience-card.active .card-body {
+    grid-template-rows: 1fr;
+  }
+  .experience-card .card-body-inner {
+    overflow: hidden;
+  }
+
+  /* Separador entre contenido fijo y proyectos */
+  .experience-card.active .card-body-inner {
+    border-top: 1px solid var(--border-color);
+    margin-top: 20px;
+    padding-top: 4px;
+  }
+
+  /* Pista visual "Click para ver proyectos" */
+  .card-expand-hint {
+    font-size: 0.75rem;
+    color: var(--text-muted);
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 16px;
+    transition: opacity 0.3s ease;
+    opacity: 0.7;
+  }
+  .card-expand-hint-dot {
+    width: 4px; height: 4px;
+    border-radius: 50%;
+    background: var(--text-muted);
+    animation: hint-pulse 2s ease-in-out infinite;
+  }
+  @keyframes hint-pulse {
+    0%,100% { opacity: 0.4; transform: scale(1); }
+    50%      { opacity: 1;   transform: scale(1.5); }
+  }
+  .experience-card.active .card-expand-hint {
+    opacity: 0;
+    pointer-events: none;
+    margin-top: 0;
+    height: 0;
+    overflow: hidden;
+  }
+
+  /* ── Proyectos expandidos ── */
+  .card-projects {
+    padding: 16px 0 4px;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .card-project-item {
+    padding: 16px 0;
+    border-bottom: 1px solid var(--border-color);
+    opacity: 0;
+    transform: translateY(10px);
+    transition: opacity 0.38s ease, transform 0.38s ease;
+  }
+  .card-project-item:last-child { border-bottom: none; padding-bottom: 0; }
+
+  .experience-card.active .card-project-item:nth-child(1) { opacity:1; transform:none; transition-delay:0.08s; }
+  .experience-card.active .card-project-item:nth-child(2) { opacity:1; transform:none; transition-delay:0.16s; }
+  .experience-card.active .card-project-item:nth-child(3) { opacity:1; transform:none; transition-delay:0.24s; }
+
+  .card-project-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    margin-bottom: 7px;
+    flex-wrap: wrap;
+  }
+  .card-project-name {
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .card-project-tag {
+    font-size: 0.7rem;
+    font-weight: 500;
+    padding: 2px 9px;
+    border-radius: var(--radius-full);
+    background: rgba(74,124,111,0.08);
+    border: 1px solid rgba(74,124,111,0.2);
+    color: #4A7C6F;
+    white-space: nowrap;
+  }
+  .card-project-desc {
+    font-size: 0.8125rem;
+    color: var(--text-secondary);
+    line-height: 1.65;
+    margin-bottom: 10px;
+  }
+  .card-project-logros {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    margin-bottom: 2px;
+  }
+  .card-logro {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--text-secondary);
+    background: var(--bg-tertiary);
+    border: 1px solid var(--border-color);
+    border-radius: var(--radius-full);
+    padding: 3px 10px;
+  }
+</style>
 <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="assets/js/i18n.js"></script>
 <script src="assets/js/main.js"></script>
   <script src="assets/js/filterEngine.js"></script>
@@ -918,6 +960,136 @@
       }
     });
   </script>
+<script>
+/* ── CV Data Loader ─────────────────────────────────────────────
+   Loads experience + education from cv.json / cv.en.json
+   following the same i18nReady pattern as skills.
+   ──────────────────────────────────────────────────────────────── */
 
+function buildProjectsHTML(projects) {
+  if (!projects || !projects.length) return '';
+  return `
+    <div class="card-projects">
+      ${projects.map(p => `
+        <div class="card-project-item">
+          <div class="card-project-header">
+            <span class="card-project-name">${p.name}</span>
+            <span class="card-project-tag">${p.category}</span>
+          </div>
+          <p class="card-project-desc">${p.description}</p>
+          <div class="card-project-logros">
+            ${p.achievements.map(a => `<span class="card-logro">${a}</span>`).join('')}
+          </div>
+          <div class="skill-tags" style="margin-top:10px;">
+            ${p.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}
+          </div>
+        </div>
+      `).join('')}
+    </div>`;
+}
+
+function buildExperienceCard(item) {
+  return `
+    <div class="cards-grid cards-grid-3">
+      <div class="experience-card stagger-item">
+        <div class="experience-header">
+          <span class="experience-company">${item.company}</span>
+          <span class="experience-date">${item.date}</span>
+        </div>
+        <div class="experience-role">${item.role}</div>
+        <p class="experience-description">${item.description}</p>
+        <div class="skill-tags">
+          ${item.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}
+        </div>
+        <p class="card-expand-hint"><span class="card-expand-hint-dot"></span>${window._cvExpandLabel || 'Click para ver proyectos'}</p>
+        <div class="card-body"><div class="card-body-inner">
+          ${buildProjectsHTML(item.projects)}
+        </div></div>
+      </div>
+    </div>`;
+}
+
+function buildEducationCard(item) {
+  return `
+    <div class="cards-grid cards-grid-3">
+      <div class="experience-card stagger-item visible">
+        <div class="experience-header">
+          <span class="experience-company">${item.institution}</span>
+          <span class="experience-date">${item.date}</span>
+        </div>
+        <div class="experience-role">${item.degree}</div>
+        <p class="experience-description">${item.description}</p>
+        <div class="skill-tags">
+          ${item.tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}
+        </div>
+        <p class="card-expand-hint"><span class="card-expand-hint-dot"></span>${window._cvExpandLabel || 'Click para ver proyectos'}</p>
+        <div class="card-body"><div class="card-body-inner">
+          ${buildProjectsHTML(item.projects)}
+        </div></div>
+      </div>
+    </div>`;
+}
+
+function initCardInteractions() {
+  document.querySelectorAll('.experience-card').forEach(card => {
+    // Avoid double-binding if called again
+    if (card.dataset.bound) return;
+    card.dataset.bound = '1';
+
+    card.addEventListener('click', () => card.classList.toggle('active'));
+
+    card.addEventListener('mousemove', e => {
+      const r = card.getBoundingClientRect();
+      card.style.setProperty('--mouse-x', `${e.clientX - r.left}px`);
+      card.style.setProperty('--mouse-y', `${e.clientY - r.top}px`);
+    });
+
+    card.querySelectorAll('.skill-tag').forEach((tag, i) => {
+      tag.style.setProperty('--tag-index', i);
+    });
+  });
+}
+
+function renderCVData(data) {
+  const expGrid = document.getElementById('experienceGrid');
+  const eduGrid = document.getElementById('educationGrid');
+
+  if (expGrid && data.experience) {
+    expGrid.innerHTML = data.experience.map(buildExperienceCard).join('');
+  }
+  if (eduGrid && data.education) {
+    eduGrid.innerHTML = data.education.map(buildEducationCard).join('');
+  }
+
+  // Stagger entrance animation
+  setTimeout(() => {
+    document.querySelectorAll('#experienceGrid .stagger-item, #educationGrid .stagger-item').forEach((el, i) => {
+      setTimeout(() => el.classList.add('visible'), i * 80);
+    });
+    initCardInteractions();
+    if (window.refreshCursor) window.refreshCursor();
+  }, 60);
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  (window.i18nReady || Promise.resolve('es')).then(lang => {
+    const isEN = (window.I18n && window.I18n.getLang() === 'en') || lang === 'en';
+    window._cvExpandLabel = isEN ? 'Click to see projects' : 'Click para ver proyectos';
+    const file = isEN ? 'assets/data/cv.en.json' : 'assets/data/cv.json';
+
+    fetch(file)
+      .then(r => { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(data => renderCVData(data))
+      .catch(err => {
+        console.error('Error loading CV data:', err);
+        const msg = `<p style="text-align:center;color:var(--text-tertiary);padding:40px 0;">Could not load data. Check that <code>${file}</code> exists.</p>`;
+        const expGrid = document.getElementById('experienceGrid');
+        const eduGrid = document.getElementById('educationGrid');
+        if (expGrid) expGrid.innerHTML = msg;
+        if (eduGrid) eduGrid.innerHTML = msg;
+      });
+  });
+});
+</script>
 </body>
 </html>

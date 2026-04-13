@@ -1237,3 +1237,75 @@ button:focus-visible {
 .life-toast.hidden {
     display: none;
 }
+
+/* --- Estilos para la Animación de las Tarjetas --- */
+.experience-card {
+  cursor: pointer;
+  transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  z-index: 1;
+  border: 1px solid var(--border-color);
+  overflow: hidden; /* Mantiene el brillo dentro de la tarjeta */
+}
+
+/* Efecto de Hover (Sutil) */
+.experience-card:hover {
+  transform: translateY(-5px);
+  border-color: #4A7C6F; /* Tu verde principal */
+  box-shadow: 0 10px 30px -10px rgba(0,0,0,0.1);
+}
+
+/* ESTADO EXPANDIDO (Al hacer click) */
+.experience-card.active {
+  transform: scale(1.03);
+  z-index: 10;
+  background: var(--bg-card);
+  border-color: #4A7C6F;
+  box-shadow: 0 20px 40px -15px rgba(74, 124, 111, 0.25);
+}
+
+/* El Brillo (Glow) dinámico */
+.experience-card::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(600px circle at var(--mouse-x) var(--mouse-y), rgba(74, 124, 111, 0.1), transparent 40%);
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.experience-card:hover::after {
+  opacity: 1;
+}
+
+/* Animación de los tags cuando se expande */
+.experience-card.active .skill-tag {
+  animation: tagBounce 0.4s ease forwards;
+  animation-delay: calc(var(--tag-index) * 0.05s);
+}
+
+@keyframes tagBounce {
+  0% { transform: scale(0.8); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Indicador visual de "Click para ver más" */
+.experience-card::before {
+  content: '\f067'; /* Icono + de FontAwesome */
+  font-family: 'Font Awesome 6 Free';
+  font-weight: 900;
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+  transition: all 0.3s;
+  opacity: 0.5;
+}
+
+.experience-card.active::before {
+  content: '\f068'; /* Icono - */
+  transform: rotate(180deg);
+  color: #4A7C6F;
+}

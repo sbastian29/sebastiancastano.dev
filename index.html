@@ -7,7 +7,7 @@
   <meta name="keywords" content="desarrollador, ingeniero de datos, python, data engineering, aws, portfolio">
   <meta name="author" content="Sebastián Castaño Suárez">
 
-  <title>Sebastián  Suárez | Desarrollador & Ingeniero de Datos</title>
+  <title>Sebastián Castaño Suárez | Desarrollador & Ingeniero de Datos</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
@@ -494,7 +494,7 @@
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
-          <h1 class="animate-fade-in">Sebastián  Suárez</h1>
+          <h1 class="animate-fade-in">Sebastián Castaño Suárez</h1>
 
           <div class="hero-titles">
             <span class="title-badge" data-category="data">
@@ -736,149 +736,46 @@
         <h2 data-i18n="contact.title">Contacto</h2>
         <p data-i18n="contact.subtitle">¿Interesado en trabajar juntos? ¡Hablemos!</p>
       </div>
-
-      <div class="contact-layout">
-
-        <!-- ── Left: info cards ───────────────────────────────── -->
-        <div class="contact-info-col">
-
-          <div class="contact-availability">
-            <span class="availability-dot"></span>
-            <span data-i18n="contact.available">Disponible para nuevos proyectos</span>
-          </div>
-
-          <a href="mailto:castanosuarezsebastian@gmail.com" class="contact-item stagger-item">
-            <div class="contact-icon"><i class="fas fa-envelope"></i></div>
-            <div class="contact-info">
-              <span class="contact-label" data-i18n="contact.email">Email</span>
-              <span class="contact-value">castanosuarezsebastian@gmail.com</span>
-            </div>
-            <i class="fas fa-arrow-right contact-arrow"></i>
-          </a>
-
-          <a href="tel:+34655784630" class="contact-item stagger-item">
-            <div class="contact-icon"><i class="fas fa-phone"></i></div>
-            <div class="contact-info">
-              <span class="contact-label" data-i18n="contact.phone">Teléfono</span>
-              <span class="contact-value">+34 655 784 630</span>
-            </div>
-            <i class="fas fa-arrow-right contact-arrow"></i>
-          </a>
-
-          <div class="contact-item stagger-item">
-            <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div class="contact-info">
-              <span class="contact-label" data-i18n="contact.location">Ubicación</span>
-              <span class="contact-value" data-i18n="contact.city">Madrid, España</span>
-            </div>
-          </div>
-
-          <div class="contact-social">
-            <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" class="social-btn" aria-label="LinkedIn">
-              <i class="fab fa-linkedin-in"></i>
-            </a>
-            <a href="https://github.com/sbastian29" target="_blank" class="social-btn" aria-label="GitHub">
-              <i class="fab fa-github"></i>
-            </a>
-          </div>
-
+      <div style="display:flex;flex-direction:column;align-items:center;gap:24px;padding:40px 0;">
+        <div class="contact-availability stagger-item">
+          <span class="availability-dot"></span>
+          <span data-i18n="contact.available">Disponible para nuevos proyectos</span>
         </div>
-
-        <!-- ── Right: form ────────────────────────────────────── -->
-        <div class="contact-form-col stagger-item">
-          <div class="contact-form-card">
-
-            <div class="form-header">
-              <h3 class="form-title" data-i18n="form.title">Envíame un mensaje</h3>
-              <p class="form-subtitle" data-i18n="form.subtitle">Te responderé en menos de si funcinoa horas.</p>
-            </div>
-
-            <!-- Alert -->
-            <div id="formAlert" class="form-alert" style="display:none;" role="alert"></div>
-
-            <!-- Name + Email -->
-            <div class="form-row">
-              <div class="form-group">
-                <label class="form-label" for="contactNombre">
-                  <span data-i18n="form.name">Nombre</span>
-                  <span class="form-req">*</span>
-                </label>
-                <div class="input-wrap">
-                  <i class="fas fa-user input-icon"></i>
-                  <input type="text" id="contactNombre"
-                         data-i18n-placeholder="form.name.ph"
-                         placeholder="Tu nombre"
-                         autocomplete="name" class="form-input">
-                </div>
-                <span class="field-error" id="errNombre"></span>
-              </div>
-
-              <div class="form-group">
-                <label class="form-label" for="contactEmail">
-                  <span data-i18n="form.email">Email</span>
-                  <span class="form-req">*</span>
-                </label>
-                <div class="input-wrap">
-                  <i class="fas fa-envelope input-icon"></i>
-                  <input type="email" id="contactEmail"
-                         data-i18n-placeholder="form.email.ph"
-                         placeholder="tu@email.com"
-                         autocomplete="email" class="form-input">
-                </div>
-                <span class="field-error" id="errEmail"></span>
-              </div>
-            </div>
-
-            <!-- Company -->
-            <div class="form-group">
-              <label class="form-label" for="contactEmpresa">
-                <span data-i18n="form.company">Empresa</span>
-                <span class="form-opt" data-i18n="form.optional">(opcional)</span>
-              </label>
-              <div class="input-wrap">
-                <i class="fas fa-building input-icon"></i>
-                <input type="text" id="contactEmpresa"
-                       data-i18n-placeholder="form.company.ph"
-                       placeholder="Nombre de tu empresa"
-                       autocomplete="organization" class="form-input">
-              </div>
-            </div>
-
-            <!-- Message -->
-            <div class="form-group">
-              <label class="form-label" for="contactMensaje">
-                <span data-i18n="form.message">Mensaje</span>
-                <span class="form-req">*</span>
-              </label>
-              <div class="input-wrap textarea-wrap">
-                <i class="fas fa-comment-dots input-icon input-icon--top"></i>
-                <textarea id="contactMensaje" rows="5"
-                          data-i18n-placeholder="form.message.ph"
-                          placeholder="Cuéntame en qué puedo ayudarte..."
-                          class="form-input form-textarea"></textarea>
-              </div>
-              <div class="form-footer-row">
-                <span class="field-error" id="errMensaje"></span>
-                <span class="char-count" id="charCount">0 / 2000</span>
-              </div>
-            </div>
-
-            <!-- Submit -->
-            <button class="form-submit-btn" id="submitBtn" onclick="sendContactForm()">
-              <span id="submitText" data-i18n="form.send">Enviar mensaje</span>
-              <span class="submit-icon" id="submitIcon">
-                <i class="fas fa-paper-plane"></i>
-              </span>
-            </button>
-
+        <a href="mailto:castanosuarezsebastian@gmail.com" class="contact-item stagger-item">
+          <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+          <div class="contact-info">
+            <span class="contact-label" data-i18n="contact.email">Email</span>
+            <span class="contact-value">castanosuarezsebastian@gmail.com</span>
           </div>
-        </div>
-
+          <i class="fas fa-arrow-right contact-arrow"></i>
+        </a>
+        <a href="tel:+34655784630" class="contact-item stagger-item">
+          <div class="contact-icon"><i class="fas fa-phone"></i></div>
+          <div class="contact-info">
+            <span class="contact-label" data-i18n="contact.phone">Teléfono</span>
+            <span class="contact-value">+34 655 784 630</span>
+          </div>
+          <i class="fas fa-arrow-right contact-arrow"></i>
+        </a>
+        <a href="https://www.linkedin.com/in/sebastiancastano" target="_blank" rel="noopener" class="contact-item stagger-item">
+          <div class="contact-icon"><i class="fab fa-linkedin"></i></div>
+          <div class="contact-info">
+            <span class="contact-label">LinkedIn</span>
+            <span class="contact-value">linkedin.com/in/sebastiancastano</span>
+          </div>
+          <i class="fas fa-arrow-right contact-arrow"></i>
+        </a>
+        <a href="https://github.com/sbastian29" target="_blank" rel="noopener" class="contact-item stagger-item">
+          <div class="contact-icon"><i class="fab fa-github"></i></div>
+          <div class="contact-info">
+            <span class="contact-label">GitHub</span>
+            <span class="contact-value">github.com/sbastian29</span>
+          </div>
+          <i class="fas fa-arrow-right contact-arrow"></i>
+        </a>
       </div>
     </div>
   </section>
-
-  <!-- Footer -->
   <footer class="footer">
     <div class="container">
       <div class="footer-content">
@@ -1028,247 +925,5 @@
     });
   </script>
 
-<script>
-    // ── Contact form ──────────────────────────────────────────────
-     const API_URL = 'https://sebastiancastano-dev.onrender.com/api/contact';
-    //const API_URL = 'http://localhost:5000/api/contact';
-
-    // Despierta la API de Render al cargar la página (el plan free se duerme tras 15min)
-    fetch('https://sebastiancastano-dev.onrender.com/api/health').catch(() => {});
-
-    document.addEventListener('DOMContentLoaded', function() {
-      var ta = document.getElementById('contactMensaje');
-      if (ta) {
-        ta.addEventListener('input', function() {
-          var len = this.value.length;
-          document.getElementById('charCount').textContent = len + ' / 2000';
-          this.classList.toggle('input-error', len > 2000);
-        });
-      }
-    });
-
-    function clearContactErrors() {
-      ['Nombre','Email','Mensaje'].forEach(function(f) {
-        var e = document.getElementById('err'+f), i = document.getElementById('contact'+f);
-        if (e) e.textContent = '';
-        if (i) i.classList.remove('input-error');
-      });
-      var al = document.getElementById('formAlert');
-      if (al) { al.style.display='none'; al.className='form-alert'; }
-    }
-
-    function showFormAlert(msg, type) {
-      var el = document.getElementById('formAlert');
-      if (!el) return;
-      el.innerHTML = msg;
-      el.className = 'form-alert ' + type;
-      el.style.display = 'block';
-      el.scrollIntoView({ behavior:'smooth', block:'nearest' });
-    }
-
-    async function sendContactForm() {
-      clearContactErrors();
-      var nombre  = document.getElementById('contactNombre').value.trim();
-      var email   = document.getElementById('contactEmail').value.trim();
-      var empresa = document.getElementById('contactEmpresa').value.trim();
-      var mensaje = document.getElementById('contactMensaje').value.trim();
-      var btn = document.getElementById('submitBtn');
-      var txt = document.getElementById('submitText');
-      var lang = window.I18n ? window.I18n.getLang() : 'es';
-
-      btn.disabled = true;
-      txt.textContent = lang === 'en' ? 'Sending...' : 'Enviando...';
-
-      try {
-        var res = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre, email, empresa, mensaje })
-        });
-        var data = await res.json();
-        if (data.ok) {
-          showFormAlert(lang === 'en'
-            ? '✓ Message sent! I\'ll get back to you soon.'
-            : '✓ Mensaje enviado correctamente. ¡Te responderé pronto!', 'success');
-          ['contactNombre','contactEmail','contactEmpresa','contactMensaje'].forEach(id => {
-            document.getElementById(id).value = '';
-          });
-          document.getElementById('charCount').textContent = '0 / 2000';
-        } else if (data.errors) {
-          Object.keys(data.errors).forEach(field => {
-            var cap = field.charAt(0).toUpperCase() + field.slice(1);
-            var e = document.getElementById('err'+cap), i = document.getElementById('contact'+cap);
-            if (e) e.textContent = data.errors[field];
-            if (i) i.classList.add('input-error');
-          });
-          showFormAlert(lang === 'en' ? 'Please check highlighted fields.' : 'Revisa los campos marcados.', 'error');
-        } else {
-          showFormAlert(data.error || (lang === 'en' ? 'Error sending.' : 'Error al enviar.'), 'error');
-        }
-      } catch(e) {
-        showFormAlert(lang === 'en'
-          ? 'Could not connect to the server.'
-          : 'No se pudo conectar con el servidor. Comprueba que la API está activa.', 'error');
-      } finally {
-        btn.disabled = false;
-        txt.textContent = lang === 'en' ? 'Send message' : 'Enviar mensaje';
-      }
-    }
-  </script>
-
-  <div id="life-update-toast" class="life-toast">
-    <div class="toast-header">
-      <span class="toast-dot"></span>
-      <strong data-i18n="toast.title">Nuevo mensaje</strong>
-      <button class="toast-close" onclick="closeToast()">&times;</button>
-    </div>
-    <div class="toast-body">
-      <p data-i18n="toast.body">🚀 Actualmente enfocado en profundizar en <strong>Data Engineering</strong> y preparando nuevas certificaciones de AWS.</p>
-    </div>
-  </div>
-  <script>
-    // ── Contact form — bilingual ────────────────────────────────
-    // En producción cambia por tu URL de Render:
-    // const API_URL = 'https://portfolio-api.onrender.com/api/contact';
-
-    // i18n keys for the form
-    const FORM_STRINGS = {
-      es: {
-        sending:   'Enviando...',
-        send:      'Enviar mensaje',
-        success:   '✓ Mensaje enviado correctamente. ¡Te responderé pronto!',
-        check:     'Revisa los campos marcados.',
-        error:     'Error al enviar. Inténtalo de nuevo.',
-        noconn:    'No se pudo conectar con el servidor. Comprueba que la API está activa.',
-        name_ph:   'Tu nombre',
-        email_ph:  'tu@email.com',
-        co_ph:     'Nombre de tu empresa',
-        msg_ph:    'Cuéntame en qué puedo ayudarte...'
-      },
-      en: {
-        sending:   'Sending...',
-        send:      'Send message',
-        success:   '✓ Message sent! I´ll get back to you soon.',
-        check:     'Please check the highlighted fields.',
-        error:     'Error sending. Please try again.',
-        noconn:    'Could not connect to the server. Make sure the API is running.',
-        name_ph:   'Your name',
-        email_ph:  'you@email.com',
-        co_ph:     'Your company name',
-        msg_ph:    'Tell me how I can help you...'
-      }
-    };
-
-    function _fs(key) {
-      var lang = (window.I18n && window.I18n.getLang() === 'en') ? 'en' : 'es';
-      return FORM_STRINGS[lang][key];
-    }
-
-    // Update placeholders when language changes
-    function updateFormPlaceholders() {
-      var map = {
-        contactNombre:  'name_ph',
-        contactEmail:   'email_ph',
-        contactEmpresa: 'co_ph',
-        contactMensaje: 'msg_ph'
-      };
-      Object.keys(map).forEach(function(id) {
-        var el = document.getElementById(id);
-        if (el) el.placeholder = _fs(map[id]);
-      });
-      var txt = document.getElementById('submitText');
-      if (txt) txt.textContent = _fs('send');
-
-      // Also update labels with data-i18n-placeholder
-      document.querySelectorAll('[data-i18n-placeholder]').forEach(function(el) {
-        var key = el.dataset.i18nPlaceholder;
-        if (window.I18n) el.placeholder = window.I18n.t(key);
-      });
-    }
-
-    document.addEventListener('i18n:applied', updateFormPlaceholders);
-
-    document.addEventListener('DOMContentLoaded', function() {
-      // Char counter
-      var ta = document.getElementById('contactMensaje');
-      if (ta) {
-        ta.addEventListener('input', function() {
-          var len = this.value.length;
-          document.getElementById('charCount').textContent = len + ' / 2000';
-          this.classList.toggle('input-error', len > 2000);
-        });
-      }
-    });
-
-    function clearContactErrors() {
-      ['Nombre','Email','Mensaje'].forEach(function(f) {
-        var e = document.getElementById('err'+f);
-        var i = document.getElementById('contact'+f);
-        if (e) e.textContent = '';
-        if (i) i.classList.remove('input-error');
-      });
-      var al = document.getElementById('formAlert');
-      if (al) { al.style.display = 'none'; al.className = 'form-alert'; }
-    }
-
-    function showFormAlert(msg, type) {
-      var el = document.getElementById('formAlert');
-      if (!el) return;
-      el.innerHTML = (type === 'success' ? '<i class="fas fa-check-circle"></i> ' : '<i class="fas fa-exclamation-circle"></i> ') + msg;
-      el.className = 'form-alert ' + type;
-      el.style.display = 'flex';
-      el.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-    }
-
-    async function sendContactForm() {
-      clearContactErrors();
-
-      var nombre  = document.getElementById('contactNombre').value.trim();
-      var email   = document.getElementById('contactEmail').value.trim();
-      var empresa = document.getElementById('contactEmpresa').value.trim();
-      var mensaje = document.getElementById('contactMensaje').value.trim();
-      var btn     = document.getElementById('submitBtn');
-      var txt     = document.getElementById('submitText');
-      var icon    = document.getElementById('submitIcon');
-
-      btn.disabled = true;
-      txt.textContent = _fs('sending');
-      if (icon) icon.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
-
-      try {
-        var res = await fetch(API_URL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ nombre: nombre, email: email, empresa: empresa, mensaje: mensaje })
-        });
-        var data = await res.json();
-
-        if (data.ok) {
-          showFormAlert(_fs('success'), 'success');
-          ['contactNombre','contactEmail','contactEmpresa','contactMensaje'].forEach(function(id) {
-            document.getElementById(id).value = '';
-          });
-          document.getElementById('charCount').textContent = '0 / 2000';
-        } else if (data.errors) {
-          Object.keys(data.errors).forEach(function(field) {
-            var cap = field.charAt(0).toUpperCase() + field.slice(1);
-            var e = document.getElementById('err'+cap);
-            var i = document.getElementById('contact'+cap);
-            if (e) e.textContent = data.errors[field];
-            if (i) i.classList.add('input-error');
-          });
-          showFormAlert(_fs('check'), 'error');
-        } else {
-          showFormAlert(data.error || _fs('error'), 'error');
-        }
-      } catch(e) {
-        showFormAlert(_fs('noconn'), 'error');
-      } finally {
-        btn.disabled = false;
-        txt.textContent = _fs('send');
-        if (icon) icon.innerHTML = '<i class="fas fa-paper-plane"></i>';
-      }
-    }
-  </script>
 </body>
 </html>

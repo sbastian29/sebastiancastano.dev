@@ -1,0 +1,321 @@
+{
+  "projects": [
+    {
+      "id": 1,
+      "title": "Intelligent Sentiment Analysis & Review Agent",
+      "slug": "review-agent",
+      "description": "Autonomous agent that connects to external platforms to extract reviews, analyse them with LLMs (GPT-4, Gemini, Groq) and transform them into business intelligence and executive reports.",
+      "longDescription": "Personal development project (2024-Present). LLM Integration & Automation: full backend development for an autonomous agent that connects to external platforms and extracts review data via advanced Python web scraping. Natural Language Processing (NLP): orchestration of state-of-the-art language models via APIs (GPT-4, Gemini, Groq) to analyse, synthesise and classify user sentiment, transforming unstructured text into business intelligence and executive reports. Modular & Scalable Architecture: robust, self-contained Python backend applying development best practices to ensure future integration with graphical interfaces. Containerisation: Docker used to encapsulate the development environment, ensuring code portability and preventing dependency conflicts in future deployments.",
+      "image": "review-agent.jpg",
+      "video": null,
+      "categories": [
+        "ia",
+        "automatizacion"
+      ],
+      "roles": [
+        "ia-generativa",
+        "backend"
+      ],
+      "tags": [
+        "python",
+        "llm",
+        "openai",
+        "gemini",
+        "groq",
+        "nlp",
+        "web-scraping",
+        "docker",
+        "prompt-engineering",
+        "agents"
+      ],
+      "technologies": [
+        "Python",
+        "OpenAI API",
+        "Gemini API",
+        "Groq",
+        "Docker",
+        "Prompt Engineering"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "coming-soon",
+      "date": "2025",
+      "orientation": "landscape"
+    },
+    {
+      "id": 2,
+      "title": "ITSM Agent with SharePoint + DRUID AI",
+      "slug": "itsm-sharepoint-agent",
+      "description": "Conversational agent integrated with SharePoint as a knowledge base for automatic ITSM incident resolution.",
+      "longDescription": "Developed at Sermicro. Conversational agent built with DRUID AI and GPT using SharePoint as a knowledge base. Capable of automatically resolving incidents and escalating tickets to the corresponding ITSM system when needed.",
+      "image": "itsm-sharepoint.jpg",
+      "video": null,
+      "categories": [
+        "ia",
+        "automatizacion"
+      ],
+      "roles": [
+        "ia-generativa",
+        "automatizacion"
+      ],
+      "tags": [
+        "druid-ai",
+        "gpt",
+        "sharepoint",
+        "itsm",
+        "conversational"
+      ],
+      "technologies": [
+        "DRUID AI",
+        "GPT",
+        "SharePoint",
+        "REST APIs"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "completed",
+      "date": "2025",
+      "orientation": "landscape"
+    },
+    {
+      "id": 3,
+      "title": "RPA Ticket Automation with UiPath",
+      "slug": "rpa-tickets-uipath",
+      "description": "UiPath and Power Automate automation for automatic ticket generation in Jira and EasyVista from multiple sources.",
+      "longDescription": "Developed at Sermicro. Robotic automation system collecting data from multiple channels and automatically generating tickets in ITSM tools like Jira and EasyVista. Reduced manual operational load by up to 50%.",
+      "image": "rpa-tickets.jpg",
+      "video": null,
+      "categories": [
+        "automatizacion"
+      ],
+      "roles": [
+        "automatizacion"
+      ],
+      "tags": [
+        "uipath",
+        "power-automate",
+        "rpa",
+        "jira",
+        "easyvista"
+      ],
+      "technologies": [
+        "UiPath",
+        "Power Automate",
+        "Jira API",
+        "EasyVista"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "completed",
+      "date": "2025",
+      "orientation": "landscape"
+    },
+    {
+      "id": 4,
+      "title": "End-to-End ETL Pipeline — Airline Sector",
+      "slug": "etl-pipeline-airlines",
+      "description": "Complete data pipeline for the airline sector using DBT, Snowflake and Airflow, processing flight and ticket purchase data.",
+      "longDescription": "Developed at Next Digital Hub. End-to-end pipeline for processing flight and ticket purchase data. Transformations with DBT, storage in Snowflake and workflow orchestration with Apache Airflow. Modern data architecture in the airline sector.",
+      "image": "etl-airlines.jpg",
+      "video": null,
+      "categories": [
+        "data",
+        "automatizacion"
+      ],
+      "roles": [
+        "data-engineering"
+      ],
+      "tags": [
+        "python",
+        "airflow",
+        "dbt",
+        "snowflake",
+        "etl"
+      ],
+      "technologies": [
+        "Python",
+        "Airflow",
+        "DBT",
+        "Snowflake",
+        "Docker"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "completed",
+      "date": "2024",
+      "orientation": "landscape"
+    },
+    {
+      "id": 5,
+      "title": "Streaming Pipeline with Kafka and Spark",
+      "slug": "kafka-spark-streaming",
+      "description": "Real-time event processing pipeline with Apache Kafka and Apache Spark for the airline sector.",
+      "longDescription": "Developed at Next Digital Hub. Hybrid batch + streaming architecture. Kafka for real-time event ingestion and Spark for distributed processing within the airline sector data context.",
+      "image": "kafka-streaming.jpg",
+      "video": null,
+      "categories": [
+        "data"
+      ],
+      "roles": [
+        "data-engineering"
+      ],
+      "tags": [
+        "kafka",
+        "spark",
+        "streaming",
+        "python",
+        "realtime"
+      ],
+      "technologies": [
+        "Apache Kafka",
+        "Apache Spark",
+        "Python",
+        "Docker"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "completed",
+      "date": "2024",
+      "orientation": "landscape"
+    },
+    {
+      "id": 6,
+      "title": "Master Thesis — Telco Churn Detection & Prediction",
+      "slug": "churn-prediction-ml",
+      "description": "End-to-end ML pipeline to detect and predict customer churn in the Telco sector, with a full Big Data ecosystem and evolution towards a real-time Lambda architecture.",
+      "longDescription": "Master Thesis in Big Data and Data Science (UNIR, 2024-2025). End-to-End Architecture: design, development and deployment of a complete pipeline from extraction, cleaning and transformation of massive telecom datasets (Kaggle) to actionable business insights. Advanced Predictive Modelling: training, evaluation and optimisation of ML models using Random Forest, XGBoost and Logistic Regression to proactively identify the key variables driving churn. Big Data Ecosystem: distributed processing with Spark and Hadoop, mass storage and querying with Hive, complemented by PostgreSQL and MongoDB. Analytics & Strategic Visualisation: interactive business-oriented dashboards in Power BI and advanced statistical visualisations with Seaborn. Project Evolution (in progress): redesigning the pipeline towards a full Lambda architecture for real-time ingestion and prediction.",
+      "image": "churn-ml.jpg",
+      "video": null,
+      "categories": [
+        "data",
+        "ia"
+      ],
+      "roles": [
+        "data-engineering",
+        "analytics"
+      ],
+      "tags": [
+        "python",
+        "scikit-learn",
+        "xgboost",
+        "random-forest",
+        "spark",
+        "hadoop",
+        "hive",
+        "postgresql",
+        "mongodb",
+        "powerbi",
+        "seaborn",
+        "churn",
+        "telco",
+        "lambda-architecture"
+      ],
+      "technologies": [
+        "Python",
+        "Scikit-Learn",
+        "XGBoost",
+        "Spark",
+        "Hadoop",
+        "Hive",
+        "PostgreSQL",
+        "MongoDB",
+        "Power BI",
+        "Seaborn"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "in-progress",
+      "date": "2025",
+      "orientation": "landscape"
+    },
+    {
+      "id": 7,
+      "title": "Final Project — Hospital Management Suite & Android Development",
+      "slug": "hospital-management",
+      "description": "Ecosystem of three interconnected applications (Administration, Medical Staff and Patients) to optimise clinical workflows. Java + Swing + Jaspersoft backend and Android app with Kotlin and Jetpack Compose.",
+      "longDescription": "Final project for the DAM degree at IES Virgen de la Paloma (2022-2024). Hospital Management Suite: design and full development of an ecosystem of three interconnected applications (Administration, Medical Staff, Patients) to optimise clinical workflows. Backend & Desktop UI: business logic in Java orchestrated with Maven, desktop interfaces with Swing and structured clinical report generation using Jaspersoft. Android Mobile Development: native applications using the MVC pattern with Kotlin and Jetpack Compose, featuring dynamic list rendering and reactive interface design. Data Persistence: MongoDB for flexible data persistence in the final project, complemented by Oracle and SQLite throughout the degree.",
+      "image": "hospital-project.jpg",
+      "video": "assets/Videos/TFG.mp4",
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app",
+        "backend"
+      ],
+      "tags": [
+        "java",
+        "kotlin",
+        "android",
+        "jetpack-compose",
+        "maven",
+        "swing",
+        "jaspersoft",
+        "mongodb",
+        "oracle",
+        "sqlite",
+        "mvc"
+      ],
+      "technologies": [
+        "Java",
+        "Kotlin",
+        "Jetpack Compose",
+        "Maven",
+        "Swing",
+        "Jaspersoft",
+        "MongoDB",
+        "SQL (Oracle)",
+        "SQLite"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "coming-soon",
+      "date": "2024",
+      "orientation": "landscape"
+    },
+    {
+      "id": 8,
+      "title": "Kotlin Mobile Application",
+      "slug": "kotlin-mobile-app",
+      "description": "Native Android app developed in Kotlin with Jetpack Compose. MVVM architecture, component-based navigation and reactive UI design.",
+      "longDescription": "Academic project from the DAM vocational training program. Fully native Android application built with Kotlin and Jetpack Compose following the MVVM pattern. Features screen navigation, state management with StateFlow, dynamic lists with LazyColumn and adaptive reactive interfaces. Uses Room for local persistence and Coroutines for asynchronous operations.",
+      "image": null,
+      "video": "assets/Videos/kotlin_video.mp4",
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "app-development"
+      ],
+      "tags": [
+        "kotlin",
+        "android",
+        "jetpack-compose",
+        "mvvm",
+        "room",
+        "coroutines"
+      ],
+      "technologies": [
+        "Kotlin",
+        "Jetpack Compose",
+        "MVVM",
+        "Room",
+        "Coroutines",
+        "Android SDK"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": false,
+      "status": "completed",
+      "date": "2024",
+      "orientation": "portrait"
+    }
+  ]
+}

@@ -66,6 +66,13 @@
       overflow: hidden;
     }
 
+    /* Portrait videos: let height be driven by aspect-ratio instead of fixed px */
+    .project-image.portrait {
+      height: auto;
+      aspect-ratio: 9 / 16;
+      max-height: 480px;
+    }
+
     .project-image-inner {
       width: 100%;
       height: 100%;
@@ -97,65 +104,6 @@
       letter-spacing: 0.05em;
       border-radius: var(--radius-full);
       z-index: 2;
-    }
-
-    .project-overlay {
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, transparent 30%, rgba(0, 0, 0, 0.6) 100%);
-      opacity: 0;
-      transition: opacity var(--transition-fast);
-    }
-
-    .project-card:hover .project-overlay {
-      opacity: 1;
-    }
-
-    .project-actions {
-      position: absolute;
-      bottom: 16px;
-      left: 16px;
-      right: 16px;
-      display: flex;
-      gap: 8px;
-      opacity: 0;
-      transform: translateY(10px);
-      transition: all var(--transition-fast);
-      z-index: 3;
-    }
-
-    .project-card:hover .project-actions {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .project-action-btn {
-      flex: 1;
-      padding: 10px;
-      background: var(--bg-glass);
-      backdrop-filter: blur(10px);
-      border: 1px solid rgba(255, 255, 255, 0.2);
-      border-radius: var(--radius-md);
-      color: white;
-      font-size: 0.8125rem;
-      font-weight: 500;
-      text-align: center;
-      cursor: pointer;
-      transition: all var(--transition-fast);
-      text-decoration: none;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-    }
-
-    .project-action-btn:hover {
-      background: rgba(255, 255, 255, 0.2);
-    }
-
-    .project-action-btn.disabled {
-      opacity: 0.5;
-      cursor: not-allowed;
     }
 
     .project-content {
@@ -282,6 +230,210 @@
     .filter-chip[data-category="data"]:not(.active)         { border-left: 3px solid var(--cat-data); }
     .filter-chip[data-category="automatizacion"]:not(.active) { border-left: 3px solid var(--cat-auto); }
     .filter-chip[data-category="software"]:not(.active)     { border-left: 3px solid var(--cat-soft); }
+
+    /* ============================================================
+       Botones de enlace siempre visibles dentro de project-content
+       ============================================================ */
+    .card-links {
+      display: flex;
+      gap: 8px;
+      margin: 12px 0 8px;
+      flex-wrap: wrap;
+    }
+
+    .card-link-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 7px 14px;
+      border-radius: var(--radius-md, 8px);
+      font-size: 0.8rem;
+      font-weight: 500;
+      text-decoration: none;
+      cursor: pointer;
+      transition: background 0.18s, transform 0.12s, box-shadow 0.18s;
+      border: none;
+      white-space: nowrap;
+    }
+    .card-link-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,.15); }
+
+    .card-link-github {
+      background: var(--bg-tertiary, #1e1e2e);
+      color: var(--text-primary);
+      border: 1px solid var(--border-color, rgba(255,255,255,.12));
+    }
+    .card-link-github:hover { background: #24292e; color: #fff; border-color: #444; }
+
+    .card-link-demo {
+      background: var(--accent-primary, #3b82f6);
+      color: #fff;
+    }
+    .card-link-demo:hover { background: var(--accent-hover, #2563eb); }
+
+    .card-link-private {
+      background: transparent;
+      color: var(--text-muted, #888);
+      border: 1px dashed var(--border-color, rgba(255,255,255,.15));
+      cursor: not-allowed;
+      font-size: 0.75rem;
+    }
+    .card-link-private:hover { transform: none; box-shadow: none; }
+
+    /* ============================================================
+       YouTube-style custom video player
+       ============================================================ */
+    .yt-player {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000;
+      overflow: hidden;
+      cursor: pointer;
+    }
+
+    /* Landscape: fill the fixed-height container */
+    .yt-video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    /* Portrait: show the full vertical frame centred with black bars on sides */
+    .yt-player.portrait .yt-video {
+      width: auto;
+      height: 100%;
+      max-width: 100%;
+      margin: 0 auto;
+      object-fit: contain;
+    }
+
+    /* Big centered play button (shown while paused) */
+    .yt-overlay-play {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      pointer-events: none;
+      transition: opacity 0.2s;
+    }
+    .yt-player.playing .yt-overlay-play { opacity: 0; }
+    .yt-big-play {
+      background: none;
+      border: none;
+      cursor: pointer;
+      pointer-events: all;
+      filter: drop-shadow(0 2px 8px rgba(0,0,0,.5));
+      transition: transform 0.15s;
+    }
+    .yt-big-play:hover { transform: scale(1.12); }
+    .yt-bg  { fill: rgba(20,20,20,.85); }
+    .yt-tri { fill: #fff; }
+
+    /* Bottom control bar */
+    .yt-controls {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: linear-gradient(transparent, rgba(0,0,0,.75));
+      padding: 24px 10px 8px;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+    .yt-player:hover .yt-controls,
+    .yt-player.paused  .yt-controls { opacity: 1; }
+
+    /* Progress bar */
+    .yt-progress-wrap {
+      padding: 4px 0 6px;
+      cursor: pointer;
+    }
+    .yt-progress-bg {
+      position: relative;
+      height: 4px;
+      background: rgba(255,255,255,.25);
+      border-radius: 2px;
+      transition: height 0.15s;
+    }
+    .yt-progress-wrap:hover .yt-progress-bg { height: 6px; }
+    .yt-progress-buf  {
+      position: absolute; inset: 0;
+      background: rgba(255,255,255,.35);
+      border-radius: 2px;
+      width: 0;
+    }
+    .yt-progress-fill {
+      position: absolute; top: 0; left: 0; bottom: 0;
+      background: #f00;
+      border-radius: 2px;
+      width: 0;
+      transition: width 0.1s linear;
+    }
+    .yt-progress-thumb {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%) scale(0);
+      width: 13px; height: 13px;
+      background: #f00;
+      border-radius: 50%;
+      transition: transform 0.15s;
+      pointer-events: none;
+    }
+    .yt-progress-wrap:hover .yt-progress-thumb { transform: translate(-50%, -50%) scale(1); }
+
+    /* Bar row */
+    .yt-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .yt-bar-left, .yt-bar-right {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+    .yt-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      display: flex;
+      align-items: center;
+      color: #fff;
+      opacity: .9;
+      transition: opacity 0.15s, transform 0.1s;
+    }
+    .yt-btn:hover { opacity: 1; transform: scale(1.1); }
+    .yt-btn svg { width: 20px; height: 20px; fill: #fff; }
+
+    /* Volume slider */
+    .yt-vol-wrap { display: flex; align-items: center; width: 0; overflow: hidden; transition: width 0.2s; }
+    .yt-bar-left:hover .yt-vol-wrap { width: 64px; }
+    .yt-vol-range {
+      -webkit-appearance: none; appearance: none;
+      width: 60px; height: 3px;
+      background: rgba(255,255,255,.4);
+      border-radius: 2px;
+      outline: none;
+      cursor: pointer;
+    }
+    .yt-vol-range::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      width: 11px; height: 11px;
+      background: #fff;
+      border-radius: 50%;
+    }
+
+    /* Time display */
+    .yt-time {
+      font-size: 0.72rem;
+      color: #fff;
+      white-space: nowrap;
+      padding-left: 4px;
+      font-family: monospace;
+    }
   </style>
 
   <style id="logo-style">
@@ -436,7 +588,7 @@
           </div>
 
           <div class="filter-actions">
-            <span class="results-counter" id="projectCounter">Mostrando <strong>8</strong> de <strong>8</strong> proyectos</span>
+            <span class="results-counter" id="projectCounter" data-i18n-counter="port.counter">Mostrando <strong>0</strong> de <strong>0</strong> proyectos</span>
             <button class="reset-filters" id="resetProjectFilters" disabled>
               <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                 <polyline points="1 4 1 10 7 10"></polyline>
@@ -485,180 +637,153 @@
   <script src="assets/js/main.js"></script>
   <script src="assets/js/filterEngine.js"></script>
   <script>
-    // Projects Data
-    const projectsData = [
-      {
-        id: 1,
-        title: "Sistema de Gestión Hospitalaria",
-        description: "Aplicación completa para la administración de hospitales con gestión de pacientes, citas, personal médico e historial clínico. Arquitectura MVC con persistencia en MongoDB.",
-        categories: ["software"],
-        tags: ["java", "mongodb", "mvc", "swing"],
-        technologies: ["Java", "MongoDB", "Swing", "Maven"],
-        github: "https://github.com/sebastiancastano/hospital-management",
-        demo: null,
-        featured: true,
-        date: "2023",
-        icon: "fa-hospital"
-      },
-      {
-        id: 2,
-        title: "App de Desarrollo Móvil Inmersivo",
-        description: "Aplicación Android moderna desarrollada con Kotlin y Jetpack Compose, implementando arquitectura MVC.",
-        categories: ["software"],
-        tags: ["kotlin", "android", "compose"],
-        technologies: ["Kotlin", "Jetpack Compose", "Room", "Coroutines"],
-        github: "https://github.com/sebastiancastano/mobile-app",
-        demo: null,
-        featured: true,
-        date: "2023",
-        icon: "fa-mobile-alt"
-      },
-      {
-        id: 3,
-        title: "Pipeline ETL con Airflow y AWS",
-        description: "Pipeline de extracción, transformación y carga de datos orquestado con Apache Airflow y desplegado en AWS con S3, Glue y Athena.(PROXIMAMENTE)",
-        categories: ["data", "automatizacion"],
-        tags: ["python", "airflow", "aws", "spark", "etl", "docker"],
-        technologies: ["Python", "Airflow", "AWS", "Spark", "Docker"],
-        github: "https://github.com/sebastiancastano/etl-pipeline",
-        demo: null,
-        featured: true,
-        date: "2024",
-        icon: "fa-code-branch"
-      },
-      {
-        id: 4,
-        title: "API REST con FastAPI",
-        description: "Backend moderno y de alto rendimiento desarrollado con FastAPI, incluyendo autenticación JWT, documentación automática y tests con Pytest.(PROXIMAMENTE)",
-        categories: ["software", "data"],
-        tags: ["python", "fastapi", "rest", "jwt", "pytest", "docker"],
-        technologies: ["Python", "FastAPI", "PostgreSQL", "Docker", "Pytest"],
-        github: "https://github.com/sebastiancastano/fastapi-backend",
-        demo: null,
-        featured: false,
-        date: "2024",
-        icon: "fa-server"
-      },
-      {
-        id: 5,
-        title: "Dashboard de Análisis con Power BI",
-        description: "Dashboard interactivo para visualización de KPIs empresariales, conectado a fuentes de datos en tiempo real.(PROXIMAMENTE)",
-        categories: ["data"],
-        tags: ["powerbi", "visualization", "sql", "analytics"],
-        technologies: ["Power BI", "SQL", "DAX", "Python"],
-        github: null,
-        demo: null,
-        featured: false,
-        date: "2024",
-        icon: "fa-chart-pie"
-      },
-      {
-        id: 6,
-        title: "Sistema de Streaming con Kafka",
-        description: "Plataforma de procesamiento de eventos en tiempo real utilizando Apache Kafka para ingesta y procesamiento de streams de datos.(PROXIMAMENTE)",
-        categories: ["data"],
-        tags: ["kafka", "streaming", "python", "realtime", "docker"],
-        technologies: ["Apache Kafka", "Python", "Docker", "InfluxDB"],
-        github: "https://github.com/sebastiancastano/kafka-streaming",
-        demo: null,
-        featured: false,
-        date: "2024",
-        icon: "fa-stream"
-      },
-      {
-        id: 7,
-        title: "Bot de Automatización RPA",
-        description: "Robot de automatización de procesos repetitivos utilizando UiPath para tareas de scraping, entrada de datos y reportes automatizados.(PROXIMAMENTE)",
-        categories: ["automatizacion"],
-        tags: ["uipath", "rpa", "automation", "scraping"],
-        technologies: ["UiPath", "Python", "Excel", "Selenium"],
-        github: null,
-        demo: null,
-        featured: false,
-        date: "2023",
-        icon: "fa-robot"
-      },
-      {
-        id: 8,
-        title: "Data Warehouse con Snowflake y DBT",
-        description: "Arquitectura de data warehouse moderna usando Snowflake como almacén y DBT para transformaciones reproducibles.(PROXIMAMENTE)",
-        categories: ["data"],
-        tags: ["snowflake", "dbt", "sql", "datawarehouse", "python"],
-        technologies: ["Snowflake", "DBT", "SQL", "Python", "Airflow"],
-        github: "https://github.com/sebastiancastano/snowflake-dbt",
-        demo: null,
-        featured: false,
-        date: "2024",
-        icon: "fa-snowflake"
-      }
-    ];
+    // =====================================================================
+    //  Portfolio data — desacoplado de HTML, cargado desde JSON por idioma
+    // =====================================================================
+    let projectsData = [];
 
-    // Generate project cards
-    function generateProjectCards() {
-      const grid = document.getElementById('projectsGrid');
-      if (!grid) return;
-
-      grid.innerHTML = projectsData.map(project => `
-        <div class="project-card filterable-item stagger-item ${project.featured ? 'featured' : ''}"
-             data-categories='${JSON.stringify(project.categories)}'
-             data-tags='${JSON.stringify(project.tags)}'
-             data-title="${project.title}"
-             data-description="${project.description}">
-          <div class="project-image">
-            ${project.featured ? '<span class="project-featured-badge">' + (window.I18n ? window.I18n.t('port.featured') : 'Destacado') + '</span>' : ''}
-            <div class="project-image-inner">
-              <i class="fas ${project.icon} project-icon"></i>
-            </div>
-            <div class="project-overlay"></div>
-            <div class="project-actions">
-              ${project.github ?
-                `<a href="${project.github}" target="_blank" class="project-action-btn">
-                  <i class="fab fa-github"></i>
-                  GitHub
-                </a>` :
-                `<span class="project-action-btn disabled">
-                  <i class="fab fa-github"></i>
-                  Privado
-                </span>`
-              }
-              ${project.demo ?
-                `<a href="${project.demo}" target="_blank" class="project-action-btn">
-                  <i class="fas fa-external-link-alt"></i>
-                  Demo
-                </a>` : ''
-              }
-            </div>
-          </div>
-          <div class="project-content">
-            <span class="project-category-badge ${project.categories[0]}">
-              <i class="fas fa-${project.categories[0] === 'data' ? 'database' : project.categories[0] === 'automatizacion' ? 'robot' : 'code'}"></i>
-              ${project.categories[0] === 'data' ? (window.I18n ? window.I18n.t('port.cat.data') : 'Data Engineering') : project.categories[0] === 'automatizacion' ? (window.I18n ? window.I18n.t('port.cat.auto') : 'Automatización') : (window.I18n ? window.I18n.t('port.cat.soft') : 'Software')}
-            </span>
-            <h3 class="project-title">${project.title}</h3>
-            <p class="project-description">${project.description}</p>
-            <div class="project-tech-stack">
-              ${project.technologies.map(tech => `<span class="project-tech">${tech}</span>`).join('')}
-            </div>
-            <span class="project-date">
-              <i class="fas fa-calendar-alt"></i>
-              ${project.date}
-            </span>
-          </div>
-        </div>
-      `).join('');
+    /** Devuelve el icono FontAwesome según categoría y tags */
+    function getProjectIcon(project) {
+      const tags = project.tags || [];
+      if (tags.includes('kafka'))        return 'fa-stream';
+      if (tags.includes('airflow'))      return 'fa-code-branch';
+      if (tags.includes('powerbi'))      return 'fa-chart-pie';
+      if (tags.includes('uipath') || tags.includes('rpa')) return 'fa-robot';
+      if (tags.includes('snowflake') || tags.includes('dbt')) return 'fa-snowflake';
+      if (tags.includes('fastapi'))      return 'fa-server';
+      if (tags.includes('kotlin') || tags.includes('android')) return 'fa-mobile-alt';
+      if (tags.includes('java') || tags.includes('swing'))     return 'fa-hospital';
+      if (tags.includes('llm') || tags.includes('agentes'))    return 'fa-brain';
+      if (tags.includes('druid-ai') || tags.includes('conversacional')) return 'fa-comments';
+      const cat = (project.categories || [])[0];
+      if (cat === 'data')          return 'fa-database';
+      if (cat === 'automatizacion') return 'fa-robot';
+      return 'fa-code';
     }
 
-    // Initialize projects filter
+    /** Genera las tarjetas de proyecto en el grid */
+    function generateProjectCards() {
+      const grid = document.getElementById('projectsGrid');
+      if (!grid || projectsData.length === 0) return;
+
+      const i18n = window.I18n;
+      const t    = (key, vars) => i18n ? i18n.t(key, vars) : key;
+
+      grid.innerHTML = projectsData.map(project => {
+        const icon       = getProjectIcon(project);
+        const cat        = (project.categories || [])[0] || 'software';
+        const catLabel   = cat === 'data'          ? t('port.cat.data')
+                         : cat === 'automatizacion' ? t('port.cat.auto')
+                         : t('port.cat.soft');
+        const catIcon    = cat === 'data'          ? 'database'
+                         : cat === 'automatizacion' ? 'robot'
+                         : 'code';
+
+        // Botón GitHub o etiqueta "Repositorio privado"
+        const githubBtn  = project.github
+          ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="card-link-btn card-link-github">
+               <i class="fab fa-github"></i>
+               ${t('port.github')}
+             </a>`
+          : `<span class="card-link-btn card-link-private">
+               <i class="fas fa-lock"></i>
+               ${t('port.private_repo')}
+             </span>`;
+
+        const demoBtn    = project.demo
+          ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="card-link-btn card-link-demo">
+               <i class="fas fa-external-link-alt"></i>
+               ${t('port.demo')}
+             </a>` : '';
+
+        // Miniatura: vídeo con player estilo YouTube si existe, icono si no
+        const orientation = project.orientation || 'landscape';
+        const isPortrait  = orientation === 'portrait';
+        const mediaPart  = project.video
+          ? `<div class="yt-player ${isPortrait ? 'portrait' : ''}" data-src="${project.video}">
+               <video class="yt-video" src="${project.video}" playsinline preload="metadata"></video>
+               <div class="yt-overlay-play">
+                 <button class="yt-big-play" aria-label="Reproducir">
+                   <svg viewBox="0 0 68 48" width="68" height="48"><path class="yt-bg" d="M66.52 7.74C65.7 4.66 63.24 2.2 60.15 1.37 54.88 0 34 0 34 0S13.12 0 7.85 1.37C4.76 2.2 2.3 4.66 1.48 7.74 0 13.07 0 24 0 24s0 10.93 1.48 16.26c.82 3.08 3.28 5.54 6.37 6.37C13.12 48 34 48 34 48s20.88 0 26.15-1.37c3.09-.83 5.55-3.29 6.37-6.37C68 34.93 68 24 68 24s0-10.93-1.48-16.26z"/><path class="yt-tri" d="M45 24 27 14v20z"/></svg>
+                 </button>
+               </div>
+               <div class="yt-controls">
+                 <div class="yt-progress-wrap">
+                   <div class="yt-progress-bg">
+                     <div class="yt-progress-buf"></div>
+                     <div class="yt-progress-fill"></div>
+                     <div class="yt-progress-thumb"></div>
+                   </div>
+                 </div>
+                 <div class="yt-bar">
+                   <div class="yt-bar-left">
+                     <button class="yt-btn yt-play-btn" aria-label="Play/Pause">
+                       <svg class="yt-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
+                       <svg class="yt-icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                     </button>
+                     <button class="yt-btn yt-mute-btn" aria-label="Silenciar">
+                       <svg class="yt-icon-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
+                       <svg class="yt-icon-mute" viewBox="0 0 24 24" style="display:none"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 18l2 2L21 18.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
+                     </button>
+                     <div class="yt-vol-wrap">
+                       <input type="range" class="yt-vol-range" min="0" max="1" step="0.05" value="1">
+                     </div>
+                     <span class="yt-time">0:00 / 0:00</span>
+                   </div>
+                   <div class="yt-bar-right">
+                     <button class="yt-btn yt-fs-btn" aria-label="Pantalla completa">
+                       <svg class="yt-icon-fs" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
+                     </button>
+                   </div>
+                 </div>
+               </div>
+             </div>`
+          : `<i class="fas ${icon} project-icon"></i>`;
+
+        return `
+          <div class="project-card filterable-item stagger-item ${project.featured ? 'featured' : ''}"
+               data-categories='${JSON.stringify(project.categories || [])}'
+               data-tags='${JSON.stringify(project.tags || [])}'
+               data-title="${(project.title || '').replace(/"/g, '&quot;')}"
+               data-description="${(project.description || '').replace(/"/g, '&quot;')}">
+            <div class="project-image${isPortrait ? ' portrait' : ''}">
+              ${project.featured ? `<span class="project-featured-badge">${t('port.featured')}</span>` : ''}
+              <div class="project-image-inner">
+                ${mediaPart}
+              </div>
+            </div>
+            <div class="project-content">
+              <span class="project-category-badge ${cat}">
+                <i class="fas fa-${catIcon}"></i>
+                ${catLabel}
+              </span>
+              <h3 class="project-title">${project.title}</h3>
+              <p class="project-description">${project.description}</p>
+              <div class="project-tech-stack">
+                ${(project.technologies || []).map(tech => `<span class="project-tech">${tech}</span>`).join('')}
+              </div>
+              <div class="card-links">
+                ${githubBtn}
+                ${demoBtn}
+              </div>
+              <span class="project-date">
+                <i class="fas fa-calendar-alt"></i>
+                ${project.date}
+              </span>
+            </div>
+          </div>`;
+      }).join('');
+    }
+
+    /** Inicializa el motor de filtros con los items renderizados */
     function initProjectFilter() {
-      const items = Array.from(document.querySelectorAll('#projectsGrid .filterable-item')).map(el => {
-        return {
-          element: el,
-          title: el.dataset.title || '',
-          description: el.dataset.description || '',
-          categories: JSON.parse(el.dataset.categories || '[]'),
-          tags: JSON.parse(el.dataset.tags || '[]')
-        };
-      });
+      const items = Array.from(document.querySelectorAll('#projectsGrid .filterable-item')).map(el => ({
+        element:     el,
+        title:       el.dataset.title       || '',
+        description: el.dataset.description || '',
+        categories:  JSON.parse(el.dataset.categories || '[]'),
+        tags:        JSON.parse(el.dataset.tags        || '[]')
+      }));
 
       const allChips = [
         ...Array.from(document.querySelectorAll('#projectRoleChips .filter-chip')),
@@ -666,34 +791,192 @@
       ];
 
       new FilterEngine({
-        items: items,
-        container: document.getElementById('projectsGrid'),
-        searchInput: document.getElementById('projectSearch'),
-        filterChips: allChips,
-        resultsCounter: document.getElementById('projectCounter'),
-        resetButton: document.getElementById('resetProjectFilters'),
-        activeFiltersContainer: document.getElementById('activeProjectFilters'),
-        noResultsElement: document.getElementById('noProjectResults')
+        items:                   items,
+        container:               document.getElementById('projectsGrid'),
+        searchInput:             document.getElementById('projectSearch'),
+        filterChips:             allChips,
+        resultsCounter:          document.getElementById('projectCounter'),
+        resetButton:             document.getElementById('resetProjectFilters'),
+        activeFiltersContainer:  document.getElementById('activeProjectFilters'),
+        noResultsElement:        document.getElementById('noProjectResults')
       });
     }
 
-    // Initialize on DOM ready
+    /** Carga el JSON correspondiente al idioma detectado */
+    async function loadProjects(lang) {
+      const file = lang === 'en'
+        ? 'assets/data/en.json'
+        : 'assets/data/es.json';
+      const response = await fetch(file);
+      if (!response.ok) throw new Error(`HTTP ${response.status} al cargar ${file}`);
+      const data = await response.json();
+      return data.projects || [];
+    }
+
+    // =====================================================================
+    //  Punto de entrada: esperar i18n → cargar datos → renderizar → filtros
+    // =====================================================================
     document.addEventListener('DOMContentLoaded', () => {
-      (window.i18nReady || Promise.resolve('es')).then(() => {
-      generateProjectCards();
-      setTimeout(() => {
-        initProjectFilter();
-        // Trigger animations
-        document.querySelectorAll('#projectsGrid .stagger-item').forEach((item, index) => {
+      (window.i18nReady || Promise.resolve('es')).then(async (lang) => {
+        try {
+          projectsData = await loadProjects(lang);
+          generateProjectCards();
+
+          // Actualizar contador inmediatamente
+          const counterEl = document.getElementById('projectCounter');
+          const allCards  = document.querySelectorAll('#projectsGrid .filterable-item');
+          if (counterEl && window.I18n) {
+            counterEl.innerHTML = window.I18n.t('port.counter', {
+              n: allCards.length,
+              t: allCards.length
+            });
+          }
+
           setTimeout(() => {
-            item.classList.add('visible');
-          }, index * 60);
-        });
-        // Refresh cursor listeners for dynamic content
-        if (window.refreshCursor) window.refreshCursor();
-      }, 100);
-      }); // end i18nReady.then
+            initProjectFilter();
+            document.querySelectorAll('#projectsGrid .stagger-item').forEach((item, index) => {
+              setTimeout(() => item.classList.add('visible'), index * 60);
+            });
+            if (window.refreshCursor) window.refreshCursor();
+          }, 100);
+        } catch (err) {
+          console.error('Error cargando proyectos:', err);
+          const grid = document.getElementById('projectsGrid');
+          if (grid) grid.innerHTML = `<p style="text-align:center;color:red;">No se pudieron cargar los proyectos.</p>`;
+        }
+      });
     });
+  </script>
+  <script>
+  /* ============================================================
+     YouTube-style custom video player — initialised after cards render
+     ============================================================ */
+  function fmt(s) {
+    s = Math.floor(s || 0);
+    const m = Math.floor(s / 60), sec = s % 60;
+    return `${m}:${sec.toString().padStart(2,'0')}`;
+  }
+
+  function initYtPlayers() {
+    document.querySelectorAll('.yt-player:not([data-yt-ready])').forEach(wrap => {
+      wrap.dataset.ytReady = '1';
+      const video      = wrap.querySelector('.yt-video');
+      const bigPlay    = wrap.querySelector('.yt-big-play');
+      const playBtn    = wrap.querySelector('.yt-play-btn');
+      const iconPlay   = playBtn.querySelector('.yt-icon-play');
+      const iconPause  = playBtn.querySelector('.yt-icon-pause');
+      const muteBtn    = wrap.querySelector('.yt-mute-btn');
+      const iconVol    = muteBtn.querySelector('.yt-icon-vol');
+      const iconMute   = muteBtn.querySelector('.yt-icon-mute');
+      const volRange   = wrap.querySelector('.yt-vol-range');
+      const fill       = wrap.querySelector('.yt-progress-fill');
+      const thumb      = wrap.querySelector('.yt-progress-thumb');
+      const buf        = wrap.querySelector('.yt-progress-buf');
+      const progWrap   = wrap.querySelector('.yt-progress-wrap');
+      const timeEl     = wrap.querySelector('.yt-time');
+      const fsBtn      = wrap.querySelector('.yt-fs-btn');
+
+      // Start paused
+      video.pause();
+      wrap.classList.add('paused');
+
+      function setPlayUI(playing) {
+        iconPlay.style.display  = playing ? 'none'  : '';
+        iconPause.style.display = playing ? ''      : 'none';
+        wrap.classList.toggle('playing', playing);
+        wrap.classList.toggle('paused',  !playing);
+      }
+
+      function togglePlay() {
+        if (video.paused) { video.play(); setPlayUI(true); }
+        else              { video.pause(); setPlayUI(false); }
+      }
+
+      // Prevent card 3D hover from eating the click
+      wrap.addEventListener('click', e => { e.stopPropagation(); togglePlay(); });
+      bigPlay.addEventListener('click', e => { e.stopPropagation(); togglePlay(); });
+      playBtn.addEventListener('click', e => { e.stopPropagation(); togglePlay(); });
+
+      // Progress bar
+      video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const pct = video.currentTime / video.duration * 100;
+        fill.style.width  = pct + '%';
+        thumb.style.left  = pct + '%';
+        timeEl.textContent = `${fmt(video.currentTime)} / ${fmt(video.duration)}`;
+      });
+
+      video.addEventListener('progress', () => {
+        if (!video.duration) return;
+        try {
+          const b = video.buffered;
+          if (b.length) buf.style.width = (b.end(b.length-1) / video.duration * 100) + '%';
+        } catch(_) {}
+      });
+
+      // Auto-detect orientation from actual video dimensions as fallback
+      video.addEventListener('loadedmetadata', () => {
+        timeEl.textContent = `0:00 / ${fmt(video.duration)}`;
+        if (video.videoWidth && video.videoHeight) {
+          const isPortraitVideo = video.videoHeight > video.videoWidth;
+          if (isPortraitVideo && !wrap.classList.contains('portrait')) {
+            wrap.classList.add('portrait');
+            const imgContainer = wrap.closest('.project-image');
+            if (imgContainer) imgContainer.classList.add('portrait');
+          }
+        }
+      });
+
+      video.addEventListener('ended', () => setPlayUI(false));
+
+      // Click on progress bar to seek
+      progWrap.addEventListener('click', e => {
+        e.stopPropagation();
+        const rect = progWrap.getBoundingClientRect();
+        const pct  = Math.max(0, Math.min(1, (e.clientX - rect.left) / rect.width));
+        video.currentTime = pct * video.duration;
+      });
+
+      // Mute toggle
+      muteBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        video.muted = !video.muted;
+        iconVol.style.display  = video.muted ? 'none' : '';
+        iconMute.style.display = video.muted ? ''     : 'none';
+        volRange.value = video.muted ? 0 : video.volume;
+      });
+
+      // Volume slider
+      volRange.addEventListener('input', e => {
+        e.stopPropagation();
+        video.volume = parseFloat(volRange.value);
+        video.muted  = video.volume === 0;
+        iconVol.style.display  = video.muted ? 'none' : '';
+        iconMute.style.display = video.muted ? ''     : 'none';
+      });
+      volRange.addEventListener('click', e => e.stopPropagation());
+
+      // Fullscreen
+      fsBtn.addEventListener('click', e => {
+        e.stopPropagation();
+        if (!document.fullscreenElement) {
+          (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+        } else {
+          (document.exitFullscreen || document.webkitExitFullscreen).call(document);
+        }
+      });
+    });
+  }
+
+  // Re-run after cards are generated (cards load async via fetch)
+  document.addEventListener('DOMContentLoaded', () => {
+    // Observe the grid for new children
+    const grid = document.getElementById('projectsGrid');
+    if (grid) {
+      const mo = new MutationObserver(() => initYtPlayers());
+      mo.observe(grid, { childList: true });
+    }
+  });
   </script>
 </body>
 </html>

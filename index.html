@@ -585,7 +585,7 @@
         </div>
 
         <div class="filter-actions">
-          <span class="results-counter" id="skillsCounter" data-n="0" data-t="0">Mostrando <strong>0</strong> de <strong>0</strong> habilidades</span>
+          <span class="results-counter" id="skillsCounter" data-n="0" data-t="0" data-i18n-counter="skills.counter">Mostrando <strong>0</strong> de <strong>0</strong> habilidades</span>
           <button class="reset-filters" id="resetSkillFilters" disabled data-i18n="skills.reset">
             <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <polyline points="1 4 1 10 7 10"></polyline>
@@ -914,7 +914,18 @@
           skillsData = data; 
           generateSkillCards();
 
-          // 3. Inicializar filtros y animaciones (esperamos un poco para asegurar el renderizado)
+          // 2b. Actualizar contador inmediatamente tras renderizar las cards
+          //     (antes de que FilterEngine se inicialice, para evitar "0 de 0")
+          const _counterEl = document.getElementById('skillsCounter');
+          const _allCards  = document.querySelectorAll('#skillsGrid .filterable-item');
+          if (_counterEl && window.I18n) {
+            _counterEl.innerHTML = window.I18n.t('skills.counter', {
+              n: _allCards.length,
+              t: _allCards.length
+            });
+          }
+
+          // 3. Inicializar filtros y animaciones (esperamos un tick para asegurar el renderizado)
           setTimeout(() => {
             initSkillsFilter();
 
@@ -938,27 +949,57 @@
       }); // end i18nReady.then
     });
 
-    // Funciones del Toast (Notificación)
-    function closeToast() {
-      const toast = document.getElementById('life-update-toast');
-      if (toast) {
-        toast.style.transition = 'opacity 0.3s ease';
-        toast.style.opacity = '0';
-        setTimeout(() => {
-          toast.classList.add('hidden');
-        }, 300);
-      }
-    }
+    // =====================================================================
+    //  Toast de notificación — solo se inyecta en index.html
+    //  (el HTML se crea dinámicamente aquí; portfolio y certificados
+    //   nunca tienen este nodo en el DOM)
+    // =====================================================================
+    (function initIndexToast() {
+      /** Construye e inserta el nodo del toast */
+      function buildToast(title, body) {
+        const existing = document.getElementById('life-update-toast');
+        if (existing) existing.remove();
 
-    window.addEventListener('load', () => {
-      const toast = document.getElementById('life-update-toast');
-      if (toast) {
-        toast.style.display = 'none';
-        setTimeout(() => {
-          toast.style.display = 'block';
-        }, 2000);
+        const toast = document.createElement('div');
+        toast.id = 'life-update-toast';
+        toast.className = 'life-toast hidden';
+        toast.setAttribute('role', 'status');
+        toast.setAttribute('aria-live', 'polite');
+        toast.innerHTML = `
+          <div class="toast-header">
+            <span class="toast-dot"></span>
+            <strong>${title}</strong>
+            <button class="toast-close" aria-label="Cerrar notificación" onclick="closeToast()">×</button>
+          </div>
+          <div class="toast-body">${body}</div>`;
+        document.body.appendChild(toast);
+        return toast;
       }
-    });
+
+      /** Cierra el toast con animación de fade-out */
+      window.closeToast = function () {
+        const toast = document.getElementById('life-update-toast');
+        if (!toast) return;
+        toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
+        toast.style.opacity = '0';
+        toast.style.transform = 'translateY(20px)';
+        setTimeout(() => toast.classList.add('hidden'), 320);
+      };
+
+      /** Espera i18n, construye el toast y lo muestra tras 2 s */
+      (window.i18nReady || Promise.resolve('es')).then(() => {
+        const title = window.I18n ? window.I18n.t('toast.title') : 'Nuevo mensaje';
+        const body  = window.I18n ? window.I18n.t('toast.body')  : '';
+        const toast = buildToast(title, body);
+
+        // Mostrar con retardo para no interrumpir la carga inicial
+        setTimeout(() => {
+          toast.classList.remove('hidden');
+          // Auto-cerrar a los 10 s
+          setTimeout(() => closeToast(), 10000);
+        }, 2000);
+      });
+    })();
   </script>
 <script>
 /* ── CV Data Loader ─────────────────────────────────────────────

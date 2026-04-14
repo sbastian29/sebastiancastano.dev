@@ -148,7 +148,13 @@ class FilterEngine {
   updateUI(visibleCount = null, totalCount = null) {
     // Update results counter
     if (this.resultsCounter && visibleCount !== null) {
-      this.resultsCounter.innerHTML = `Mostrando <strong>${visibleCount}</strong> de <strong>${totalCount}</strong> elementos`;
+      // Usa la clave i18n almacenada en data-i18n-counter si está disponible
+      const counterKey = this.resultsCounter.dataset && this.resultsCounter.dataset.i18nCounter;
+      if (counterKey && window.I18n) {
+        this.resultsCounter.innerHTML = window.I18n.t(counterKey, { n: visibleCount, t: totalCount });
+      } else {
+        this.resultsCounter.innerHTML = `Mostrando <strong>${visibleCount}</strong> de <strong>${totalCount}</strong> elementos`;
+      }
     }
 
     // Update reset button

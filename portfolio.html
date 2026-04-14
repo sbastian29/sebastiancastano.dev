@@ -23,6 +23,15 @@
       gap: 32px;
     }
 
+    /* Mobile: single column, tighter gap */
+    @media (max-width: 600px) {
+      .projects-grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+      }
+    }
+
+    /* Legacy fallback kept for very narrow screens */
     @media (max-width: 480px) {
       .projects-grid {
         grid-template-columns: 1fr;
@@ -66,11 +75,31 @@
       overflow: hidden;
     }
 
-    /* Portrait videos: let height be driven by aspect-ratio instead of fixed px */
+    /* Portrait videos: aspect-ratio drives the height */
     .project-image.portrait {
       height: auto;
       aspect-ratio: 9 / 16;
       max-height: 480px;
+    }
+
+    /* ── Mobile overrides for video containers ────────────────── */
+    @media (max-width: 600px) {
+      /* Landscape: reduce fixed height so it fits the screen width
+         and switch to contain so nothing gets cropped */
+      .project-image:not(.portrait) {
+        height: auto;
+        aspect-ratio: 16 / 9;
+      }
+
+      /* Portrait: cap height so it doesn't dominate the screen */
+      .project-image.portrait {
+        max-height: 340px;
+      }
+
+      /* On mobile, landscape videos should show the full frame */
+      .yt-player:not(.portrait) .yt-video {
+        object-fit: contain;
+      }
     }
 
     .project-image-inner {
@@ -978,5 +1007,5 @@
     }
   });
   </script>
-</body>
+</body> 
 </html>

@@ -1,10 +1,88 @@
 {
   "experience": [
     {
+      "id": "visionlab",
+      "company": "VisionLab",
+      "role": "Data Engineer",
+      "date": "May 2026 - Present",
+      "description": "Joined the Data team in the retail sector, contributing to the evolution of the data platform toward a modern stack. Hybrid role in Madrid focused on ingestion from legacy systems, analytical modeling and data process automation.",
+      "tags": [
+        "Python",
+        "dbt",
+        "Airflow",
+        "Spark",
+        "OpenMetadata",
+        "AS400",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "Ingestion and modernization from legacy systems",
+          "category": "Data Engineering",
+          "description": "Extraction of data from AS400-based legacy systems into the new data stack. Design of reproducible ingestion pipelines and normalization of operational sources for downstream analytical use.",
+          "achievements": [
+            "🔌 Integration of AS400 legacy sources with the modern data platform",
+            "🧱 Reproducible ingestion pipelines as the foundation for analytical modeling"
+          ],
+          "tags": [
+            "AS400",
+            "Python",
+            "Airflow",
+            "SQL"
+          ]
+        },
+        {
+          "name": "Analytical modeling with dbt",
+          "category": "Data Engineering",
+          "description": "Development of analytical models and views with dbt on top of ingested sources. Application of modeling best practices, tests and documentation to ensure traceability and the quality of data consumed by the business.",
+          "achievements": [
+            "📐 Reusable models and views built with dbt",
+            "✅ Tests and documentation embedded in the transformation flow"
+          ],
+          "tags": [
+            "dbt",
+            "SQL",
+            "Spark",
+            "Python"
+          ]
+        },
+        {
+          "name": "Data governance and catalog with OpenMetadata",
+          "category": "Data Governance",
+          "description": "Support in the rollout of OpenMetadata as the data catalog and governance tool. Documentation of assets, lineage and ownership to enable discovery and responsible use of data by consumer teams.",
+          "achievements": [
+            "📚 Cataloging of data assets and lineage traceability",
+            "🛡️ Support for governance and data discovery across teams"
+          ],
+          "tags": [
+            "OpenMetadata",
+            "Data Governance",
+            "Documentation",
+            "Lineage"
+          ]
+        },
+        {
+          "name": "Data process automation",
+          "category": "Automation",
+          "description": "Automation of recurring tasks in the data lifecycle using Python and Airflow orchestration. Goal: reduce manual work, ensure consistent execution and free up team time for higher-value analytical work.",
+          "achievements": [
+            "🤖 Reduction of manual work on recurring tasks",
+            "⏱️ Orchestrated and consistent runs with Airflow"
+          ],
+          "tags": [
+            "Python",
+            "Airflow",
+            "Automation",
+            "ETL/ELT"
+          ]
+        }
+      ]
+    },
+    {
       "id": "sermicro",
       "company": "Sermicro",
       "role": "Conversational AI & Hyperautomation Engineer",
-      "date": "Mar 2025 - Present",
+      "date": "Mar 2025 - May 2026",
       "description": "End-to-end project leadership in conversational AI and automation, from requirements gathering to final delivery. Responsible for functional design, technical coordination and client validation.",
       "tags": [
         "Python",

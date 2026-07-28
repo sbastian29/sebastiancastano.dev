@@ -1,58 +1,69 @@
 {
+
   "experience": [
     {
       "id": "visionlab",
       "company": "VisionLab",
       "role": "Ingeniero de Datos",
       "date": "May 2026 - Actualidad",
-      "description": "Incorporación al equipo de Data dentro del sector retail, participando en la evolución de la plataforma de datos hacia un stack moderno. Trabajo híbrido en Madrid, enfocado en ingesta desde sistemas legacy, modelado analítico y automatización de procesos de datos.",
+      "description": "Incorporación al equipo de Data dentro del sector retail, participando en la evolución de la plataforma hacia una arquitectura ELT sobre Dremio como lakehouse. Trabajo híbrido en Madrid, enfocado en la ingesta desde fuentes heterogéneas (AS400 legacy, BBDD relacionales y NoSQL, ficheros), el modelado de vistas analíticas con dbt y la automatización de procesos con Airflow.",
       "tags": [
         "Python",
         "dbt",
         "Airflow",
+        "Dremio",
         "Spark",
+        "Polars",
         "OpenMetadata",
         "AS400",
+        "SQL Server",
+        "MariaDB",
+        "GitLab",
         "SQL"
       ],
       "projects": [
         {
-          "name": "Ingesta y modernización desde sistemas legacy",
+          "name": "Ingesta multi-fuente hacia el lakehouse (EL)",
           "category": "Data Engineering",
-          "description": "Extracción de datos desde sistemas legacy basados en AS400 hacia el nuevo stack de datos. Diseño de pipelines de ingesta reproducibles y normalización de fuentes operativas para su consumo analítico posterior.",
+          "description": "Extracción y carga (EL) de datos crudos desde fuentes heterogéneas —AS400 legacy, BBDD relacionales (MariaDB, SQL Server, SQL Express), NoSQL y ficheros Excel— hacia la zona lakehouse de Dremio. El motor de carga se selecciona según el volumen de datos: Spark para cargas pesadas y PyArrow / Polars para volúmenes menores, optimizando rendimiento y consumo de recursos. Pipelines reproducibles y versionados en GitLab, orquestados con DAGs de Airflow en Python.",
           "achievements": [
-            "🔌 Integración de fuentes legacy AS400 con la plataforma moderna de datos",
-            "🧱 Pipelines de ingesta reproducibles como base para modelado analítico"
+            "🔌 Unificación de fuentes heterogéneas (AS400, relacional, NoSQL y Excel) en una única capa lakehouse",
+            "⚙️ Selección del motor de carga según volumen (Spark / PyArrow / Polars) para optimizar rendimiento y recursos",
+            "🧱 Pipelines de ingesta reproducibles y versionados en GitLab como base del ELT"
           ],
           "tags": [
             "AS400",
             "Python",
+            "Spark",
+            "Polars",
+            "PyArrow",
             "Airflow",
-            "SQL"
+            "Dremio",
+            "GitLab"
           ]
         },
         {
-          "name": "Modelado analítico con dbt",
+          "name": "Capa de vistas analíticas con dbt (T)",
           "category": "Data Engineering",
-          "description": "Desarrollo de modelos y vistas analíticas con dbt sobre las fuentes ingestadas. Aplicación de buenas prácticas de modelado, tests y documentación para garantizar la trazabilidad y la calidad de los datos consumidos por negocio.",
+          "description": "Construcción de la capa de transformación (T) mediante vistas de dbt sobre el lakehouse de Dremio. Modelado de vistas de consumo orientadas a distintos perfiles —desarrolladores, informes, equipos de SAP y finanzas— aplicando tests y documentación para garantizar la trazabilidad y la calidad del dato servido.",
           "achievements": [
-            "📐 Modelos y vistas reutilizables construidos con dbt",
-            "✅ Tests y documentación integrados en el flujo de transformación"
+            "📐 Capa semántica de vistas dbt reutilizables sobre Dremio para múltiples consumidores",
+            "✅ Tests y documentación integrados para asegurar la calidad del dato de consumo"
           ],
           "tags": [
             "dbt",
+            "Dremio",
             "SQL",
-            "Spark",
-            "Python"
+            "Modelado analítico"
           ]
         },
         {
           "name": "Gobernanza y catálogo de datos con OpenMetadata",
           "category": "Data Governance",
-          "description": "Apoyo en la implantación de OpenMetadata como catálogo y herramienta de gobernanza del dato. Documentación de activos, linaje y propiedad para facilitar el descubrimiento y el uso responsable de los datos por los equipos consumidores.",
+          "description": "Apoyo en la implantación de OpenMetadata como catálogo y herramienta de gobernanza del dato. Documentación de activos, linaje y propiedad para facilitar el descubrimiento y el uso responsable de los datos por parte de los equipos consumidores.",
           "achievements": [
-            "📚 Catalogación de activos de datos y trazabilidad de linaje",
-            "🛡️ Apoyo a la gobernanza y descubrimiento de datos entre equipos"
+            "📚 Catalogación de activos y trazabilidad de linaje entre fuentes, lakehouse y vistas de consumo",
+            "🛡️ Apoyo a la gobernanza y al descubrimiento de datos entre equipos"
           ],
           "tags": [
             "OpenMetadata",
@@ -62,12 +73,12 @@
           ]
         },
         {
-          "name": "Automatización de procesos de datos",
+          "name": "Automatización y orquestación con Airflow",
           "category": "Automatización",
-          "description": "Automatización de tareas recurrentes del ciclo de vida del dato mediante Python y orquestación con Airflow. Objetivo: reducir trabajo manual, asegurar ejecución consistente y liberar tiempo del equipo para tareas de mayor valor analítico.",
+          "description": "Automatización del ciclo de vida del dato mediante DAGs de Airflow en Python, coordinando las cargas EL y la materialización de las vistas dbt. Objetivo: eliminar trabajo manual, asegurar ejecuciones consistentes y liberar tiempo del equipo para tareas de mayor valor analítico.",
           "achievements": [
-            "🤖 Reducción de trabajo manual en tareas recurrentes",
-            "⏱️ Ejecuciones orquestadas y consistentes con Airflow"
+            "🤖 Orquestación end-to-end de las cargas EL y las transformaciones dbt con Airflow",
+            "⏱️ Ejecuciones consistentes y reproducibles mediante DAGs versionados en Python"
           ],
           "tags": [
             "Python",
@@ -83,59 +94,65 @@
       "company": "Sermicro",
       "role": "Ingeniero de IA Conversacional e Hiperautomatización",
       "date": "Mar 2025 - May 2026",
-      "description": "Participación en proyectos de automatización e IA conversacional liderando iniciativas end-to-end, desde la toma de requerimientos hasta la entrega final. Responsable de diseño funcional, coordinación técnica y validación con cliente.",
+      "description": "Liderazgo de iniciativas end-to-end de IA conversacional e hiperautomatización, desde la toma de requerimientos hasta la entrega y validación con cliente. Desarrollo de agentes con DRUID AI combinando el low-code de la plataforma con código a medida en JavaScript para los casos que requerían mayor personalización, y scripting en Python como apoyo a los flujos de DRUID y UiPath.",
       "tags": [
         "Python",
         "DRUID AI",
         "GPT",
+        "JavaScript",
         "UiPath",
         "Power Automate",
-        "JavaScript",
-        "Docker",
-        "APIs REST"
+        "APIs REST",
+        "Docker"
       ],
       "projects": [
         {
-          "name": "Agente ITSM basado en SharePoint",
+          "name": "Agente ITSM sobre SharePoint (DRUID AI + GPT)",
           "category": "IA Agéntica",
-          "description": "Desarrollo de agente conversacional con DRUID AI + LLMs (GPT) integrado con base de conocimiento en SharePoint. Diseño de flujos conversacionales para resolución automática de incidencias e integración con herramientas ITSM para escalado automático.",
+          "description": "Desarrollo de un agente conversacional con DRUID AI y LLMs (GPT) integrado con la base de conocimiento en SharePoint mediante su conector nativo. Combinación de flujos low-code de la plataforma con lógica a medida en JavaScript para la resolución automática de incidencias y el escalado hacia herramientas ITSM.",
           "achievements": [
-            "🤖 Reducción del volumen de tickets mediante autoservicio inteligente",
-            "⚡ Resolución automática de incidencias sin intervención humana"
+            "🤖 Reducción del volumen de tickets mediante autoservicio conversacional inteligente",
+            "🔌 Integración con SharePoint vía conector nativo de DRUID para acceso al conocimiento",
+            "⚡ Resolución automática de incidencias y escalado a ITSM sin intervención humana"
           ],
           "tags": [
             "DRUID AI",
             "GPT",
+            "JavaScript",
             "SharePoint",
             "ITSM"
           ]
         },
         {
-          "name": "Agente ITSM basado en Confluence",
+          "name": "Agente ITSM sobre Confluence (integración a medida)",
           "category": "IA Agéntica",
-          "description": "Implementación de agente conversacional conectado a documentación en Confluence. Procesamiento de información no estructurada para respuesta automatizada a usuarios, mejorando los tiempos de resolución y el acceso al conocimiento interno.",
+          "description": "Implementación de un agente conversacional conectado a la documentación de Confluence mediante una integración a medida sobre su API REST, con parseo propio de la información no estructurada para servirla al flujo conversacional. Desarrollo en JavaScript sobre DRUID AI para adaptar el comportamiento a las necesidades del cliente.",
           "achievements": [
-            "📚 Acceso inteligente a documentación no estructurada",
-            "⏱️ Mejora en tiempos de resolución de consultas internas"
+            "🧩 Integración a medida con Confluence vía API REST y parseo propio de la documentación",
+            "📚 Acceso automatizado a conocimiento no estructurado para respuesta al usuario",
+            "⏱️ Mejora en los tiempos de resolución de consultas internas"
           ],
           "tags": [
             "DRUID AI",
             "GPT",
-            "Confluence",
-            "ITSM"
+            "JavaScript",
+            "API REST",
+            "Confluence"
           ]
         },
         {
           "name": "Automatización de creación de tickets (RPA)",
           "category": "Hiperautomatización",
-          "description": "Desarrollo de automatizaciones con UiPath y Power Automate para la recogida inteligente de datos desde múltiples fuentes y generación automática de tickets en herramientas como Jira y EasyVista.",
+          "description": "Desarrollo de automatizaciones con UiPath y Power Automate para la recogida inteligente de datos desde múltiples fuentes y la generación automática de tickets en herramientas como Jira y EasyVista. Scripts en Python como apoyo a los flujos de UiPath para tareas de procesamiento y validación de datos.",
           "achievements": [
-            "📉 Reducción de hasta un 50% en carga manual operativa",
+            "📉 Reducción de hasta un 50% en la carga manual operativa (medida)",
+            "🐍 Scripts en Python de apoyo a los flujos de UiPath para procesamiento de datos",
             "🔀 Integración con Jira y EasyVista desde múltiples canales"
           ],
           "tags": [
             "UiPath",
             "Power Automate",
+            "Python",
             "Jira",
             "EasyVista"
           ]
@@ -143,10 +160,11 @@
         {
           "name": "Automatización documental e integración de sistemas",
           "category": "Hiperautomatización",
-          "description": "Extracción y transferencia automatizada de documentos entre plataformas. Orquestación de procesos empresariales mediante RPA, reduciendo errores manuales y mejorando la eficiencia operativa.",
+          "description": "Extracción y transferencia automatizada de documentos entre plataformas mediante RPA. Orquestación de procesos empresariales con UiPath y Power Automate, apoyada en scripts de Python, reduciendo errores manuales y mejorando la eficiencia operativa.",
           "achievements": [
-            "📄 Transferencia automática entre plataformas sin intervención manual",
-            "✅ Reducción de errores y mejora de eficiencia operativa"
+            "📄 Transferencia automática de documentos entre plataformas sin intervención manual",
+            "🐍 Scripting en Python para tareas de apoyo dentro de los procesos RPA",
+            "✅ Reducción de errores y mejora de la eficiencia operativa"
           ],
           "tags": [
             "UiPath",
@@ -157,6 +175,223 @@
         }
       ]
     },
+    {
+      "id": "ndh",
+      "company": "Next Digital Hub",
+      "role": "Ingeniero de Datos",
+      "date": "Mar 2024 - Ago 2024",
+      "description": "Experiencia en proyectos de datos end-to-end dentro del sector aerolíneas, trabajando con grandes volúmenes de información y arquitecturas modernas de datos. Aplicando metodologías ágiles (Scrum).",
+      "tags": [
+        "Python",
+        "Airflow",
+        "AWS",
+        "Kafka",
+        "Spark",
+        "FastAPI",
+        "Docker",
+        "Snowflake",
+        "DBT"
+      ],
+      "projects": [
+        {
+          "name": "Pipeline ETL end-to-end (sector aerolíneas)",
+          "category": "Data Engineering",
+          "description": "Desarrollo de pipelines de datos desde ingesta hasta consumo para el sector aerolíneas. Procesamiento de datos de vuelos y compra de billetes con transformaciones en DBT, almacenamiento en Snowflake y orquestación con Airflow.",
+          "achievements": [
+            "✈️ Procesamiento de datos de vuelos y compra de billetes",
+            "🔁 Pipeline completo desde ingesta hasta consumo analítico"
+          ],
+          "tags": [
+            "Airflow",
+            "DBT",
+            "Snowflake",
+            "Python"
+          ]
+        },
+        {
+          "name": "Procesamiento batch y streaming de eventos",
+          "category": "Data Engineering",
+          "description": "Implementación de pipelines tanto en batch como en tiempo real. Uso de Kafka para streaming de eventos y procesamiento distribuido con Apache Spark.",
+          "achievements": [
+            "⚡ Procesamiento en tiempo real con Kafka y Spark",
+            "📦 Arquitectura híbrida batch + streaming"
+          ],
+          "tags": [
+            "Kafka",
+            "Spark",
+            "Python",
+            "Docker"
+          ]
+        },
+        {
+          "name": "Modelos ML y despliegue en AWS",
+          "category": "Machine Learning",
+          "description": "Desarrollo de modelos predictivos en AWS, expuestos mediante APIs REST con FastAPI. Testing con Pytest y despliegue contenerizado con Docker.",
+          "achievements": [
+            "🧠 Modelos predictivos desplegados en AWS",
+            "🐳 API REST con FastAPI + Docker en producción"
+          ],
+          "tags": [
+            "AWS",
+            "FastAPI",
+            "Pytest",
+            "Docker"
+          ]
+        },
+        {
+          "name": "Análisis y visualización de datos",
+          "category": "Analytics",
+          "description": "Análisis exploratorio con Pandas, creación de dashboards en Power BI y optimización de datasets para consumo analítico por el equipo de negocio.",
+          "achievements": [
+            "📊 Dashboards analíticos orientados a negocio en Power BI",
+            "🔍 Análisis exploratorio y preparación de datasets para ML"
+          ],
+          "tags": [
+            "Pandas",
+            "Power BI",
+            "Python",
+            "SQL"
+          ]
+        }
+      ]
+    }
+  ],
+  "education": [
+    {
+      "id": "unir",
+      "institution": "UNIR — Universidad Internacional de La Rioja",
+      "degree": "Máster en Big Data y Ciencia de Datos",
+      "date": "2025 — Finalizado (título pendiente)",
+      "description": "Máster orientado al análisis avanzado de datos, machine learning e ingeniería de datos. Proyectos prácticos end-to-end con arquitecturas modernas y metodologías estadísticas.",
+      "tags": [
+        "Python",
+        "Machine Learning",
+        "Big Data",
+        "Spark",
+        "SQL",
+        "Estadística"
+      ],
+      "projects": [
+        {
+          "name": "TFM — Detección y Predicción de Churn en Telecomunicaciones",
+          "category": "Machine Learning",
+          "description": "Arquitectura end-to-end desde la extracción, limpieza y transformación de datasets masivos del sector Telco (Kaggle) hasta la generación de insights de negocio accionables. Modelado con Random Forest, XGBoost y Regresión Logística. Procesamiento distribuido con Spark y Hadoop, almacenamiento con Hive, dashboards en Power BI y visualizaciones con Seaborn.",
+          "achievements": [
+            "🤖 Modelos Random Forest, XGBoost y Regresión Logística optimizados para detección de churn",
+            "⚡ Ecosistema Big Data completo: Spark, Hadoop, Hive, PostgreSQL, MongoDB",
+            "📊 Dashboards interactivos en Power BI y visualizaciones estadísticas con Seaborn",
+            "🔁 Evolución en progreso hacia arquitectura Lambda para predicción en tiempo real"
+          ],
+          "tags": [
+            "Python",
+            "Scikit-Learn",
+            "XGBoost",
+            "Spark",
+            "Hadoop",
+            "Hive",
+            "PostgreSQL",
+            "MongoDB",
+            "Power BI",
+            "Seaborn"
+          ]
+        },
+        {
+          "name": "Agente Inteligente de Análisis de Sentimiento y Reseñas",
+          "category": "IA Generativa",
+          "description": "Desarrollo del backend de un agente autónomo que conecta con plataformas externas para extraer reseñas mediante web scraping avanzado. Orquestación de LLMs (GPT-4, Gemini, Groq) para analizar, sintetizar y clasificar sentimientos, transformando texto no estructurado en inteligencia de negocio y reportes ejecutivos. Arquitectura modular y escalable contenedorizada con Docker.",
+          "achievements": [
+            "🧠 Integración de GPT-4, Gemini y Groq para análisis NLP avanzado",
+            "🐳 Contenedorización con Docker para portabilidad y despliegue limpio",
+            "📈 Transformación de reseñas no estructuradas en reportes ejecutivos accionables",
+            "🔧 Arquitectura modular preparada para integración con interfaces gráficas"
+          ],
+          "tags": [
+            "Python",
+            "OpenAI API",
+            "Gemini API",
+            "Groq",
+            "Docker",
+            "Prompt Engineering"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dam",
+      "institution": "IES Virgen de la Paloma",
+      "degree": "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma (DAM)",
+      "date": "2022 - 2024",
+      "description": "Formación en desarrollo de aplicaciones multiplataforma con Java y Kotlin. Proyectos de bases de datos SQL y NoSQL. Desarrollo móvil con Android y Jetpack Compose.",
+      "tags": [
+        "Java",
+        "Kotlin",
+        "Android",
+        "MongoDB",
+        "SQL"
+      ],
+      "projects": [
+        {
+          "name": "TFG — Suite de Gestión Hospitalaria",
+          "category": "Proyecto Final",
+          "description": "Diseño y desarrollo integral de un ecosistema de tres aplicaciones interconectadas (Administración, Personal Médico y Pacientes) orientadas a la optimización de flujos de trabajo clínicos. Lógica de negocio en Java orquestada con Maven, interfaces gráficas de escritorio con Swing y generación de reportes clínicos estructurados con Jaspersoft.",
+          "achievements": [
+            "🏥 Ecosistema de 3 aplicaciones interconectadas: Administración, Personal Médico y Pacientes",
+            "📋 Generación de reportes clínicos estructurados con Jaspersoft",
+            "⭐ Calificación: Matrícula de Honor"
+          ],
+          "tags": [
+            "Java",
+            "Maven",
+            "Swing",
+            "Jaspersoft",
+            "MongoDB"
+          ]
+        },
+        {
+          "name": "Desarrollo Móvil Android — Kotlin y Jetpack Compose",
+          "category": "Desarrollo Móvil",
+          "description": "Creación de aplicaciones nativas Android aplicando el patrón de arquitectura MVC con Kotlin y Jetpack Compose. Implementación de renderizado de listas dinámicas, manejo avanzado de eventos y diseño de interfaces reactivas y modernas.",
+          "achievements": [
+            "📱 Apps nativas Android con Kotlin y Jetpack Compose bajo patrón MVC",
+            "🎨 Interfaces reactivas con renderizado dinámico y manejo avanzado de eventos"
+          ],
+          "tags": [
+            "Kotlin",
+            "Jetpack Compose",
+            "Android",
+            "MVC"
+          ]
+        },
+        {
+          "name": "Gestión de Persistencia y Bases de Datos",
+          "category": "Bases de Datos",
+          "description": "Modelado e integración de bases de datos relacionales y no relacionales a lo largo del grado. Uso de MongoDB para persistencia flexible de datos en el TFG, complementado con Oracle y SQLite en proyectos de módulo, garantizando la integridad y eficiencia de las consultas.",
+          "achievements": [
+            "🗄️ Dominio de entornos SQL (Oracle, SQLite) y NoSQL (MongoDB)",
+            "✅ Integridad y eficiencia garantizadas en todos los modelos de datos"
+          ],
+          "tags": [
+            "MongoDB",
+            "SQL (Oracle)",
+            "SQLite",
+            "Modelado de datos"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "bach",
+      "institution": "IES Nuestra Señora de La Almudena",
+      "degree": "Bachillerato Científico",
+      "date": "2020 - 2022",
+      "description": "Bachillerato en modalidad de Ciencias.",
+      "tags": [
+        "Ciencias"
+      ],
+      "projects": []
+    }
+  ]
+},
     {
       "id": "ndh",
       "company": "Next Digital Hub",

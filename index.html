@@ -1056,9 +1056,13 @@
           raiz.style.removeProperty('--w-hueco-arriba');
         }
 
-        // Nunca por encima del borde de la pantalla, pase lo que pase.
-        const maximo = window.innerHeight - (toast.offsetHeight || 0) - MARGEN_SUP;
-        toast.style.bottom = `${Math.min(desdeAbajo + SEPARACION, Math.max(0, maximo))}px`;
+        // NO se baja el toast para que quepa: hacerlo lo mete debajo del panel,
+        // que lo tapa por z-index, y acaba cortado a media frase. Entre
+        // "asomar por arriba" y "quedar tapado", asomar es recuperable y
+        // quedar tapado no. Si el panel no pudo ceder lo suficiente (tiene un
+        // minimo utilizable), el toast se queda donde debe y como mucho pierde
+        // unos pixeles arriba.
+        toast.style.bottom = `${desdeAbajo + SEPARACION}px`;
       }
 
       // Se expone para poder recolocar en cuanto el toast aparece.

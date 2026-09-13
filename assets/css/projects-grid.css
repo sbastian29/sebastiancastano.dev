@@ -1,0 +1,779 @@
+/* ==========================================================================
+   Rejilla de proyectos
+   --------------------------------------------------------------------------
+   Cada proyecto se presenta como una ficha tecnica, no como una foto: un
+   identificador que codifica su area, un diagrama del recorrido del dato
+   generado desde el stack, y la ficha completa al abrirla.
+
+   El identificador (DATA_04) no es un numero de orden decorativo: la primera
+   parte es el area del proyecto, asi que el codigo dice algo antes incluso de
+   leer el titulo.
+   ========================================================================== */
+
+:root {
+  /* Las tres primeras ya existian en style.css; se reafirman aqui para que la
+     rejilla sea legible aunque cambie el orden de carga. La cuarta faltaba:
+     habia cuatro categorias en los datos y solo tres colores, asi que los
+     proyectos de IA se pintaban como software. */
+  --cat-data: #3b82f6;
+  --cat-auto: #10b981;
+  --cat-soft: #8b5cf6;
+  --cat-ia:   #f59e0b;
+
+  --grid-linea: rgba(0, 0, 0, .09);
+  --grid-tinta: #1a1a1a;
+  --grid-tenue: #737373;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, monospace;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --grid-linea: rgba(255, 255, 255, .14);
+    --grid-tinta: #f2f2f2;
+    --grid-tenue: #9b9b9b;
+  }
+}
+:root[data-theme="dark"] {
+  --grid-linea: rgba(255, 255, 255, .14);
+  --grid-tinta: #f2f2f2;
+  --grid-tenue: #9b9b9b;
+}
+
+/* --- Rejilla ------------------------------------------------------------ */
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: clamp(1.5rem, 4vw, 3.5rem);
+  align-items: start;
+}
+
+@media (max-width: 900px) {
+  .projects-grid { grid-template-columns: minmax(0, 1fr); }
+}
+
+/* --- Ficha -------------------------------------------------------------- */
+
+.pj {
+  --cat: var(--cat-soft);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  padding: 1.5rem 0 0;
+  /* `border: 0` PRIMERO. Es un <button>, y declarar solo `border-top` deja los
+     otros tres lados con el borde por defecto del navegador (2px outset), que
+     dibuja una caja alrededor de toda la ficha. */
+  border: 0;
+  border-top: 1px solid var(--grid-linea);
+  background: none;
+  appearance: none;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+  /* La linea superior se tine del color del area al abrir o enfocar. Es el
+     unico elemento que cambia de color: el resto se mantiene neutro para que
+     el codigo de color signifique algo. */
+  transition: border-color .25s ease;
+}
+
+.pj[data-cat="data"]           { --cat: var(--cat-data); }
+.pj[data-cat="automatizacion"] { --cat: var(--cat-auto); }
+.pj[data-cat="software"]       { --cat: var(--cat-soft); }
+.pj[data-cat="ia"]             { --cat: var(--cat-ia); }
+
+.pj:hover,
+.pj:focus-visible,
+.pj[aria-expanded="true"] { border-top-color: var(--cat); }
+
+.pj:focus-visible {
+  outline: 2px solid var(--cat);
+  outline-offset: 6px;
+}
+
+/* --- Diagrama ----------------------------------------------------------- */
+
+.dg {
+  display: flex;
+  flex-direction: column;
+  gap: .875rem;
+  padding: 1.5rem 0 0;
+  border-top: 1px dashed var(--grid-linea);
+  min-height: 130px;
+  justify-content: center;
+}
+
+.dg-flujo {
+  display: flex;
+  align-items: center;
+  gap: .625rem;
+  flex-wrap: wrap;
+}
+
+.dg-col {
+  display: flex;
+  flex-direction: column;
+  gap: .375rem;
+  flex: 0 1 auto;
+  min-width: 0;
+}
+
+.dg--conjunto .dg-col { flex-direction: row; flex-wrap: wrap; }
+
+.dg-nodo {
+  font-family: var(--mono);
+  font-size: .75rem;
+  line-height: 1.2;
+  padding: .4375rem .625rem;
+  border: 1px solid var(--grid-linea);
+  border-radius: 2px;
+  color: var(--grid-tinta);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* La etapa de origen y la de salida son las que orientan la lectura: se
+   marcan con el color del area en el borde lateral. Las intermedias quedan
+   neutras para que el ojo siga el recorrido sin ruido. */
+.dg-col[data-etapa="fuente"] .dg-nodo { border-left: 2px solid var(--cat); }
+.dg-col[data-etapa="salida"] .dg-nodo { border-right: 2px solid var(--cat); }
+
+.dg-flecha {
+  flex: 0 0 auto;
+  width: 18px;
+  height: 1px;
+  background: var(--grid-linea);
+  position: relative;
+}
+.dg-flecha::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 50%;
+  width: 5px;
+  height: 5px;
+  border-top: 1px solid var(--grid-linea);
+  border-right: 1px solid var(--grid-linea);
+  transform: translateY(-50%) rotate(45deg);
+}
+
+.dg-base {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .375rem;
+  padding-top: .75rem;
+  border-top: 1px dashed var(--grid-linea);
+}
+
+.dg-chip {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  color: var(--grid-tenue);
+}
+.dg-chip::before { content: "· "; }
+.dg-chip:first-child::before { content: ""; }
+
+/* --- Titulo y categorias ------------------------------------------------ */
+
+.pj-titulo {
+  font-size: clamp(1.125rem, 2vw, 1.375rem);
+  font-weight: 600;
+  line-height: 1.25;
+  margin: 0;
+  color: var(--grid-tinta);
+  text-wrap: balance;
+}
+
+.pj-sub {
+  margin: .375rem 0 0;
+  color: var(--grid-tenue);
+  font-size: .9375rem;
+  line-height: 1.5;
+  max-width: 58ch;
+}
+
+.pj-cats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .875rem;
+  font-size: .8125rem;
+  color: var(--grid-tenue);
+}
+
+.pj-cat { display: inline-flex; align-items: center; gap: .375rem; }
+.pj-cat::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--punto, var(--grid-tenue));
+}
+.pj-cat[data-c="data"]           { --punto: var(--cat-data); }
+.pj-cat[data-c="automatizacion"] { --punto: var(--cat-auto); }
+.pj-cat[data-c="software"]       { --punto: var(--cat-soft); }
+.pj-cat[data-c="ia"]             { --punto: var(--cat-ia); }
+
+.pj-estado {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  color: var(--grid-tenue);
+}
+
+/* --- Ficha desplegada --------------------------------------------------- */
+
+.pj-ficha {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows .3s ease;
+}
+.pj-ficha > div { overflow: hidden; }
+.pj[aria-expanded="true"] + .pj-ficha { grid-template-rows: 1fr; }
+
+.pj-ficha-inner { padding-top: 1.25rem; }
+
+.pj-ficha p {
+  margin: 0 0 1.25rem;
+  color: var(--grid-tenue);
+  font-size: .9375rem;
+  line-height: 1.65;
+  max-width: 65ch;
+}
+
+.pj-stack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .375rem;
+  margin-bottom: 1.25rem;
+}
+.pj-stack span {
+  font-family: var(--mono);
+  font-size: .75rem;
+  padding: .25rem .5rem;
+  border: 1px solid var(--grid-linea);
+  border-radius: 2px;
+  color: var(--grid-tinta);
+}
+
+.pj-enlaces { display: flex; flex-wrap: wrap; gap: 1.25rem; }
+.pj-enlaces a {
+  font-size: .875rem;
+  color: var(--grid-tinta);
+  text-decoration: none;
+  border-bottom: 1px solid var(--cat);
+  padding-bottom: 2px;
+}
+.pj-enlaces a:hover { color: var(--cat); }
+
+/* Sin enlaces todavia, el bloque no ocupa nada: cuando se rellene `github` o
+   `demo` en projects.json apareceran solos. */
+.pj-enlaces:empty { display: none; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pj, .pj-ficha { transition: none; }
+}
+
+/* ==========================================================================
+   Estructura de catalogo: indice fijo a la izquierda, obra a la derecha
+   --------------------------------------------------------------------------
+   Antes la pagina abria con un titulo enorme centrado, un subtitulo y tres
+   cifras redondas. Ocupaba una pantalla entera sin decir nada que el visitante
+   no supiera ya -esta en la pagina de proyectos, sabe que va a ver proyectos-
+   y empujaba el trabajo por debajo del pliegue.
+
+   Ahora la primera pantalla es el trabajo. El indice queda a un lado, fijo, de
+   forma que las areas siguen a la vista mientras se recorre la lista.
+   ========================================================================== */
+
+.trabajo-layout {
+  display: grid;
+  grid-template-columns: minmax(200px, 22%) minmax(0, 1fr);
+  gap: clamp(2rem, 6vw, 6rem);
+  align-items: start;
+  /* La franja vacia a la izquierda es de la referencia: alli el indice lleva
+     `padding-left: 30%`. Con `clamp` no se come la pantalla en portatiles. */
+  padding-left: clamp(0px, 8vw, 160px);
+}
+
+.trabajo-nav {
+  position: sticky;
+  top: 100px;
+  display: flex;
+  flex-direction: column;
+  gap: 2.5rem;
+}
+
+/* El buscador deja de ser una barra centrada de 700px y pasa a ser lo que es:
+   un campo de texto pequeño en la esquina, para cuando ya sabes lo que buscas. */
+.trabajo-nav .search-filter-container { background: none; padding: 0; border: 0; box-shadow: none; }
+.trabajo-nav .search-wrapper { margin: 0; max-width: none; }
+.trabajo-nav .search-box { max-width: none; }
+.trabajo-nav .search-input {
+  width: 100%;
+  font-size: .875rem;
+  padding: .625rem .75rem .625rem 2rem;
+  border-radius: 2px;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--grid-linea);
+}
+.trabajo-nav .search-input:focus { border-bottom-color: var(--grid-tinta); outline: none; }
+
+/* --- Areas como indice, no como pastillas ------------------------------- */
+
+.trabajo-nav .filter-categories { display: flex; flex-direction: column; gap: 2rem; }
+.trabajo-nav .filter-group { display: flex; flex-direction: column; gap: .5rem; }
+
+.trabajo-nav .filter-label {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  color: var(--grid-tenue);
+  margin-bottom: .25rem;
+}
+
+.trabajo-nav .filter-chips {
+  display: flex;
+  flex-direction: column;
+  gap: .125rem;
+  align-items: flex-start;
+}
+
+/* Se anula la pastilla del sistema de filtros original: aqui cada area es una
+   linea de texto que se enciende al activarse. */
+.trabajo-nav .filter-chip {
+  --c: var(--grid-tenue);
+  background: none !important;
+  border: 0 !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: .1875rem 0 !important;
+  font-size: .9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--c);
+  text-align: left;
+  transition: color .18s ease;
+}
+.trabajo-nav .filter-chip[data-category="data"]           { --c: var(--cat-data); }
+.trabajo-nav .filter-chip[data-category="automatizacion"] { --c: var(--cat-auto); }
+.trabajo-nav .filter-chip[data-category="software"]       { --c: var(--cat-soft); }
+.trabajo-nav .filter-chip[data-category="ia"]             { --c: var(--cat-ia); }
+
+/* En reposo, gris; el color aparece al pasar por encima o al activarse, para
+   que el color signifique "seleccionado" y no sea decoracion permanente. */
+.trabajo-nav .filter-chip:not(.active) { color: var(--grid-tenue); }
+.trabajo-nav .filter-chip:hover { color: var(--c); }
+.trabajo-nav .filter-chip.active { color: var(--grid-tinta) !important; font-weight: 700; }
+.trabajo-nav .filter-chip.active[data-category] { color: var(--c) !important; }
+.trabajo-nav .filter-chip-dot { display: none; }
+
+/* --- Contador y reset, al pie del indice -------------------------------- */
+
+.trabajo-nav .filter-actions {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--grid-linea);
+  margin: 0;
+}
+.trabajo-nav .results-counter {
+  font-family: var(--mono);
+  font-size: .75rem;
+  color: var(--grid-tenue);
+}
+.trabajo-nav .reset-filters {
+  background: none;
+  border: 0;
+  padding: 0;
+  font-size: .8125rem;
+  color: var(--grid-tenue);
+}
+.trabajo-nav .reset-filters:hover:not(:disabled) { color: var(--grid-tinta); }
+.trabajo-nav .active-filters { margin: 0; }
+
+/* --- Movil: el indice vuelve a ser una cabecera normal ------------------- */
+
+@media (max-width: 900px) {
+  .trabajo-layout { grid-template-columns: minmax(0, 1fr); gap: 2.5rem; padding-left: 0; }
+  .trabajo-nav { position: static; gap: 1.75rem; }
+  .trabajo-nav .filter-chips { flex-direction: row; flex-wrap: wrap; gap: .5rem 1.25rem; }
+  .trabajo-nav .filter-categories { gap: 1.25rem; }
+}
+
+/* "Todos" encabeza el indice y se mantiene encendido mientras no haya ningun
+   area seleccionada, para que siempre haya una linea activa. */
+.trabajo-nav .filter-chip--todos { --c: var(--grid-tinta); }
+.trabajo-nav .filter-chip--todos.active { color: var(--grid-tinta); font-weight: 700; }
+
+/* La lupa del buscador se solapaba con el texto del campo. */
+.trabajo-nav .search-box .search-icon,
+.trabajo-nav .search-box i { left: 0; font-size: .8125rem; }
+
+/* El sistema de chips original pinta el fondo con un ::before que se revela al
+   activarse, y pone el texto en blanco encima. Aqui no hay pastilla que
+   rellenar, asi que el pseudo-elemento sobra y el texto debe conservar color. */
+.trabajo-nav .filter-chip::before,
+.trabajo-nav .filter-chip.active::before { display: none !important; }
+.trabajo-nav .filter-chip.active { transform: none !important; }
+
+/* El buscador heredaba la pastilla del buscador grande centrado. Aqui es un
+   campo discreto: una linea, sin caja. */
+.trabajo-nav .search-box {
+  background: none !important;
+  border: 0 !important;
+  border-bottom: 1px solid var(--grid-linea) !important;
+  border-radius: 0 !important;
+  box-shadow: none !important;
+  padding: 0 !important;
+}
+.trabajo-nav .search-box:focus-within { border-bottom-color: var(--grid-tinta) !important; }
+.trabajo-nav .search-input { border-bottom: 0; padding-left: 1.5rem; }
+.trabajo-nav .search-clear { font-size: .75rem; }
+
+/* --- Correcciones de la auditoria --------------------------------------- */
+
+@media (max-width: 900px) {
+  /* En escritorio cada area es una linea de un indice y basta con el alto del
+     texto. En movil son objetivos de dedo: 11 de ellos quedaban por debajo de
+     32px, y la recomendacion es 44. Se gana alto sin engordar la tipografia. */
+  .trabajo-nav .filter-chip {
+    padding: .625rem 0 !important;
+    min-height: 44px;
+    display: inline-flex;
+    align-items: center;
+  }
+  .trabajo-nav .filter-chips { gap: 0 1.5rem; }
+
+  /* El indice y el primer proyecto quedaban separados por un hueco muerto de
+     mas de 100px, porque se sumaban el gap del layout y el padding de la
+     rejilla. Se separan con una linea, que ademas marca donde empieza la obra. */
+  .trabajo-obra { padding-top: .5rem; border-top: 1px solid var(--grid-linea); }
+  .trabajo-nav .filter-actions { padding-bottom: .5rem; }
+}
+
+/* --- Filtrado: reordenar en vez de parpadear ---------------------------- */
+
+/* El sistema original hace `position: absolute` en los ocultos y anima con
+   `transform: scale()`. Dos problemas: el absolute los saca del flujo de golpe
+   -de ahi el salto de los que quedan- y el transform pelea con el que usa FLIP
+   para deslizarlos. Aqui los ocultos se retiran con `display: none` y el
+   movimiento lo hace FLIP desde scrollSuave.js. */
+.projects-grid .filterable-item.filtered-out {
+  display: none !important;
+  position: static !important;
+  transform: none !important;
+}
+
+/* Sin transicion propia: FLIP anima el transform y dos animaciones sobre la
+   misma propiedad se estorban. */
+.projects-grid .filterable-item {
+  transition: none;
+}
+
+/* La entrada en zigzag arranca las tarjetas en x: ±180px, fuera de su columna.
+   Se recorta ahi, no en el body: `clip` (y no `hidden`) porque hidden crea un
+   contexto de scroll que romperia el `position: sticky` del indice. */
+.trabajo-obra { overflow-x: clip; }
+
+/* --- El scroll del navegador estorbaba a Lenis ---------------------------- */
+
+/* `style.css` tiene `scroll-behavior: smooth` en el html. Con Lenis activo eso
+   son DOS interpoladores peleando por la misma posicion: el navegador suaviza
+   lo que Lenis ya ha suavizado, y el resultado es un scroll pastoso y con
+   retardo. Es el conflicto que la propia documentacion de Lenis advierte.
+   Se anula solo cuando Lenis esta corriendo -el la marca con estas clases-,
+   asi que las demas paginas del sitio conservan su comportamiento. */
+html.lenis, html.lenis body { height: auto; }
+.lenis.lenis-smooth { scroll-behavior: auto !important; }
+.lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+.lenis.lenis-stopped { overflow: hidden; }
+
+/* --- Respuesta al raton y afordancia de apertura ------------------------- */
+
+/* Faltaba lo mas basico: pasar el raton por una ficha no producia nada, y nada
+   indicaba que se pudiera abrir. Una rejilla que no responde se siente muerta,
+   y una ficha desplegable sin señal no se despliega nunca. */
+
+
+
+
+
+/* El diagrama NO cambia de color al pasar por encima. Se probo y era demasiado:
+   con el numero, el titulo y los ocho nodos tiñendose a la vez, la ficha entera
+   parpadeaba en ambar. El color se gasta en un sitio, no en todos. */
+
+
+
+
+
+
+
+
+/* El titulo se subraya en vez de cambiar de color: dice "esto se pulsa" sin
+   competir con el numero, que es donde vive el color. */
+.pj-titulo {
+  transition: background-size .35s cubic-bezier(.22,.61,.36,1);
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: 0 100%;
+  background-size: 0% 1px;
+  display: inline;
+}
+.pj:hover .pj-titulo,
+.pj:focus-visible .pj-titulo { background-size: 100% 1px; }
+
+@media (prefers-reduced-motion: reduce) {
+  .pj-titulo, .pj-portada i { transition: none; }
+}
+
+/* ==========================================================================
+   Tarjeta con portada de icono
+   --------------------------------------------------------------------------
+   El icono dice de un vistazo que hace el proyecto -un cerebro para los
+   agentes con LLM, un robot para la automatizacion, un flujo para streaming-.
+   Lo elige `iconoDe()` segun las tecnologias, no segun la categoria: dos
+   proyectos de la misma area pueden hacer cosas muy distintas.
+   ========================================================================== */
+
+.pj {
+  --cat: var(--cat-soft);
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  padding: 0;
+  border: 0;
+  background: none;
+  appearance: none;
+  text-align: left;
+  width: 100%;
+  font: inherit;
+  color: inherit;
+  cursor: pointer;
+}
+
+.pj[data-cat="data"]           { --cat: var(--cat-data); }
+.pj[data-cat="automatizacion"] { --cat: var(--cat-auto); }
+.pj[data-cat="software"]       { --cat: var(--cat-soft); }
+.pj[data-cat="ia"]             { --cat: var(--cat-ia); }
+
+.pj:focus-visible { outline: 2px solid var(--cat); outline-offset: 4px; }
+
+/* --- Portada ------------------------------------------------------------ */
+
+.pj-portada {
+  position: relative;
+  display: grid;
+  place-items: center;
+  aspect-ratio: 16 / 10;
+  border-radius: 2px;
+  /* El degradado se tiñe del area, muy diluido: da color sin gritar. */
+  background:
+    radial-gradient(120% 120% at 30% 20%,
+      color-mix(in srgb, var(--cat) 12%, transparent), transparent 70%),
+    color-mix(in srgb, var(--cat) 5%, var(--bg-tertiary, #f5f5f5));
+  overflow: hidden;
+  transition: background .4s ease;
+}
+
+.pj-portada i {
+  font-size: clamp(2.5rem, 5vw, 3.75rem);
+  color: color-mix(in srgb, var(--cat) 55%, var(--grid-tenue));
+  transition: transform .45s cubic-bezier(.22,.61,.36,1), color .3s ease;
+}
+
+.pj:hover .pj-portada i,
+.pj:focus-visible .pj-portada i { transform: scale(1.08); color: var(--cat); }
+
+/* Marca de proyecto destacado. El dato `featured` ya estaba en projects.json y
+   no se usaba en ninguna parte. */
+.pj-destacado {
+  position: absolute;
+  top: .75rem;
+  left: .75rem;
+  font-family: var(--mono);
+  font-size: .625rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .25rem .5rem;
+  border-radius: 2px;
+  background: var(--grid-tinta);
+  color: var(--bg-primary, #fafafa);
+}
+
+/* --- Cuerpo ------------------------------------------------------------- */
+
+.pj-cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: .5rem;
+  padding: 1rem 0 0;
+}
+
+.pj-cats { order: -1; }
+
+/* ==========================================================================
+   Panel de detalle
+   --------------------------------------------------------------------------
+   Estructura tomada de la ficha de proyecto de stewartpartners.studio: visual
+   grande a la izquierda, datos y texto a la derecha, cerrar abajo. Aqui vive
+   el identificador (IA_01), que es lo que hace su SP/ARC_01.
+   ========================================================================== */
+
+.dt {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--bg-primary, #fafafa);
+  opacity: 0;
+  transition: opacity .35s cubic-bezier(.22,.61,.36,1);
+}
+.dt.is-abierto { opacity: 1; }
+.dt[hidden] { display: none; }
+
+/* Mientras el panel esta abierto, la pagina de detras no se desplaza. */
+body.dt-abierto { overflow: hidden; }
+
+.dt-visual {
+  --cat: var(--cat-soft);
+  display: grid;
+  place-items: center;
+  background:
+    radial-gradient(90% 90% at 35% 30%,
+      color-mix(in srgb, var(--cat) 16%, transparent), transparent 70%),
+    color-mix(in srgb, var(--cat) 6%, var(--bg-tertiary, #f5f5f5));
+}
+.dt-visual[data-cat="data"]           { --cat: var(--cat-data); }
+.dt-visual[data-cat="automatizacion"] { --cat: var(--cat-auto); }
+.dt-visual[data-cat="software"]       { --cat: var(--cat-soft); }
+.dt-visual[data-cat="ia"]             { --cat: var(--cat-ia); }
+
+.dt-visual i {
+  font-size: clamp(4rem, 12vw, 9rem);
+  color: color-mix(in srgb, var(--cat) 60%, var(--grid-tenue));
+}
+
+.dt-ficha {
+  display: flex;
+  flex-direction: column;
+  /* 100dvh y no 100vh: en iOS la barra de direcciones cambia el alto de vh y
+     el boton de cerrar se queda fuera de pantalla. */
+  height: 100dvh;
+}
+
+.dt-scroll {
+  flex: 1;
+  overflow-y: auto;
+  padding: clamp(2rem, 5vw, 4rem) clamp(1.5rem, 4vw, 3.5rem) 1rem;
+}
+
+.dt-codigo {
+  font-family: var(--mono);
+  font-size: .8125rem;
+  letter-spacing: .08em;
+  color: var(--grid-tenue);
+  margin: 0 0 .5rem;
+}
+
+.dt-titulo {
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.15;
+  margin: 0 0 2rem;
+  color: var(--grid-tinta);
+  text-wrap: balance;
+}
+
+.dt-datos {
+  display: grid;
+  gap: 1rem;
+  margin: 0 0 2.5rem;
+}
+.dt-dato dt {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--grid-tenue);
+  margin-bottom: .25rem;
+}
+.dt-dato dd { margin: 0; color: var(--grid-tinta); font-size: .9375rem; }
+
+.dt-bloque { margin-bottom: 2.5rem; }
+.dt-bloque h3 {
+  font-family: var(--mono);
+  font-size: .6875rem;
+  font-weight: 500;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  color: var(--grid-tenue);
+  margin: 0 0 .875rem;
+}
+
+.dt-texto {
+  margin: 0;
+  color: var(--grid-tenue);
+  font-size: .9375rem;
+  line-height: 1.7;
+  max-width: 62ch;
+}
+
+.dt-stack { display: flex; flex-wrap: wrap; gap: .375rem; }
+.dt-stack span {
+  font-family: var(--mono);
+  font-size: .75rem;
+  padding: .3125rem .5625rem;
+  border: 1px solid var(--grid-linea);
+  border-radius: 2px;
+  color: var(--grid-tinta);
+}
+
+.dt-enlaces { display: flex; flex-wrap: wrap; gap: 1.5rem; }
+.dt-enlaces a {
+  font-size: .875rem;
+  color: var(--grid-tinta);
+  text-decoration: none;
+  border-bottom: 1px solid var(--grid-linea);
+  padding-bottom: 3px;
+}
+.dt-enlaces a:hover { border-bottom-color: currentColor; }
+
+.dt-cerrar {
+  flex: 0 0 auto;
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: 1.25rem clamp(1.5rem, 4vw, 3.5rem);
+  border: 0;
+  border-top: 1px solid var(--grid-linea);
+  background: none;
+  font: inherit;
+  font-size: .8125rem;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  color: var(--grid-tinta);
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+}
+.dt-cerrar:hover { background: var(--bg-tertiary, #f5f5f5); }
+.dt-cerrar span { font-size: 1.125rem; line-height: 1; }
+
+/* El diagrama dentro del panel no necesita la linea de separacion que lleva
+   en la rejilla: ya esta bajo su propio encabezado. */
+.dt .dg { border-top: 0; padding-top: 0; min-height: 0; }
+
+@media (max-width: 900px) {
+  .dt { grid-template-columns: minmax(0, 1fr); grid-template-rows: 32vh 1fr; }
+  .dt-ficha { height: auto; min-height: 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dt, .pj-portada, .pj-portada i { transition: none; }
+}

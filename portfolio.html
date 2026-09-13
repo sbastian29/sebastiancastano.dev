@@ -479,6 +479,8 @@
     /* hide the dot since we no longer need it */
     .logo-dot { display: none; }
   </style>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/projects-grid.css">
 </head>
 <body>
   <!-- Header -->
@@ -531,32 +533,13 @@
 
   <main>
     <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <h1 class="animate-fade-in" data-i18n="port.page.h1">Portfolio</h1>
-        <p class="animate-fade-in" data-i18n="port.page.subtitle">Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.</p>
-
-        <div class="portfolio-stats animate-fade-in">
-          <div class="stat-item">
-            <div class="stat-number">8</div>
-            <div class="stat-label" data-i18n="port.stat.projects">Proyectos</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">15+</div>
-            <div class="stat-label" data-i18n="port.stat.techs">Tecnologías</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">3</div>
-            <div class="stat-label" data-i18n="port.stat.areas">Áreas</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
     <!-- Projects Section -->
-    <section class="section" style="padding-top: 0;">
+    <section class="section trabajo" style="padding-top: 0;">
       <div class="container">
-        <!-- Filter Search -->
+        <div class="trabajo-layout">
+        <!-- Columna izquierda: buscador, areas y contador. Se queda fija al
+             hacer scroll, como el indice de un catalogo. -->
+        <aside class="trabajo-nav">
         <div class="search-filter-container">
           <div class="search-wrapper">
             <div class="search-box">
@@ -570,6 +553,7 @@
             <div class="filter-group">
               <span class="filter-label" data-i18n="port.filter.byrole">Por rol / área</span>
               <div class="filter-chips" id="projectRoleChips">
+                <button class="filter-chip filter-chip--todos" id="filtroTodos" data-i18n="port.cat.all">Todos</button>
                 <button class="filter-chip" data-filter="automatizacion" data-filter-type="categories" data-category="automatizacion">
                   <span class="filter-chip-dot"></span>
                   <span data-i18n="port.filter.auto">Automatización</span>
@@ -578,6 +562,10 @@
                   <span class="filter-chip-dot"></span>
                   <span data-i18n="port.filter.data">Data Engineering</span>
                 </button>
+                <button class="filter-chip" data-filter="ia" data-filter-type="categories" data-category="ia">
+                  <span class="filter-chip-dot"></span>
+                  <span data-i18n="port.cat.ia">IA</span>
+                </button>
                 <button class="filter-chip" data-filter="software" data-filter-type="categories" data-category="software">
                   <span class="filter-chip-dot"></span>
                   <span data-i18n="port.filter.soft">Desarrollo Software</span>
@@ -585,35 +573,6 @@
               </div>
             </div>
 
-            <div class="filter-group">
-              <span class="filter-label" data-i18n="port.filter.bytech">Por tecnología</span>
-              <div class="filter-chips" id="projectTechChips">
-                <button class="filter-chip" data-filter="python" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Python</span>
-                </button>
-                <button class="filter-chip" data-filter="java" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Java</span>
-                </button>
-                <button class="filter-chip" data-filter="kotlin" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Kotlin</span>
-                </button>
-                <button class="filter-chip" data-filter="aws" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>AWS</span>
-                </button>
-                <button class="filter-chip" data-filter="docker" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Docker</span>
-                </button>
-                <button class="filter-chip" data-filter="mongodb" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>MongoDB</span>
-                </button>
-              </div>
-            </div>
           </div>
 
           <div class="filter-actions">
@@ -629,8 +588,10 @@
 
           <div class="active-filters" id="activeProjectFilters"></div>
         </div>
+        </aside>
 
-        <!-- Projects Grid -->
+        <!-- Columna derecha: la obra -->
+        <div class="trabajo-obra">
         <div class="projects-grid" id="projectsGrid">
           <!-- Projects will be dynamically generated -->
         </div>
@@ -641,6 +602,8 @@
           <h3 data-i18n="port.empty">No se encontraron proyectos</h3>
           <p data-i18n="port.empty.sub">Intenta ajustar los filtros o términos de búsqueda</p>
         </div>
+        </div><!-- /trabajo-obra -->
+        </div><!-- /trabajo-layout -->
       </div>
     </section>
   </main>
@@ -664,7 +627,16 @@
   <!-- Scripts -->
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
+  <!-- Movimiento de la pagina. Las dos referencias que sigue este diseño
+       (stewartpartners.studio y el portfolio de Yiting) usan estas mismas
+       librerias; ver assets/js/scrollSuave.js. -->
+  <script src="https://unpkg.com/lenis@1.1.13/dist/lenis.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
   <script src="assets/js/filterEngine.js"></script>
+  <script src="assets/js/projectDiagram.js"></script>
+  <script src="assets/js/projectsGrid.js"></script>
+  <script src="assets/js/scrollSuave.js"></script>
   <script>
     // =====================================================================
     //  Portfolio data — desacoplado de HTML, cargado desde JSON por idioma
@@ -691,117 +663,19 @@
     }
 
     /** Genera las tarjetas de proyecto en el grid */
+    // ScrollTrigger necesita registrarse antes del primer uso.
+    if (window.gsap && window.ScrollTrigger) gsap.registerPlugin(ScrollTrigger);
+    if (window.ScrollSuave) window.ScrollSuave.iniciar();
+
     function generateProjectCards() {
       const grid = document.getElementById('projectsGrid');
       if (!grid || projectsData.length === 0) return;
-
-      const i18n = window.I18n;
-      const t    = (key, vars) => i18n ? i18n.t(key, vars) : key;
-
-      grid.innerHTML = projectsData.map(project => {
-        const icon       = getProjectIcon(project);
-        const cat        = (project.categories || [])[0] || 'software';
-        const catLabel   = cat === 'data'          ? t('port.cat.data')
-                         : cat === 'automatizacion' ? t('port.cat.auto')
-                         : t('port.cat.soft');
-        const catIcon    = cat === 'data'          ? 'database'
-                         : cat === 'automatizacion' ? 'robot'
-                         : 'code';
-
-        // Botón GitHub o etiqueta "Repositorio privado"
-        const githubBtn  = project.github
-          ? `<a href="${project.github}" target="_blank" rel="noopener noreferrer" class="card-link-btn card-link-github">
-               <i class="fab fa-github"></i>
-               ${t('port.github')}
-             </a>`
-          : `<span class="card-link-btn card-link-private">
-               <i class="fas fa-lock"></i>
-               ${t('port.private_repo')}
-             </span>`;
-
-        const demoBtn    = project.demo
-          ? `<a href="${project.demo}" target="_blank" rel="noopener noreferrer" class="card-link-btn card-link-demo">
-               <i class="fas fa-external-link-alt"></i>
-               ${t('port.demo')}
-             </a>` : '';
-
-        // Miniatura: vídeo con player estilo YouTube si existe, icono si no
-        const orientation = project.orientation || 'landscape';
-        const isPortrait  = orientation === 'portrait';
-        const mediaPart  = project.video
-          ? `<div class="yt-player ${isPortrait ? 'portrait' : ''}" data-src="${project.video}">
-               <video class="yt-video" src="${project.video}" playsinline preload="metadata"></video>
-               <div class="yt-overlay-play">
-                 <button class="yt-big-play" aria-label="Reproducir">
-                   <svg viewBox="0 0 68 48" width="68" height="48"><path class="yt-bg" d="M66.52 7.74C65.7 4.66 63.24 2.2 60.15 1.37 54.88 0 34 0 34 0S13.12 0 7.85 1.37C4.76 2.2 2.3 4.66 1.48 7.74 0 13.07 0 24 0 24s0 10.93 1.48 16.26c.82 3.08 3.28 5.54 6.37 6.37C13.12 48 34 48 34 48s20.88 0 26.15-1.37c3.09-.83 5.55-3.29 6.37-6.37C68 34.93 68 24 68 24s0-10.93-1.48-16.26z"/><path class="yt-tri" d="M45 24 27 14v20z"/></svg>
-                 </button>
-               </div>
-               <div class="yt-controls">
-                 <div class="yt-progress-wrap">
-                   <div class="yt-progress-bg">
-                     <div class="yt-progress-buf"></div>
-                     <div class="yt-progress-fill"></div>
-                     <div class="yt-progress-thumb"></div>
-                   </div>
-                 </div>
-                 <div class="yt-bar">
-                   <div class="yt-bar-left">
-                     <button class="yt-btn yt-play-btn" aria-label="Play/Pause">
-                       <svg class="yt-icon-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg>
-                       <svg class="yt-icon-pause" viewBox="0 0 24 24" style="display:none"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
-                     </button>
-                     <button class="yt-btn yt-mute-btn" aria-label="Silenciar">
-                       <svg class="yt-icon-vol" viewBox="0 0 24 24"><path d="M3 9v6h4l5 5V4L7 9H3zm13.5 3A4.5 4.5 0 0 0 14 7.97v8.05c1.48-.73 2.5-2.25 2.5-4.02zM14 3.23v2.06c2.89.86 5 3.54 5 6.71s-2.11 5.85-5 6.71v2.06c4.01-.91 7-4.49 7-8.77s-2.99-7.86-7-8.77z"/></svg>
-                       <svg class="yt-icon-mute" viewBox="0 0 24 24" style="display:none"><path d="M16.5 12A4.5 4.5 0 0 0 14 7.97v2.21l2.45 2.45c.03-.2.05-.41.05-.63zm2.5 0c0 .94-.2 1.82-.54 2.64l1.51 1.51C20.63 14.91 21 13.5 21 12c0-4.28-2.99-7.86-7-8.77v2.06c2.89.86 5 3.54 5 6.71zM4.27 3L3 4.27 7.73 9H3v6h4l5 5v-6.73l4.25 4.25c-.67.52-1.42.93-2.25 1.18v2.06A8.99 8.99 0 0 0 17.73 18l2 2L21 18.73l-9-9L4.27 3zM12 4L9.91 6.09 12 8.18V4z"/></svg>
-                     </button>
-                     <div class="yt-vol-wrap">
-                       <input type="range" class="yt-vol-range" min="0" max="1" step="0.05" value="1">
-                     </div>
-                     <span class="yt-time">0:00 / 0:00</span>
-                   </div>
-                   <div class="yt-bar-right">
-                     <button class="yt-btn yt-fs-btn" aria-label="Pantalla completa">
-                       <svg class="yt-icon-fs" viewBox="0 0 24 24"><path d="M7 14H5v5h5v-2H7v-3zm-2-4h2V7h3V5H5v5zm12 7h-3v2h5v-5h-2v3zM14 5v2h3v3h2V5h-5z"/></svg>
-                     </button>
-                   </div>
-                 </div>
-               </div>
-             </div>`
-          : `<i class="fas ${icon} project-icon"></i>`;
-
-        return `
-          <div class="project-card filterable-item stagger-item ${project.featured ? 'featured' : ''}"
-               data-categories='${JSON.stringify(project.categories || [])}'
-               data-tags='${JSON.stringify(project.tags || [])}'
-               data-title="${(project.title || '').replace(/"/g, '&quot;')}"
-               data-description="${(project.description || '').replace(/"/g, '&quot;')}">
-            <div class="project-image${isPortrait ? ' portrait' : ''}">
-              ${project.featured ? `<span class="project-featured-badge">${t('port.featured')}</span>` : ''}
-              <div class="project-image-inner">
-                ${mediaPart}
-              </div>
-            </div>
-            <div class="project-content">
-              <span class="project-category-badge ${cat}">
-                <i class="fas fa-${catIcon}"></i>
-                ${catLabel}
-              </span>
-              <h3 class="project-title">${project.title}</h3>
-              <p class="project-description">${project.description}</p>
-              <div class="project-tech-stack">
-                ${(project.technologies || []).map(tech => `<span class="project-tech">${tech}</span>`).join('')}
-              </div>
-              <div class="card-links">
-                ${githubBtn}
-                ${demoBtn}
-              </div>
-              <span class="project-date">
-                <i class="fas fa-calendar-alt"></i>
-                ${project.date}
-              </span>
-            </div>
-          </div>`;
-      }).join('');
+      // El renderizado vive en assets/js/projectsGrid.js: la ficha, el
+      // identificador por area y el diagrama del stack se montan alli.
+      window.ProjectsGrid.render(projectsData, grid);
+      // Despues de pintar: render() sustituye el innerHTML entero, asi que los
+      // triggers hay que crearlos sobre los nodos nuevos.
+      if (window.ScrollSuave) window.ScrollSuave.animarEntrada(grid);
     }
 
     /** Inicializa el motor de filtros con los items renderizados */
@@ -814,13 +688,42 @@
         tags:        JSON.parse(el.dataset.tags        || '[]')
       }));
 
-      const allChips = [
-        ...Array.from(document.querySelectorAll('#projectRoleChips .filter-chip')),
-        ...Array.from(document.querySelectorAll('#projectTechChips .filter-chip'))
-      ];
+      // "Todos" no es un filtro mas: deselecciona los de area. Se delega en el
+      // boton de reset existente para no duplicar la logica del motor.
+      const btnTodos = document.getElementById('filtroTodos');
+      if (btnTodos) {
+        btnTodos.addEventListener('click', () => {
+          document.querySelectorAll('#projectRoleChips .filter-chip.active')
+            .forEach(c => c.click());
+        });
+        // Queda activo mientras no haya ningun area seleccionada.
+        const refrescarTodos = () => {
+          const activos = document.querySelectorAll('#projectRoleChips .filter-chip.active:not(#filtroTodos)');
+          btnTodos.classList.toggle('active', activos.length === 0);
+        };
+        document.querySelectorAll('#projectRoleChips .filter-chip').forEach(c =>
+          c.addEventListener('click', () => setTimeout(refrescarTodos, 30)));
+        refrescarTodos();
+      }
+
+      // Solo areas: el filtro por tecnologia se retiro. filterEngine sigue
+      // aceptando `technologies`, pero con la lista vacia da todo por valido.
+      const allChips = Array.from(
+        document.querySelectorAll('#projectRoleChips .filter-chip'));
+
+      const rejilla = document.getElementById('projectsGrid');
+      // Se mide la posicion ANTES de que el filtro mueva nada; el motor llama a
+      // onFilterChange cuando ya ha aplicado las clases.
+      Array.from(document.querySelectorAll('#projectRoleChips .filter-chip'))
+        .forEach(c => c.addEventListener('click', () => {
+          if (window.ScrollSuave) window.ScrollSuave.medirAntes(rejilla);
+        }, true));
 
       new FilterEngine({
         items:                   items,
+        onFilterChange:          () => {
+          if (window.ScrollSuave) window.ScrollSuave.animarDespues(rejilla);
+        },
         container:               document.getElementById('projectsGrid'),
         searchInput:             document.getElementById('projectSearch'),
         filterChips:             allChips,

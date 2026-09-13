@@ -973,6 +973,23 @@
           </div>
           <div class="toast-body">${body}</div>`;
         document.body.appendChild(toast);
+
+        // La notificación invita a entrar, así que al pulsarla se abre el chat.
+        // La X se excluye: ahí el gesto es cerrar, no entrar.
+        toast.style.cursor = 'pointer';
+        toast.setAttribute('tabindex', '0');
+        const abrirAgente = (e) => {
+          if (e.target.closest('.toast-close')) return;
+          const host = document.getElementById('agente-sebastian-host');
+          // El widget no expone API: se pulsa su burbuja dentro del Shadow DOM.
+          const burbuja = host && host.shadowRoot && host.shadowRoot.querySelector('.burbuja');
+          if (burbuja) burbuja.click();
+          closeToast();
+        };
+        toast.addEventListener('click', abrirAgente);
+        toast.addEventListener('keydown', (e) => {
+          if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirAgente(e); }
+        });
         return toast;
       }
 
@@ -999,31 +1016,61 @@
       const SEPARACION = 12;   // aire entre el toast y el agente
       const MARGEN_SUP = 16;   // respiro contra el borde superior
 
-      function colocarToast(ev) {
+      // Último estado conocido del agente. Hace falta porque el widget avisa al
+      // arrancar, cuando el toast todavía no existe (sale a los 2 s): sin
+      // recordarlo, esa primera posición se perdía y quedaba encima de la
+      // burbuja, pisándola.
+      let estadoAgente = { tipo: 'agente:cerrado', detail: { top: 0, height: 0 } };
+
+      /** Mide el agente ahora mismo, sin depender del evento. */
+      function medirAgente() {
+        const host = document.getElementById('agente-sebastian-host');
+        if (!host || !host.shadowRoot) return null;
+        const abierto = estadoAgente.tipo === 'agente:abierto';
+        const el = host.shadowRoot.querySelector(abierto ? '.panel' : '.burbuja');
+        if (!el) return null;
+        const r = el.getBoundingClientRect();
+        return { top: r.top, height: r.height, abierto };
+      }
+
+      function colocarToast() {
         const toast = document.getElementById('life-update-toast');
         if (!toast || toast.classList.contains('hidden')) return;
-
-        const caja = (ev && ev.detail) || { top: 0, height: 0 };
         const raiz = document.documentElement;
 
-        // Altura que ocupa el agente desde abajo, sea burbuja o panel.
-        const desdeAbajo = Math.max(0, window.innerHeight - caja.top);
-        toast.style.bottom = `${desdeAbajo + SEPARACION}px`;
+        // Se mide el agente en vivo en vez de fiarse de la geometría del
+        // evento: al ceder altura el panel cambia de tamaño DESPUÉS de avisar,
+        // y con el dato viejo el toast se salía por arriba.
+        let a = medirAgente() || { top: window.innerHeight, height: 0, abierto: false };
+        let desdeAbajo = Math.max(0, window.innerHeight - a.top);
 
-        // Si el toast no cabe encima del panel, se le pide al widget que ceda
-        // altura en vez de dejar la notificación cortada por arriba.
-        if (ev && ev.type === 'agente:abierto') {
+        if (a.abierto) {
           const alto = toast.offsetHeight || 0;
           const libre = window.innerHeight - desdeAbajo - SEPARACION;
           const falta = alto + MARGEN_SUP - libre;
           raiz.style.setProperty('--w-hueco-arriba', falta > 0 ? `${Math.ceil(falta)}px` : '0px');
+          // Volver a medir: el panel ya ha encogido y su borde superior bajó.
+          a = medirAgente() || a;
+          desdeAbajo = Math.max(0, window.innerHeight - a.top);
         } else {
           raiz.style.removeProperty('--w-hueco-arriba');
         }
+
+        // Nunca por encima del borde de la pantalla, pase lo que pase.
+        const maximo = window.innerHeight - (toast.offsetHeight || 0) - MARGEN_SUP;
+        toast.style.bottom = `${Math.min(desdeAbajo + SEPARACION, Math.max(0, maximo))}px`;
       }
 
-      document.addEventListener('agente:abierto', colocarToast);
-      document.addEventListener('agente:cerrado', colocarToast);
+      // Se expone para poder recolocar en cuanto el toast aparece.
+      window._colocarToast = colocarToast;
+
+      for (const tipo of ['agente:abierto', 'agente:cerrado']) {
+        document.addEventListener(tipo, (ev) => {
+          estadoAgente = { tipo, detail: ev.detail || {} };
+          colocarToast();
+        });
+      }
+      window.addEventListener('resize', colocarToast);
 
       /** Espera i18n, construye el toast y lo muestra tras 2 s */
       (window.i18nReady || Promise.resolve('es')).then(() => {
@@ -1034,6 +1081,9 @@
         // Mostrar con retardo para no interrumpir la carga inicial
         setTimeout(() => {
           toast.classList.remove('hidden');
+          // Colocarlo AHORA que ya es visible y tiene altura: el aviso inicial
+          // del agente llegó antes de que este nodo existiera.
+          if (window._colocarToast) window._colocarToast();
           // Auto-cerrar a los 10 s
           setTimeout(() => closeToast(), 10000);
         }, 2000);

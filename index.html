@@ -976,15 +976,54 @@
         return toast;
       }
 
-      /** Cierra el toast con animación de fade-out */
+      /** Cierra el toast con animación de fade-out y lo retira del DOM */
       window.closeToast = function () {
         const toast = document.getElementById('life-update-toast');
         if (!toast) return;
         toast.style.transition = 'opacity 0.3s ease, transform 0.3s ease';
         toast.style.opacity = '0';
         toast.style.transform = 'translateY(20px)';
-        setTimeout(() => toast.classList.add('hidden'), 320);
+        setTimeout(() => {
+          toast.classList.add('hidden');
+          // Al terminar su tiempo desaparece del todo: deja de reservar hueco
+          // sobre el chat y el panel recupera su altura.
+          toast.remove();
+          document.documentElement.style.removeProperty('--w-hueco-arriba');
+        }, 320);
       };
+
+      // ── Colocación respecto al agente ────────────────────────────────
+      // El toast vive SIEMPRE encima del agente: sobre la burbuja cuando el
+      // chat está cerrado, y sobre el panel cuando está abierto. El widget
+      // avisa de su geometría porque el Shadow DOM la oculta desde aquí.
+      const SEPARACION = 12;   // aire entre el toast y el agente
+      const MARGEN_SUP = 16;   // respiro contra el borde superior
+
+      function colocarToast(ev) {
+        const toast = document.getElementById('life-update-toast');
+        if (!toast || toast.classList.contains('hidden')) return;
+
+        const caja = (ev && ev.detail) || { top: 0, height: 0 };
+        const raiz = document.documentElement;
+
+        // Altura que ocupa el agente desde abajo, sea burbuja o panel.
+        const desdeAbajo = Math.max(0, window.innerHeight - caja.top);
+        toast.style.bottom = `${desdeAbajo + SEPARACION}px`;
+
+        // Si el toast no cabe encima del panel, se le pide al widget que ceda
+        // altura en vez de dejar la notificación cortada por arriba.
+        if (ev && ev.type === 'agente:abierto') {
+          const alto = toast.offsetHeight || 0;
+          const libre = window.innerHeight - desdeAbajo - SEPARACION;
+          const falta = alto + MARGEN_SUP - libre;
+          raiz.style.setProperty('--w-hueco-arriba', falta > 0 ? `${Math.ceil(falta)}px` : '0px');
+        } else {
+          raiz.style.removeProperty('--w-hueco-arriba');
+        }
+      }
+
+      document.addEventListener('agente:abierto', colocarToast);
+      document.addEventListener('agente:cerrado', colocarToast);
 
       /** Espera i18n, construye el toast y lo muestra tras 2 s */
       (window.i18nReady || Promise.resolve('es')).then(() => {

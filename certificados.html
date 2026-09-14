@@ -682,7 +682,25 @@
       });
     });
   </script>
-<script src="https://agente-portfolio.onrender.com/widget.js"
-        data-api="https://agente-portfolio.onrender.com" defer></script>
+<script>
+/* ── Carga diferida del agente ──────────────────────────────────────
+   Se inyecta DESPUES de load para que la web termine de cargar sin esperar al
+   backend (Render gratuito duerme a los 15 min y puede tardar 30-60 s). */
+(function cargarAgente() {
+  var API = 'https://agente-portfolio.onrender.com';
+  var puesto = false;
+  function poner() {
+    if (puesto) return;
+    puesto = true;
+    var s = document.createElement('script');
+    s.src = API + '/widget.js';
+    s.setAttribute('data-api', API);
+    s.async = true;
+    document.body.appendChild(s);
+  }
+  if (document.readyState === 'complete') poner();
+  else window.addEventListener('load', poner, { once: true });
+})();
+</script>
 </body>
 </html>

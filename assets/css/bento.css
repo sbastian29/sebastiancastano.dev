@@ -1,0 +1,492 @@
+/* ===================================================================
+   bento.css — Habilidades técnicas
+   Rejilla editorial de 6 columnas. El tamaño de cada pieza es el peso
+   que tiene la herramienta en el trabajo del día a día.
+
+   Blanco y negro puro: el único color de la sección sale de los logos.
+   Todo el texto y las hairlines se derivan de los tokens de style.css,
+   así que la sección sigue el tema claro/oscuro del resto del sitio.
+   =================================================================== */
+
+#habilidades {
+  /* Tokens locales. Se redefinen abajo para el tema oscuro. */
+  --bn-bg:    #ffffff;
+  --bn-fg:    var(--text-primary);
+  --bn-mut:   #6b6b6b;
+  --bn-line:  rgba(0, 0, 0, 0.11);
+  --bn-pad:   22px;
+  /* Hueco que el logo de la esquina reserva a la derecha del nombre. */
+  --bn-logo:  56px;
+  --bn-ease:  cubic-bezier(0.4, 0, 0.2, 1);
+  --bn-speed: 0.26s;
+
+  --bn-display: 'Space Grotesk', 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bn-mono:    'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+}
+
+[data-theme="dark"] #habilidades {
+  --bn-bg:   #0f0f0f;
+  --bn-line: rgba(255, 255, 255, 0.14);
+  --bn-mut:  #9a9a9a;
+}
+
+/* El h2 de la sección entra en Space Grotesk para anunciar el carácter
+   de la pieza, pero conserva el tamaño y el centrado del resto de
+   cabeceras de la página. */
+#habilidades .section-header h2 {
+  font-family: var(--bn-display);
+  font-weight: 600;
+  letter-spacing: -0.035em;
+}
+
+/* ── Sprite de logos ──────────────────────────────────────────────── */
+.bn-sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+/* ── Interruptor de logos ─────────────────────────────────────────── */
+.bn-switch {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 8px 18px;
+  margin-bottom: 20px;
+}
+
+.bn-switch-label {
+  color: var(--bn-mut);
+  margin-right: 2px;
+}
+
+.bn-switch button {
+  font-family: var(--bn-display);
+  font-size: 0.9375rem;
+  color: var(--bn-mut);
+  background: none;
+  border: 0;
+  border-bottom: 1px solid transparent;
+  padding: 2px 0;
+  cursor: pointer;
+  transition: color var(--bn-speed) var(--bn-ease),
+              border-color var(--bn-speed) var(--bn-ease);
+}
+
+.bn-switch button:hover {
+  color: var(--bn-fg);
+}
+
+.bn-switch button[aria-pressed="true"] {
+  color: var(--bn-fg);
+  border-bottom-color: var(--bn-fg);
+}
+
+/* ── Rejilla ──────────────────────────────────────────────────────── */
+/* El gap de 1px sobre un fondo de línea es lo que produce las hairlines
+   compartidas: la rejilla se lee como un solo objeto, no como cards. */
+.bn-bento {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-auto-rows: minmax(152px, auto);
+  gap: 1px;
+  background: var(--bn-line);
+  border: 1px solid var(--bn-line);
+}
+
+.bn-tile {
+  position: relative;
+  container-type: inline-size;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-width: 0;
+  padding: var(--bn-pad);
+  margin: 0;
+  background: var(--bn-bg);
+  transition: background var(--bn-speed) var(--bn-ease),
+              color var(--bn-speed) var(--bn-ease);
+}
+
+.bn-tile:focus-visible {
+  outline: 2px solid var(--bn-fg);
+  outline-offset: 3px;
+  z-index: 2;
+}
+
+/* Etiqueta mono: la etapa del recorrido del dato, o el rol de la pieza.
+   En las listas es un h3, porque encabeza los nombres que vienen debajo. */
+h3.bn-k {
+  margin: 0;
+  font-weight: 400;
+}
+
+.bn-k {
+  font-family: var(--bn-mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  letter-spacing: 0.01em;
+  color: var(--bn-mut);
+  transition: color var(--bn-speed) var(--bn-ease);
+}
+
+.bn-mono {
+  font-family: var(--bn-mono);
+  font-size: 0.75rem;
+  letter-spacing: 0.01em;
+}
+
+/* .bn-mono se define antes que .bn-txt, así que la combinación de ambas
+   en un mismo elemento (el pie de la cifra) necesita decir su tamaño. */
+.bn-txt.bn-mono {
+  font-size: 0.75rem;
+}
+
+.bn-txt {
+  margin: 0;
+  margin-top: auto;
+  max-width: 34ch;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+  color: var(--bn-mut);
+  transition: color var(--bn-speed) var(--bn-ease);
+}
+
+/* ── Pieza de herramienta ─────────────────────────────────────────── */
+.bn-name {
+  margin: 0;
+  font-family: var(--bn-display);
+  font-weight: 600;
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+  color: inherit;
+  /* Los nombres largos se reducen hasta caber en una sola línea.
+     100cqi ya es el ancho interior de la pieza (container-type: inline-size),
+     así que el padding no se vuelve a descontar. --ch y --wch los escribe
+     tools/build-stack.mjs: caracteres del nombre y de la palabra más larga. */
+  font-size: min(
+    clamp(1.75rem, 2.8vw, 2.5rem),
+    calc((100cqi - var(--bn-logo)) / (var(--ch, 8) * 0.62))
+  );
+  white-space: nowrap;
+}
+
+/* Las piezas de dos filas pueden partir el nombre: se dimensionan por la
+   palabra más larga y llenan el alto en lugar de dejar un hueco. El
+   overflow-wrap es la red de seguridad si la fuente tarda en cargar y
+   el texto mide más de lo previsto. */
+.bn-tile--tall .bn-name {
+  font-size: min(
+    clamp(2.25rem, 3.6vw, 3rem),
+    calc((100cqi - var(--bn-logo)) / (var(--wch, 8) * 0.62))
+  );
+  white-space: normal;
+  overflow-wrap: break-word;
+}
+
+.bn-corner {
+  position: absolute;
+  top: var(--bn-pad);
+  right: var(--bn-pad);
+}
+
+.bn-tile--core .bn-k {
+  padding-right: var(--bn-logo);
+}
+
+.bn-tile--hero .bn-k {
+  padding-right: 88px;
+}
+
+.bn-tile--core:hover,
+.bn-tile--core:focus-visible {
+  background: var(--bn-fg);
+  color: var(--bn-bg);
+}
+
+.bn-tile--core:hover .bn-k,
+.bn-tile--core:hover .bn-txt,
+.bn-tile--core:focus-visible .bn-k,
+.bn-tile--core:focus-visible .bn-txt {
+  color: var(--bn-bg);
+  opacity: 0.66;
+}
+
+/* ── Pieza principal: la herramienta que sostiene el día a día ────── */
+.bn-tile--hero {
+  background: var(--bn-fg);
+  color: var(--bn-bg);
+}
+
+.bn-tile--hero .bn-name {
+  font-size: min(
+    clamp(3.5rem, 7.4vw, 7.5rem),
+    calc(100cqi / (var(--wch, 8) * 0.62))
+  );
+  white-space: normal;
+}
+
+.bn-tile--hero .bn-k,
+.bn-tile--hero .bn-txt {
+  color: var(--bn-bg);
+  opacity: 0.66;
+}
+
+.bn-tile--hero:hover {
+  background: var(--bn-fg);
+}
+
+/* ── Cifra ────────────────────────────────────────────────────────── */
+.bn-tile--stat .bn-num {
+  margin: 0;
+  font-family: var(--bn-display);
+  font-weight: 500;
+  font-size: clamp(4rem, 7vw, 6.875rem);
+  line-height: 0.85;
+  letter-spacing: -0.05em;
+}
+
+/* ── Propuesta de valor ───────────────────────────────────────────── */
+.bn-tile--puv .bn-line {
+  margin: 0;
+  font-family: var(--bn-display);
+  font-weight: 500;
+  font-size: clamp(1.5rem, 2.6vw, 2.25rem);
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+  max-width: 22ch;
+}
+
+.bn-chain {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 6px 10px;
+  margin: 0;
+  margin-top: auto;
+}
+
+.bn-chain-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 8px;
+  border: 1px solid var(--bn-line);
+  font-family: var(--bn-mono);
+  font-size: 0.75rem;
+  white-space: nowrap;
+}
+
+.bn-chain i {
+  font-style: normal;
+  color: var(--bn-mut);
+}
+
+/* ── Enfoque ──────────────────────────────────────────────────────── */
+.bn-tile--focus .bn-focus-line {
+  margin: 0;
+  margin-top: auto;
+  font-size: 1.0625rem;
+  line-height: 1.45;
+  color: var(--bn-fg);
+}
+
+/* ── Listas de herramientas ───────────────────────────────────────── */
+.bn-names {
+  display: flex;
+  flex-wrap: wrap;
+  align-content: flex-start;
+  gap: 2px 16px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.bn-item {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 0;
+  background: none;
+  border: 0;
+  color: inherit;
+  cursor: pointer;
+  font-family: var(--bn-display);
+  font-size: clamp(1.125rem, 1.7vw, 1.5rem);
+  letter-spacing: -0.015em;
+  transition: opacity var(--bn-speed) var(--bn-ease);
+}
+
+.bn-tier-3 .bn-item {
+  font-size: 1.0625rem;
+  color: var(--bn-mut);
+}
+
+/* Al recorrer la lista, el resto se retira para que el nombre activo
+   sea el único que se lee. */
+.bn-names:hover .bn-item,
+.bn-names:focus-within .bn-item {
+  opacity: 0.3;
+}
+
+.bn-names .bn-item:hover,
+.bn-names .bn-item:focus-visible,
+.bn-names .bn-item[aria-current="true"] {
+  opacity: 1;
+  color: var(--bn-fg);
+  outline: none;
+}
+
+.bn-names .bn-item:focus-visible {
+  outline: 2px solid var(--bn-fg);
+  outline-offset: 3px;
+}
+
+.bn-foot {
+  margin: 0;
+  margin-top: auto;
+  padding-top: 12px;
+  min-height: 2.8em;
+  color: var(--bn-mut);
+  line-height: 1.4;
+}
+
+/* El contexto de cada herramienta vive también en el markup, para
+   lectores de pantalla y para quien navegue sin JavaScript. */
+.bn-sr {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* ── Logos ────────────────────────────────────────────────────────── */
+.bn-lg {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  width: var(--lg, 20px);
+  height: var(--lg, 20px);
+}
+
+.bn-lg svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--c, currentColor);
+  transition: fill var(--bn-speed) var(--bn-ease);
+}
+
+/* Las marcas casi negras (Kafka, GitHub, Java) se pintan con el color de
+   texto para seguir siendo visibles en oscuro y sobre piezas invertidas. */
+.bn-lg svg[data-dark] {
+  fill: currentColor;
+}
+
+/* Herramientas sin logo de marca disponible: lettermark encuadrado. */
+.bn-lg--mark {
+  border: 1px solid currentColor;
+  font-family: var(--bn-mono);
+  font-size: calc(var(--lg, 20px) * 0.36);
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  opacity: 0.8;
+}
+
+.bn-bento[data-logo="mono"] .bn-lg svg {
+  fill: currentColor;
+}
+
+.bn-bento[data-logo="mono"] .bn-tile:hover .bn-lg svg,
+.bn-bento[data-logo="mono"] .bn-item:hover .bn-lg svg,
+.bn-bento[data-logo="mono"] .bn-item:focus-visible .bn-lg svg {
+  fill: var(--c, currentColor);
+}
+
+/* Sobre una pieza invertida el logo pasa al color de texto: ninguna marca
+   de color aguanta el contraste contra el negro. */
+.bn-tile--core:hover .bn-lg svg,
+.bn-tile--core:focus-visible .bn-lg svg,
+.bn-tile--hero .bn-lg svg {
+  fill: currentColor;
+}
+
+/* ── Móvil ────────────────────────────────────────────────────────── */
+/* Las piezas llevan grid-area en línea (lo escribe el generador), así que
+   la rejilla de 2 columnas necesita !important para reordenarlas. */
+@media (max-width: 900px) {
+  .bn-bento {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .bn-bento .bn-tile {
+    grid-area: auto !important;
+    grid-column: span 1 !important;
+  }
+
+  .bn-bento .bn-tile--hero,
+  .bn-bento .bn-tile--puv,
+  .bn-bento .bn-tile--list {
+    grid-column: span 2 !important;
+  }
+
+  .bn-tile {
+    --bn-pad: 16px;
+    --bn-logo: 0px;
+  }
+
+  .bn-corner {
+    position: static;
+    order: -1;
+  }
+
+  .bn-tile--core .bn-k,
+  .bn-tile--hero .bn-k {
+    padding-right: 0;
+  }
+
+  .bn-corner .bn-lg {
+    --lg: 28px !important;
+  }
+
+  .bn-tile--hero .bn-corner .bn-lg {
+    --lg: 40px !important;
+  }
+
+  .bn-tile--core .bn-name {
+    font-size: min(
+      clamp(1.25rem, 6.2vw, 2.125rem),
+      calc(100cqi / (var(--ch, 8) * 0.62))
+    );
+    white-space: nowrap;
+  }
+
+  .bn-tile--tall .bn-name,
+  .bn-tile--hero .bn-name {
+    font-size: min(
+      clamp(1.25rem, 6.2vw, 2.125rem),
+      calc(100cqi / (var(--wch, 8) * 0.7))
+    );
+    white-space: normal;
+  }
+
+  .bn-tile--hero .bn-name {
+    font-size: min(clamp(2.75rem, 11vw, 4.5rem), calc(100cqi / (var(--wch, 8) * 0.7)));
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bn-tile,
+  .bn-item,
+  .bn-lg svg,
+  .bn-switch button {
+    transition-duration: 0.01ms;
+  }
+
+}

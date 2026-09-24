@@ -18,14 +18,8 @@ const I18n = (() => {
       'hero.badge.data':'Ingeniero de Datos','hero.badge.auto':'Automatización','hero.badge.soft':'Ingeniero',
       'hero.description':'Apasionado por transformar datos en valor. Especializado en construir pipelines de datos robustos, automatizar procesos empresariales y desarrollar aplicaciones escalables.',
       'hero.btn.projects':'Ver Proyectos','hero.btn.contact':'Contactar',
-      'skills.title':'Habilidades Técnicas',
-      'skills.subtitle':'Tecnologías y herramientas que domino para crear soluciones de datos e ingeniería de software.',
-      'skills.search':'Buscar habilidades...','skills.clear':'Limpiar',
-      'skills.filter.label':'Filtrar por área','skills.filter.auto':'Automatización / IA',
-      'skills.filter.data':'Data Engineering','skills.filter.soft':'Desarrollo de Software',
-      'skills.counter':'Mostrando <strong>{n}</strong> de <strong>{t}</strong> habilidades',
-      'skills.reset':'Resetear filtros','skills.empty':'No se encontraron habilidades',
-      'skills.empty.sub':'Intenta ajustar los filtros o términos de búsqueda',
+      'skills.title':'Habilidades técnicas',
+      'skills.subtitle':'El tamaño de cada pieza es el peso que tiene en mi trabajo. Pasa por encima, o recórrelas con el teclado, para ver el contexto.',
       'exp.title':'Experiencia Profesional',
       'exp.subtitle':'Mi trayectoria en el mundo del desarrollo y la ingeniería de datos.',
       'exp.vis.role':'Ingeniero de Datos','exp.vis.date':'May 2026 - Actualidad',
@@ -94,14 +88,8 @@ const I18n = (() => {
       'hero.badge.data':'Data Engineer','hero.badge.auto':'Automation','hero.badge.soft':'Engineer',
       'hero.description':'Passionate about turning data into value. Specialized in building robust data pipelines, automating business processes, and developing scalable applications.',
       'hero.btn.projects':'View Projects','hero.btn.contact':'Contact',
-      'skills.title':'Technical Skills',
-      'skills.subtitle':'Technologies and tools I master to build data and software engineering solutions.',
-      'skills.search':'Search skills...','skills.clear':'Clear',
-      'skills.filter.label':'Filter by area','skills.filter.auto':'Automation / AI',
-      'skills.filter.data':'Data Engineering','skills.filter.soft':'Software Development',
-      'skills.counter':'Showing <strong>{n}</strong> of <strong>{t}</strong> skills',
-      'skills.reset':'Reset filters','skills.empty':'No skills found',
-      'skills.empty.sub':'Try adjusting your filters or search terms',
+      'skills.title':'Technical skills',
+      'skills.subtitle':'Each tile is sized by the weight the tool carries in my work. Hover one, or move through them with the keyboard, for the context.',
       'exp.title':'Professional Experience',
       'exp.subtitle':'My journey in software development and data engineering.',
       'exp.vis.role':'Data Engineer','exp.vis.date':'May 2026 - Present',
@@ -181,7 +169,13 @@ const I18n = (() => {
 
   function apply() {
     document.querySelectorAll('[data-i18n]').forEach(el => {
-      const v = t(el.dataset.i18n);
+      const key = el.dataset.i18n;
+      // Una clave que todavía no existe en el diccionario deja el texto
+      // del markup intacto. Es lo que permite que secciones renderizadas
+      // en HTML estático (el bento de habilidades) sobrevivan a apply().
+      const v = (T[lang] && T[lang][key] !== undefined) ? T[lang][key]
+              : (T.es[key] !== undefined ? T.es[key] : undefined);
+      if (v === undefined) return;
       if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') el.placeholder = v;
       else el.innerHTML = v;
     });
@@ -229,7 +223,13 @@ const I18n = (() => {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', detect);
   else detect();
 
-  return { ready, t, getLang:()=>lang, apply, override };
+  /** Añade o sobrescribe cadenas de un idioma en caliente.
+   *  Lo usa stack.js para traer las traducciones de assets/data/stack.json. */
+  function register(forLang, strings) {
+    T[forLang] = Object.assign(T[forLang] || {}, strings);
+  }
+
+  return { ready, t, getLang:()=>lang, apply, override, register };
 })();
 
 window.I18n = I18n;

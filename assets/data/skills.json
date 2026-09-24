@@ -1,0 +1,242 @@
+[
+  {
+    "id": 1,
+    "name": "Python",
+    "icon": "assets/images/skills/python.png",
+    "description": "Backend, automatización y análisis de datos",
+    "categories": ["automatizacion", "data", "software"],
+    "tags": ["python", "backend"]
+  },
+  {
+    "id": 2,
+    "name": "Java",
+    "icon": "assets/images/skills/java.png",
+    "description": "Desarrollo backend y aplicaciones empresariales",
+    "categories": ["software", "backend"],
+    "tags": ["java", "oop", "jvm"]
+  },
+  {
+    "id": 3,
+    "name": "R",
+    "icon": "assets/images/skills/r_language.png",
+    "description": "Análisis estadístico y visualización de datos",
+    "categories": ["data", "analytics"],
+    "tags": ["r", "estadistica", "dataviz"]
+  },
+  {
+    "id": 4,
+    "name": "Kotlin",
+    "icon": "assets/images/skills/kotlin.png",
+    "description": "Desarrollo Android y aplicaciones multiplataforma",
+    "categories": ["software", "mobile"],
+    "tags": ["kotlin", "android", "jvm"]
+  },
+  {
+    "id": 5,
+    "name": "SQL",
+    "icon": "assets/images/skills/SQL.png",
+    "description": "Lenguaje de consulta para bases de datos relacionales",
+    "categories": ["data", "databases"],
+    "tags": ["sql", "queries", "rdbms"]
+  },
+  {
+    "id": 6,
+    "name": "MySQL",
+    "icon": "assets/images/skills/mysql.png",
+    "description": "Sistema de gestión de bases de datos relacional",
+    "categories": ["databases", "backend"],
+    "tags": ["mysql", "database", "sql"]
+  },
+  {
+    "id": 7,
+    "name": "MongoDB",
+    "icon": "assets/images/skills/mongoDB.png",
+    "description": "Base de datos NoSQL orientada a documentos",
+    "categories": ["databases", "nosql"],
+    "tags": ["mongodb", "nosql", "documentdb"]
+  },
+  {
+    "id": 8,
+    "name": "Apache Spark",
+    "icon": "assets/images/skills/Apache_Spark.png",
+    "description": "Procesamiento distribuido de datos a gran escala",
+    "categories": ["data", "bigdata", "analytics"],
+    "tags": ["spark", "bigdata", "processing"]
+  },
+  {
+    "id": 9,
+    "name": "Apache Airflow",
+    "icon": "assets/images/skills/Airflow.png",
+    "description": "Orquestación y programación de flujos de trabajo",
+    "categories": ["automatizacion", "data", "orchestration"],
+    "tags": ["airflow", "workflow", "scheduling"]
+  },
+  {
+    "id": 10,
+    "name": "Git",
+    "icon": "assets/images/skills/git.png",
+    "description": "Sistema de control de versiones distribuido",
+    "categories": ["devops", "software"],
+    "tags": ["git", "versioncontrol", "vcs"]
+  },
+  {
+    "id": 11,
+    "name": "GitHub",
+    "icon": "assets/images/skills/github.png",
+    "description": "Plataforma de desarrollo colaborativo y control de versiones",
+    "categories": ["devops", "collaboration"],
+    "tags": ["github", "git", "collaboration"]
+  },
+  {
+    "id": 12,
+    "name": "Power Automate",
+    "icon": "assets/images/skills/PowerAutomate.png",
+    "description": "Automatización de flujos de trabajo y procesos",
+    "categories": ["automatizacion", "productivity"],
+    "tags": ["powerautomate", "rpa", "microsoft"]
+  },
+  {
+    "id": 13,
+    "name": "Druid",
+    "icon": "assets/images/skills/DruidAI.png",
+    "description": "Base de datos analítica en tiempo real",
+    "categories": ["data", "analytics", "realtime"],
+    "tags": ["druid", "realtime", "analytics"]
+  },
+  {
+    "id": 14,
+    "name": "Hadoop",
+    "icon": "assets/images/skills/Hadoop.png",
+    "description": "Framework para procesamiento distribuido de grandes volúmenes de datos",
+    "categories": ["bigdata", "data", "processing"],
+    "tags": ["hadoop", "bigdata", "hdfs"]
+  },
+  {
+    "id": 15,
+    "name": "AWS",
+    "icon": "assets/images/skills/AWS.png",
+    "description": "Plataforma de servicios en la nube de Amazon",
+    "categories": ["cloud", "infrastructure"],
+    "tags": ["aws", "cloud", "amazon"]
+  },
+  {
+    "id": 16,
+    "name": "Docker",
+    "icon": "assets/images/skills/Docker.png",
+    "description": "Plataforma de contenedores para desarrollo y despliegue",
+    "categories": ["devops", "containers", "cloud"],
+    "tags": ["docker", "containers", "devops"]
+  },
+  {
+    "id": 17,
+    "name": "Azure",
+    "icon": "assets/images/skills/Azure.png",
+    "description": "Plataforma de servicios en la nube de Microsoft",
+    "categories": ["cloud", "infrastructure"],
+    "tags": ["azure", "cloud", "microsoft"]
+  },
+  {
+    "id": 18,
+    "name": "Kafka",
+    "icon": "assets/images/skills/Kafka.png",
+    "description": "Plataforma de streaming de eventos distribuida",
+    "categories": ["data", "streaming", "messaging"],
+    "tags": ["kafka", "streaming", "events"]
+  },
+  {
+    "id": 19,
+    "name": "FastAPI",
+    "icon": "assets/images/skills/FastApi.png",
+    "description": "Framework moderno para construir APIs con Python",
+    "categories": ["backend", "api", "software"],
+    "tags": ["fastapi", "python", "api"]
+  },
+  {
+    "id": 20,
+    "name": "Power BI",
+    "icon": "assets/images/skills/powerBi.png",
+    "description": "Herramienta de visualización y análisis de datos empresariales",
+    "categories": ["analytics", "dataviz", "business"],
+    "tags": ["powerbi", "bi", "visualization"]
+  },
+  {
+    "id": 21,
+    "name": "JasperReports",
+    "icon": "assets/images/skills/jaspersoft_studio_icon.png",
+    "description": "Biblioteca de generación de informes en Java",
+    "categories": ["reporting", "software"],
+    "tags": ["jasperreports", "reporting", "java"]
+  },
+  {
+    "id": 22,
+    "name": "Snowflake",
+    "icon": "assets/images/skills/Snowflake.png",
+    "description": "Plataforma de data cloud y almacenamiento en la nube",
+    "categories": ["data", "cloud", "warehouse"],
+    "tags": ["snowflake", "cloud", "datawarehouse"]
+  },
+  {
+    "id": 23,
+    "name": "PostgreSQL",
+    "icon": "assets/images/skills/postgre.png",
+    "description": "Sistema de base de datos relacional objeto-relacional",
+    "categories": ["databases", "backend"],
+    "tags": ["postgresql", "database", "sql"]
+  },
+  {
+    "id": 24,
+    "name": "UiPath",
+    "icon": "assets/images/skills/UiPath.png",
+    "description": "Plataforma de automatización robótica de procesos (RPA)",
+    "categories": ["automatizacion", "rpa", "business"],
+    "tags": ["uipath", "rpa", "automation"]
+  },
+  {
+    "id": 25,
+    "name": "Pytest",
+    "icon": "assets/images/skills/Pytest.png",
+    "description": "Framework de testing para Python",
+    "categories": ["testing", "software"],
+    "tags": ["pytest", "testing", "python"]
+  },
+  {
+    "id": 26,
+    "name": "HTML",
+    "icon": "assets/images/skills/html.png",
+    "description": "Lenguaje de marcado para creación de páginas web",
+    "categories": ["frontend", "web"],
+    "tags": ["html", "web", "markup"]
+  },
+  {
+    "id": 27,
+    "name": "CSS",
+    "icon": "assets/images/skills/css.png",
+    "description": "Lenguaje de estilos para diseño web",
+    "categories": ["frontend", "web", "design"],
+    "tags": ["css", "styling", "web"]
+  },
+  {
+    "id": 28,
+    "name": "JavaScript",
+    "icon": "assets/images/skills/JavaScript.png",
+    "description": "Lenguaje de programación para desarrollo web y aplicaciones",
+    "categories": ["frontend", "backend", "software"],
+    "tags": ["javascript", "js", "web"]
+  },
+  {
+    "id": 29,
+    "name": "Oracle",
+    "icon": "assets/images/skills/oracle.png",
+    "description": "Sistema de gestión de base de datos relacional empresarial",
+    "categories": ["databases", "enterprise"],
+    "tags": ["oracle", "database", "enterprise"]
+  },
+  {
+    "id": 30,
+    "name": "Hive",
+    "icon": "assets/images/skills/Hive.png",
+    "description": "Almacenamiento de datos y SQL sobre Hadoop",
+    "categories": ["bigdata", "data", "hadoop"],
+    "tags": ["hive", "hadoop", "sql"]
+  }
+]

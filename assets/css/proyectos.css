@@ -10,10 +10,12 @@
   --px-display: 'Space Grotesk', var(--font-primary);
   --px-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
   /* Mismo margen lateral que .container / .header-content */
-  --px-edge: max(32px, calc((100vw - var(--container-max)) / 2 + 32px));
+  --px-z: 1.1;                                          /* escala de la sección, como un zoom del 110 % */
+  --px-vh: calc(100vh / var(--px-z));
+  --px-edge: calc(max(32px, (100vw - var(--container-max)) / 2 + 32px) / var(--px-z));
   --px-line: rgba(0, 0, 0, 0.18);
-  --px-ph: clamp(190px, calc(100vh - 430px), 380px);   /* alto del panel más alto */
-  --px-num: clamp(130px, 25vh, 210px);                 /* cuerpo de los números */
+  --px-num: clamp(110px, calc(var(--px-vh) * 0.2), 170px);   /* cuerpo de los números */
+  --px-ph: clamp(180px, calc(var(--px-vh) - 250px - var(--px-num) * 1.15), 380px);   /* alto del panel más alto */
   --px-ease: cubic-bezier(0.22, 1, 0.36, 1);
   position: relative;
 }
@@ -21,8 +23,9 @@
 
 .px-stage {
   position: sticky;
-  top: var(--header-height);
-  height: calc(100vh - var(--header-height));
+  zoom: var(--px-z);
+  top: calc(var(--header-height) / var(--px-z));
+  height: calc(var(--px-vh) - var(--header-height) / var(--px-z));
   display: flex;
   overflow: hidden;
 }
@@ -32,7 +35,7 @@
   flex: none;
   width: 300px;
   margin-left: var(--px-edge);
-  padding-top: clamp(32px, 10vh, 90px);
+  padding-top: clamp(28px, calc(var(--px-vh) * 0.09), 80px);
   display: flex;
   flex-direction: column;
 }
@@ -67,14 +70,21 @@
 .px-meta { margin-top: 34px; font-size: 11px; line-height: 2; letter-spacing: 0.08em; }
 .px-hint {
   margin-top: auto;
-  padding-bottom: 48px;
-  display: flex;
-  align-items: center;
-  gap: 14px;
+  padding-bottom: 40px;
   font-size: 11px;
   letter-spacing: 0.12em;
 }
-.px-hint__line { width: 48px; height: 1px; background: var(--text-primary); }
+/* Avance del recorrido: 01 / 04 + barra que se llena con el scroll */
+.px-progress { display: flex; align-items: center; gap: 14px; margin-bottom: 12px; color: var(--text-primary); }
+.px-progress__bar { flex: 1; height: 1px; background: var(--px-line); position: relative; }
+.px-progress__bar::after {
+  content: '';
+  position: absolute;
+  inset: -0.5px 0;
+  background: var(--text-primary);
+  transform: scaleX(var(--px-p, 0));
+  transform-origin: left;
+}
 
 /* ── Palabra vertical ── */
 .px-word {
@@ -83,7 +93,7 @@
   margin: 30px 16px 0 14px;
   font-family: var(--px-display);
   font-weight: 600;
-  font-size: clamp(72px, 16vh, 132px);
+  font-size: clamp(72px, calc(var(--px-vh) * 0.16), 132px);
   line-height: 1;
   letter-spacing: 0.04em;
   white-space: nowrap;
@@ -123,9 +133,11 @@
 .px-cat__cap { height: 84px; padding-top: 20px; }
 .px-cat__title { color: var(--text-primary); font-family: var(--px-display); font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; }
 .px-cat__count { margin-top: 4px; font-size: 11px; letter-spacing: 0.1em; transition: color 0.2s ease; }
+.px-cat__count span { border-bottom: 1px solid currentColor; padding-bottom: 2px; }
 .px-cat__num {
-  height: calc(var(--px-num) * 0.81);
-  padding-top: calc(var(--i, 0) * var(--px-num) / 7);   /* escalera */
+  /* Número entero a la vista; la escalera baja un peldaño por columna. */
+  height: calc(var(--px-num) * 1.15 + 24px);
+  padding-top: calc(var(--i, 0) * var(--px-num) / 9);
   overflow: hidden;
 }
 .px-cat__num span {
@@ -226,7 +238,7 @@
 /* ── Móvil y reduced-motion: lista vertical, sin scroll horizontal ── */
 @media (max-width: 899px), (prefers-reduced-motion: reduce) {
   .px { --px-num: 104px; height: auto !important; }
-  .px-stage { position: static; height: auto; display: block; overflow: visible; }
+  .px-stage { zoom: 1; position: static; height: auto; display: block; overflow: visible; }
   .px-intro { width: auto; margin: 0 var(--px-edge); padding: 48px 0 40px; }
   .px-title { font-size: clamp(48px, 14vw, 64px); }
   .px-text { max-width: 44ch; }
@@ -238,7 +250,10 @@
   .px-cat__panel { width: min(100%, 640px); }
   .px-cat__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; max-width: 640px; }
   .px-cat__cap { height: auto; padding: 18px 0 22px; }
-  .px-cat__num { flex: none; padding-top: 0; }
+  .px-cat__num { flex: none; height: auto; padding: 0 0 20px; }
+}
+@media (max-width: 899px), (prefers-reduced-motion: reduce) {
+  .px { --px-z: 1; }
 }
 @media (max-width: 899px) {
   .px { --px-edge: 32px; }

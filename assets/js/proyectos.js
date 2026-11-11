@@ -24,16 +24,16 @@
     es: {
       index: 'Índice · 2024 / 2026', title: 'Proyectos', sub: 'TRABAJO SELECCIONADO',
       text: 'Datos, IA, desarrollo y automatización. Del sistema origen al modelo y a la interfaz.',
-      metaCats: '04 categorías', projects: 'proyectos', project: 'proyecto',
-      hint: 'Desplaza para recorrer', word: 'OBRA', ver: 'VER',
+      metaCats: '04 categorías', projects: 'proyectos', project: 'proyecto', see: 'Ver',
+      hint: 'Desplaza ↓ para avanzar →', word: 'OBRA', ver: 'VER',
       category: 'Categoría', back: '↑ Categorías',
       ia: 'Inteligencia artificial', data: 'Data', software: 'Desarrollo', automatizacion: 'Automatización',
     },
     en: {
       index: 'Index · 2024 / 2026', title: 'Projects', sub: 'SELECTED WORK',
       text: 'Data, AI, development and automation. From the source system to the model and the interface.',
-      metaCats: '04 categories', projects: 'projects', project: 'project',
-      hint: 'Scroll to explore', word: 'WORK', ver: 'VIEW',
+      metaCats: '04 categories', projects: 'projects', project: 'project', see: 'View',
+      hint: 'Scroll ↓ to move →', word: 'WORK', ver: 'VIEW',
       category: 'Category', back: '↑ Categories',
       ia: 'Artificial intelligence', data: 'Data', software: 'Development', automatizacion: 'Automation',
     },
@@ -48,7 +48,7 @@
     document.querySelectorAll('[data-px]').forEach(el => { el.textContent = t[el.dataset.px]; });
     cats.forEach(c => {
       const n = inCat(c.dataset.cat).length;
-      c.querySelector('[data-count]').textContent = projects.length ? `${n} ${n === 1 ? t.project : t.projects}` : '';
+      c.querySelector('[data-count]').textContent = projects.length ? `${t.see} ${n} ${n === 1 ? t.project : t.projects}` : '';
     });
     const total = document.getElementById('pxTotal');
     if (projects.length) total.textContent = `${pad(projects.length)} ${t.projects}`;
@@ -60,19 +60,34 @@
   }
 
   // ── Scroll vertical → desplazamiento horizontal ─────────────────────
-  let start = 0, dist = 0;
+  // Todo en píxeles de pantalla (getBoundingClientRect): la sección va
+  // escalada con zoom y las medidas offset* no lo tienen en cuenta igual
+  // en todos los navegadores.
+  const w = el => el.getBoundingClientRect().width;
+  const left = cat => cat.getBoundingClientRect().left - track.getBoundingClientRect().left;
+  const counter = document.getElementById('pxNow');
+  let start = 0, dist = 0, z = 1;
   function measure() {
-    if (listMode.matches) { px.style.height = ''; track.style.transform = ''; return; }
+    if (listMode.matches) { px.style.height = ''; track.style.transform = ''; track.style.paddingRight = ''; return; }
     px.style.height = '';
-    dist = Math.max(0, track.scrollWidth - viewport.clientWidth);
-    start = px.getBoundingClientRect().top + window.scrollY - parseFloat(getComputedStyle(stage).top);
-    px.style.height = `${stage.offsetHeight + dist}px`;
+    z = w(track) / track.offsetWidth || 1;
+    const header = document.querySelector('.header');
+    // La última columna acaba alineada a la izquierda, como empieza la primera.
+    track.style.paddingRight = `${Math.max(32, (w(viewport) - w(cats[cats.length - 1])) / z)}px`;
+    dist = Math.max(0, w(track) - w(viewport));
+    start = px.getBoundingClientRect().top + window.scrollY - (header ? header.offsetHeight : 0);
+    px.style.height = `${stage.getBoundingClientRect().height + dist}px`;
     update();
   }
   function update() {
     if (listMode.matches) return;
     const x = Math.min(dist, Math.max(0, window.scrollY - start));
-    track.style.transform = `translate3d(${-x}px,0,0)`;
+    track.style.transform = `translate3d(${-x / z}px,0,0)`;
+    px.style.setProperty('--px-p', dist ? x / dist : 0);
+    // Categoría en curso: la última cuyo borde izquierdo ya cruzó el centro.
+    const mid = x + w(viewport) / 2;
+    const now = cats.reduce((n, c, i) => (left(c) <= mid ? i : n), 0);
+    counter.textContent = `${pad(now + 1)} / ${pad(cats.length)}`;
   }
   window.addEventListener('scroll', update, { passive: true });
   window.addEventListener('resize', measure);
@@ -85,7 +100,7 @@
     const cat = e.target.closest('.px-cat');
     if (!cat || listMode.matches) return;
     const r = cat.getBoundingClientRect(), v = viewport.getBoundingClientRect();
-    if (r.left < v.left || r.right > v.right) window.scrollTo({ top: start + Math.min(dist, cat.offsetLeft) });
+    if (r.left < v.left || r.right > v.right) window.scrollTo({ top: start + Math.min(dist, left(cat)) });
   });
 
   // ── Ilustraciones: en línea, en pausa hasta que la columna entra ────
@@ -138,7 +153,7 @@
   }));
   document.getElementById('pxBack').addEventListener('click', () => {
     const i = cats.findIndex(c => c.dataset.cat === open);
-    window.scrollTo({ top: listMode.matches ? cats[i].offsetTop : start + Math.min(dist, cats[i].offsetLeft), behavior: listMode.matches ? 'auto' : 'smooth' });
+    window.scrollTo({ top: listMode.matches ? cats[i].offsetTop : start + Math.min(dist, left(cats[i])), behavior: listMode.matches ? 'auto' : 'smooth' });
     cats[i].focus({ preventScroll: true });
   });
 

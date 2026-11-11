@@ -34,7 +34,7 @@ main = f'''<main>
           <p class="px-sub px-mask"><span data-px="sub">TRABAJO SELECCIONADO</span></p>
           <p class="px-text" data-px="text">Datos, IA, desarrollo y automatización. Del sistema origen al modelo y a la interfaz.</p>
           <p class="px-meta"><span data-px="metaCats">04 categorías</span><br><span id="pxTotal">&nbsp;</span><br>Python · dbt · Airflow · UiPath</p>
-          <p class="px-hint"><span class="px-hint__line"></span><span data-px="hint">Desplaza para recorrer</span></p>
+          <div class="px-hint"><p class="px-progress"><span id="pxNow">01 / 04</span><span class="px-progress__bar"></span></p><p data-px="hint">Desplaza ↓ para avanzar →</p></div>
         </div>
         <div class="px-word" aria-hidden="true" data-px="word">OBRA</div>
         <div class="px-viewport">

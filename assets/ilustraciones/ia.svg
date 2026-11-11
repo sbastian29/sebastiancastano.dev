@@ -1,0 +1,413 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="ill-ia" class="ill" viewBox="0 0 1200 800" role="img" aria-labelledby="ill-ia-t ill-ia-d">
+<title id="ill-ia-t">Multitud que piensa</title>
+<desc id="ill-ia-d">Decenas de figuras diminutas caminan; sus trayectorias suben, se juntan y dibujan el perfil sereno de una cabeza.</desc>
+<defs>
+<style>
+#ill-ia .l{fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#ill-ia .f{stroke-width:1.05}
+#ill-ia .d{stroke-dasharray:1 3;animation:ill-ia-draw var(--d,2s) cubic-bezier(.45,0,.2,1) var(--t,0s) both}
+#ill-ia .peso{stroke-width:2.7;animation:ill-ia-fade 1.8s ease var(--t,0s) both}
+#ill-ia .ap{animation:ill-ia-fade 1.4s ease var(--t,0s) both}
+#ill-ia .luz{fill:#fff;stroke:none}
+#ill-ia .mano{filter:url(#ill-ia-tinta)}
+#ill-ia[data-trazo="hilo"] .mano{filter:url(#ill-ia-hilo)}
+#ill-ia[data-trazo="hilo"] .l{stroke-width:1.2}
+#ill-ia[data-trazo="hilo"] .peso{display:none}
+@keyframes ill-ia-draw{from{stroke-dashoffset:1.15}to{stroke-dashoffset:0}}
+@keyframes ill-ia-fade{from{opacity:0}}
+#ill-ia .anda{animation:ill-ia-anda var(--pd) ease-in-out var(--pt) infinite alternate}
+#ill-ia .pierna{animation:ill-ia-paso var(--sw) linear 3.4s infinite}
+#ill-ia .pierna.b{animation-direction:reverse}
+#ill-ia .pulso{stroke-width:2.4;stroke-dasharray:.025 1;opacity:0;animation:ill-ia-pulso var(--d) cubic-bezier(.5,0,.6,1) var(--t) infinite}
+#ill-ia #ia-ojo{animation:ill-ia-draw 1.4s ease 12.2s both}
+@keyframes ill-ia-anda{to{transform:translate(var(--px),var(--py))}}
+@keyframes ill-ia-paso{0%,100%{transform:rotate(0)}25%{transform:rotate(15deg)}75%{transform:rotate(-15deg)}}
+@keyframes ill-ia-pulso{from{opacity:1;stroke-dashoffset:.025}to{opacity:1;stroke-dashoffset:-1}}
+#ill-ia[data-state="espera"] *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){#ill-ia *{animation:none!important}}
+</style>
+<filter id="ill-ia-tinta" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+<feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="1" seed="4" result="n"/>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+<feGaussianBlur stdDeviation="0.35"/>
+</filter>
+<filter id="ill-ia-hilo" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+<feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="1" seed="4"/>
+<feDisplacementMap in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+<feGaussianBlur stdDeviation="0.3"/>
+</filter>
+</defs>
+<rect id="ia-fondo" width="1200" height="800" fill="#000"/>
+<g class="mano">
+<g id="ia-multitud">
+<g id="ia-figura-1" transform="translate(1033.5 673.5) scale(0.8)">
+<g class="anda" style="--px:0.2px;--py:-1.9px;--pd:10.2s;--pt:9s">
+<path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-2" transform="translate(724.8 673.9) scale(0.8)">
+<g class="anda" style="--px:-32.5px;--py:-3.4px;--pd:12.8s;--pt:9.9s">
+<path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-3" transform="translate(396.6 675.5) scale(0.8)">
+<g class="anda" style="--px:34.9px;--py:-0.2px;--pd:10.1s;--pt:9s">
+<path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-4" transform="translate(111.7 676.1) scale(0.8)">
+<g class="anda" style="--px:-21.9px;--py:2.6px;--pd:9s;--pt:10.2s">
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-5" transform="translate(473.3 678.6) scale(0.9)">
+<g class="anda" style="--px:-43px;--py:0.6px;--pd:8.8s;--pt:10.1s">
+<path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-6" transform="translate(953.4 680.5) scale(0.9)">
+<g class="anda" style="--px:-0.6px;--py:2.6px;--pd:8s;--pt:9.8s">
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-7" transform="translate(72.5 687.1) scale(0.9)">
+<g class="anda" style="--px:-0.3px;--py:1.2px;--pd:9.8s;--pt:9.1s">
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-8" transform="translate(608.4 689.6) scale(0.9)">
+<g class="anda" style="--px:11.9px;--py:3.2px;--pd:10s;--pt:9.6s">
+<path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-9" transform="translate(577 690.3) scale(0.9)">
+<g class="anda" style="--px:-36.4px;--py:0.7px;--pd:9.3s;--pt:8.9s">
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-10" transform="translate(526 691.9) scale(1)">
+<g class="anda" style="--px:-30.9px;--py:3.4px;--pd:12s;--pt:10s">
+<path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-11" transform="translate(570 694) scale(1)">
+<g class="anda" style="--px:-17.3px;--py:4.2px;--pd:11.1s;--pt:9.6s">
+<path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-12" transform="translate(1085.2 694.4) scale(1)">
+<g class="anda" style="--px:22.3px;--py:-4.9px;--pd:11.7s;--pt:10.1s">
+<path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:1.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-13" transform="translate(1095.7 697) scale(1)">
+<g class="anda" style="--px:10.6px;--py:-4.9px;--pd:12.1s;--pt:10.5s">
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-14" transform="translate(670.4 700.8) scale(1)">
+<g class="anda" style="--px:-12.2px;--py:-0.2px;--pd:13s;--pt:10s">
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-15" transform="translate(174.5 701.6) scale(1)">
+<g class="anda" style="--px:9.6px;--py:4.9px;--pd:8.9s;--pt:8.7s">
+<path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-16" transform="translate(211.9 701.7) scale(1)">
+<g class="anda" style="--px:-39.4px;--py:0.8px;--pd:11.3s;--pt:10.2s">
+<path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-17" transform="translate(74.6 702) scale(1)">
+<g class="anda" style="--px:37.9px;--py:1.6px;--pd:7.8s;--pt:9.6s">
+<path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-18" transform="translate(989.3 703.9) scale(1)">
+<g class="anda" style="--px:-43.5px;--py:0.6px;--pd:12.2s;--pt:10.1s">
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-19" transform="translate(981.3 705.8) scale(1.1)">
+<g class="anda" style="--px:22.7px;--py:2.7px;--pd:7.6s;--pt:9.9s">
+<path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-20" transform="translate(60.1 706.9) scale(1.1)">
+<g class="anda" style="--px:0.2px;--py:-3px;--pd:7.5s;--pt:9.5s">
+<path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-21" transform="translate(618.9 708.5) scale(1.1)">
+<g class="anda" style="--px:41.8px;--py:3.8px;--pd:9.2s;--pt:10.3s">
+<path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-22" transform="translate(466.8 708.8) scale(1.1)">
+<g class="anda" style="--px:31px;--py:-3.6px;--pd:12.2s;--pt:8.5s">
+<path class="l d" pathLength="1" style="--t:1.6s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.6s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.6s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.6s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-23" transform="translate(793.5 711.7) scale(1.1)">
+<g class="anda" style="--px:40.1px;--py:2.8px;--pd:7s;--pt:8.5s">
+<path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-24" transform="translate(1017.9 712.7) scale(1.1)">
+<g class="anda" style="--px:8.7px;--py:0.1px;--pd:9.9s;--pt:9s">
+<path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-25" transform="translate(1087.3 714.9) scale(1.1)">
+<g class="anda" style="--px:-42.3px;--py:4px;--pd:9.4s;--pt:10.4s">
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:1.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-26" transform="translate(438.8 715) scale(1.1)">
+<g class="anda" style="--px:-20.5px;--py:-0.3px;--pd:9.5s;--pt:9.1s">
+<path class="l d" pathLength="1" style="--t:0.8s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.8s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.8s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.8s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-27" transform="translate(699.7 715.3) scale(1.1)">
+<g class="anda" style="--px:4.2px;--py:1.2px;--pd:10.9s;--pt:8.7s">
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-28" transform="translate(248.5 716.7) scale(1.1)">
+<g class="anda" style="--px:29px;--py:1.8px;--pd:7.1s;--pt:9.5s">
+<path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-29" transform="translate(164.7 719.6) scale(1.2)">
+<g class="anda" style="--px:-35.7px;--py:2.4px;--pd:12.2s;--pt:10.2s">
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.5s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-30" transform="translate(61.4 724) scale(1.2)">
+<g class="anda" style="--px:44.3px;--py:1.6px;--pd:11.5s;--pt:9.8s">
+<path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.3s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-31" transform="translate(682.1 727.6) scale(1.2)">
+<g class="anda" style="--px:11.1px;--py:0.8px;--pd:10s;--pt:9.5s">
+<path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.9s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-32" transform="translate(296 727.7) scale(1.2)">
+<g class="anda" style="--px:26.4px;--py:-4.1px;--pd:9.8s;--pt:9.8s">
+<path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-33" transform="translate(1083.8 729.1) scale(1.2)">
+<g class="anda" style="--px:-14.9px;--py:-0.4px;--pd:12.7s;--pt:8.8s">
+<path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:1.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-34" transform="translate(295 729.4) scale(1.2)">
+<g class="anda" style="--px:28.9px;--py:-0.8px;--pd:9.8s;--pt:9.9s">
+<path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-35" transform="translate(1133.6 732.4) scale(1.3)">
+<g class="anda" style="--px:-16.3px;--py:4.2px;--pd:8.4s;--pt:9s">
+<path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-36" transform="translate(392.5 734.1) scale(1.3)">
+<g class="anda" style="--px:27px;--py:-1.1px;--pd:9.6s;--pt:9.8s">
+<path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:0.9s"><path class="l d" pathLength="1" style="--t:2.1s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-37" transform="translate(240 734.4) scale(1.3)">
+<g class="anda" style="--px:-39.8px;--py:-1.6px;--pd:10.2s;--pt:8.6s">
+<path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:2.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-38" transform="translate(1139.8 734.4) scale(1.3)">
+<g class="anda" style="--px:14.9px;--py:3.5px;--pd:10.9s;--pt:9.2s">
+<path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.7s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-39" transform="translate(834.8 735) scale(1.3)">
+<g class="anda" style="--px:-34.8px;--py:-3.4px;--pd:7.1s;--pt:8.6s">
+<path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.2s"><path class="l d" pathLength="1" style="--t:2.3s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-40" transform="translate(519.4 735.3) scale(1.3)">
+<g class="anda" style="--px:15.7px;--py:2.1px;--pd:8.7s;--pt:9.8s">
+<path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-41" transform="translate(695.1 736.5) scale(1.3)">
+<g class="anda" style="--px:24.7px;--py:2.8px;--pd:11.7s;--pt:10.1s">
+<path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1s"><path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1s"><path class="l d" pathLength="1" style="--t:2.4s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-42" transform="translate(1088.1 736.9) scale(1.3)">
+<g class="anda" style="--px:14px;--py:-4.3px;--pd:8.8s;--pt:10.3s">
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-43" transform="translate(439.8 740.2) scale(1.3)">
+<g class="anda" style="--px:27px;--py:4.4px;--pd:10.7s;--pt:8.9s">
+<path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:1.1s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-44" transform="translate(654.8 744.1) scale(1.4)">
+<g class="anda" style="--px:18.7px;--py:2.4px;--pd:12.9s;--pt:9.1s">
+<path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l-3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-45" transform="translate(166.3 748.4) scale(1.4)">
+<g class="anda" style="--px:-23px;--py:3px;--pd:12.6s;--pt:8.7s">
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.3s"><path class="l d" pathLength="1" style="--t:0.6s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+<g id="ia-figura-46" transform="translate(1061.8 749.8) scale(1.4)">
+<g class="anda" style="--px:-8.1px;--py:-4px;--pd:7.9s;--pt:10s">
+<path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 -17.6a3.1 3.3 0 1 1 -.1 0"/>
+<path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 -14.2C.8 -10 -.6 -5 0 0M0 -12.4l3 6.4"/>
+<g class="pierna" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 0L-2.4 10.6"/></g>
+<g class="pierna b" style="--sw:1.1s"><path class="l d" pathLength="1" style="--t:0.2s;--d:.9s" d="M0 0L2.4 10.6"/></g>
+</g></g>
+</g>
+<g id="ia-trayectorias">
+<path id="ia-trayectoria-1" class="l d f" d="M61.4 737c18 -7 38 5 58 -4C337.5 711 482 694 516 604C517.5 556 525.8 524 527.3 485.5C528.8 430 550.4 306.4 494.9 288.6" pathLength="1" style="--t:3.8s;--d:4.8s"/>
+<path class="l pulso" pathLength="1" d="M61.4 737c18 -7 38 5 58 -4C337.5 711 482 694 516 604C517.5 556 525.8 524 527.3 485.5C528.8 430 550.4 306.4 494.9 288.6" style="--t:18.8s;--d:5.8s"/>
+<circle id="ia-idea-1" class="luz ap" cx="494.9" cy="288.6" r="2.3" style="--t:8.2s"/>
+<path id="ia-trayectoria-2" class="l d f" d="M164.7 732.6c18 -7 38 5 58 -4C389.3 706.6 491.7 694 525.7 604C522.2 556 540 524 536.6 480.6C533.1 430 551.5 297.1 499.2 266.9" pathLength="1" style="--t:2.6s;--d:4.7s"/>
+<path class="l pulso" pathLength="1" d="M164.7 732.6c18 -7 38 5 58 -4C389.3 706.6 491.7 694 525.7 604C522.2 556 540 524 536.6 480.6C533.1 430 551.5 297.1 499.2 266.9" style="--t:18.5s;--d:7s"/>
+<circle id="ia-idea-2" class="luz ap" cx="499.2" cy="266.9" r="2.3" style="--t:7s"/>
+<path id="ia-trayectoria-3" class="l d f" d="M211.9 714.7c18 -7 38 5 58 -4C415.9 688.7 501.3 694 535.3 604C530.7 556 545.1 524 540.5 479.4C535.8 430 554.8 287.9 508.5 246.4" pathLength="1" style="--t:3.6s;--d:4.4s"/>
+<path class="l pulso" pathLength="1" d="M211.9 714.7c18 -7 38 5 58 -4C415.9 688.7 501.3 694 535.3 604C530.7 556 545.1 524 540.5 479.4C535.8 430 554.8 287.9 508.5 246.4" style="--t:16s;--d:6.9s"/>
+<circle id="ia-idea-3" class="luz ap" cx="508.5" cy="246.4" r="2.3" style="--t:7.6s"/>
+<path id="ia-trayectoria-4" class="l d f" d="M296 740.7c18 -7 38 5 58 -4C459.1 714.7 511 694 545 604C550 556 548.3 524 553.3 489C558.3 430 560.3 279.6 522.4 228.3" pathLength="1" style="--t:4.1s;--d:4s"/>
+<path class="l pulso" pathLength="1" d="M296 740.7c18 -7 38 5 58 -4C459.1 714.7 511 694 545 604C550 556 548.3 524 553.3 489C558.3 430 560.3 279.6 522.4 228.3" style="--t:15.5s;--d:6s"/>
+<circle id="ia-idea-4" class="luz ap" cx="522.4" cy="228.3" r="2.3" style="--t:7.8s"/>
+<path id="ia-trayectoria-5" class="l d f" d="M438.8 728c18 -7 38 5 58 -4C528.6 702 520.7 694 554.7 604C553.1 556 558.1 524 556.5 482.4C554.9 430 567.8 272.5 540.4 213.7" pathLength="1" style="--t:3.1s;--d:4.1s"/>
+<path class="l pulso" pathLength="1" d="M438.8 728c18 -7 38 5 58 -4C528.6 702 520.7 694 554.7 604C553.1 556 558.1 524 556.5 482.4C554.9 430 567.8 272.5 540.4 213.7" style="--t:15.8s;--d:7.7s"/>
+<circle id="ia-idea-5" class="luz ap" cx="540.4" cy="213.7" r="2.3" style="--t:6.9s"/>
+<path id="ia-trayectoria-6" class="l d f" d="M519.4 748.3c18 -7 38 5 58 -4C570.2 722.3 530.3 694 564.3 604C562.2 556 569 524 566.9 481.9C564.8 430 577 267.2 561.4 203.4" pathLength="1" style="--t:3.7s;--d:4.1s"/>
+<path class="l pulso" pathLength="1" d="M519.4 748.3c18 -7 38 5 58 -4C570.2 722.3 530.3 694 564.3 604C562.2 556 569 524 566.9 481.9C564.8 430 577 267.2 561.4 203.4" style="--t:18.2s;--d:7.3s"/>
+<circle id="ia-idea-6" class="luz ap" cx="561.4" cy="203.4" r="2.3" style="--t:7.4s"/>
+<path id="ia-trayectoria-7" class="l d f" d="M608.4 702.6c-18 -7 -38 5 -58 -4C563.4 676.6 608 694 574 604C572.4 556 579.4 524 577.8 482.4C576.2 430 587.5 264.1 584.6 198.1" pathLength="1" style="--t:2.7s;--d:4.5s"/>
+<path class="l pulso" pathLength="1" d="M608.4 702.6c-18 -7 -38 5 -58 -4C563.4 676.6 608 694 574 604C572.4 556 579.4 524 577.8 482.4C576.2 430 587.5 264.1 584.6 198.1" style="--t:18.6s;--d:5.7s"/>
+<circle id="ia-idea-7" class="luz ap" cx="584.6" cy="198.1" r="2.3" style="--t:6.8s"/>
+<path id="ia-trayectoria-8" class="l d f" d="M670.4 713.8c-18 -7 -38 5 -58 -4C596.6 687.8 617.7 694 583.7 604C588.6 556 581.3 524 586.2 488.9C591.1 430 598.2 266.1 608.1 200.9" pathLength="1" style="--t:3.8s;--d:4.7s"/>
+<path class="l pulso" pathLength="1" d="M670.4 713.8c-18 -7 -38 5 -58 -4C596.6 687.8 617.7 694 583.7 604C588.6 556 581.3 524 586.2 488.9C591.1 430 598.2 266.1 608.1 200.9" style="--t:18.7s;--d:7.6s"/>
+<circle id="ia-idea-8" class="luz ap" cx="608.1" cy="200.9" r="2.3" style="--t:8.1s"/>
+<path id="ia-trayectoria-9" class="l d f" d="M724.8 686.9c-18 -7 -38 5 -58 -4C626.4 660.9 627.3 694 593.3 604C591.5 556 595.8 524 593.9 482.1C592 430 608 270.4 630.1 209" pathLength="1" style="--t:3.6s;--d:5s"/>
+<path class="l pulso" pathLength="1" d="M724.8 686.9c-18 -7 -38 5 -58 -4C626.4 660.9 627.3 694 593.3 604C591.5 556 595.8 524 593.9 482.1C592 430 608 270.4 630.1 209" style="--t:18.4s;--d:6s"/>
+<circle id="ia-idea-9" class="luz ap" cx="630.1" cy="209" r="2.3" style="--t:8.2s"/>
+<path id="ia-trayectoria-10" class="l d f" d="M953.4 693.5c-18 -7 -38 5 -58 -4C734.6 667.5 637 694 603 604C600.3 556 600.6 524 597.8 481.3C595.1 430 616.2 276.6 649.5 221.6" pathLength="1" style="--t:3s;--d:4s"/>
+<path class="l pulso" pathLength="1" d="M953.4 693.5c-18 -7 -38 5 -58 -4C734.6 667.5 637 694 603 604C600.3 556 600.6 524 597.8 481.3C595.1 430 616.2 276.6 649.5 221.6" style="--t:13.4s;--d:7.8s"/>
+<circle id="ia-idea-10" class="luz ap" cx="649.5" cy="221.6" r="2.3" style="--t:6.6s"/>
+<path id="ia-trayectoria-11" class="l d f" d="M1033.5 686.5c-18 -7 -38 5 -58 -4C776 660.5 646.7 694 612.7 604C616.2 556 605.4 524 608.9 487.5C612.4 430 622.5 284.4 665.2 238.1" pathLength="1" style="--t:4.1s;--d:4.6s"/>
+<path class="l pulso" pathLength="1" d="M1033.5 686.5c-18 -7 -38 5 -58 -4C776 660.5 646.7 694 612.7 604C616.2 556 605.4 524 608.9 487.5C612.4 430 622.5 284.4 665.2 238.1" style="--t:13.8s;--d:5.6s"/>
+<circle id="ia-idea-11" class="luz ap" cx="665.2" cy="238.1" r="2.3" style="--t:8.2s"/>
+<path id="ia-trayectoria-12" class="l d f" d="M1085.2 707.4c-18 -7 -38 5 -58 -4C804.5 681.4 656.3 694 622.3 604C625.2 556 611.7 524 614.6 486.9C617.5 430 626.8 293.1 676.6 257.6" pathLength="1" style="--t:3.1s;--d:4.9s"/>
+<path class="l pulso" pathLength="1" d="M1085.2 707.4c-18 -7 -38 5 -58 -4C804.5 681.4 656.3 694 622.3 604C625.2 556 611.7 524 614.6 486.9C617.5 430 626.8 293.1 676.6 257.6" style="--t:15.6s;--d:6.4s"/>
+<circle id="ia-idea-12" class="luz ap" cx="676.6" cy="257.6" r="2.3" style="--t:7.6s"/>
+<path id="ia-trayectoria-13" class="l d f" d="M1133.6 745.4c-18 -7 -38 5 -58 -4C831.6 719.4 666 694 632 604C635.5 556 618.2 524 621.7 487.5C625.3 430 628.8 302.3 683.1 278.8" pathLength="1" style="--t:4.1s;--d:4.5s"/>
+<path class="l pulso" pathLength="1" d="M1133.6 745.4c-18 -7 -38 5 -58 -4C831.6 719.4 666 694 632 604C635.5 556 618.2 524 621.7 487.5C625.3 430 628.8 302.3 683.1 278.8" style="--t:16s;--d:5.7s"/>
+<circle id="ia-idea-13" class="luz ap" cx="683.1" cy="278.8" r="2.3" style="--t:8.2s"/>
+</g>
+<g id="ia-cabeza">
+<path id="ia-perfil" class="l d" d="M505 612C500 562 520 522 500 470C470 420 440 370 452 300C464 200 540 140 620 140C680 140 722 175 728 230C730 255 722 268 728 285C738 310 762 335 772 352C776 362 760 368 744 370C740 378 752 384 750 392C748 398 740 400 744 406C750 414 748 422 740 428C734 440 752 452 742 468C732 486 690 492 660 484C640 480 632 520 640 612" pathLength="1" style="--t:7.4s;--d:5.2s"/>
+<path class="l peso" d="M505 612C500 562 520 522 500 470C470 420 440 370 452 300C464 200 540 140 620 140C680 140 722 175 728 230C730 255 722 268 728 285C738 310 762 335 772 352C776 362 760 368 744 370C740 378 752 384 750 392C748 398 740 400 744 406C750 414 748 422 740 428C734 440 752 452 742 468C732 486 690 492 660 484C640 480 632 520 640 612" pathLength="1" stroke-dasharray="0.00 0.06 0.12 0.18 0.07 0.25 0.14 1" style="--t:11s"/>
+<path id="ia-ojo" class="l d f" pathLength="1" d="M693 301C700 308 711 308 719 300"/>
+</g>
+</g>
+</svg>

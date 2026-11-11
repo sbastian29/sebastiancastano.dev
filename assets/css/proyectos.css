@@ -1,0 +1,248 @@
+/* ── Proyectos · carrusel de categorías ───────────────────────────────
+   Bloque izquierdo fijo + pista horizontal movida por el scroll vertical.
+   Usa las variables de tema de style.css: el toggle Dark/Light de la
+   cabecera lo cambia todo sin código propio.
+   Claro: panel negro con línea blanca. Oscuro: la ilustración flota sin
+   panel y la palabra vertical y los números van en contorno.
+   ─────────────────────────────────────────────────────────────────── */
+
+.px {
+  --px-display: 'Space Grotesk', var(--font-primary);
+  --px-mono: 'JetBrains Mono', ui-monospace, Consolas, monospace;
+  /* Mismo margen lateral que .container / .header-content */
+  --px-edge: max(32px, calc((100vw - var(--container-max)) / 2 + 32px));
+  --px-line: rgba(0, 0, 0, 0.18);
+  --px-ph: clamp(190px, calc(100vh - 430px), 380px);   /* alto del panel más alto */
+  --px-num: clamp(130px, 25vh, 210px);                 /* cuerpo de los números */
+  --px-ease: cubic-bezier(0.22, 1, 0.36, 1);
+  position: relative;
+}
+[data-theme="dark"] .px { --px-line: rgba(255, 255, 255, 0.16); }
+
+.px-stage {
+  position: sticky;
+  top: var(--header-height);
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  overflow: hidden;
+}
+
+/* ── Bloque izquierdo ── */
+.px-intro {
+  flex: none;
+  width: 300px;
+  margin-left: var(--px-edge);
+  padding-top: clamp(32px, 10vh, 90px);
+  display: flex;
+  flex-direction: column;
+}
+.px-kicker, .px-meta, .px-hint, .px-cat__count, .px-lista__kicker {
+  font-family: var(--px-mono);
+  color: var(--text-tertiary);
+  text-transform: uppercase;
+}
+.px-kicker { font-size: 12px; letter-spacing: 0.12em; margin-bottom: 22px; }
+.px-title {
+  font-family: var(--px-display);
+  font-weight: 400;
+  font-size: 64px;
+  line-height: 0.9;
+  letter-spacing: -0.03em;
+  padding-bottom: 0.14em;   /* aire para las descendentes dentro de la máscara */
+}
+.px-sub {
+  font-family: var(--px-display);
+  font-weight: 600;
+  font-size: 14px;
+  letter-spacing: 0.1em;
+  margin-top: 6px;
+}
+.px-text {
+  margin-top: 34px;
+  max-width: 270px;
+  font-size: 15px;
+  line-height: 1.84;
+  color: var(--text-secondary);
+}
+.px-meta { margin-top: 34px; font-size: 11px; line-height: 2; letter-spacing: 0.08em; }
+.px-hint {
+  margin-top: auto;
+  padding-bottom: 48px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+}
+.px-hint__line { width: 48px; height: 1px; background: var(--text-primary); }
+
+/* ── Palabra vertical ── */
+.px-word {
+  flex: none;
+  writing-mode: vertical-rl;
+  margin: 30px 16px 0 14px;
+  font-family: var(--px-display);
+  font-weight: 600;
+  font-size: clamp(72px, 16vh, 132px);
+  line-height: 1;
+  letter-spacing: 0.04em;
+  white-space: nowrap;
+}
+[data-theme="dark"] .px-word,
+[data-theme="dark"] .px-cat__num span {
+  color: transparent;
+  -webkit-text-stroke: 1px var(--text-primary);
+}
+
+/* ── Pista ── */
+.px-viewport { flex: 1; min-width: 0; overflow: hidden; }
+.px-track { display: flex; height: 100%; width: max-content; padding-right: 32px; will-change: transform; }
+
+.px-cat {
+  flex: none;
+  width: calc(var(--px-ph) * 1.5 + 64px);
+  height: 100%;
+  padding: 0 32px;
+  border-left: 1px solid var(--px-line);
+  display: flex;
+  flex-direction: column;
+  color: var(--text-primary);
+  text-decoration: none;
+}
+.px-cat__art { flex: 1; min-height: 0; display: flex; align-items: flex-end; }
+.px-cat__panel {
+  width: calc(var(--px-ph) * 1.5 * var(--k, 1));
+  aspect-ratio: 3 / 2;
+  background: #000;
+  overflow: hidden;
+}
+.px-cat__panel svg { display: block; width: 100%; height: 100%; }
+[data-theme="dark"] .px-cat__panel { background: none; }
+[data-theme="dark"] .px-cat__panel [id$="-fondo"] { fill: transparent; }
+
+.px-cat__cap { height: 84px; padding-top: 20px; }
+.px-cat__title { color: var(--text-primary); font-family: var(--px-display); font-size: 22px; line-height: 1.25; letter-spacing: -0.01em; }
+.px-cat__count { margin-top: 4px; font-size: 11px; letter-spacing: 0.1em; transition: color 0.2s ease; }
+.px-cat__num {
+  height: calc(var(--px-num) * 0.81);
+  padding-top: calc(var(--i, 0) * var(--px-num) / 7);   /* escalera */
+  overflow: hidden;
+}
+.px-cat__num span {
+  display: block;
+  font-family: var(--px-display);
+  font-weight: 300;
+  font-size: var(--px-num);
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+}
+.px-cat:focus-visible { outline: 2px solid var(--text-primary); outline-offset: -6px; }
+@media (hover: hover) and (pointer: fine) {
+  .px-cat:hover .px-cat__count { color: var(--text-primary); }
+}
+
+/* ── Entrada: paneles que crecen desde la base, textos y números que
+      suben desde una máscara. Solo con JS (clase .px-js en <html>). ── */
+.px-mask { display: block; overflow: hidden; }
+.px-mask > span { display: inline-block; }
+@media (prefers-reduced-motion: no-preference) {
+  .px-js .px-mask > span,
+  .px-js .px-cat__num span {
+    transform: translateY(110%);
+    transition: transform 1s var(--px-ease) var(--d, 0ms);
+  }
+  .px-js .px-cat__panel {
+    clip-path: inset(100% 0 0 0);
+    transition: clip-path 1.1s var(--px-ease);
+  }
+  .px-js .px-text, .px-js .px-meta, .px-js .px-hint {
+    opacity: 0;
+    transition: opacity 0.8s ease 0.5s;
+  }
+  .px-js .is-in .px-mask > span,
+  .px-js .is-in .px-cat__num span { transform: none; }
+  .px-js .is-in .px-cat__panel { clip-path: inset(0); }
+  .px-js .is-in .px-text, .px-js .is-in .px-meta, .px-js .is-in .px-hint { opacity: 1; }
+  .px-cat__cap .px-mask > span { --d: 250ms; }
+  .px-cat__num span { --d: 350ms; }
+}
+
+/* ── Cursor: sobre una categoría, círculo grande con "VER" ── */
+#custom-cursor::after {
+  content: attr(data-label);
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  writing-mode: vertical-rl;
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.3em;
+  color: #000;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+#custom-cursor.cursor-ver {
+  width: 100px;
+  height: 100px;
+  background: #fff;
+  border-color: transparent;
+  mix-blend-mode: difference;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+}
+#custom-cursor.cursor-ver::after { opacity: 1; }
+#custom-cursor.cursor-ver + #cursor-dot { opacity: 0; }
+
+/* ── Proyectos de la categoría elegida ── */
+.px-lista { padding-top: 72px; scroll-margin-top: var(--header-height); }
+.px-lista__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 16px 32px;
+  padding-bottom: 28px;
+  margin-bottom: 40px;
+  border-bottom: 1px solid var(--px-line, var(--border-color-hover));
+}
+.px-lista__kicker { font-size: 12px; letter-spacing: 0.12em; margin-bottom: 10px; }
+.px-lista__title { font-family: 'Space Grotesk', var(--font-primary); font-weight: 400; font-size: clamp(32px, 5vw, 56px); line-height: 1; letter-spacing: -0.03em; }
+.px-lista__back {
+  font-family: 'JetBrains Mono', ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+  background: none;
+  border: 1px solid var(--border-color-hover);
+  border-radius: var(--radius-full);
+  padding: 12px 18px;
+  transition: border-color 0.2s ease;
+}
+.px-lista__back:hover { border-color: var(--text-primary); }
+
+/* ── Móvil y reduced-motion: lista vertical, sin scroll horizontal ── */
+@media (max-width: 899px), (prefers-reduced-motion: reduce) {
+  .px { --px-num: 104px; height: auto !important; }
+  .px-stage { position: static; height: auto; display: block; overflow: visible; }
+  .px-intro { width: auto; margin: 0 var(--px-edge); padding: 48px 0 40px; }
+  .px-title { font-size: clamp(48px, 14vw, 64px); }
+  .px-text { max-width: 44ch; }
+  .px-hint, .px-word { display: none; }
+  .px-viewport { overflow: visible; }
+  .px-track { display: block; width: auto; height: auto; padding: 0; transform: none !important; }
+  .px-cat { width: auto; height: auto; padding: 32px var(--px-edge) 0; border-left: 0; border-top: 1px solid var(--px-line); }
+  .px-cat__art { display: block; }
+  .px-cat__panel { width: min(100%, 640px); }
+  .px-cat__foot { display: flex; align-items: flex-end; justify-content: space-between; gap: 16px; max-width: 640px; }
+  .px-cat__cap { height: auto; padding: 18px 0 22px; }
+  .px-cat__num { flex: none; padding-top: 0; }
+}
+@media (max-width: 899px) {
+  .px { --px-edge: 32px; }
+}
+@media (max-width: 768px) {
+  .px { --px-edge: 20px; }
+}

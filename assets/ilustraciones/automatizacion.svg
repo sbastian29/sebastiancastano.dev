@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" id="ill-automatizacion" class="ill" viewBox="0 0 1200 800" role="img" aria-labelledby="ill-automatizacion-t ill-automatizacion-d">
+<title id="ill-automatizacion-t">Engranajes y pájaro</title>
+<desc id="ill-automatizacion-d">Unos engranajes giran a la izquierda; del último sale una línea que se desenrolla y se convierte en un pájaro que levanta el vuelo.</desc>
+<defs>
+<style>
+#ill-automatizacion .l{fill:none;stroke:#fff;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#ill-automatizacion .f{stroke-width:1.05}
+#ill-automatizacion .d{stroke-dasharray:1 3;animation:ill-automatizacion-draw var(--d,2s) cubic-bezier(.45,0,.2,1) var(--t,0s) both}
+#ill-automatizacion .peso{stroke-width:2.7;animation:ill-automatizacion-fade 1.8s ease var(--t,0s) both}
+#ill-automatizacion .ap{animation:ill-automatizacion-fade 1.4s ease var(--t,0s) both}
+#ill-automatizacion .luz{fill:#fff;stroke:none}
+#ill-automatizacion .mano{filter:url(#ill-automatizacion-tinta)}
+#ill-automatizacion[data-trazo="hilo"] .mano{filter:url(#ill-automatizacion-hilo)}
+#ill-automatizacion[data-trazo="hilo"] .l{stroke-width:1.2}
+#ill-automatizacion[data-trazo="hilo"] .peso{display:none}
+@keyframes ill-automatizacion-draw{from{stroke-dashoffset:1.15}to{stroke-dashoffset:0}}
+@keyframes ill-automatizacion-fade{from{opacity:0}}
+#ill-automatizacion .gira{animation:ill-automatizacion-gira var(--g) linear infinite}
+#ill-automatizacion .ala{transform-origin:4px -3px;animation:ill-automatizacion-aleteo 1.5s ease-in-out 13.2s infinite alternate}
+#ill-automatizacion .ala.b{transform-origin:12px -4px;animation-delay:13.32s}
+#ill-automatizacion #auto-pajaro-vuelo{animation:ill-automatizacion-planea 6s ease-in-out 13.2s infinite alternate}
+@keyframes ill-automatizacion-gira{to{transform:rotate(360deg)}}
+@keyframes ill-automatizacion-aleteo{to{transform:scaleY(.12)}}
+@keyframes ill-automatizacion-planea{to{transform:translate(1.5px,-3px)}}
+#ill-automatizacion[data-state="espera"] *{animation-play-state:paused!important}
+@media (prefers-reduced-motion:reduce){#ill-automatizacion *{animation:none!important}}
+</style>
+<filter id="ill-automatizacion-tinta" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+<feTurbulence type="fractalNoise" baseFrequency="0.014" numOctaves="1" seed="4" result="n"/>
+<feDisplacementMap in="SourceGraphic" in2="n" scale="9" xChannelSelector="R" yChannelSelector="G"/>
+<feGaussianBlur stdDeviation="0.35"/>
+</filter>
+<filter id="ill-automatizacion-hilo" filterUnits="userSpaceOnUse" x="0" y="0" width="1200" height="800">
+<feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="1" seed="4"/>
+<feDisplacementMap in="SourceGraphic" scale="4" xChannelSelector="R" yChannelSelector="G"/>
+<feGaussianBlur stdDeviation="0.3"/>
+</filter>
+</defs>
+<rect id="automatizacion-fondo" width="1200" height="800" fill="#000"/>
+<g class="mano">
+<g id="auto-engranajes">
+<g id="auto-engranaje-grande" transform="translate(215 545)">
+<g class="gira" style="--g:64s"><g transform="rotate(0)">
+<path id="auto-engranaje-grande-dientes" class="l d" d="M96 -19.1A97.9 97.9 0 0 1 97.4 -10.4L111.7 -6.6A111.9 111.9 0 0 1 111.7 6.6L97.4 10.4A97.9 97.9 0 0 1 96 19.1A97.9 97.9 0 0 1 93.9 27.7L105.7 36.7A111.9 111.9 0 0 1 100.7 48.8L86 46.8A97.9 97.9 0 0 1 81.4 54.4A97.9 97.9 0 0 1 76.2 61.5L83.6 74.3A111.9 111.9 0 0 1 74.3 83.6L61.5 76.2A97.9 97.9 0 0 1 54.4 81.4A97.9 97.9 0 0 1 46.8 86L48.8 100.7A111.9 111.9 0 0 1 36.7 105.7L27.7 93.9A97.9 97.9 0 0 1 19.1 96A97.9 97.9 0 0 1 10.4 97.4L6.6 111.7A111.9 111.9 0 0 1 -6.6 111.7L-10.4 97.4A97.9 97.9 0 0 1 -19.1 96A97.9 97.9 0 0 1 -27.7 93.9L-36.7 105.7A111.9 111.9 0 0 1 -48.8 100.7L-46.8 86A97.9 97.9 0 0 1 -54.4 81.4A97.9 97.9 0 0 1 -61.5 76.2L-74.3 83.6A111.9 111.9 0 0 1 -83.6 74.3L-76.2 61.5A97.9 97.9 0 0 1 -81.4 54.4A97.9 97.9 0 0 1 -86 46.8L-100.7 48.8A111.9 111.9 0 0 1 -105.7 36.7L-93.9 27.7A97.9 97.9 0 0 1 -96 19.1A97.9 97.9 0 0 1 -97.4 10.4L-111.7 6.6A111.9 111.9 0 0 1 -111.7 -6.6L-97.4 -10.4A97.9 97.9 0 0 1 -96 -19.1A97.9 97.9 0 0 1 -93.9 -27.7L-105.7 -36.7A111.9 111.9 0 0 1 -100.7 -48.8L-86 -46.8A97.9 97.9 0 0 1 -81.4 -54.4A97.9 97.9 0 0 1 -76.2 -61.5L-83.6 -74.3A111.9 111.9 0 0 1 -74.3 -83.6L-61.5 -76.2A97.9 97.9 0 0 1 -54.4 -81.4A97.9 97.9 0 0 1 -46.8 -86L-48.8 -100.7A111.9 111.9 0 0 1 -36.7 -105.7L-27.7 -93.9A97.9 97.9 0 0 1 -19.1 -96A97.9 97.9 0 0 1 -10.4 -97.4L-6.6 -111.7A111.9 111.9 0 0 1 6.6 -111.7L10.4 -97.4A97.9 97.9 0 0 1 19.1 -96A97.9 97.9 0 0 1 27.7 -93.9L36.7 -105.7A111.9 111.9 0 0 1 48.8 -100.7L46.8 -86A97.9 97.9 0 0 1 54.4 -81.4A97.9 97.9 0 0 1 61.5 -76.2L74.3 -83.6A111.9 111.9 0 0 1 83.6 -74.3L76.2 -61.5A97.9 97.9 0 0 1 81.4 -54.4A97.9 97.9 0 0 1 86 -46.8L100.7 -48.8A111.9 111.9 0 0 1 105.7 -36.7L93.9 -27.7A97.9 97.9 0 0 1 96 -19.1Z" pathLength="1" style="--t:0s;--d:3.6s"/>
+<path class="l peso" d="M96 -19.1A97.9 97.9 0 0 1 97.4 -10.4L111.7 -6.6A111.9 111.9 0 0 1 111.7 6.6L97.4 10.4A97.9 97.9 0 0 1 96 19.1A97.9 97.9 0 0 1 93.9 27.7L105.7 36.7A111.9 111.9 0 0 1 100.7 48.8L86 46.8A97.9 97.9 0 0 1 81.4 54.4A97.9 97.9 0 0 1 76.2 61.5L83.6 74.3A111.9 111.9 0 0 1 74.3 83.6L61.5 76.2A97.9 97.9 0 0 1 54.4 81.4A97.9 97.9 0 0 1 46.8 86L48.8 100.7A111.9 111.9 0 0 1 36.7 105.7L27.7 93.9A97.9 97.9 0 0 1 19.1 96A97.9 97.9 0 0 1 10.4 97.4L6.6 111.7A111.9 111.9 0 0 1 -6.6 111.7L-10.4 97.4A97.9 97.9 0 0 1 -19.1 96A97.9 97.9 0 0 1 -27.7 93.9L-36.7 105.7A111.9 111.9 0 0 1 -48.8 100.7L-46.8 86A97.9 97.9 0 0 1 -54.4 81.4A97.9 97.9 0 0 1 -61.5 76.2L-74.3 83.6A111.9 111.9 0 0 1 -83.6 74.3L-76.2 61.5A97.9 97.9 0 0 1 -81.4 54.4A97.9 97.9 0 0 1 -86 46.8L-100.7 48.8A111.9 111.9 0 0 1 -105.7 36.7L-93.9 27.7A97.9 97.9 0 0 1 -96 19.1A97.9 97.9 0 0 1 -97.4 10.4L-111.7 6.6A111.9 111.9 0 0 1 -111.7 -6.6L-97.4 -10.4A97.9 97.9 0 0 1 -96 -19.1A97.9 97.9 0 0 1 -93.9 -27.7L-105.7 -36.7A111.9 111.9 0 0 1 -100.7 -48.8L-86 -46.8A97.9 97.9 0 0 1 -81.4 -54.4A97.9 97.9 0 0 1 -76.2 -61.5L-83.6 -74.3A111.9 111.9 0 0 1 -74.3 -83.6L-61.5 -76.2A97.9 97.9 0 0 1 -54.4 -81.4A97.9 97.9 0 0 1 -46.8 -86L-48.8 -100.7A111.9 111.9 0 0 1 -36.7 -105.7L-27.7 -93.9A97.9 97.9 0 0 1 -19.1 -96A97.9 97.9 0 0 1 -10.4 -97.4L-6.6 -111.7A111.9 111.9 0 0 1 6.6 -111.7L10.4 -97.4A97.9 97.9 0 0 1 19.1 -96A97.9 97.9 0 0 1 27.7 -93.9L36.7 -105.7A111.9 111.9 0 0 1 48.8 -100.7L46.8 -86A97.9 97.9 0 0 1 54.4 -81.4A97.9 97.9 0 0 1 61.5 -76.2L74.3 -83.6A111.9 111.9 0 0 1 83.6 -74.3L76.2 -61.5A97.9 97.9 0 0 1 81.4 -54.4A97.9 97.9 0 0 1 86 -46.8L100.7 -48.8A111.9 111.9 0 0 1 105.7 -36.7L93.9 -27.7A97.9 97.9 0 0 1 96 -19.1Z" pathLength="1" stroke-dasharray="0.00 0.09 0.15 0.24 0.10 0.23 0.13 1" style="--t:2.5s"/>
+<path id="auto-engranaje-grande-eje" class="l d f" d="M62 0A62 62 0 1 1 62 -.1M20 0A20 20 0 1 1 20 -.1M18.8 6.8L58.3 21.2M-0.7 20L-2.2 62M-19.2 5.5L-59.6 17.1M-11.2 -16.6L-34.7 -51.4M12.3 -15.8L38.2 -48.9" pathLength="1" style="--t:2.2s;--d:1.6s"/>
+</g></g></g>
+<g id="auto-engranaje-medio" transform="translate(336.3 423.7)">
+<g class="gira" style="--g:-40s"><g transform="rotate(117)">
+<path id="auto-engranaje-medio-dientes" class="l d" d="M55.4 -18A58.3 58.3 0 0 1 57.5 -9.8L72 -6.8A72.3 72.3 0 0 1 72 6.8L57.5 9.8A58.3 58.3 0 0 1 55.4 18A58.3 58.3 0 0 1 52.3 25.8L62.2 36.8A72.3 72.3 0 0 1 54.2 47.8L40.7 41.7A58.3 58.3 0 0 1 34.3 47.2A58.3 58.3 0 0 1 27.1 51.6L28.7 66.4A72.3 72.3 0 0 1 15.8 70.6L8.4 57.7A58.3 58.3 0 0 1 0 58.3A58.3 58.3 0 0 1 -8.4 57.7L-15.8 70.6A72.3 72.3 0 0 1 -28.7 66.4L-27.1 51.6A58.3 58.3 0 0 1 -34.3 47.2A58.3 58.3 0 0 1 -40.7 41.7L-54.2 47.8A72.3 72.3 0 0 1 -62.2 36.8L-52.3 25.8A58.3 58.3 0 0 1 -55.4 18A58.3 58.3 0 0 1 -57.5 9.8L-72 6.8A72.3 72.3 0 0 1 -72 -6.8L-57.5 -9.8A58.3 58.3 0 0 1 -55.4 -18A58.3 58.3 0 0 1 -52.3 -25.8L-62.2 -36.8A72.3 72.3 0 0 1 -54.2 -47.8L-40.7 -41.7A58.3 58.3 0 0 1 -34.3 -47.2A58.3 58.3 0 0 1 -27.1 -51.6L-28.7 -66.4A72.3 72.3 0 0 1 -15.8 -70.6L-8.4 -57.7A58.3 58.3 0 0 1 0 -58.3A58.3 58.3 0 0 1 8.4 -57.7L15.8 -70.6A72.3 72.3 0 0 1 28.7 -66.4L27.1 -51.6A58.3 58.3 0 0 1 34.3 -47.2A58.3 58.3 0 0 1 40.7 -41.7L54.2 -47.8A72.3 72.3 0 0 1 62.2 -36.8L52.3 -25.8A58.3 58.3 0 0 1 55.4 -18Z" pathLength="1" style="--t:1.6s;--d:3s"/>
+<path class="l peso" d="M55.4 -18A58.3 58.3 0 0 1 57.5 -9.8L72 -6.8A72.3 72.3 0 0 1 72 6.8L57.5 9.8A58.3 58.3 0 0 1 55.4 18A58.3 58.3 0 0 1 52.3 25.8L62.2 36.8A72.3 72.3 0 0 1 54.2 47.8L40.7 41.7A58.3 58.3 0 0 1 34.3 47.2A58.3 58.3 0 0 1 27.1 51.6L28.7 66.4A72.3 72.3 0 0 1 15.8 70.6L8.4 57.7A58.3 58.3 0 0 1 0 58.3A58.3 58.3 0 0 1 -8.4 57.7L-15.8 70.6A72.3 72.3 0 0 1 -28.7 66.4L-27.1 51.6A58.3 58.3 0 0 1 -34.3 47.2A58.3 58.3 0 0 1 -40.7 41.7L-54.2 47.8A72.3 72.3 0 0 1 -62.2 36.8L-52.3 25.8A58.3 58.3 0 0 1 -55.4 18A58.3 58.3 0 0 1 -57.5 9.8L-72 6.8A72.3 72.3 0 0 1 -72 -6.8L-57.5 -9.8A58.3 58.3 0 0 1 -55.4 -18A58.3 58.3 0 0 1 -52.3 -25.8L-62.2 -36.8A72.3 72.3 0 0 1 -54.2 -47.8L-40.7 -41.7A58.3 58.3 0 0 1 -34.3 -47.2A58.3 58.3 0 0 1 -27.1 -51.6L-28.7 -66.4A72.3 72.3 0 0 1 -15.8 -70.6L-8.4 -57.7A58.3 58.3 0 0 1 0 -58.3A58.3 58.3 0 0 1 8.4 -57.7L15.8 -70.6A72.3 72.3 0 0 1 28.7 -66.4L27.1 -51.6A58.3 58.3 0 0 1 34.3 -47.2A58.3 58.3 0 0 1 40.7 -41.7L54.2 -47.8A72.3 72.3 0 0 1 62.2 -36.8L52.3 -25.8A58.3 58.3 0 0 1 55.4 -18Z" pathLength="1" stroke-dasharray="0.00 0.09 0.13 0.20 0.07 0.28 0.13 1" style="--t:3.7s"/>
+<path id="auto-engranaje-medio-eje" class="l d f" d="M36 0A36 36 0 1 1 36 -.1M11 0A11 11 0 1 1 11 -.1M10.3 3.8L33.8 12.3M-3.8 10.3L-12.3 33.8M-10.3 -3.8L-33.8 -12.3M3.8 -10.3L12.3 -33.8" pathLength="1" style="--t:3.4s;--d:1.6s"/>
+</g></g></g>
+<g id="auto-engranaje-pequeno" transform="translate(430.4 375.7)">
+<g class="gira" style="--g:24s"><g transform="rotate(123)">
+<path id="auto-engranaje-pequeno-dientes" class="l d" d="M27.6 -15.9A31.9 31.9 0 0 1 30.6 -8.9L45.3 -7.2A45.9 45.9 0 0 1 45.3 7.2L30.6 8.9A31.9 31.9 0 0 1 27.6 15.9A31.9 31.9 0 0 1 23 22.1L28.9 35.7A45.9 45.9 0 0 1 16.4 42.9L7.6 31A31.9 31.9 0 0 1 0 31.9A31.9 31.9 0 0 1 -7.6 31L-16.4 42.9A45.9 45.9 0 0 1 -28.9 35.7L-23 22.1A31.9 31.9 0 0 1 -27.6 15.9A31.9 31.9 0 0 1 -30.6 8.9L-45.3 7.2A45.9 45.9 0 0 1 -45.3 -7.2L-30.6 -8.9A31.9 31.9 0 0 1 -27.6 -15.9A31.9 31.9 0 0 1 -23 -22.1L-28.9 -35.7A45.9 45.9 0 0 1 -16.4 -42.9L-7.6 -31A31.9 31.9 0 0 1 0 -31.9A31.9 31.9 0 0 1 7.6 -31L16.4 -42.9A45.9 45.9 0 0 1 28.9 -35.7L23 -22.1A31.9 31.9 0 0 1 27.6 -16Z" pathLength="1" style="--t:3.2s;--d:2.4s"/>
+<path class="l peso" d="M27.6 -15.9A31.9 31.9 0 0 1 30.6 -8.9L45.3 -7.2A45.9 45.9 0 0 1 45.3 7.2L30.6 8.9A31.9 31.9 0 0 1 27.6 15.9A31.9 31.9 0 0 1 23 22.1L28.9 35.7A45.9 45.9 0 0 1 16.4 42.9L7.6 31A31.9 31.9 0 0 1 0 31.9A31.9 31.9 0 0 1 -7.6 31L-16.4 42.9A45.9 45.9 0 0 1 -28.9 35.7L-23 22.1A31.9 31.9 0 0 1 -27.6 15.9A31.9 31.9 0 0 1 -30.6 8.9L-45.3 7.2A45.9 45.9 0 0 1 -45.3 -7.2L-30.6 -8.9A31.9 31.9 0 0 1 -27.6 -15.9A31.9 31.9 0 0 1 -23 -22.1L-28.9 -35.7A45.9 45.9 0 0 1 -16.4 -42.9L-7.6 -31A31.9 31.9 0 0 1 0 -31.9A31.9 31.9 0 0 1 7.6 -31L16.4 -42.9A45.9 45.9 0 0 1 28.9 -35.7L23 -22.1A31.9 31.9 0 0 1 27.6 -16Z" pathLength="1" stroke-dasharray="0.00 0.05 0.09 0.25 0.07 0.27 0.17 1" style="--t:4.9s"/>
+<path id="auto-engranaje-pequeno-eje" class="l d f" d="M9 0A9 9 0 1 1 9 -.1" pathLength="1" style="--t:4.6s;--d:1.6s"/>
+</g></g></g>
+</g>
+<path id="auto-hilo" class="l d" d="M382.1 388.7A50 50 0 0 1 462.6 337.4C502.6 371.4 560 428 612 404C664 380 670 318 632 316C594 314 588 374 640 394C720 424 812 380 846 318C862 288 862.4 258.3 902.4 237.3" pathLength="1" style="--t:5.6s;--d:5.6s"/>
+<path class="l peso" d="M382.1 388.7A50 50 0 0 1 462.6 337.4C502.6 371.4 560 428 612 404C664 380 670 318 632 316C594 314 588 374 640 394C720 424 812 380 846 318C862 288 862.4 258.3 902.4 237.3" pathLength="1" stroke-dasharray="0.00 0.06 0.09 0.16 0.06 0.22 0.13 1" style="--t:9.5s"/>
+<g id="auto-pajaro" transform="translate(965 190) rotate(-28) scale(1.55)">
+<g id="auto-pajaro-vuelo">
+<path id="auto-pajaro-cuerpo" class="l d" d="M-50 8C-30 2 -10 -5 10 -5C24 -5 34 -9 44 -7L57 -3L44 -1C30 7 0 13 -22 11C-34 10 -44 9 -50 8" pathLength="1" style="--t:10.9s;--d:1.5s"/>
+<path id="auto-pajaro-cola" class="l d f" d="M-48 9L-70 15M-49 8L-73 5" pathLength="1" style="--t:11.6s;--d:0.7s"/>
+<g class="ala b"><path id="auto-pajaro-ala-lejana" class="l d f" d="M12 -4C22 -36 20 -68 6 -96C-6 -70 -10 -40 -8 -4" pathLength="1" style="--t:11.6s;--d:1.2s"/></g>
+<g class="ala"><path id="auto-pajaro-ala" class="l d" d="M4 -3C0 -34 -18 -62 -52 -86C-56 -64 -52 -38 -34 7" pathLength="1" style="--t:12s;--d:1.2s"/>
+<path class="l peso" d="M4 -3C0 -34 -18 -62 -52 -86C-56 -64 -52 -38 -34 7" pathLength="1" stroke-dasharray="0.00 0.09 0.11 0.25 0.10 0.22 0.12 1" style="--t:12.8s"/></g>
+<circle id="auto-pajaro-ojo" class="luz ap" cx="42" cy="-4.4" r="1" style="--t:12.6s"/>
+</g>
+</g>
+</g>
+</svg>

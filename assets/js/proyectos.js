@@ -96,9 +96,10 @@
 
   // Con teclado: al enfocar una categoría fuera de vista, lleva el scroll hasta ella.
   track.addEventListener('focusin', e => {
-    viewport.scrollLeft = 0;
     const cat = e.target.closest('.px-cat');
-    if (!cat || listMode.matches) return;
+    // Solo con teclado: con ratón el salto movería la columna bajo el puntero y se perdería el clic.
+    if (!cat || listMode.matches || !cat.matches(':focus-visible')) return;
+    viewport.scrollLeft = 0;   // el navegador puede haber desplazado el contenedor al enfocar
     const r = cat.getBoundingClientRect(), v = viewport.getBoundingClientRect();
     if (r.left < v.left || r.right > v.right) window.scrollTo({ top: start + Math.min(dist, left(cat)) });
   });

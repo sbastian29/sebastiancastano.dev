@@ -205,7 +205,7 @@
   -webkit-backdrop-filter: none;
 }
 #custom-cursor.cursor-ver::after { opacity: 1; }
-#custom-cursor.cursor-ver + #cursor-dot { opacity: 0; }
+#custom-cursor.cursor-ver + #cursor-dot { opacity: 0 !important; }
 
 /* ── Proyectos de la categoría elegida ── */
 .px-lista { padding-top: 72px; scroll-margin-top: var(--header-height); }

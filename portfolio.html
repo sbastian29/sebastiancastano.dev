@@ -10,9 +10,9 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&family=Space+Grotesk:wght@300..600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="assets/css/style.css">
-  <link rel="stylesheet" href="assets/css/filters.css">
+  <link rel="stylesheet" href="assets/css/proyectos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
   <style>
@@ -213,52 +213,6 @@
       align-items: center;
       gap: 6px;
     }
-
-    /* Page header */
-    .page-header {
-      padding: 140px 0 60px;
-      text-align: center;
-    }
-
-    .page-header h1 {
-      margin-bottom: 16px;
-    }
-
-    .page-header p {
-      max-width: 600px;
-      margin: 0 auto;
-    }
-
-    /* Stats section */
-    .portfolio-stats {
-      display: flex;
-      justify-content: center;
-      gap: 48px;
-      margin-top: 32px;
-      flex-wrap: wrap;
-    }
-
-    .stat-item {
-      text-align: center;
-    }
-
-    .stat-number {
-      font-size: 2.5rem;
-      font-weight: 700;
-      color: var(--text-primary);
-      line-height: 1;
-      margin-bottom: 4px;
-    }
-
-    .stat-label {
-      font-size: 0.875rem;
-      color: var(--text-tertiary);
-    }
-
-    /* ============ Category color system ============ */
-    .filter-chip[data-category="data"]:not(.active)         { border-left: 3px solid var(--cat-data); }
-    .filter-chip[data-category="automatizacion"]:not(.active) { border-left: 3px solid var(--cat-auto); }
-    .filter-chip[data-category="software"]:not(.active)     { border-left: 3px solid var(--cat-soft); }
 
     /* ============================================================
        Botones de enlace siempre visibles dentro de project-content
@@ -530,117 +484,76 @@
   </header>
 
   <main>
-    <!-- Page Header -->
-    <section class="page-header">
-      <div class="container">
-        <h1 class="animate-fade-in" data-i18n="port.page.h1">Portfolio</h1>
-        <p class="animate-fade-in" data-i18n="port.page.subtitle">Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.</p>
-
-        <div class="portfolio-stats animate-fade-in">
-          <div class="stat-item">
-            <div class="stat-number">8</div>
-            <div class="stat-label" data-i18n="port.stat.projects">Proyectos</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">15+</div>
-            <div class="stat-label" data-i18n="port.stat.techs">Tecnologías</div>
-          </div>
-          <div class="stat-item">
-            <div class="stat-number">3</div>
-            <div class="stat-label" data-i18n="port.stat.areas">Áreas</div>
+    <!-- Carrusel de categorías -->
+    <section class="px" id="px" aria-labelledby="pxTitle">
+      <div class="px-stage">
+        <div class="px-intro">
+          <p class="px-kicker px-mask"><span data-px="index">Índice · 2024 / 2026</span></p>
+          <h1 class="px-title px-mask" id="pxTitle"><span data-px="title">Proyectos</span></h1>
+          <p class="px-sub px-mask"><span data-px="sub">TRABAJO SELECCIONADO</span></p>
+          <p class="px-text" data-px="text">Datos, IA, desarrollo y automatización. Del sistema origen al modelo y a la interfaz.</p>
+          <p class="px-meta"><span data-px="metaCats">04 categorías</span><br><span id="pxTotal">&nbsp;</span><br>Python · dbt · Airflow · UiPath</p>
+          <div class="px-hint"><p class="px-progress"><span id="pxNow">01 / 04</span><span class="px-progress__bar"></span></p><p data-px="hint">Desplaza ↓ para avanzar →</p></div>
+        </div>
+        <div class="px-word" aria-hidden="true" data-px="word">OBRA</div>
+        <div class="px-viewport">
+          <div class="px-track">
+          <a class="px-cat" href="#pxLista" data-cat="ia" style="--i:0;--k:0.9">
+            <div class="px-cat__art"><div class="px-cat__panel" data-ill="ia"></div></div>
+            <div class="px-cat__foot">
+              <div class="px-cat__cap">
+                <p class="px-cat__title px-mask"><span data-px="ia">Inteligencia artificial</span></p>
+                <p class="px-cat__count"><span data-count></span> ↗</p>
+              </div>
+              <div class="px-cat__num" aria-hidden="true"><span>01</span></div>
+            </div>
+          </a>
+          <a class="px-cat" href="#pxLista" data-cat="data" style="--i:1;--k:0.74">
+            <div class="px-cat__art"><div class="px-cat__panel" data-ill="data"></div></div>
+            <div class="px-cat__foot">
+              <div class="px-cat__cap">
+                <p class="px-cat__title px-mask"><span data-px="data">Data</span></p>
+                <p class="px-cat__count"><span data-count></span> ↗</p>
+              </div>
+              <div class="px-cat__num" aria-hidden="true"><span>02</span></div>
+            </div>
+          </a>
+          <a class="px-cat" href="#pxLista" data-cat="software" style="--i:2;--k:1">
+            <div class="px-cat__art"><div class="px-cat__panel" data-ill="desarrollo"></div></div>
+            <div class="px-cat__foot">
+              <div class="px-cat__cap">
+                <p class="px-cat__title px-mask"><span data-px="software">Desarrollo</span></p>
+                <p class="px-cat__count"><span data-count></span> ↗</p>
+              </div>
+              <div class="px-cat__num" aria-hidden="true"><span>03</span></div>
+            </div>
+          </a>
+          <a class="px-cat" href="#pxLista" data-cat="automatizacion" style="--i:3;--k:0.82">
+            <div class="px-cat__art"><div class="px-cat__panel" data-ill="automatizacion"></div></div>
+            <div class="px-cat__foot">
+              <div class="px-cat__cap">
+                <p class="px-cat__title px-mask"><span data-px="automatizacion">Automatización</span></p>
+                <p class="px-cat__count"><span data-count></span> ↗</p>
+              </div>
+              <div class="px-cat__num" aria-hidden="true"><span>04</span></div>
+            </div>
+          </a>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Projects Section -->
-    <section class="section" style="padding-top: 0;">
+    <!-- Proyectos de la categoría elegida -->
+    <section class="section px-lista" id="pxLista" hidden>
       <div class="container">
-        <!-- Filter Search -->
-        <div class="search-filter-container">
-          <div class="search-wrapper">
-            <div class="search-box">
-              <i class="fas fa-search search-icon"></i>
-              <input type="text" class="search-input" id="projectSearch" placeholder="Buscar proyectos..." data-i18n="port.search">
-              <button class="search-clear" data-i18n="port.clear">Limpiar</button>
-            </div>
+        <div class="px-lista__head">
+          <div>
+            <p class="px-lista__kicker" id="pxListaKicker"></p>
+            <h2 class="px-lista__title" id="pxListaTitle" tabindex="-1"></h2>
           </div>
-
-          <div class="filter-categories">
-            <div class="filter-group">
-              <span class="filter-label" data-i18n="port.filter.byrole">Por rol / área</span>
-              <div class="filter-chips" id="projectRoleChips">
-                <button class="filter-chip" data-filter="automatizacion" data-filter-type="categories" data-category="automatizacion">
-                  <span class="filter-chip-dot"></span>
-                  <span data-i18n="port.filter.auto">Automatización</span>
-                </button>
-                <button class="filter-chip" data-filter="data" data-filter-type="categories" data-category="data">
-                  <span class="filter-chip-dot"></span>
-                  <span data-i18n="port.filter.data">Data Engineering</span>
-                </button>
-                <button class="filter-chip" data-filter="software" data-filter-type="categories" data-category="software">
-                  <span class="filter-chip-dot"></span>
-                  <span data-i18n="port.filter.soft">Desarrollo Software</span>
-                </button>
-              </div>
-            </div>
-
-            <div class="filter-group">
-              <span class="filter-label" data-i18n="port.filter.bytech">Por tecnología</span>
-              <div class="filter-chips" id="projectTechChips">
-                <button class="filter-chip" data-filter="python" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Python</span>
-                </button>
-                <button class="filter-chip" data-filter="java" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Java</span>
-                </button>
-                <button class="filter-chip" data-filter="kotlin" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Kotlin</span>
-                </button>
-                <button class="filter-chip" data-filter="aws" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>AWS</span>
-                </button>
-                <button class="filter-chip" data-filter="docker" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>Docker</span>
-                </button>
-                <button class="filter-chip" data-filter="mongodb" data-filter-type="technologies">
-                  <span class="filter-chip-dot"></span>
-                  <span>MongoDB</span>
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="filter-actions">
-            <span class="results-counter" id="projectCounter" data-i18n-counter="port.counter">Mostrando <strong>0</strong> de <strong>0</strong> proyectos</span>
-            <button class="reset-filters" id="resetProjectFilters" disabled>
-              <svg class="reset-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <polyline points="1 4 1 10 7 10"></polyline>
-                <path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path>
-              </svg>
-              <span data-i18n="port.reset">Mezclar / Reset</span>
-            </button>
-          </div>
-
-          <div class="active-filters" id="activeProjectFilters"></div>
+          <button type="button" class="px-lista__back" id="pxBack" data-px="back">↑ Categorías</button>
         </div>
-
-        <!-- Projects Grid -->
-        <div class="projects-grid" id="projectsGrid">
-          <!-- Projects will be dynamically generated -->
-        </div>
-
-        <!-- No Results -->
-        <div class="no-results" id="noProjectResults" style="display: none;">
-          <div class="no-results-icon"><i class="fas fa-folder-open"></i></div>
-          <h3 data-i18n="port.empty">No se encontraron proyectos</h3>
-          <p data-i18n="port.empty.sub">Intenta ajustar los filtros o términos de búsqueda</p>
-        </div>
+        <div class="projects-grid" id="projectsGrid"></div>
       </div>
     </section>
   </main>
@@ -664,7 +577,7 @@
   <!-- Scripts -->
   <script src="assets/js/i18n.js"></script>
   <script src="assets/js/main.js"></script>
-  <script src="assets/js/filterEngine.js"></script>
+  <script src="assets/js/proyectos.js"></script>
   <script>
     // =====================================================================
     //  Portfolio data — desacoplado de HTML, cargado desde JSON por idioma
@@ -690,21 +603,21 @@
       return 'fa-code';
     }
 
-    /** Genera las tarjetas de proyecto en el grid */
-    function generateProjectCards() {
+    /** Genera en el grid las tarjetas de una categoría */
+    function generateProjectCards(cat) {
       const grid = document.getElementById('projectsGrid');
       if (!grid || projectsData.length === 0) return;
 
       const i18n = window.I18n;
       const t    = (key, vars) => i18n ? i18n.t(key, vars) : key;
 
-      grid.innerHTML = projectsData.map(project => {
+      grid.innerHTML = projectsData.filter(p => (p.categories || []).includes(cat)).map(project => {
         const icon       = getProjectIcon(project);
         const cat        = (project.categories || [])[0] || 'software';
-        const catLabel   = cat === 'data'          ? t('port.cat.data')
+        const catLabel   = cat === 'ia' ? 'IA' : cat === 'data'          ? t('port.cat.data')
                          : cat === 'automatizacion' ? t('port.cat.auto')
                          : t('port.cat.soft');
-        const catIcon    = cat === 'data'          ? 'database'
+        const catIcon    = cat === 'ia' ? 'brain' : cat === 'data'          ? 'database'
                          : cat === 'automatizacion' ? 'robot'
                          : 'code';
 
@@ -804,33 +717,6 @@
       }).join('');
     }
 
-    /** Inicializa el motor de filtros con los items renderizados */
-    function initProjectFilter() {
-      const items = Array.from(document.querySelectorAll('#projectsGrid .filterable-item')).map(el => ({
-        element:     el,
-        title:       el.dataset.title       || '',
-        description: el.dataset.description || '',
-        categories:  JSON.parse(el.dataset.categories || '[]'),
-        tags:        JSON.parse(el.dataset.tags        || '[]')
-      }));
-
-      const allChips = [
-        ...Array.from(document.querySelectorAll('#projectRoleChips .filter-chip')),
-        ...Array.from(document.querySelectorAll('#projectTechChips .filter-chip'))
-      ];
-
-      new FilterEngine({
-        items:                   items,
-        container:               document.getElementById('projectsGrid'),
-        searchInput:             document.getElementById('projectSearch'),
-        filterChips:             allChips,
-        resultsCounter:          document.getElementById('projectCounter'),
-        resetButton:             document.getElementById('resetProjectFilters'),
-        activeFiltersContainer:  document.getElementById('activeProjectFilters'),
-        noResultsElement:        document.getElementById('noProjectResults')
-      });
-    }
-
     /** Carga el JSON correspondiente al idioma detectado */
     async function loadProjects(lang) {
       const file = lang === 'en'
@@ -843,35 +729,23 @@
     }
 
     // =====================================================================
-    //  Punto de entrada: esperar i18n → cargar datos → renderizar → filtros
+    //  Punto de entrada: esperar i18n → cargar datos → avisar al carrusel
     // =====================================================================
+    window.renderProjectCards = (cat) => {
+      generateProjectCards(cat);
+      document.querySelectorAll('#projectsGrid .stagger-item').forEach((item, index) => {
+        setTimeout(() => item.classList.add('visible'), index * 60);
+      });
+      if (window.refreshCursor) window.refreshCursor();
+    };
+
     document.addEventListener('DOMContentLoaded', () => {
       (window.i18nReady || Promise.resolve('es')).then(async (lang) => {
         try {
           projectsData = await loadProjects(lang);
-          generateProjectCards();
-
-          // Actualizar contador inmediatamente
-          const counterEl = document.getElementById('projectCounter');
-          const allCards  = document.querySelectorAll('#projectsGrid .filterable-item');
-          if (counterEl && window.I18n) {
-            counterEl.innerHTML = window.I18n.t('port.counter', {
-              n: allCards.length,
-              t: allCards.length
-            });
-          }
-
-          setTimeout(() => {
-            initProjectFilter();
-            document.querySelectorAll('#projectsGrid .stagger-item').forEach((item, index) => {
-              setTimeout(() => item.classList.add('visible'), index * 60);
-            });
-            if (window.refreshCursor) window.refreshCursor();
-          }, 100);
+          document.dispatchEvent(new CustomEvent('projects:loaded', { detail: projectsData }));
         } catch (err) {
           console.error('Error cargando proyectos:', err);
-          const grid = document.getElementById('projectsGrid');
-          if (grid) grid.innerHTML = `<p style="text-align:center;color:red;">No se pudieron cargar los proyectos.</p>`;
         }
       });
     });

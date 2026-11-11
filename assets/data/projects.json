@@ -272,6 +272,85 @@
       "featured": false,
       "status": "proximamente",
       "date": "2024"
+    },
+    {
+      "id": 8,
+      "title": "Web del bar restaurante Veloche",
+      "slug": "veloche-restaurante",
+      "description": "Web de un bar restaurante de Fuente el Saz de Jarama: carta, reservas y pedido para llevar, con cero peticiones a terceros en la carga inicial.",
+      "longDescription": "Encargo freelance (2026). Sitio estático sin paso de build, con enrutado por hash y plantillas compiladas en el navegador sobre React. Todo está autoalojado, fuentes y librerías incluidas, así que la primera carga no habla con ningún tercero: Google solo entra si el visitante acepta las cookies de analítica o del mapa, y hay un test automático que lo verifica. GSAP se carga en diferido, a la primera interacción o a los 5 segundos, para que no entre en el LCP. Además: carta imprimible con hoja de estilos propia, página de gracias con evento de conversión, landing de QR de mesa con su base legal RGPD, título, descripción, Open Graph y canonical por ruta en el head real, y control de pausa en el pase del hero según WCAG 2.2.2. Desplegado en Vercel.",
+      "image": "veloche.jpg",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app",
+        "frontend"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "javascript",
+        "react",
+        "gsap",
+        "vercel",
+        "seo",
+        "accesibilidad",
+        "rgpd"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "GSAP",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": "https://veloche-restaurante.vercel.app",
+      "featured": true,
+      "status": "completado",
+      "date": "2026"
+    },
+    {
+      "id": 9,
+      "title": "Portfolio de artista 3D",
+      "slug": "portfolio-artista-3d",
+      "description": "Portfolio para una artista de modelado y texturizado 3D: archivo de trabajos, títulos y formulario de contacto con acuse de recibo.",
+      "longDescription": "Encargo freelance (2026). Sitio estático sin bundler: React 18 por CDN, JSX compilado en el navegador y GSAP para las transiciones. Dos páginas independientes: el archivo de trabajos, con carrusel de auto scroll infinito y ficha en overlay, y la de títulos y premios, con buscador y filtros por tipo y emisor que solo se pintan cuando hay más de un valor real. El contenido vive en JSON editables para que la artista lo actualice sin tocar código. Cursor propio y un shader WebGL escrito a mano, sin Three.js, para el fondo del formulario de contacto, que envía por una función serverless y manda dos correos: el aviso con Reply-To del visitante y un acuse de recibo en su idioma. Bilingüe y desplegado en Vercel.",
+      "image": "portfolio-3d.jpg",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app",
+        "frontend"
+      ],
+      "tags": [
+        "react",
+        "javascript",
+        "gsap",
+        "webgl",
+        "css",
+        "vercel",
+        "serverless",
+        "i18n"
+      ],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "GSAP",
+        "WebGL",
+        "Node.js",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "completado",
+      "date": "2026"
     }
   ]
 }

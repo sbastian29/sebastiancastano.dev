@@ -4,8 +4,15 @@
     "title": "Técnico Superior en Desarrollo de Aplicaciones Multiplataforma",
     "issuer": "IES Virgen de la Paloma",
     "date": "2024",
-    "types": ["universidad"],
-    "tags": ["java", "kotlin", "mobile", "software"],
+    "types": [
+      "universidad"
+    ],
+    "tags": [
+      "java",
+      "kotlin",
+      "mobile",
+      "software"
+    ],
     "description": "Certificación académica oficial DAM. Nota final: 8.00. Módulos destacados: Acceso a datos (10), Proyecto multiplataforma (10).",
     "icon": "fa-graduation-cap",
     "image": "assets/images/Certificates/dam-certificate.jpg"
@@ -15,8 +22,14 @@
     "title": "Título de Bachiller — Modalidad Ciencias",
     "issuer": "IES Ntra. Sra. de la Almudena · Comunidad de Madrid",
     "date": "2022",
-    "types": ["universidad"],
-    "tags": ["ciencias", "formacion", "bachillerato"],
+    "types": [
+      "universidad"
+    ],
+    "tags": [
+      "ciencias",
+      "formacion",
+      "bachillerato"
+    ],
     "description": "Título oficial de Bachiller en Ciencias. Calificación final: 7.32. Expedido por la Comunidad de Madrid.",
     "icon": "fa-scroll",
     "image": "assets/images/Certificates/bachillerato.jpg"
@@ -26,8 +39,14 @@
     "title": "Data Science: R Programming Complete Diploma",
     "issuer": "Udemy — SDE Arts by Ahmed EL Mohandes",
     "date": "2025",
-    "types": ["curso-online"],
-    "tags": ["r", "data-science", "estadistica"],
+    "types": [
+      "curso-online"
+    ],
+    "tags": [
+      "r",
+      "data-science",
+      "estadistica"
+    ],
     "description": "Diploma completo de R para Data Science. 5 horas. Certificado Udemy UC-569ea487.",
     "icon": "fa-chart-line",
     "image": "assets/images/Certificates/R_Udemy.png"
@@ -37,8 +56,15 @@
     "title": "Complete Guide in HTML & CSS — Build Responsive Website",
     "issuer": "Udemy — Sara Academy",
     "date": "2024",
-    "types": ["curso-online"],
-    "tags": ["html", "css", "webdev", "frontend"],
+    "types": [
+      "curso-online"
+    ],
+    "tags": [
+      "html",
+      "css",
+      "webdev",
+      "frontend"
+    ],
     "description": "Guía completa de HTML y CSS para sitios responsive. 6 horas. Certificado Udemy UC-bf39a8a7.",
     "icon": "fa-code",
     "image": "assets/images/Certificates/HTML_CSS_Udemy.png"
@@ -48,8 +74,15 @@
     "title": "BigData+: Módulo 0",
     "issuer": "AHK — Cámara de Comercio Alemana para España",
     "date": "2024",
-    "types": ["curso-online"],
-    "tags": ["bigdata", "python", "pandas", "processing"],
+    "types": [
+      "curso-online"
+    ],
+    "tags": [
+      "bigdata",
+      "python",
+      "pandas",
+      "processing"
+    ],
     "description": "10 horas sobre análisis de datos con Python: Pandas, Matplotlib y estadística aplicada.",
     "icon": "fa-database",
     "image": "assets/images/Certificates/bigdata.png"
@@ -59,8 +92,14 @@
     "title": "LanguageCert B2 — Certificate in ESOL International",
     "issuer": "LanguageCert · Ofqual Regulated",
     "date": "2021",
-    "types": ["idioma"],
-    "tags": ["ingles", "b2", "comunicacion"],
+    "types": [
+      "idioma"
+    ],
+    "tags": [
+      "ingles",
+      "b2",
+      "comunicacion"
+    ],
     "description": "Certificación oficial B2 en inglés (Listening, Reading, Writing y Speaking). High Pass. Nov 2021.",
     "icon": "fa-language",
     "image": "assets/images/Certificates/B2.jpeg"
@@ -70,8 +109,15 @@
     "title": "Carta de Recomendación — Junior Data Engineer",
     "issuer": "Next Digital Hub · Alberto García León, HR",
     "date": "2024",
-    "types": ["reconocimiento"],
-    "tags": ["data-engineering", "python", "sql", "aws"],
+    "types": [
+      "reconocimiento"
+    ],
+    "tags": [
+      "data-engineering",
+      "python",
+      "sql",
+      "aws"
+    ],
     "description": "Carta de recomendación tras 6 meses como Junior Data Engineer. Destacado en SQL, Python y AWS.",
     "icon": "fa-envelope-open-text",
     "image": "assets/images/Certificates/cartaRecomendacion.jpg"
@@ -81,8 +127,16 @@
     "title": "Microsoft Certified: Azure AI Fundamentals (AI-900)",
     "issuer": "Microsoft",
     "date": "2026",
-    "types": ["reconocimiento", "cloud"],
-    "tags": ["azure", "ia", "cloud", "microsoft"],
+    "types": [
+      "reconocimiento",
+      "cloud"
+    ],
+    "tags": [
+      "azure",
+      "ia",
+      "cloud",
+      "microsoft"
+    ],
     "description": "Certificación oficial Microsoft Azure AI Fundamentals. Verif: PNDK-uScT. Emitido el 17 de marzo de 2026.",
     "icon": "fa-brain",
     "image": "assets/images/Certificates/AI900_page-0001.jpg"
@@ -92,10 +146,35 @@
     "title": "Voluntariado — Adopta Un Abuelo",
     "issuer": "Fundación Mayores de Hoy · Fundación La Caixa",
     "date": "2019",
-    "types": ["reconocimiento"],
-    "tags": ["voluntariado", "social", "comunidad"],
+    "types": [
+      "reconocimiento"
+    ],
+    "tags": [
+      "voluntariado",
+      "social",
+      "comunidad"
+    ],
     "description": "Reconocimiento por participación en jornadas intergeneracionales con Adopta Un Abuelo y la Comunidad de Madrid.",
     "icon": "fa-heart",
     "image": "assets/images/Certificates/Voluntariado.jpg"
+  },
+  {
+    "id": 10,
+    "title": "Microsoft Certified: Azure Data Fundamentals (DP-900)",
+    "issuer": "Microsoft",
+    "date": "2026",
+    "types": [
+      "reconocimiento",
+      "cloud"
+    ],
+    "tags": [
+      "azure",
+      "datos",
+      "cloud",
+      "microsoft"
+    ],
+    "description": "Certificación oficial Microsoft Azure Data Fundamentals: datos relacionales y no relacionales, cargas analíticas y servicios de datos en Azure.",
+    "icon": "fa-database",
+    "image": "assets/images/Certificates/DP900-badge.png"
   }
 ]

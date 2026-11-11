@@ -272,6 +272,85 @@
       "featured": false,
       "status": "coming-soon",
       "date": "2024"
+    },
+    {
+      "id": 8,
+      "title": "Website for Veloche bar and restaurant",
+      "slug": "veloche-restaurante",
+      "description": "Website for a bar and restaurant in Fuente el Saz de Jarama: menu, bookings and takeaway, with zero third-party requests on first load.",
+      "longDescription": "Freelance commission (2026). Static site with no build step, hash routing and templates compiled in the browser on top of React. Everything is self-hosted, fonts and libraries included, so the first load talks to no third party: Google is only contacted if the visitor accepts the analytics or map cookies, and an automated test verifies it. GSAP is deferred until the first interaction or 5 seconds in, so it stays out of the LCP. Also: printable menu with its own print stylesheet, a thank-you page with a conversion event, a table QR landing with its own GDPR legal basis, per-route title, description, Open Graph and canonical in the real head, and a pause control on the hero slideshow per WCAG 2.2.2. Deployed on Vercel.",
+      "image": "veloche.jpg",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app",
+        "frontend"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "javascript",
+        "react",
+        "gsap",
+        "vercel",
+        "seo",
+        "accessibility",
+        "gdpr"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "GSAP",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": "https://veloche-restaurante.vercel.app",
+      "featured": true,
+      "status": "completado",
+      "date": "2026"
+    },
+    {
+      "id": 9,
+      "title": "3D artist portfolio",
+      "slug": "portfolio-artista-3d",
+      "description": "Portfolio for a 3D modeling and texturing artist: work archive, credentials and a contact form with an acknowledgement email.",
+      "longDescription": "Freelance commission (2026). Static site with no bundler: React 18 from a CDN, JSX compiled in the browser and GSAP for the transitions. Two independent pages: the work archive, with an infinite auto-scrolling carousel and an overlay detail view, and the credentials page, with search and filters by type and issuer that are only rendered when there is more than one real value. Content lives in editable JSON files so the artist can update it without touching code. Custom cursor and a hand-written WebGL shader, no Three.js, behind the contact form, which posts to a serverless function and sends two emails: the notification with the visitor's Reply-To and an acknowledgement in their language. Bilingual and deployed on Vercel.",
+      "image": "portfolio-3d.jpg",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app",
+        "frontend"
+      ],
+      "tags": [
+        "react",
+        "javascript",
+        "gsap",
+        "webgl",
+        "css",
+        "vercel",
+        "serverless",
+        "i18n"
+      ],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "GSAP",
+        "WebGL",
+        "Node.js",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": null,
+      "featured": true,
+      "status": "completado",
+      "date": "2026"
     }
   ]
 }

@@ -1,0 +1,1070 @@
+{
+  "_comment": "Fuente única del stack técnico. Bilingüe (es/en). Al editar este archivo, regenera el HTML estático con: node tools/build-stack.mjs",
+  "stages": [
+    {
+      "id": "origen",
+      "es": "Origen",
+      "en": "Source"
+    },
+    {
+      "id": "ingesta",
+      "es": "Ingesta y orquestación",
+      "en": "Ingestion and orchestration"
+    },
+    {
+      "id": "almacen",
+      "es": "Almacén y transformación",
+      "en": "Storage and transformation"
+    },
+    {
+      "id": "gobierno",
+      "es": "Gobierno y despliegue",
+      "en": "Governance and delivery"
+    },
+    {
+      "id": "modelo",
+      "es": "Modelo e interfaz",
+      "en": "Model and interface"
+    }
+  ],
+  "tiers": {
+    "1": {
+      "es": "Uso diario",
+      "en": "Daily use"
+    },
+    "2": {
+      "es": "Uso profesional",
+      "en": "Professional use"
+    },
+    "3": {
+      "es": "Proyectos y formación",
+      "en": "Projects and training"
+    }
+  },
+  "copy": {
+    "title": {
+      "es": "Habilidades técnicas",
+      "en": "Technical skills"
+    },
+    "statLabel": {
+      "es": "Uso diario",
+      "en": "Daily use"
+    },
+    "statFoot": {
+      "es": "de 61 herramientas",
+      "en": "of 61 tools"
+    },
+    "puvLabel": {
+      "es": "Lo que hago",
+      "en": "What I do"
+    },
+    "puvLine": {
+      "es": "Del sistema origen al modelo y a la interfaz.",
+      "en": "From the source system to the model and the interface."
+    },
+    "puvEnd": {
+      "es": "Modelo",
+      "en": "Model"
+    },
+    "focusLabel": {
+      "es": "Enfoque",
+      "en": "Focus"
+    },
+    "focusLine": {
+      "es": "Pipelines de punta a punta y gobierno del dato para que la IA funcione en local.",
+      "en": "End-to-end pipelines and data governance so AI can run on-premise."
+    }
+  },
+  "chain": [
+    "as400",
+    "airflow",
+    "iceberg",
+    "dremio",
+    "dbt",
+    "vllm",
+    "librechat"
+  ],
+  "layout": {
+    "hero": "airflow",
+    "core": [
+      "python",
+      "stat",
+      "dbt",
+      "dremio",
+      "sql",
+      "as400",
+      "puv",
+      "focus",
+      "openmetadata"
+    ]
+  },
+  "tools": [
+    {
+      "key": "python",
+      "name": "Python",
+      "tier": 1,
+      "stage": "ingesta",
+      "icon": "python",
+      "where": {
+        "es": "Trabajo actual, TFM",
+        "en": "Current role, master's thesis"
+      },
+      "ctx": {
+        "es": "DAGs, ETL, agentes y automatización. Mi lenguaje principal.",
+        "en": "DAGs, ETL, agents and automation. My main language."
+      }
+    },
+    {
+      "key": "airflow",
+      "name": "Apache Airflow",
+      "tier": 1,
+      "stage": "ingesta",
+      "icon": "airflow",
+      "where": {
+        "es": "Trabajo actual, Next Digital Hub",
+        "en": "Current role, Next Digital Hub"
+      },
+      "ctx": {
+        "es": "Orquestación de pipelines de ingesta y retención.",
+        "en": "Orchestration of ingestion and retention pipelines."
+      },
+      "short": "Airflow"
+    },
+    {
+      "key": "dbt",
+      "name": "dbt",
+      "tier": 1,
+      "stage": "almacen",
+      "icon": "dbt",
+      "where": {
+        "es": "Trabajo actual, Next Digital Hub",
+        "en": "Current role, Next Digital Hub"
+      },
+      "ctx": {
+        "es": "Modelado, transformación y tests del dato.",
+        "en": "Data modelling, transformation and tests."
+      },
+      "mark": "dbt"
+    },
+    {
+      "key": "dremio",
+      "name": "Dremio",
+      "tier": 1,
+      "stage": "almacen",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Capa lakehouse sobre tablas Iceberg.",
+        "en": "Lakehouse layer on top of Iceberg tables."
+      },
+      "mark": "Dr"
+    },
+    {
+      "key": "sql",
+      "name": "SQL",
+      "tier": 1,
+      "stage": "almacen",
+      "icon": null,
+      "where": {
+        "es": "Todos los proyectos",
+        "en": "Every project"
+      },
+      "ctx": {
+        "es": "Consultas y validaciónes sobre SQL Server, Dremio, Snowflake y PostgreSQL.",
+        "en": "Queries and validations across SQL Server, Dremio, Snowflake and PostgreSQL."
+      },
+      "mark": "SQL"
+    },
+    {
+      "key": "as400",
+      "name": "Sistemas legacy (IBM i)",
+      "tier": 1,
+      "stage": "origen",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Integración de sistemas heredados como origen de datos.",
+        "en": "Legacy systems integrated as a data source."
+      },
+      "short": "Legacy",
+      "mark": "IBM",
+      "display": "Sistemas&nbsp;legacy<br>(IBM&nbsp;i)"
+    },
+    {
+      "key": "vllm",
+      "name": "vLLM",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Servido de modelos en local sobre GPU.",
+        "en": "Serving models on-premise on GPU."
+      },
+      "mark": "vL"
+    },
+    {
+      "key": "litellm",
+      "name": "LiteLLM",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Pasarela única hacia los modelos.",
+        "en": "A single gateway to the models."
+      },
+      "mark": "Li"
+    },
+    {
+      "key": "librechat",
+      "name": "LibreChat",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Interfaz de chat y agentes para el equipo.",
+        "en": "Chat and agent interface for the team."
+      },
+      "mark": "LC"
+    },
+    {
+      "key": "langgraph",
+      "name": "LangGraph",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "langgraph",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Agentes como grafos de estados.",
+        "en": "Agents as state graphs."
+      },
+      "mark": "LG"
+    },
+    {
+      "key": "langchain",
+      "name": "LangChain",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "langchain",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Cadenas y herramientas sobre LLMs.",
+        "en": "Chains and tools on top of LLMs."
+      },
+      "mark": "Lc"
+    },
+    {
+      "key": "llamaindex",
+      "name": "LlamaIndex",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Indexado y recuperación para RAG.",
+        "en": "Indexing and retrieval for RAG."
+      },
+      "mark": "LI"
+    },
+    {
+      "key": "qdrant",
+      "name": "Qdrant",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Base vectorial para RAG.",
+        "en": "Vector database for RAG."
+      },
+      "mark": "Qd"
+    },
+    {
+      "key": "mcp",
+      "name": "MCP",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "mcp",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Servidores con FastMCP que conectan los LLMs con herramientas internas.",
+        "en": "FastMCP servers wiring the LLMs to internal tools."
+      },
+      "mark": "MCP"
+    },
+    {
+      "key": "openai",
+      "name": "Azure OpenAI y OpenAI API",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "openai",
+      "where": {
+        "es": "Sermicro",
+        "en": "Sermicro"
+      },
+      "ctx": {
+        "es": "Asistentes con IA generativa.",
+        "en": "Assistants built on generative AI."
+      },
+      "mark": "AI"
+    },
+    {
+      "key": "copilotstudio",
+      "name": "Copilot Studio",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Sermicro",
+        "en": "Sermicro"
+      },
+      "ctx": {
+        "es": "Asistentes conversacionales.",
+        "en": "Conversational assistants."
+      },
+      "mark": "CS"
+    },
+    {
+      "key": "uipath",
+      "name": "UiPath",
+      "tier": 2,
+      "stage": "ingesta",
+      "icon": "uipath",
+      "where": {
+        "es": "Sermicro",
+        "en": "Sermicro"
+      },
+      "ctx": {
+        "es": "Bots RPA con lectura de documentos por IA.",
+        "en": "RPA bots with AI document understanding."
+      },
+      "mark": "Ui"
+    },
+    {
+      "key": "n8n",
+      "name": "n8n",
+      "tier": 2,
+      "stage": "ingesta",
+      "icon": "n8n",
+      "where": {
+        "es": "Sermicro",
+        "en": "Sermicro"
+      },
+      "ctx": {
+        "es": "Flujos de automatización e integraciones.",
+        "en": "Automation flows and integrations."
+      },
+      "mark": "n8"
+    },
+    {
+      "key": "powerautomate",
+      "name": "Power Automate",
+      "tier": 2,
+      "stage": "ingesta",
+      "icon": null,
+      "where": {
+        "es": "Sermicro",
+        "en": "Sermicro"
+      },
+      "ctx": {
+        "es": "Hiperautomatización de procesos.",
+        "en": "Process hyperautomation."
+      },
+      "mark": "PA"
+    },
+    {
+      "key": "awsglue",
+      "name": "AWS Glue y Lambda",
+      "tier": 2,
+      "stage": "ingesta",
+      "icon": null,
+      "where": {
+        "es": "Next Digital Hub",
+        "en": "Next Digital Hub"
+      },
+      "ctx": {
+        "es": "ETL serverless y procesos por eventos.",
+        "en": "Serverless ETL and event-driven jobs."
+      },
+      "mark": "AWS"
+    },
+    {
+      "key": "iceberg",
+      "name": "Apache Iceberg",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Tablas de archivo con validación de integridad.",
+        "en": "Archive tables with integrity validation."
+      },
+      "short": "Iceberg",
+      "mark": "Ic"
+    },
+    {
+      "key": "pyiceberg",
+      "name": "PyIceberg y PyArrow",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Tablas Iceberg desde Python.",
+        "en": "Iceberg tables straight from Python."
+      },
+      "mark": "Py"
+    },
+    {
+      "key": "parquet",
+      "name": "Parquet",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": "parquet",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Snapshots de seguridad.",
+        "en": "Safety snapshots."
+      }
+    },
+    {
+      "key": "polars",
+      "name": "Polars y DuckDB",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": "polars",
+      "where": {
+        "es": "",
+        "en": ""
+      },
+      "ctx": {
+        "es": "Procesamiento analítico rápido en local.",
+        "en": "Fast analytical processing on a laptop."
+      },
+      "mark": "Po"
+    },
+    {
+      "key": "pandas",
+      "name": "pandas",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": "pandas",
+      "where": {
+        "es": "",
+        "en": ""
+      },
+      "ctx": {
+        "es": "Manipulación de datos en Python.",
+        "en": "Data wrangling in Python."
+      },
+      "mark": "pd"
+    },
+    {
+      "key": "snowflake",
+      "name": "Snowflake",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": "snowflake",
+      "where": {
+        "es": "Next Digital Hub",
+        "en": "Next Digital Hub"
+      },
+      "ctx": {
+        "es": "Pipelines reales en producción.",
+        "en": "Real pipelines in production."
+      }
+    },
+    {
+      "key": "spark",
+      "name": "Apache Spark",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": "spark",
+      "where": {
+        "es": "Next Digital Hub, TFM",
+        "en": "Next Digital Hub, master's thesis"
+      },
+      "ctx": {
+        "es": "Procesamiento distribuido con PySpark.",
+        "en": "Distributed processing with PySpark."
+      },
+      "short": "Spark"
+    },
+    {
+      "key": "s3",
+      "name": "Amazon S3 y Athena",
+      "tier": 2,
+      "stage": "almacen",
+      "icon": null,
+      "where": {
+        "es": "Next Digital Hub",
+        "en": "Next Digital Hub"
+      },
+      "ctx": {
+        "es": "Data lake y consultas sobre él.",
+        "en": "Data lake and queries over it."
+      },
+      "mark": "S3"
+    },
+    {
+      "key": "sqlserver",
+      "name": "SQL Server",
+      "tier": 2,
+      "stage": "origen",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Origen en solo lectura.",
+        "en": "Read-only source system."
+      },
+      "mark": "MS"
+    },
+    {
+      "key": "sap",
+      "name": "SAP y Salesforce",
+      "tier": 2,
+      "stage": "origen",
+      "icon": "sap",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "ERP y CRM como orígenes de datos.",
+        "en": "ERP and CRM as data sources."
+      },
+      "mark": "SAP"
+    },
+    {
+      "key": "openmetadata",
+      "name": "OpenMetadata",
+      "tier": 2,
+      "stage": "gobierno",
+      "icon": null,
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Catálogo y gobierno del dato.",
+        "en": "Data catalogue and governance."
+      },
+      "mark": "OM"
+    },
+    {
+      "key": "greatexpectations",
+      "name": "Great Expectations",
+      "tier": 2,
+      "stage": "gobierno",
+      "icon": null,
+      "where": {
+        "es": "",
+        "en": ""
+      },
+      "ctx": {
+        "es": "Validación de datos fuera de dbt.",
+        "en": "Data validation outside dbt."
+      },
+      "mark": "GE"
+    },
+    {
+      "key": "docker",
+      "name": "Docker",
+      "tier": 2,
+      "stage": "gobierno",
+      "icon": "docker",
+      "where": {
+        "es": "Trabajo actual, Next Digital Hub, TFM",
+        "en": "Current role, Next Digital Hub, master's thesis"
+      },
+      "ctx": {
+        "es": "Servicios y pipelines contenerizados.",
+        "en": "Containerised services and pipelines."
+      }
+    },
+    {
+      "key": "kubernetes",
+      "name": "Kubernetes",
+      "tier": 2,
+      "stage": "gobierno",
+      "icon": "kubernetes",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Despliegue de la plataforma.",
+        "en": "Platform deployment."
+      },
+      "mark": "K8"
+    },
+    {
+      "key": "gitlab",
+      "name": "GitLab y GitLab CI",
+      "tier": 2,
+      "stage": "gobierno",
+      "icon": "gitlab",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "Repositorios, ramas y despliegue continuo.",
+        "en": "Repos, branches and continuous delivery."
+      },
+      "mark": "GL"
+    },
+    {
+      "key": "git",
+      "name": "Git",
+      "tier": 2,
+      "stage": "gobierno",
+      "icon": "git",
+      "where": {
+        "es": "Todos los proyectos",
+        "en": "Every project"
+      },
+      "ctx": {
+        "es": "Control de versiones en el día a día.",
+        "en": "Day-to-day version control."
+      }
+    },
+    {
+      "key": "superset",
+      "name": "Apache Superset",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "superset",
+      "where": {
+        "es": "Trabajo actual",
+        "en": "Current role"
+      },
+      "ctx": {
+        "es": "BI y dashboards.",
+        "en": "BI and dashboards."
+      },
+      "short": "Superset",
+      "mark": "Su"
+    },
+    {
+      "key": "powerbi",
+      "name": "Power BI",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Next Digital Hub, Sermicro, TFM",
+        "en": "Next Digital Hub, Sermicro, master's thesis"
+      },
+      "ctx": {
+        "es": "Informes y visualización.",
+        "en": "Reporting and visualisation."
+      },
+      "mark": "PBI"
+    },
+    {
+      "key": "sklearn",
+      "name": "scikit-learn",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "sklearn",
+      "where": {
+        "es": "",
+        "en": ""
+      },
+      "ctx": {
+        "es": "Modelos de machine learning.",
+        "en": "Machine learning models."
+      },
+      "mark": "sk"
+    },
+    {
+      "key": "java",
+      "name": "Java",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "java",
+      "where": {
+        "es": "DAM",
+        "en": "Vocational degree (DAM)"
+      },
+      "ctx": {
+        "es": "Mi primer lenguaje. Lo manejo sin asistencia.",
+        "en": "My first language. I write it unaided."
+      }
+    },
+    {
+      "key": "pgvector",
+      "name": "pgvector",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": null,
+      "where": {
+        "es": "Proyectos personales",
+        "en": "Personal projects"
+      },
+      "ctx": {
+        "es": "Búsqueda vectorial sobre PostgreSQL.",
+        "en": "Vector search on PostgreSQL."
+      },
+      "mark": "pgv"
+    },
+    {
+      "key": "gemini",
+      "name": "Gemini",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "gemini",
+      "where": {
+        "es": "Proyectos personales",
+        "en": "Personal projects"
+      },
+      "ctx": {
+        "es": "Lectura de facturas con IA.",
+        "en": "Reading invoices with AI."
+      },
+      "mark": "Ge"
+    },
+    {
+      "key": "kafka",
+      "name": "Apache Kafka",
+      "tier": 3,
+      "stage": "ingesta",
+      "icon": "kafka",
+      "where": {
+        "es": "TFM",
+        "en": "Master's thesis"
+      },
+      "ctx": {
+        "es": "Streaming de eventos hacia Spark.",
+        "en": "Event streaming into Spark."
+      },
+      "short": "Kafka"
+    },
+    {
+      "key": "postgresql",
+      "name": "PostgreSQL",
+      "tier": 3,
+      "stage": "almacen",
+      "icon": "postgresql",
+      "where": {
+        "es": "TFM, proyectos personales",
+        "en": "Master's thesis, personal projects"
+      },
+      "ctx": {
+        "es": "Destino del pipeline de churn y base de producto.",
+        "en": "Target of the churn pipeline and the product database."
+      }
+    },
+    {
+      "key": "knime",
+      "name": "KNIME",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "knime",
+      "where": {
+        "es": "TFM",
+        "en": "Master's thesis"
+      },
+      "ctx": {
+        "es": "Modelado del churn.",
+        "en": "Churn modelling."
+      }
+    },
+    {
+      "key": "mysql",
+      "name": "MySQL",
+      "tier": 3,
+      "stage": "almacen",
+      "icon": "mysql",
+      "where": {
+        "es": "Formación",
+        "en": "Training"
+      },
+      "ctx": {
+        "es": "Bases de datos relacionales.",
+        "en": "Relational databases."
+      }
+    },
+    {
+      "key": "mongodb",
+      "name": "MongoDB",
+      "tier": 3,
+      "stage": "almacen",
+      "icon": "mongodb",
+      "where": {
+        "es": "Formación",
+        "en": "Training"
+      },
+      "ctx": {
+        "es": "Base de datos documental.",
+        "en": "Document database."
+      }
+    },
+    {
+      "key": "azure",
+      "name": "Azure",
+      "tier": 3,
+      "stage": "gobierno",
+      "icon": null,
+      "where": {
+        "es": "Certificaciones",
+        "en": "Certifications"
+      },
+      "ctx": {
+        "es": "Certificado en AI-900 y DP-900.",
+        "en": "Certified in AI-900 and DP-900."
+      },
+      "mark": "Az"
+    },
+    {
+      "key": "html",
+      "name": "HTML",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "html",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Webs de cliente con sistema de tokens.",
+        "en": "Client sites built on a token system."
+      },
+      "mark": "HT"
+    },
+    {
+      "key": "css",
+      "name": "CSS",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "css",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Webs de cliente con sistema de tokens.",
+        "en": "Client sites built on a token system."
+      },
+      "mark": "CSS"
+    },
+    {
+      "key": "javascript",
+      "name": "JavaScript",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "javascript",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Webs de cliente con sistema de tokens.",
+        "en": "Client sites built on a token system."
+      },
+      "mark": "JS"
+    },
+    {
+      "key": "react",
+      "name": "React",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "react",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Interfaces por componentes.",
+        "en": "Component-based interfaces."
+      },
+      "mark": "Re"
+    },
+    {
+      "key": "vite",
+      "name": "Vite",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "vite",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Build ligero para webs y paneles.",
+        "en": "Light build for sites and dashboards."
+      },
+      "mark": "Vi"
+    },
+    {
+      "key": "gsap",
+      "name": "GSAP",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "gsap",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Animación y scroll a medida.",
+        "en": "Custom animation and scroll work."
+      },
+      "mark": "GS"
+    },
+    {
+      "key": "vercel",
+      "name": "Vercel",
+      "tier": 3,
+      "stage": "gobierno",
+      "icon": "vercel",
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Despliegue con cabeceras de seguridad y caché a medida.",
+        "en": "Deploys with hand-written security and cache headers."
+      },
+      "mark": "Ve"
+    },
+    {
+      "key": "supabase",
+      "name": "Supabase",
+      "tier": 3,
+      "stage": "almacen",
+      "icon": "supabase",
+      "where": {
+        "es": "Proyectos personales",
+        "en": "Personal projects"
+      },
+      "ctx": {
+        "es": "Postgres, Auth, RLS multicliente y Edge Functions.",
+        "en": "Postgres, Auth, multi-tenant RLS and Edge Functions."
+      },
+      "mark": "Sb"
+    },
+    {
+      "key": "playwright",
+      "name": "Playwright",
+      "tier": 3,
+      "stage": "gobierno",
+      "icon": null,
+      "where": {
+        "es": "Proyectos freelance",
+        "en": "Freelance work"
+      },
+      "ctx": {
+        "es": "Tests end to end en Python.",
+        "en": "End-to-end tests in Python."
+      },
+      "mark": "Pw"
+    },
+    {
+      "key": "frappe",
+      "name": "Frappe",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "frappe",
+      "where": {
+        "es": "Proyectos personales",
+        "en": "Personal projects"
+      },
+      "ctx": {
+        "es": "Base de un CRM/ERP propio.",
+        "en": "Base of an in-house CRM/ERP."
+      },
+      "mark": "Fr"
+    },
+    {
+      "key": "fastapi",
+      "name": "FastAPI",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "fastapi",
+      "where": {
+        "es": "Proyectos",
+        "en": "Projects"
+      },
+      "ctx": {
+        "es": "APIs en Python.",
+        "en": "APIs in Python."
+      }
+    },
+    {
+      "key": "github",
+      "name": "GitHub",
+      "tier": 3,
+      "stage": "gobierno",
+      "icon": "github",
+      "where": {
+        "es": "Proyectos personales",
+        "en": "Personal projects"
+      },
+      "ctx": {
+        "es": "Repositorios públicos y automatizaciónes.",
+        "en": "Public repos and automations."
+      }
+    },
+    {
+      "key": "kotlin",
+      "name": "Kotlin",
+      "tier": 3,
+      "stage": "modelo",
+      "icon": "kotlin",
+      "where": {
+        "es": "DAM, proyectos personales",
+        "en": "Vocational degree (DAM), personal projects"
+      },
+      "ctx": {
+        "es": "Apps Android nativas.",
+        "en": "Native Android apps."
+      }
+    }
+  ]
+}

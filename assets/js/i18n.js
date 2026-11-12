@@ -46,7 +46,7 @@ const I18n = (() => {
       'contact.email':'Email','contact.phone':'Teléfono','contact.location':'Ubicación','contact.city':'Madrid, España',
       'toast.title':'Agente de Sebastián',
       'toast.body':'👋 Soy el agente de <strong>Sebastián</strong>. Pregúntame por su experiencia, sus proyectos, o pásame una oferta y te digo si encaja.',
-      'footer.rights':'© 2026 Sebastián Castaño Suárez. Todos los derechos reservados.',
+      'footer.rights':'© 2026 Sebastián Castaño Suárez. Todos los derechos reservados.','footer.privacy':'Privacidad','privacy.page.title':'Privacidad | Sebastián Castaño Suárez',
       'certs.title':'Certificados',
       'certs.subtitle':'Formación académica, cursos especializados y certificaciones que validan mis conocimientos.',
       'certs.search':'Buscar certificados...','certs.clear':'Limpiar',
@@ -115,7 +115,7 @@ const I18n = (() => {
       'contact.email':'Email','contact.phone':'Phone','contact.location':'Location','contact.city':'Madrid, Spain',
       'toast.title':"Sebastián's agent",
       'toast.body':"👋 I'm <strong>Sebastián</strong>'s agent. Ask me about his experience, his projects, or send me a job offer and I'll tell you if he's a fit.",
-      'footer.rights':'© 2026 Sebastián Castaño Suárez. All rights reserved.',
+      'footer.rights':'© 2026 Sebastián Castaño Suárez. All rights reserved.','footer.privacy':'Privacy','privacy.page.title':'Privacy | Sebastián Castaño Suárez',
       'certs.title':'Certificates',
       'certs.subtitle':'Academic training, specialized courses and certifications that validate my knowledge.',
       'certs.search':'Search certificates...','certs.clear':'Clear',
@@ -193,18 +193,7 @@ const I18n = (() => {
     const cached = localStorage.getItem('i18n_country');
     const age    = Date.now() - parseInt(localStorage.getItem('i18n_at')||'0');
     if (cached && age < 86400000) { _finalize(cached); return; }
-    try {
-      const ctl = new AbortController();
-      setTimeout(() => ctl.abort(), 3000);
-      const r = await fetch('https://ipapi.co/json/', {signal: ctl.signal});
-      if (r.ok) {
-        const d = await r.json();
-        const c = d.country_code || 'ES';
-        localStorage.setItem('i18n_country', c);
-        localStorage.setItem('i18n_at', Date.now());
-        _finalize(c); return;
-      }
-    } catch(_) {}
+    // Sin geolocalización por IP (ipapi.co eliminado por RGPD): idioma del navegador.
     const bl = (navigator.language||'es').toLowerCase();
     _finalize(bl.startsWith('es') ? 'ES' : 'US');
   }

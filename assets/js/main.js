@@ -192,11 +192,13 @@ const MobileNav = {
   toggle() {
     this.nav.classList.toggle('open');
     this.menuBtn.classList.toggle('active');
+    this.menuBtn.setAttribute('aria-expanded', this.nav.classList.contains('open'));
   },
 
   close() {
     this.nav.classList.remove('open');
     this.menuBtn.classList.remove('active');
+    this.menuBtn.setAttribute('aria-expanded', 'false');
   }
 };
 

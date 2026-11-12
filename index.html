@@ -13,9 +13,7 @@
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
 
   <!-- Fonts -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fonts.css">
 
   <!-- Styles -->
   <link rel="stylesheet" href="assets/css/style.css">
@@ -436,6 +434,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <!-- Header -->
   <header class="header">
 
@@ -470,7 +469,7 @@
 
 
 
-      <button class="mobile-menu-btn" aria-label="Menu">
+      <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
 
         <span></span>
 
@@ -485,7 +484,7 @@
   </header>
 
   <!-- Hero Section -->
-  <section class="hero">
+  <section class="hero" id="contenido" tabindex="-1">
     <div class="container">
       <div class="hero-content">
         <div class="hero-text">
@@ -545,7 +544,7 @@
               <div class="decoration-ring"></div>
             </div>
             <div class="profile-image" style="background: linear-gradient(135deg, var(--accent-data) 0%, var(--accent-automation) 50%, var(--accent-software) 100%); display: flex; align-items: center; justify-content: center; font-size: 5rem; color: white; font-weight: 700;">
-              <img src="assets/images/Sebastian.jpg" alt="Sebastian" style="width: 100%; height: 100%; object-fit: cover;">
+              <img src="assets/images/Sebastian.jpg" alt="Foto de Sebastián Castaño Suárez" style="width: 100%; height: 100%; object-fit: cover;">
             </div>
           </div>
         </div>
@@ -822,6 +821,7 @@
           <a href="index.html" class="footer-link">CV</a>
           <a href="certificados.html" class="footer-link" data-i18n="nav.certs">Certificados</a>
           <a href="portfolio.html" class="footer-link" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="privacidad.html" class="footer-link" data-i18n="footer.privacy">Privacidad</a>
         </div>
         <p class="footer-copyright">
           <span data-i18n="footer.rights">© 2026 Sebastián Castaño Suárez. Todos los derechos reservados.</span>
@@ -1246,6 +1246,23 @@ document.addEventListener('DOMContentLoaded', () => {
     s.src = API + '/widget.js';
     s.setAttribute('data-api', API);
     s.async = true;
+    // Aviso de privacidad junto al chat (el widget vive en un Shadow DOM abierto).
+    s.onload = function () {
+      var h = document.getElementById('agente-sebastian-host');
+      var pie = h && h.shadowRoot && h.shadowRoot.querySelector('.pie');
+      if (!pie) return;
+      var en = document.documentElement.lang === 'en';
+      var p = document.createElement('p');
+      p.className = 'pie';
+      p.appendChild(document.createTextNode(en
+        ? 'Your messages are processed by an AI service. Do not share personal data. '
+        : 'Tus mensajes los procesa un servicio de IA. No compartas datos personales. '));
+      var a = document.createElement('a');
+      a.href = 'privacidad.html'; a.target = '_blank'; a.rel = 'noopener';
+      a.style.color = 'inherit'; a.textContent = en ? 'Privacy' : 'Privacidad';
+      p.appendChild(a);
+      pie.after(p);
+    };
     document.body.appendChild(s);
   }
   if (document.readyState === 'complete') poner();

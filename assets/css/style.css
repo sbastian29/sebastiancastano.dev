@@ -17,7 +17,7 @@
 
   --text-primary: #1a1a1a;
   --text-secondary: #4a4a4a;
-  --text-tertiary: #8a8a8a;
+  --text-tertiary: #6b6b6b;
   --text-muted: #b0b0b0;
 
   --border-color: rgba(0, 0, 0, 0.06);
@@ -68,7 +68,7 @@
 
   --text-primary: #f0f0f0;
   --text-secondary: #a0a0a0;
-  --text-tertiary: #666666;
+  --text-tertiary: #8f8f8f;
   --text-muted: #404040;
 
   --border-color: rgba(255, 255, 255, 0.06);
@@ -1174,7 +1174,8 @@ img[src] {
 
 /* Focus styles for accessibility */
 a:focus-visible,
-button:focus-visible {
+button:focus-visible,
+.cert-card:focus-visible {
   outline: 2px solid var(--accent-data);
   outline-offset: 2px;
 }
@@ -1313,3 +1314,7 @@ button:focus-visible {
   transform: rotate(180deg);
   color: #4A7C6F;
 }
+/* Enlace de salto al contenido (teclado) */
+.skip-link { position: absolute; left: 8px; top: -60px; z-index: 10000; padding: 8px 14px; background: var(--text-primary); color: var(--bg-primary); border-radius: 6px; }
+.skip-link:focus { top: 8px; }
+[tabindex="-1"]:focus { outline: none; }

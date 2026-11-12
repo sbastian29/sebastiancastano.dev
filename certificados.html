@@ -7,9 +7,7 @@
   <title>Certificados | Sebastián Castaño Suárez</title>
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/filters.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -270,6 +268,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <!-- Header -->
   <header class="header">
     <div class="header-content">
@@ -289,7 +288,7 @@
         </div>
       </nav>
 
-      <button class="mobile-menu-btn" aria-label="Menu">
+      <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -297,7 +296,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="contenido" tabindex="-1">
     <!-- Page Header -->
     <section class="page-header">
       <div class="container">
@@ -399,9 +398,9 @@
   </main>
 
   <!-- Lightbox Modal -->
-  <div class="lightbox" id="lightbox">
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lightboxTitle">
     <div class="lightbox-content">
-      <button class="lightbox-close" id="lightboxClose">
+      <button class="lightbox-close" id="lightboxClose" aria-label="Cerrar">
         <i class="fas fa-times"></i>
       </button>
       <div class="lightbox-image-container" id="lightboxImageContainer">
@@ -427,6 +426,7 @@
           <a href="index.html" class="footer-link">CV</a>
           <a href="certificados.html" class="footer-link">Certificados</a>
           <a href="portfolio.html" class="footer-link">Portfolio</a>
+          <a href="privacidad.html" class="footer-link" data-i18n="footer.privacy">Privacidad</a>
         </div>
         <p class="footer-copyright">
           © 2024 Sebastián Castaño Suárez. Todos los derechos reservados.
@@ -586,7 +586,7 @@
                         : cert.types[0] === 'idioma' ? 'fa-language'
                         : 'fa-certificate';
         return `
-      <div class="cert-card filterable-item stagger-item"
+      <div class="cert-card filterable-item stagger-item" tabindex="0" role="button"
            data-types='${JSON.stringify(cert.types)}'
            data-tags='${JSON.stringify(cert.tags)}'
            data-title="${cert.title}"
@@ -620,6 +620,7 @@
     }
     // Lightbox functions
     function openLightbox(title, description, imageSrc) {
+      window._lbOpener = document.activeElement;
       const lightbox = document.getElementById('lightbox');
       document.getElementById('lightboxTitle').textContent = title;
       document.getElementById('lightboxDesc').textContent = description;
@@ -631,12 +632,14 @@
       }
       lightbox.classList.add('active');
       document.body.style.overflow = 'hidden';
+      document.getElementById('lightboxClose').focus();
     }
 
     function closeLightbox() {
       const lightbox = document.getElementById('lightbox');
       lightbox.classList.remove('active');
       document.body.style.overflow = '';
+      if (window._lbOpener) { window._lbOpener.focus(); window._lbOpener = null; }
     }
 
     // Initialize certificates filter
@@ -679,6 +682,8 @@
       });
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeLightbox();
+        const c = e.target.closest && e.target.closest('.cert-card');
+        if (c && (e.key === 'Enter' || e.key === ' ')) { e.preventDefault(); c.click(); }
       });
     });
   </script>

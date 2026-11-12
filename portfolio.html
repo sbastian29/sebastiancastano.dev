@@ -8,9 +8,7 @@
   <meta name="i18n-title" content="port.page.title">
 
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>S</text></svg>">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono&family=Space+Grotesk:wght@300..600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/css/fonts.css">
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/proyectos.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -435,6 +433,7 @@
   </style>
 </head>
 <body>
+  <a class="skip-link" href="#contenido">Saltar al contenido</a>
   <!-- Header -->
   <header class="header">
 
@@ -469,7 +468,7 @@
 
 
 
-      <button class="mobile-menu-btn" aria-label="Menu">
+      <button class="mobile-menu-btn" aria-label="Menu" aria-expanded="false">
 
         <span></span>
 
@@ -483,7 +482,7 @@
 
   </header>
 
-  <main>
+  <main id="contenido" tabindex="-1">
     <!-- Carrusel de categorías -->
     <section class="px" id="px" aria-labelledby="pxTitle">
       <div class="px-stage">
@@ -566,6 +565,7 @@
           <a href="index.html" class="footer-link">CV</a>
           <a href="certificados.html" class="footer-link" data-i18n="nav.certs">Certificados</a>
           <a href="portfolio.html" class="footer-link" data-i18n="nav.portfolio">Portfolio</a>
+          <a href="privacidad.html" class="footer-link" data-i18n="footer.privacy">Privacidad</a>
         </div>
         <p class="footer-copyright">
           <span data-i18n="footer.rights">© 2024 Sebastián Castaño Suárez. Todos los derechos reservados.</span>

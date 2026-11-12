@@ -1,12 +1,12 @@
-api/
-docs/
+/api/
+/docs/
 design-ref/
 .claude/
 .agents/
 .sfdx/
 .vscode/
-tools/
+/tools/
 skills-lock.json
 ilustraciones-preview.html
 CLAUDE.md
-Sebastian_Castano_Suarez_CV_*.pdf
+/Sebastian_Castano_Suarez_CV_*.pdf

@@ -235,6 +235,77 @@
       "orientation": "landscape"
     },
     {
+      "id": 9,
+      "title": "Website for Veloche bar and restaurant",
+      "slug": "veloche-restaurante",
+      "description": "Website for a bar and restaurant in Fuente el Saz de Jarama: menu, bookings and takeaway orders, with no third-party requests on first load.",
+      "longDescription": "Freelance commission. Static site with React-based templates, self-hosted libraries and fonts, deferred GSAP and a printable menu. Deployed on Vercel.",
+      "image": "assets/images/proyectos/veloche.webp",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "app-development"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "javascript",
+        "react",
+        "gsap",
+        "vercel"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "GSAP",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": "https://veloche-restaurante.vercel.app",
+      "featured": false,
+      "status": "completed",
+      "date": "2026"
+    },
+    {
+      "id": 10,
+      "title": "Portfolio for Yi-Ting, 3D artist",
+      "slug": "portfolio-artista-3d",
+      "description": "Website for Yi-Ting (Lisa), a 3D modeling and texturing artist: work archive carousel, searchable credentials and a contact form over a WebGL background.",
+      "longDescription": "Freelance commission. Static site with React, editable JSON content, a WebGL shader without Three.js and a serverless function for the form. Deployed on Vercel.",
+      "image": "assets/images/proyectos/yiting.webp",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "app-development"
+      ],
+      "tags": [
+        "react",
+        "javascript",
+        "gsap",
+        "webgl",
+        "vercel"
+      ],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "GSAP",
+        "WebGL",
+        "Node.js",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": "https://yiting-beryl.vercel.app",
+      "featured": false,
+      "status": "completed",
+      "date": "2026"
+    },
+    {
       "id": 7,
       "title": "Final Project — Hospital Management Suite & Android Development",
       "slug": "hospital-management",

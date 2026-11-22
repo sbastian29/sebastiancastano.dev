@@ -76,7 +76,7 @@ const I18n = (() => {
       'port.doors.count':'{n} proyectos',
       'port.doors.back':'Volver a las puertas',
       'port.doors.hint':'Pasa el ratón por una puerta · haz click para filtrar',
-      'port.featured':'Destacado','port.github':'GitHub','port.demo':'Demo','port.private_repo':'Repositorio privado',
+      'port.featured':'Destacado','port.github':'GitHub','port.demo':'Demo','port.private_repo':'Repositorio privado','port.preview':'Vista previa',
       'port.page.title':'Portfolio | Sebastián Castaño Suárez',
       'port.page.h1':'Portfolio','port.page.subtitle':'Proyectos destacados en ingeniería de datos, automatización y desarrollo de software.',
       'certs.page.h1':'Certificados','certs.page.subtitle':'Formación académica, cursos especializados y certificaciones que validan mis conocimientos.',
@@ -142,7 +142,7 @@ const I18n = (() => {
       'port.doors.count':'{n} projects',
       'port.doors.back':'Back to doors',
       'port.doors.hint':'Hover a door · click to filter',
-      'port.featured':'Featured','port.github':'GitHub','port.demo':'Demo','port.private_repo':'Private repository',
+      'port.featured':'Featured','port.github':'GitHub','port.demo':'Demo','port.private_repo':'Private repository','port.preview':'Preview',
       // Page titles (missing)
       'port.page.title':'Portfolio | Sebastián Castaño Suárez',
       'port.page.h1':'Portfolio','port.page.subtitle':'Featured projects in data engineering, automation and software development.',

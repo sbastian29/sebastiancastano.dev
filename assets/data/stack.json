@@ -51,8 +51,8 @@
       "en": "Daily use"
     },
     "statFoot": {
-      "es": "de 61 herramientas",
-      "en": "of 61 tools"
+      "es": "de 62 herramientas",
+      "en": "of 62 tools"
     },
     "puvLabel": {
       "es": "Lo que hago",
@@ -735,6 +735,21 @@
       "ctx": {
         "es": "Mi primer lenguaje. Lo manejo sin asistencia.",
         "en": "My first language. I write it unaided."
+      }
+    },
+    {
+      "key": "flutter",
+      "name": "Flutter",
+      "tier": 2,
+      "stage": "modelo",
+      "icon": "flutter",
+      "where": {
+        "es": "Trabajo actual, proyectos personales",
+        "en": "Current role, personal projects"
+      },
+      "ctx": {
+        "es": "Herramientas internas en el trabajo y apps móviles.",
+        "en": "Internal tools at work and mobile apps."
       }
     },
     {

@@ -235,6 +235,77 @@
       "orientation": "landscape"
     },
     {
+      "id": 9,
+      "title": "Web del bar restaurante Veloche",
+      "slug": "veloche-restaurante",
+      "description": "Web de un bar restaurante de Fuente el Saz de Jarama: carta, reservas y pedidos para llevar, sin peticiones a terceros en la carga inicial.",
+      "longDescription": "Encargo freelance. Sitio estático con plantillas sobre React, librerías y fuentes autoalojadas, GSAP en carga diferida y carta imprimible. Desplegado en Vercel.",
+      "image": "assets/images/proyectos/veloche.webp",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app"
+      ],
+      "tags": [
+        "html",
+        "css",
+        "javascript",
+        "react",
+        "gsap",
+        "vercel"
+      ],
+      "technologies": [
+        "HTML",
+        "CSS",
+        "JavaScript",
+        "React",
+        "GSAP",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": "https://veloche-restaurante.vercel.app",
+      "featured": false,
+      "status": "completado",
+      "date": "2026"
+    },
+    {
+      "id": 10,
+      "title": "Portfolio de Yi-Ting, artista 3D",
+      "slug": "portfolio-artista-3d",
+      "description": "Web para Yi-Ting (Lisa), artista de modelado y texturizado 3D: archivo de trabajos en carrusel, títulos con buscador y formulario de contacto sobre un fondo WebGL.",
+      "longDescription": "Encargo freelance. Sitio estático con React, contenido en JSON editable, shader WebGL sin Three.js y función serverless para el formulario. Desplegado en Vercel.",
+      "image": "assets/images/proyectos/yiting.webp",
+      "video": null,
+      "categories": [
+        "software"
+      ],
+      "roles": [
+        "desarrollo-app"
+      ],
+      "tags": [
+        "react",
+        "javascript",
+        "gsap",
+        "webgl",
+        "vercel"
+      ],
+      "technologies": [
+        "React",
+        "JavaScript",
+        "GSAP",
+        "WebGL",
+        "Node.js",
+        "Vercel"
+      ],
+      "github": null,
+      "demo": "https://yiting-beryl.vercel.app",
+      "featured": false,
+      "status": "completado",
+      "date": "2026"
+    },
+    {
       "id": 7,
       "title": "TFG — Suite de Gestión Hospitalaria y Desarrollo Móvil Android",
       "slug": "hospital-management",

@@ -13,7 +13,8 @@
         "Spark",
         "OpenMetadata",
         "AS400",
-        "SQL"
+        "SQL",
+        "Flutter"
       ],
       "projects": [
         {

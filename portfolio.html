@@ -118,6 +118,13 @@
       opacity: 0.5;
     }
 
+    .project-shot {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
     .project-featured-badge {
       position: absolute;
       top: 12px;
@@ -206,7 +213,7 @@
 
     .project-date {
       font-size: 0.75rem;
-      color: var(--text-muted);
+      color: var(--text-tertiary);
       display: flex;
       align-items: center;
       gap: 6px;
@@ -246,14 +253,14 @@
     .card-link-github:hover { background: #24292e; color: #fff; border-color: #444; }
 
     .card-link-demo {
-      background: var(--accent-primary, #3b82f6);
-      color: #fff;
+      background: var(--accent-primary);
+      color: var(--bg-primary);
     }
-    .card-link-demo:hover { background: var(--accent-hover, #2563eb); }
+    .card-link-demo:hover { background: var(--accent-secondary); }
 
     .card-link-private {
       background: transparent;
-      color: var(--text-muted, #888);
+      color: var(--text-tertiary);
       border: 1px dashed var(--border-color, rgba(255,255,255,.15));
       cursor: not-allowed;
       font-size: 0.75rem;
@@ -627,7 +634,7 @@
                <i class="fab fa-github"></i>
                ${t('port.github')}
              </a>`
-          : `<span class="card-link-btn card-link-private">
+          : project.demo ? '' : `<span class="card-link-btn card-link-private">
                <i class="fas fa-lock"></i>
                ${t('port.private_repo')}
              </span>`;
@@ -680,6 +687,9 @@
                  </div>
                </div>
              </div>`
+          // solo rutas completas: los nombres sueltos del JSON (p. ej. 'churn-ml.jpg') no tienen archivo
+          : project.image?.startsWith('assets/')
+          ? `<img class="project-shot" src="${project.image}" alt="${t('port.preview')}: ${project.title}" width="1200" height="675" loading="lazy">`
           : `<i class="fas ${icon} project-icon"></i>`;
 
         return `

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sebastiancastano-dev.vercel.app/sitemap.xml
